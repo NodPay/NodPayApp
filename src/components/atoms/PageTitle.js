@@ -1,17 +1,21 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
-import {LeftArrow} from '../../assets';
+import {LeftArrow, BlackLeftArrow} from '../../assets';
 import {dimens, fonts} from '../../utils';
 
-const PageTitle = ({title, navigation}) => {
+const PageTitle = ({title, navigation, isBlackArrow, titleStyle}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => navigation.goBack()}
         style={styles.left_arrow}>
-        <Image source={LeftArrow} />
+        {isBlackArrow ? (
+          <Image source={BlackLeftArrow} />
+        ) : (
+          <Image source={LeftArrow} />
+        )}
       </TouchableOpacity>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={[styles.title, titleStyle]}>{title}</Text>
     </View>
   );
 };

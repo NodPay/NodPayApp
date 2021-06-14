@@ -11,7 +11,7 @@ const Splash = ({navigation}) => {
     // go to onboarding screen initially
     // check at local storage
     // if user already login, then go to home page,
-    // if no user logged out, then go to login screen.
+    // if no user logged in, then go to login screen / get started screen.
 
     wait(1000).then(() => {
       navigation.replace('Loader');
@@ -40,5 +40,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+    width: '100%',
   },
 });

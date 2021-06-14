@@ -1,14 +1,22 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, Image, View, TouchableOpacity} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 
-const Button = ({onPress, btnStyle, titleStyle, title}) => {
+const Button = ({
+  onPress,
+  btnStyle,
+  titleStyle,
+  title,
+  isLeftIcon,
+  leftIcon,
+}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={onPress}
       style={[styles.btn, btnStyle]}>
       <Text style={[styles.btn_title, titleStyle]}>{title}</Text>
+      {isLeftIcon ?? <Image source={leftIcon} />}
     </TouchableOpacity>
   );
 };

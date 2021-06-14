@@ -7,7 +7,7 @@ import {color, wait} from '../utils';
 
 const Loader = ({navigation}) => {
   useEffect(() => {
-    wait(500).then(() => navigation.replace('GetStarted'));
+    wait(500).then(() => navigation.replace('OnBoarding'));
   }, []);
   return (
     <SafeAreaView style={styles.container}>
