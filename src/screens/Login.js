@@ -1,11 +1,5 @@
 import React, {useEffect} from 'react';
-import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  Image,
-  StatusBar,
-} from 'react-native';
+import {StyleSheet, View, SafeAreaView, Image, StatusBar} from 'react-native';
 
 // where local file imported
 import {Button, PageTitle, SectionTitle, LinkAction} from '../components';
@@ -19,9 +13,7 @@ const Login = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar
-        animated={true}
-        backgroundColor={color.bg_color} />
+      <StatusBar animated={true} backgroundColor={color.bg_color} />
       <View style={styles.inner_container}>
         <PageTitle title="Login" navigation={navigation} />
       </View>
@@ -29,37 +21,64 @@ const Login = ({navigation}) => {
         <View style={styles.bg_top} />
         <Image source={SplashWaveGradient} style={styles.image_bg_wave} />
         <View style={styles.center_content}>
-          <SectionTitle 
-            title="Welcome Back!" 
+          <SectionTitle
+            title="Welcome Back!"
             subtitle={`Login to your account with your email or\nmobile number`}
             textColor="white"
           />
           <Button
             iconLeft={Facebook}
             title="Sign in with Facebook"
-            btnStyle={{backgroundColor: 'white', marginBottom: dimens.default_16, borderColor: color.btn_white, borderWidth: 1}}
+            btnStyle={{
+              backgroundColor: 'white',
+              marginBottom: dimens.default_16,
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'black'}}
             onPress={() => {}}
           />
           <Button
             iconLeft={Phone}
             title="Continue with Phone Number"
-            btnStyle={{backgroundColor: 'white', marginBottom: dimens.default_16, borderColor: color.btn_white, borderWidth: 1}}
+            btnStyle={{
+              backgroundColor: 'white',
+              marginBottom: dimens.default_16,
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'black'}}
             onPress={() => {}}
           />
           <Button
             iconLeft={Email}
             title="Continue with Email"
-            btnStyle={{backgroundColor: 'white', marginBottom: dimens.default_16, borderColor: color.btn_white, borderWidth: 1}}
+            btnStyle={{
+              backgroundColor: 'white',
+              marginBottom: dimens.default_16,
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'black'}}
             onPress={() => {}}
+          />
+          <Button
+            title="TEMPORARY BUTTON FOR FORGOT PASSWORD"
+            btnStyle={{
+              backgroundColor: 'white',
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
+            titleStyle={{fontFamily: fonts.sofia_bold, color: 'black'}}
+            onPress={() => {
+              navigation.navigate('ForgotPassword');
+            }}
           />
         </View>
       </View>
       <View style={styles.footer_container}>
-        <LinkAction 
-          text="Don’t have an account?" 
+        <LinkAction
+          text="Don’t have an account?"
           actionText="Sign Up"
           onPress={() => {}}
         />

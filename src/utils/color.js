@@ -5,4 +5,5 @@ export const color = {
   btn_title_white: '#686A6D',
   btn_black: '#03060C',
   loading: '#6467E5',
+  formLabel: '#9A9B9E',
 };
