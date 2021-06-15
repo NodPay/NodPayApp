@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   SafeAreaView,
   Image,
-  ImageBackground,
+  StatusBar,
 } from 'react-native';
 
 // where local file imported
@@ -20,6 +19,9 @@ const Login = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar
+        animated={true}
+        backgroundColor={color.bg_color} />
       <View style={styles.inner_container}>
         <PageTitle title="Login" navigation={navigation} />
       </View>
@@ -48,7 +50,7 @@ const Login = ({navigation}) => {
           />
           <Button
             iconLeft={Email}
-            title="Continue with email"
+            title="Continue with Email"
             btnStyle={{backgroundColor: 'white', marginBottom: dimens.default_16, borderColor: color.btn_white, borderWidth: 1}}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'black'}}
             onPress={() => {}}
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
     top: 20,
   },
   footer_container: {
-    padding: dimens.default_16,
+    padding: dimens.large,
   },
   wave: {
     zIndex: -1,

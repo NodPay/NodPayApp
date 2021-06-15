@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, SafeAreaView} from 'react-native';
+import {StyleSheet, StatusBar, SafeAreaView} from 'react-native';
 
 // where local file imported
 import {Loading, Logo} from '../components';
@@ -11,6 +11,9 @@ const Loader = ({navigation}) => {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar
+        animated={true}
+        backgroundColor={color.bg_white} />
       <Loading size="large" color={color.loading} />
       <Logo titleStyle={{color: color.btn_black}} />
     </SafeAreaView>

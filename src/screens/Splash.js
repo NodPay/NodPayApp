@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, SafeAreaView, Image} from 'react-native';
+import {StyleSheet, SafeAreaView, StatusBar, Image} from 'react-native';
 
 // where local files imported
 import {color, wait, getData} from '../utils';
@@ -20,6 +20,9 @@ const Splash = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar
+        animated={true}
+        backgroundColor={color.bg_color} />
       <Logo />
       <Image source={SplashWave} style={styles.img} />
     </SafeAreaView>
