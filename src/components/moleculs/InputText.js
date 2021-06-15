@@ -5,7 +5,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {FormLabel, TextInput} from '../atoms';
 import {color, dimens, fonts} from '../../utils';
 
-const TextForm = ({label, value, onChangeText}) => {
+const InputText = ({label, value, onChangeText}) => {
   return (
     <View style={styles.container}>
       <FormLabel label={label} />
@@ -15,7 +15,7 @@ const TextForm = ({label, value, onChangeText}) => {
   );
 };
 
-export default TextForm;
+export default InputText;
 
 const styles = StyleSheet.create({
   container: {

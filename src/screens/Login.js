@@ -62,18 +62,6 @@ const Login = ({navigation}) => {
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'black'}}
             onPress={() => navigation.navigate('LoginEmail')}
           />
-          <Button
-            title="TEMPORARY BUTTON FOR FORGOT PASSWORD"
-            btnStyle={{
-              backgroundColor: 'white',
-              borderColor: color.btn_white,
-              borderWidth: 1,
-            }}
-            titleStyle={{fontFamily: fonts.sofia_bold, color: 'black'}}
-            onPress={() => {
-              navigation.navigate('ForgotPassword');
-            }}
-          />
         </View>
       </View>
       <View style={styles.footer_container}>

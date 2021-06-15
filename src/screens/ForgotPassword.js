@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, View, StatusBar, Text} from 'react-native';
 
 //where local file imported
-import {Button, PageTitle, TextForm} from '../components/';
+import {Button, PageTitle, InputText} from '../components/';
 import {color, dimens, fonts} from '../utils';
 
 const ForgotPassword = ({navigation}) => {
@@ -26,7 +26,7 @@ const ForgotPassword = ({navigation}) => {
           password instruction to your email
         </Text>
 
-        <TextForm label="Your Email" value={email} onChangeText={setEmail} />
+        <InputText label="Your Email" value={email} onChangeText={setEmail} />
 
         <Button
           title="Send Instruction"

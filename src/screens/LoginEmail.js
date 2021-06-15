@@ -9,7 +9,13 @@ import {
 } from 'react-native';
 
 // where local file imported
-import {Button, PageTitle, SectionTitle, LinkAction, InputPassword} from '../components';
+import {
+  Button,
+  PageTitle,
+  SectionTitle,
+  LinkAction,
+  InputPassword,
+} from '../components';
 import {SplashWaveGradient} from '../assets';
 import {clearAll, color, dimens, fonts} from '../utils';
 
@@ -20,51 +26,61 @@ const LoginEmail = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-        <StatusBar
-            animated={true}
-            backgroundColor={color.bg_color} />
-        <ScrollView>
-            <View style={styles.inner_container}>
-                <PageTitle title="Login" navigation={navigation} />
+      <StatusBar animated={true} backgroundColor={color.bg_color} />
+      <ScrollView>
+        <View style={styles.inner_container}>
+          <PageTitle title="Login" navigation={navigation} />
+        </View>
+        <View style={styles.center_container}>
+          <View style={styles.bg_top} />
+          <Image source={SplashWaveGradient} style={styles.image_bg_wave} />
+          <View style={styles.center_content}>
+            <SectionTitle
+              title="Welcome Back!"
+              subtitle={`Login to your account with your email or\nmobile number`}
+              textColor="white"
+            />
+            <View style={styles.form_container}>
+              <InputPassword
+                label="Password"
+                placeholder="Password"
+                onChange={() => {}}
+              />
             </View>
-            <View style={styles.center_container}>
-                <View style={styles.bg_top} />
-                <Image source={SplashWaveGradient} style={styles.image_bg_wave} />
-                <View style={styles.center_content}>
-                    <SectionTitle 
-                        title="Welcome Back!" 
-                        subtitle={`Login to your account with your email or\nmobile number`}
-                        textColor="white"
-                    />
-                    <View style={styles.form_container}>
-                        <InputPassword
-                            label="Password"
-                            placeholder="Password"
-                            onChange={() => {}}
-                        />
-                    </View>
-                    <LinkAction 
-                        text="Forgot your password?" 
-                        actionText="Click here"
-                        onPress={() => {}}
-                    />
-                </View>
-            </View>
-            <View style={styles.footer_container}>
-                <Button
-                    title="Login"
-                    btnStyle={{backgroundColor: 'black', marginBottom: dimens.default_12, borderColor: color.btn_white, borderWidth: 1}}
-                    titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-                    onPress={() => {}}
-                />
-                <Button
-                    title="Register"
-                    btnStyle={{backgroundColor: 'white', marginBottom: dimens.default_16, borderColor: color.btn_white, borderWidth: 1}}
-                    titleStyle={{fontFamily: fonts.sofia_bold}}
-                    onPress={() => {}}
-                />
-            </View>
-        </ScrollView>
+            <LinkAction
+              text="Forgot your password?"
+              actionText="Click here"
+              onPress={() => {
+                navigation.navigate('ForgotPassword');
+              }}
+            />
+          </View>
+        </View>
+        <View style={styles.footer_container}>
+          <Button
+            title="Login"
+            btnStyle={{
+              backgroundColor: 'black',
+              marginBottom: dimens.default_12,
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
+            titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
+            onPress={() => {}}
+          />
+          <Button
+            title="Register"
+            btnStyle={{
+              backgroundColor: 'white',
+              marginBottom: dimens.default_16,
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
+            titleStyle={{fontFamily: fonts.sofia_bold}}
+            onPress={() => {}}
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
