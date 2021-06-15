@@ -53,7 +53,7 @@ const Login = ({navigation}) => {
             title="Continue with Email"
             btnStyle={{backgroundColor: 'white', marginBottom: dimens.default_16, borderColor: color.btn_white, borderWidth: 1}}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'black'}}
-            onPress={() => {}}
+            onPress={() => navigation.navigate('LoginEmail')}
           />
         </View>
       </View>

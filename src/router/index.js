@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {
   GetStarted,
   Login,
+  LoginEmail,
   Splash,
   OnBoarding,
   Loader,
@@ -25,6 +26,7 @@ const Router = () => {
         <Stack.Screen name="GetStarted" component={GetStarted} />
         <Stack.Screen name="OnBoarding" component={OnBoarding} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="LoginEmail" component={LoginEmail} />
         <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>

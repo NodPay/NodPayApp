@@ -1,3 +1,4 @@
 import SectionTitle from './SectionTitle';
+import InputPassword from './InputPassword';
 
-export {SectionTitle};
+export {SectionTitle, InputPassword};
