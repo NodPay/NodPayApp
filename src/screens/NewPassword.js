@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, View, StatusBar, Text} from 'react-native';
 
 //where local file imported
-import {Button, PageTitle, InputText, ErrorMessage} from '../components';
+import {Button, PageTitle, InputPassword, ErrorMessage} from '../components';
 import {color, dimens, fonts} from '../utils';
 import {LeftArrowBlack} from '../assets';
 
-const ForgotPassword = ({navigation}) => {
-  const [email, setEmail] = useState('');
+const NewPassword = ({navigation}) => {
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   return (
     <SafeAreaView style={styles.container}>
@@ -23,28 +24,33 @@ const ForgotPassword = ({navigation}) => {
         />
 
         <Text style={styles.subtitle}>Reset Your Password</Text>
-        <Text style={styles.description}>
-          Enter email that linked to your account and we will send reset
-          password instruction to your email
-        </Text>
 
-        <InputText label="Your Email" value={email} onChangeText={setEmail} />
-        <ErrorMessage message="The email isn’t associated with a NodPay Account" />
+        <InputPassword
+          label="New Password"
+          value={password}
+          onChange={setPassword}
+        />
+        <InputPassword
+          label="Confirm New Password"
+          value={confirmPassword}
+          onChange={setConfirmPassword}
+        />
+        <ErrorMessage message="Password strength is too weak. Please use combination of number and symbols" />
       </View>
 
       <View style={styles.btnContainer}>
         <Button
-          title="Send Instruction"
+          title="Reset Password"
           titleStyle={{color: 'white'}}
           btnStyle={{backgroundColor: color.btn_black}}
-          onPress={() => navigation.navigate('NewPassword')}
+          // onPress={}
         />
       </View>
     </SafeAreaView>
   );
 };
 
-export default ForgotPassword;
+export default NewPassword;
 
 const styles = StyleSheet.create({
   container: {

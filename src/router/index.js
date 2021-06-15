@@ -8,6 +8,7 @@ import {
   Login,
   LoginEmail,
   ForgotPassword,
+  NewPassword,
   Splash,
   OnBoarding,
   Loader,
@@ -29,6 +30,7 @@ const Router = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="LoginEmail" component={LoginEmail} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="NewPassword" component={NewPassword} />
         <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>

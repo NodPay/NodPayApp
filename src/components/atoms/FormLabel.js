@@ -12,6 +12,6 @@ const styles = StyleSheet.create({
   defaultLabelStyle: {
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_16,
-    color: color.formLabel,
+    color: color.form_label,
   },
 });

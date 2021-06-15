@@ -2,7 +2,16 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {dimens, fonts} from '../../utils';
 
-const SectionTitle = ({title, subtitle, textColor}) => {
+const SectionTitle = ({title, subtitle, textColor, type}) => {
+  // if (type == 'modal') {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Text style={[styles.title, {color: textColor}]}>{title}</Text>
+  //       <Text style={[styles.subtitle, {color: textColor}]}>{subtitle}</Text>
+  //     </View>
+  //   );
+  // }
+
   return (
     <View style={styles.container}>
       <Text style={[styles.title, {color: textColor}]}>{title}</Text>

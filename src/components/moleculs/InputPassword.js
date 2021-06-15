@@ -6,10 +6,10 @@ const InputPassword = ({label, value, placeholder, onChange}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput 
+      <TextInput
         autoCompleteType="off"
         placeholder={placeholder}
-        value={value} 
+        value={value}
         onChangeText={onChange}
         secureTextEntry={true}
         style={styles.input}
@@ -22,6 +22,7 @@ export default InputPassword;
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: dimens.medium,
   },
   input: {
     backgroundColor: 'white',
@@ -29,11 +30,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: dimens.default_18,
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_16,
+    color: color.btn_black,
   },
   label: {
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_16,
     color: color.btn_black,
     marginBottom: dimens.small,
-  }
+  },
 });
