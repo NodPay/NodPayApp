@@ -7,6 +7,7 @@ import {
   GetStarted,
   Login,
   LoginEmail,
+  ForgotPassword,
   Splash,
   OnBoarding,
   Loader,
@@ -27,6 +28,7 @@ const Router = () => {
         <Stack.Screen name="OnBoarding" component={OnBoarding} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="LoginEmail" component={LoginEmail} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>

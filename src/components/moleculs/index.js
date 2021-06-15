@@ -1,4 +1,5 @@
 import SectionTitle from './SectionTitle';
 import InputPassword from './InputPassword';
+import TextForm from './TextForm';
 
-export {SectionTitle, InputPassword};
+export {SectionTitle, InputPassword, TextForm};
