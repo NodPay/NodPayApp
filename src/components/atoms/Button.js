@@ -9,6 +9,8 @@ const Button = ({
   title,
   isLeftIcon,
   leftIcon,
+  isRightIcon,
+  rightIcon,
 }) => {
   return (
     <TouchableOpacity
@@ -16,7 +18,9 @@ const Button = ({
       onPress={onPress}
       style={[styles.btn, btnStyle]}>
       <Text style={[styles.btn_title, titleStyle]}>{title}</Text>
-      {isLeftIcon ?? <Image source={leftIcon} />}
+      {isRightIcon ? (
+        <Image source={rightIcon} style={styles.leftIcon} />
+      ) : null}
     </TouchableOpacity>
   );
 };
@@ -35,5 +39,9 @@ const styles = StyleSheet.create({
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_16,
     color: color.btn_title_white,
+  },
+  leftIcon: {
+    position: 'absolute',
+    right: dimens.default_16,
   },
 });

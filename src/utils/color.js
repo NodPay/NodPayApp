@@ -5,4 +5,5 @@ export const color = {
   btn_black: '#03060C',
   loading: '#6467E5',
   bg_grey: '#F0F0F1',
+  green: '#6FBC4B',
 };

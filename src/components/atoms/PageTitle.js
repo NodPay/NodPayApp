@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     padding: dimens.default_16,
+    alignItems: 'center',
   },
   left_arrow: {
     padding: dimens.default_16,
