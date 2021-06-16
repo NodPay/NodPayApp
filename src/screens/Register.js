@@ -31,18 +31,16 @@ const Register = ({navigation}) => {
         isComplete={state.isComplete}
         isVerification={state.isVerification}
       />
-      <View>
-        <View style={styles.wrap_btn}>
-          <Button
-            onPress={onNext}
-            title="Next"
-            btnStyle={{
-              backgroundColor: color.btn_black,
-            }}
-            titleStyle={{color: 'white'}}
-            iconRight={Next}
-          />
-        </View>
+      <View style={styles.wrap_btn}>
+        <Button
+          onPress={onNext}
+          title="Next"
+          btnStyle={{
+            backgroundColor: color.btn_black,
+          }}
+          titleStyle={{color: 'white'}}
+          iconRight={Next}
+        />
       </View>
     </SafeAreaView>
   );
@@ -56,9 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAFAFA',
   },
   wrap_btn: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    marginHorizontal: dimens.default_16,
-    marginVertical: dimens.default_16,
+    paddingHorizontal: dimens.default_16,
+    paddingVertical: dimens.default_16,
   },
 });

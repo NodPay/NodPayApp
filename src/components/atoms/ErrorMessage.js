@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     marginTop: dimens.default,
   },
   message: {
-    fontFamily: fonts.sofia_regular,
+    fontFamily: fonts.sofia_bold,
     fontSize: dimens.default_16,
     color: color.error_text,
     textAlign: 'center',
