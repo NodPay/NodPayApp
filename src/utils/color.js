@@ -10,4 +10,7 @@ export const color = {
   grey: '#9A9B9E',
   red: '#D21414',
   bg_red_error_msg: '#FBE8E8',
+  form_label: '#9A9B9E',
+  error_text: '#D21414',
+  error_background: '#FBE8E8',
 };

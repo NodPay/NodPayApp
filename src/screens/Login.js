@@ -56,7 +56,7 @@ const Login = ({navigation}) => {
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'black'}}
-            onPress={() => {}}
+            onPress={() => navigation.navigate('LoginEmail')}
           />
         </View>
       </View>

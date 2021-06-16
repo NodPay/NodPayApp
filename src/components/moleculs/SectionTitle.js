@@ -9,6 +9,7 @@ const SectionTitle = ({
   titleStyle,
   subTitleStyle,
   containerStyle,
+  num,
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
@@ -17,6 +18,9 @@ const SectionTitle = ({
       </Text>
       <Text style={[styles.subtitle, {color: textColor}, subTitleStyle]}>
         {subtitle}
+        <Text style={[styles.subtitle, {fontFamily: fonts.sofia_bold}]}>
+          {` ${num}`}
+        </Text>
       </Text>
     </View>
   );

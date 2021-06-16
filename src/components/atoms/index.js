@@ -5,6 +5,8 @@ import Loading from './Loading';
 import Gap from './Gap';
 import LinkAction from './LinkAction';
 import InputPhoneNumber from './InputPhoneNumber';
+import TextInput from './TextInput';
+import FormLabel from './FormLabel';
 import ErrorMessage from './ErrorMessage';
 
 export {
@@ -15,5 +17,7 @@ export {
   Loading,
   LinkAction,
   InputPhoneNumber,
+  TextInput,
+  FormLabel,
   ErrorMessage,
 };
