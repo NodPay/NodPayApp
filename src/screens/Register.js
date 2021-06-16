@@ -5,10 +5,10 @@ import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import {color, dimens, fonts} from '../utils';
 import {PageTitle, Button, StepForm} from '../components';
 import {Next} from '../assets';
+import useStateContext from '../store/useStateContext';
 
 const Register = ({navigation}) => {
-  const [activeStep, setActiveStep] = useState(0);
-  const [isComplete, setIsComplete] = useState(false);
+  const {state, dispatch} = useStateContext();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -18,18 +18,28 @@ const Register = ({navigation}) => {
         title="Create Account"
         navigation={navigation}
       />
-      <StepForm activeStep={activeStep} isComplete={isComplete} />
-      <View style={styles.wrap_btn}>
-        <Button
-          onPress={() => setActiveStep(activeStep + 1)}
-          title="Next"
-          btnStyle={{
-            backgroundColor: color.btn_black,
-          }}
-          titleStyle={{color: 'white'}}
-          isRightIcon
-          rightIcon={Next}
-        />
+      <StepForm
+        activeStep={state.activeStep}
+        isComplete={state.isComplete}
+        isVerification={state.isVerification}
+      />
+      <View>
+        <View style={styles.wrap_btn}>
+          <Button
+            onPress={() => {
+              // next step
+              // setActiveStep(activeStep + 1)
+              // next to verif phone number
+              dispatch({type: 'SET_ACTIVE_STEP'});
+            }}
+            title="Next"
+            btnStyle={{
+              backgroundColor: color.btn_black,
+            }}
+            titleStyle={{color: 'white'}}
+            iconRight={Next}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );

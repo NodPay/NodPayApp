@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 
 // where local files imported
 import {color, dimens, fonts} from '../../utils';
-import {SectionTitle} from '../../components';
+import MobileNumberSection from '../organism/MobileNumberSection';
 
-const StepForm = ({activeStep, isComplete}) => {
+const StepForm = ({activeStep, isComplete, isVerification}) => {
   const progressStepsStyle = {
     activeStepIconBorderColor: 'white',
     disabledStepIconColor: 'white',
@@ -17,35 +17,27 @@ const StepForm = ({activeStep, isComplete}) => {
     activeStepIconColor: 'white',
     completedStepIconColor: color.green,
     completedCheckColor: 'white',
-    labelFontFamily: fonts.sofia_medium,
+    labelFontFamily: fonts.sofia_bold,
     labelFontSize: dimens.default_14,
     topOffset: dimens.default_14,
     disabledStepNumColor: 'lightgray',
   };
 
   return (
-    <View style={{flex: 1, paddingHorizontal: dimens.default_18}}>
+    <View style={styles.container}>
       <ProgressSteps
         {...progressStepsStyle}
         activeStep={activeStep}
         isComplete={isComplete}>
-        <ProgressStep
-          label="Mobile Number"
-          removeBtnRow={true}
-          onNext={() => console.log('gg')}>
-          <View>
-            <SectionTitle
-              title="Mobile Number"
-              subtitle="Enter your active mobile number"
-            />
-          </View>
+        <ProgressStep label={`Mobile\nNumber`} removeBtnRow={true}>
+          <MobileNumberSection isVerification={isVerification} />
         </ProgressStep>
-        <ProgressStep label="Personal Details" removeBtnRow={true}>
+        <ProgressStep label={`Personal\nDetails`} removeBtnRow={true}>
           <View style={{alignItems: 'center'}}>
             <Text>This is the content within step 2!</Text>
           </View>
         </ProgressStep>
-        <ProgressStep label="Residential Address" removeBtnRow={true}>
+        <ProgressStep label={`Residential\nAddress`} removeBtnRow={true}>
           <View style={{alignItems: 'center'}}>
             <Text>This is the content within step 3!</Text>
           </View>
@@ -55,7 +47,7 @@ const StepForm = ({activeStep, isComplete}) => {
             <Text>This is the content within step 3!</Text>
           </View>
         </ProgressStep>
-        <ProgressStep label="Security + Password" removeBtnRow={true}>
+        <ProgressStep label={`Security\nPassword`} removeBtnRow={true}>
           <View style={{alignItems: 'center'}}>
             <Text>This is the content within step 3!</Text>
           </View>
@@ -67,4 +59,8 @@ const StepForm = ({activeStep, isComplete}) => {
 
 export default StepForm;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

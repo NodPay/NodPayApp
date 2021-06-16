@@ -50,10 +50,11 @@ const OnBoarding = ({navigation}) => {
           title="Log In"
           titleStyle={{color: color.btn_title_white}}
           onPress={() => {
-            storeData('session', {
-              isLogin: true,
-              isIntro: false,
-            });
+            navigation.navigate('Login');
+            // storeData('session', {
+            //   isLogin: true,
+            //   isIntro: false,
+            // });
           }}
           btnStyle={{marginBottom: dimens.default_14}}
         />
@@ -63,10 +64,10 @@ const OnBoarding = ({navigation}) => {
           btnStyle={{backgroundColor: color.btn_black}}
           onPress={() => {
             navigation.replace('GetStarted');
-            storeData('session', {
-              isIntro: false,
-              isLogin: false,
-            });
+            // storeData('session', {
+            //   isIntro: false,
+            //   isLogin: false,
+            // });
           }}
         />
       </View>
@@ -98,10 +99,11 @@ const OnBoarding = ({navigation}) => {
         renderSkipButton={() => (
           <Button
             onPress={() => {
-              storeData('session', {
-                isLogin: true,
-                isIntro: false,
-              });
+              navigation.replace('GetStarted');
+              // storeData('session', {
+              //   isLogin: true,
+              //   isIntro: false,
+              // });
             }}
             title="Skip"
             titleStyle={{color: color.btn_black}}

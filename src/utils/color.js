@@ -7,4 +7,7 @@ export const color = {
   loading: '#6467E5',
   bg_grey: '#F0F0F1',
   green: '#6FBC4B',
+  grey: '#9A9B9E',
+  red: '#D21414',
+  bg_red_error_msg: '#FBE8E8',
 };

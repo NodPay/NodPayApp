@@ -2,11 +2,22 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {dimens, fonts} from '../../utils';
 
-const SectionTitle = ({title, subtitle, textColor}) => {
+const SectionTitle = ({
+  title,
+  subtitle,
+  textColor,
+  titleStyle,
+  subTitleStyle,
+  containerStyle,
+}) => {
   return (
-    <View style={styles.container}>
-      <Text style={[styles.title, {color: textColor}]}>{title}</Text>
-      <Text style={[styles.subtitle, {color: textColor}]}>{subtitle}</Text>
+    <View style={[styles.container, containerStyle]}>
+      <Text style={[styles.title, {color: textColor}, titleStyle]}>
+        {title}
+      </Text>
+      <Text style={[styles.subtitle, {color: textColor}, subTitleStyle]}>
+        {subtitle}
+      </Text>
     </View>
   );
 };
