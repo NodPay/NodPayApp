@@ -22,7 +22,8 @@ const MobileNumberSection = ({isVerification}) => {
           }}
           title="Verifications"
           titleStyle={{color: 'black', fontSize: dimens.default_22}}
-          subtitle={`Enter 4 digits we sent to +${1}`}
+          subtitle={`Enter 4 digits we sent to`}
+          num={`+${state?.phoneNumber}`}
           subTitleStyle={{
             color: color.grey,
             fontSize: dimens.default_16,
@@ -30,11 +31,7 @@ const MobileNumberSection = ({isVerification}) => {
         />
         <Gap t={dimens.default_16} />
         <View style={{paddingHorizontal: dimens.default_16}}>
-          {/* <InputPhoneNumber /> */}
-        </View>
-        <Gap t={dimens.default_16} />
-        <View style={{paddingHorizontal: dimens.default_16}}>
-          {state.error && <ErrorMessage msg={state.errorMessage} />}
+          {state?.error && <ErrorMessage message={state?.errorMessage} />}
         </View>
       </View>
     );
@@ -57,11 +54,11 @@ const MobileNumberSection = ({isVerification}) => {
       />
       <Gap t={dimens.default_16} />
       <View style={{paddingHorizontal: dimens.default_16}}>
-        <InputPhoneNumber />
+        <InputPhoneNumber dispatch={dispatch} />
       </View>
       <Gap t={dimens.default_16} />
       <View style={{paddingHorizontal: dimens.default_16}}>
-        {state.error && <ErrorMessage msg={state.errorMessage} />}
+        {state?.error && <ErrorMessage message={state?.errorMessage} />}
       </View>
     </View>
   );

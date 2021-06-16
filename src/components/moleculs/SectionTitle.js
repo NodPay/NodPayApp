@@ -9,7 +9,7 @@ const SectionTitle = ({
   titleStyle,
   subTitleStyle,
   containerStyle,
-  num,
+  num = '',
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>

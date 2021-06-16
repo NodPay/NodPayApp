@@ -1,5 +1,12 @@
 import React from 'react';
-import {StyleSheet, SafeAreaView, StatusBar, View, Image, Text} from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  View,
+  Image,
+  Text,
+} from 'react-native';
 
 //where local file imported
 import {Button, Logo} from '../components/';
@@ -9,9 +16,7 @@ import {SplashWave, GetStarted as GetStartedImage} from '../assets';
 const GetStarted = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar
-        animated={true}
-        backgroundColor={color.bg_color} />
+      <StatusBar animated={true} backgroundColor={color.bg_color} />
       <View style={styles.logo}>
         <Logo />
       </View>

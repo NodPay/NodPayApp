@@ -10,6 +10,14 @@ import useStateContext from '../store/useStateContext';
 const Register = ({navigation}) => {
   const {state, dispatch} = useStateContext();
 
+  const onNext = () => {
+    const {activeStep} = state;
+    if (activeStep == 0) {
+      //mobile number - verification section
+      dispatch({type: 'SET_VERIFICATION', payload: true});
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <PageTitle
@@ -26,12 +34,7 @@ const Register = ({navigation}) => {
       <View>
         <View style={styles.wrap_btn}>
           <Button
-            onPress={() => {
-              // next step
-              // setActiveStep(activeStep + 1)
-              // next to verif phone number
-              dispatch({type: 'SET_ACTIVE_STEP'});
-            }}
+            onPress={onNext}
             title="Next"
             btnStyle={{
               backgroundColor: color.btn_black,

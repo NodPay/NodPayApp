@@ -10,7 +10,7 @@ const initialState = {
   error: false,
   errorMessage: '',
   phoneNumber: '',
-  isVerification: true,
+  isVerification: false,
 };
 
 const reducer = (state, action) => {
@@ -29,6 +29,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         isVerification: action.payload,
+      };
+    case 'SET_PHONE_NUMBER':
+      return {
+        ...state,
+        phoneNumber: action.payload,
       };
     default:
       return state;
