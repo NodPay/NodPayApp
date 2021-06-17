@@ -1,3 +1,5 @@
 import Modal from './Modal';
+import MobileNumberSection from './MobileNumberSection';
+import PersonalDetailsSection from './PersonalDetailsSection';
 
-export {Modal};
+export {MobileNumberSection, PersonalDetailsSection, Modal};

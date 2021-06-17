@@ -5,11 +5,15 @@ import {StyleSheet, Text, View} from 'react-native';
 import {FormLabel, TextInput} from '../atoms';
 import {color, dimens, fonts} from '../../utils';
 
-const InputText = ({label, value, placeholder, onChangeText, labelStyle}) => {
+const InputText = ({label, value, onChangeText, labelStyle, keyboardType}) => {
   return (
     <View style={styles.container}>
       <FormLabel label={label} labelStyle={labelStyle} />
-      <TextInput value={value} placeholder={placeholder} onChangeText={onChangeText} />
+      <TextInput
+        keyboardType={keyboardType}
+        value={value}
+        onChangeText={onChangeText}
+      />
     </View>
   );
 };

@@ -11,7 +11,7 @@ const InputOtp = ({error}) => {
 
   return (
     <OTPInputView
-      style={{flex: 1, padding: dimens.default_16}}
+      style={{flex: 1}}
       pinCount={4}
       keyboardType="number-pad"
       placeholderTextColor="green"

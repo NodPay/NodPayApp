@@ -7,6 +7,10 @@ import Phone from './phone.png';
 import Close from './close.png';
 import FeatherPhone from './feather_phone.png';
 import Down from './down.png';
+import Male from './male.png';
+import MaleActive from './male_active.png';
+import Female from './female.png';
+import FemaleActive from './female_active.png';
 import PasswordHide from './password-hide.png';
 
 export {
@@ -18,6 +22,10 @@ export {
   Phone,
   FeatherPhone,
   Down,
+  Male,
+  MaleActive,
+  Female,
+  FemaleActive,
   PasswordHide,
   Close,
 };

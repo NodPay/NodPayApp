@@ -13,6 +13,7 @@ const initialState = {
   isVerification: false,
   isRunning: false, //resent code countdown start
   verificationCode: '',
+  isFamilyRelation: false, //family relation ui personal detail
 };
 
 const reducer = (state, action) => {
@@ -52,6 +53,11 @@ const reducer = (state, action) => {
         ...state,
         error: action.error,
         errorMessage: action.errorMessage,
+      };
+    case 'SET_FAMILY_RELATION':
+      return {
+        ...state,
+        isFamilyRelation: action.payload,
       };
     default:
       return state;

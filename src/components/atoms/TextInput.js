@@ -2,7 +2,14 @@ import React from 'react';
 import {StyleSheet, TextInput as InputText} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 
-const TextInput = ({value, placeholder, onChangeText, secureTextEntry, autoCapitalize}) => {
+const TextInput = ({
+  value,
+  placeholder,
+  onChangeText,
+  secureTextEntry,
+  autoCapitalize,
+  keyboardType,
+}) => {
   return (
     <InputText
       autoCapitalize={autoCapitalize}
@@ -12,6 +19,7 @@ const TextInput = ({value, placeholder, onChangeText, secureTextEntry, autoCapit
       style={styles.inputText}
       value={value}
       onChangeText={onChangeText}
+      keyboardType={keyboardType}
       secureTextEntry={secureTextEntry}
     />
   );
@@ -28,5 +36,14 @@ const styles = StyleSheet.create({
     marginTop: dimens.small,
     paddingHorizontal: dimens.default,
     borderRadius: 50,
+    height: 50,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 1,
   },
 });

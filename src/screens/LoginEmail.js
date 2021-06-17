@@ -25,10 +25,6 @@ const LoginEmail = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  useEffect(() => {
-    clearAll().then(res => console.log('clear all', res));
-  }, []);
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar animated={true} backgroundColor={color.bg_color} />
@@ -46,11 +42,11 @@ const LoginEmail = ({navigation}) => {
               textColor="white"
             />
             <View style={styles.form_container}>
-              <InputText 
+              <InputText
                 labelStyle={{color: color.btn_black}}
-                label="Email" 
-                placeholder="Email" 
-                value={email} 
+                label="Email"
+                placeholder="Email"
+                value={email}
                 onChangeText={setEmail}
               />
               <InputPassword

@@ -13,10 +13,48 @@ import {FormLabel} from '../atoms';
 import {color, dimens, fonts, formatPhoneNumber} from '../../utils';
 import {Down, FeatherPhone} from '../../assets';
 
-const InputPhoneNumber = ({label, phoneCode, value, onChangeText, labelStyle}) => {
+const InputPhoneNumber = ({
+  label,
+  phoneCode = '',
+  value = '',
+  onChangeText,
+  labelStyle,
+  inputMobileNumber,
+  dispatch,
+}) => {
+  const [code, setCode] = useState('62');
+  const [number, setNumber] = useState('');
+
+  if (inputMobileNumber) {
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.btn}>
+          <Text style={styles.country_code}>{`+${code}`}</Text>
+          <Image source={Down} />
+        </TouchableOpacity>
+        <TextInput
+          keyboardType="number-pad"
+          value={number.toString()}
+          onChangeText={value => {
+            setNumber(value.toString());
+            dispatch({
+              type: 'SET_PHONE_NUMBER',
+              phoneNumber: `${code}${value}`,
+            });
+          }}
+          style={styles.input}
+          maxLength={11}
+        />
+        <Image source={FeatherPhone} style={styles.icon} />
+      </View>
+    );
+  }
+
   return (
     <>
-      {label && <FormLabel labelStyle={[styles.label, labelStyle]} label={label} />}
+      {label && (
+        <FormLabel labelStyle={[styles.label, labelStyle]} label={label} />
+      )}
       <View style={styles.container}>
         <TouchableOpacity style={styles.btn}>
           <Text style={styles.country_code}>{`+${phoneCode}`}</Text>
