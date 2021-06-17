@@ -2,13 +2,14 @@ import React from 'react';
 import {StyleSheet, TextInput as InputText} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 
-const TextInput = ({value, onChangeText}) => {
+const TextInput = ({value, onChangeText, keyboardType}) => {
   return (
     <InputText
       placeholderTextColor={color.btn_black}
       style={styles.inputText}
       value={value}
       onChangeText={onChangeText}
+      keyboardType={keyboardType}
     />
   );
 };
@@ -22,7 +23,16 @@ const styles = StyleSheet.create({
     color: color.btn_black,
     backgroundColor: 'white',
     marginTop: dimens.small,
-    padding: dimens.default,
+    paddingHorizontal: dimens.default,
     borderRadius: 50,
+    height: 50,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 1,
   },
 });

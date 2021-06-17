@@ -20,10 +20,6 @@ import {SplashWaveGradient} from '../assets';
 import {clearAll, color, dimens, fonts} from '../utils';
 
 const LoginEmail = ({navigation}) => {
-  useEffect(() => {
-    clearAll().then(res => console.log('clear all', res));
-  }, []);
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar animated={true} backgroundColor={color.bg_color} />

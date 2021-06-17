@@ -56,7 +56,7 @@ const MobileNumberSection = ({isVerification}) => {
         <SectionTitle
           containerStyle={{
             padding: 0,
-            paddingHorizontal: dimens.default_16,
+            // paddingHorizontal: dimens.default_16,
           }}
           title="Verifications"
           titleStyle={{color: 'black', fontSize: dimens.default_22}}
@@ -70,9 +70,7 @@ const MobileNumberSection = ({isVerification}) => {
         <Gap t={dimens.default_16} />
         <InputOtp error={state?.error} />
         <Gap t={dimens.default_16} />
-        <View style={{paddingHorizontal: dimens.default_16}}>
-          {state?.error && <ErrorMessage message={state?.errorMessage} />}
-        </View>
+        {state?.error && <ErrorMessage message={state?.errorMessage} />}
         <Text style={styles.timer}>
           Resent code in:{' '}
           <Text
@@ -96,7 +94,7 @@ const MobileNumberSection = ({isVerification}) => {
       <SectionTitle
         containerStyle={{
           padding: 0,
-          paddingHorizontal: dimens.default_16,
+          // paddingHorizontal: dimens.default_16,
         }}
         title="Mobile Number"
         titleStyle={{color: 'black', fontSize: dimens.default_22}}
@@ -107,13 +105,9 @@ const MobileNumberSection = ({isVerification}) => {
         }}
       />
       <Gap t={dimens.default_16} />
-      <View style={{paddingHorizontal: dimens.default_16, flex: 1}}>
-        <InputPhoneNumber dispatch={dispatch} />
-      </View>
+      <InputPhoneNumber dispatch={dispatch} />
       <Gap t={dimens.default_16} />
-      <View style={{paddingHorizontal: dimens.default_16}}>
-        {state?.error && <ErrorMessage message={state?.errorMessage} />}
-      </View>
+      {state?.error && <ErrorMessage message={state?.errorMessage} />}
     </View>
   );
 };

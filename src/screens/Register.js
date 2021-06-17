@@ -9,7 +9,7 @@ import useStateContext from '../store/useStateContext';
 
 const Register = ({navigation}) => {
   const {state, dispatch} = useStateContext();
-  const {activeStep, phoneNumber, isVerification, verificationCode} = state;
+  const {activeStep, phoneNumber, verificationCode, isFamilyRelation} = state;
 
   const onNextMobileNumber = () => {
     // check if number is not null / empty
@@ -19,7 +19,7 @@ const Register = ({navigation}) => {
         error: true,
         errorMessage: "Phone number can't be empty.",
       });
-    } else if (phoneNumber.length < 1) {
+    } else if (phoneNumber.length < 11) {
       dispatch({
         type: 'SET_ERROR_REGISTER',
         error: true,
@@ -42,6 +42,10 @@ const Register = ({navigation}) => {
     }
   };
 
+  const onNextPersonalDetails = () => {
+    dispatch({type: 'SET_FAMILY_RELATION', payload: true});
+  };
+
   const onNext = () => {
     //mobile number - verification section
     console.log(verificationCode);
@@ -51,6 +55,14 @@ const Register = ({navigation}) => {
         onNextMobileNumber();
       } else {
         dispatch({type: 'SET_ACTIVE_STEP'});
+      }
+    }
+    //personal details - family relation
+    if (activeStep == 1) {
+      if (isFamilyRelation) {
+        dispatch({type: 'SET_ACTIVE_STEP'});
+      } else {
+        onNextPersonalDetails();
       }
     }
   };

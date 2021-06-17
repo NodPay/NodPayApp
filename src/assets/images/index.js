@@ -5,5 +5,15 @@ import Wallet from './wallet.png';
 import Transfer from './transfer.png';
 import AtmCard from './card.png';
 import GetStarted from './getstarted.png';
+import DefaultPict from './default_pict.png';
 
-export {SplashWave, SplashWaveGradient, LoginBackground, Wallet, Transfer, AtmCard, GetStarted};
+export {
+  SplashWave,
+  SplashWaveGradient,
+  LoginBackground,
+  Wallet,
+  Transfer,
+  AtmCard,
+  GetStarted,
+  DefaultPict,
+};
