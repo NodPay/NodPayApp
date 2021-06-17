@@ -12,26 +12,17 @@ import {
 import {color, dimens, fonts, formatPhoneNumber} from '../../utils';
 import {Down, FeatherPhone} from '../../assets';
 
-const InputPhoneNumber = ({dispatch}) => {
-  const [code, setCode] = useState('62');
-  const [number, setNumber] = useState('');
-
+const InputPhoneNumber = ({phoneCode, value, onChangeText}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.btn}>
-        <Text style={styles.country_code}>{`+${code}`}</Text>
+        <Text style={styles.country_code}>{`+${phoneCode}`}</Text>
         <Image source={Down} />
       </TouchableOpacity>
       <TextInput
         keyboardType="number-pad"
-        value={number.toString()}
-        onChangeText={value => {
-          setNumber(value.toString());
-          dispatch({
-            type: 'SET_PHONE_NUMBER',
-            phoneNumber: `${code}${value}`,
-          });
-        }}
+        value={value.toString()}
+        onChangeText={onChangeText}
         style={styles.input}
         maxLength={11}
       />

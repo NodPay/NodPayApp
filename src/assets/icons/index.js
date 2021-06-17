@@ -6,6 +6,7 @@ import Email from './email.png';
 import Phone from './phone.png';
 import FeatherPhone from './feather_phone.png';
 import Down from './down.png';
+import PasswordHide from './password-hide.png';
 
 export {
   LeftArrow,
@@ -16,4 +17,5 @@ export {
   Phone,
   FeatherPhone,
   Down,
+  PasswordHide,
 };

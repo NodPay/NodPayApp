@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -14,12 +14,17 @@ import {
   PageTitle,
   SectionTitle,
   LinkAction,
+  InputText,
   InputPassword,
+  ErrorMessage,
 } from '../components';
 import {SplashWaveGradient} from '../assets';
 import {clearAll, color, dimens, fonts} from '../utils';
 
 const LoginEmail = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   useEffect(() => {
     clearAll().then(res => console.log('clear all', res));
   }, []);
@@ -41,10 +46,19 @@ const LoginEmail = ({navigation}) => {
               textColor="white"
             />
             <View style={styles.form_container}>
+              <InputText 
+                labelStyle={{color: color.btn_black}}
+                label="Email" 
+                placeholder="Email" 
+                value={email} 
+                onChangeText={setEmail}
+              />
               <InputPassword
+                labelStyle={{color: color.btn_black}}
                 label="Password"
                 placeholder="Password"
-                onChange={() => {}}
+                value={password}
+                onChangeText={setPassword}
               />
             </View>
             <LinkAction
@@ -54,6 +68,7 @@ const LoginEmail = ({navigation}) => {
                 navigation.navigate('ForgotPassword');
               }}
             />
+            <ErrorMessage message="The email or password is incorect." />
           </View>
         </View>
         <View style={styles.footer_container}>
@@ -77,7 +92,7 @@ const LoginEmail = ({navigation}) => {
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold}}
-            onPress={() => {}}
+            onPress={() => navigation.navigate('Register')}
           />
         </View>
       </ScrollView>
@@ -121,7 +136,7 @@ const styles = StyleSheet.create({
   },
   footer_container: {
     padding: dimens.default_16,
-    marginTop: dimens.very_large,
+    marginTop: dimens.large,
   },
   wave: {
     zIndex: -1,

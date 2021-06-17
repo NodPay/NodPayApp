@@ -2,13 +2,17 @@ import React from 'react';
 import {StyleSheet, TextInput as InputText} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 
-const TextInput = ({value, onChangeText}) => {
+const TextInput = ({value, placeholder, onChangeText, secureTextEntry, autoCapitalize}) => {
   return (
     <InputText
+      autoCapitalize={autoCapitalize}
+      autoCompleteType="off"
       placeholderTextColor={color.btn_black}
+      placeholder={placeholder}
       style={styles.inputText}
       value={value}
       onChangeText={onChangeText}
+      secureTextEntry={secureTextEntry}
     />
   );
 };
@@ -22,7 +26,7 @@ const styles = StyleSheet.create({
     color: color.btn_black,
     backgroundColor: 'white',
     marginTop: dimens.small,
-    padding: dimens.default,
+    paddingHorizontal: dimens.default,
     borderRadius: 50,
   },
 });
