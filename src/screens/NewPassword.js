@@ -36,7 +36,7 @@ const NewPassword = ({navigation}) => {
       <View style={styles.inner_container}>
         <PageTitle
           title="Forgot Password"
-          leftImage={LeftArrowBlack}
+          isBlackArrow
           containerStyle={{backgroundColor: color.btn_white_2}}
           titleStyle={{color: 'black'}}
           navigation={navigation}
