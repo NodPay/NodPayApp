@@ -44,7 +44,7 @@ const Login = ({navigation}) => {
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'black'}}
-            onPress={() => {}}
+            onPress={() => navigation.navigate('LoginPhone')}
           />
           <Button
             iconLeft={Email}
@@ -64,7 +64,7 @@ const Login = ({navigation}) => {
         <LinkAction
           text="Don’t have an account?"
           actionText="Sign Up"
-          onPress={() => {}}
+          onPress={() => navigation.navigate('Register')}
         />
       </View>
     </SafeAreaView>
