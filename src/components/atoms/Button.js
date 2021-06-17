@@ -2,7 +2,14 @@ import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 
-const Button = ({onPress, btnStyle, titleStyle, title, iconLeft}) => {
+const Button = ({
+  onPress,
+  btnStyle,
+  titleStyle,
+  title,
+  iconLeft,
+  iconRight,
+}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
@@ -10,6 +17,7 @@ const Button = ({onPress, btnStyle, titleStyle, title, iconLeft}) => {
       style={[styles.btn, btnStyle]}>
       {iconLeft && <Image style={styles.btn_icon} source={iconLeft} />}
       <Text style={[styles.btn_title, titleStyle]}>{title}</Text>
+      {iconRight && <Image source={iconRight} style={styles.iconRight} />}
     </TouchableOpacity>
   );
 };
@@ -34,5 +42,13 @@ const styles = StyleSheet.create({
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_16,
     color: color.btn_title_white,
+  },
+  leftIcon: {
+    position: 'absolute',
+    left: dimens.default_16,
+  },
+  iconRight: {
+    position: 'absolute',
+    right: dimens.default_16,
   },
 });

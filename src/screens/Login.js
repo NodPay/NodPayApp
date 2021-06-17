@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, View, SafeAreaView, Image, StatusBar} from 'react-native';
 
 // where local file imported
@@ -7,10 +7,6 @@ import {Facebook, Email, Phone, SplashWaveGradient} from '../assets';
 import {clearAll, color, dimens, fonts} from '../utils';
 
 const Login = ({navigation}) => {
-  useEffect(() => {
-    clearAll().then(res => console.log('clear all', res));
-  }, []);
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar animated={true} backgroundColor={color.bg_color} />

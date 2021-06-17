@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
-import {LeftArrow} from '../../assets';
+import {LeftArrow, BlackLeftArrow} from '../../assets';
 import {dimens, fonts} from '../../utils';
 
 const PageTitle = ({
@@ -9,15 +9,20 @@ const PageTitle = ({
   containerStyle,
   titleStyle,
   leftImage,
+  isBlackArrow,
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
       <TouchableOpacity
         onPress={() => navigation.goBack()}
         style={styles.left_arrow}>
-        <Image source={leftImage || LeftArrow} />
+        {isBlackArrow ? (
+          <Image source={BlackLeftArrow} />
+        ) : (
+          <Image source={LeftArrow} />
+        )}
       </TouchableOpacity>
-
+      <Image source={leftImage || LeftArrow} />
       <Text style={[styles.title, titleStyle]}>{title}</Text>
     </View>
   );
@@ -30,6 +35,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     padding: dimens.default_16,
+    alignItems: 'center',
   },
   left_arrow: {
     padding: dimens.default_16,

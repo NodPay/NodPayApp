@@ -4,16 +4,55 @@ export const State = createContext();
 export const Dispatch = createContext();
 
 const initialState = {
-  count: 1,
+  // create account
+  activeStep: 0,
+  isComplete: false,
+  error: false,
+  errorMessage: '',
+  phoneNumber: '',
+  isVerification: false,
+  isRunning: false, //resent code countdown start
+  verificationCode: '',
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'INCREMENT':
+    case 'SET_ACTIVE_STEP':
       return {
-        count: state.count + 1,
+        ...state,
+        activeStep: state.activeStep + 1,
       };
-
+    case 'SET_IS_COMPLETED':
+      return {
+        ...state,
+        isComplete: action.payload,
+      };
+    case 'SET_VERIFICATION':
+      return {
+        ...state,
+        isVerification: action.payload,
+      };
+    case 'SET_VERIFICATION_CODE':
+      return {
+        ...state,
+        verificationCode: action.payload,
+      };
+    case 'SET_IS_RUNNING':
+      return {
+        ...state,
+        isRunning: action.payload,
+      };
+    case 'SET_PHONE_NUMBER':
+      return {
+        ...state,
+        phoneNumber: action.phoneNumber,
+      };
+    case 'SET_ERROR_REGISTER':
+      return {
+        ...state,
+        error: action.error,
+        errorMessage: action.errorMessage,
+      };
     default:
       return state;
   }

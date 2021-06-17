@@ -1,5 +1,12 @@
 import React from 'react';
-import {StyleSheet, SafeAreaView, StatusBar, View, Image, Text} from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  View,
+  Image,
+  Text,
+} from 'react-native';
 
 //where local file imported
 import {Button, Logo} from '../components/';
@@ -9,25 +16,21 @@ import {SplashWave, GetStarted as GetStartedImage} from '../assets';
 const GetStarted = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar
-        animated={true}
-        backgroundColor={color.bg_color} />
+      <StatusBar animated={true} backgroundColor={color.bg_color} />
       <View style={styles.logo}>
         <Logo />
       </View>
       <Image
         source={GetStartedImage}
         style={{
-          resizeMode: 'contain',
           width: '100%',
-          position: 'absolute',
-          top: '10%',
+          height: '42%',
         }}
       />
       <Text style={styles.text}>
         Safe{' '}
         <Text style={[styles.text, {color: 'white'}]}>
-          way to transfer money
+          {`way\n to transfer\n money`}
         </Text>
       </Text>
       <View style={styles.wrap_btn}>
@@ -65,18 +68,20 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     zIndex: -1,
+    left: 0,
+    right: 0,
+    width: '100%',
   },
   logo: {
     padding: dimens.default_16,
   },
   text: {
     fontFamily: fonts.sofia_regular,
-    fontSize: dimens.large_40,
+    fontSize: 56,
     fontWeight: 'bold',
-    width: '65%',
     color: color.btn_black,
     padding: dimens.default_16,
     position: 'absolute',
-    bottom: '20%',
+    bottom: '15%',
   },
 });

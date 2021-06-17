@@ -1,8 +1,21 @@
 import LeftArrow from './left-arrow.png';
-import LeftArrowBlack from './left-arrow-black.png';
+import BlackLeftArrow from './black-left-arrow.png';
+import Next from './next.png';
 import Facebook from './facebook.png';
 import Email from './email.png';
 import Phone from './phone.png';
 import Close from './close.png';
+import FeatherPhone from './feather_phone.png';
+import Down from './down.png';
 
-export {LeftArrow, LeftArrowBlack, Facebook, Email, Phone, Close};
+export {
+  LeftArrow,
+  BlackLeftArrow,
+  Next,
+  Facebook,
+  Email,
+  Phone,
+  FeatherPhone,
+  Down,
+  Close,
+};

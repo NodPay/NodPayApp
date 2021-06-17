@@ -1,5 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View, SafeAreaView, Image} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Image,
+  StatusBar,
+} from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -50,10 +57,11 @@ const OnBoarding = ({navigation}) => {
           title="Log In"
           titleStyle={{color: color.btn_title_white}}
           onPress={() => {
-            storeData('session', {
-              isLogin: true,
-              isIntro: false,
-            });
+            navigation.navigate('Login');
+            // storeData('session', {
+            //   isLogin: true,
+            //   isIntro: false,
+            // });
           }}
           btnStyle={{marginBottom: dimens.default_14}}
         />
@@ -63,10 +71,10 @@ const OnBoarding = ({navigation}) => {
           btnStyle={{backgroundColor: color.btn_black}}
           onPress={() => {
             navigation.replace('GetStarted');
-            storeData('session', {
-              isIntro: false,
-              isLogin: false,
-            });
+            // storeData('session', {
+            //   isIntro: false,
+            //   isLogin: false,
+            // });
           }}
         />
       </View>
@@ -83,6 +91,7 @@ const OnBoarding = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar animated={true} backgroundColor={color.bg_color} />
       <View style={styles.wrapLogo}>
         <Logo />
       </View>
@@ -98,10 +107,11 @@ const OnBoarding = ({navigation}) => {
         renderSkipButton={() => (
           <Button
             onPress={() => {
-              storeData('session', {
-                isLogin: true,
-                isIntro: false,
-              });
+              navigation.replace('GetStarted');
+              // storeData('session', {
+              //   isLogin: true,
+              //   isIntro: false,
+              // });
             }}
             title="Skip"
             titleStyle={{color: color.btn_black}}
@@ -127,6 +137,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     zIndex: -1,
+    width: '100%',
   },
   renderItem: {
     justifyContent: 'center',
