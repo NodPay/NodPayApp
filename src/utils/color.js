@@ -13,4 +13,5 @@ export const color = {
   form_label: '#9A9B9E',
   error_text: '#D21414',
   error_background: '#FBE8E8',
+  modal_subtitle: '#6B7280',
 };

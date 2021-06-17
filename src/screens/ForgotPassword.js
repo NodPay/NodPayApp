@@ -2,21 +2,46 @@ import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, View, StatusBar, Text} from 'react-native';
 
 //where local file imported
-import {Button, PageTitle, InputText, ErrorMessage} from '../components';
+import {Button, PageTitle, InputText, ErrorMessage, Modal} from '../components';
 import {color, dimens, fonts} from '../utils';
-import {LeftArrowBlack} from '../assets';
+import {LeftArrowBlack, ModalSent, ModalFailed} from '../assets';
 
 const ForgotPassword = ({navigation}) => {
   const [email, setEmail] = useState('');
+  const [modalSuccess, setModalSuccess] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={color.btn_white_2} />
 
+      {/* Modal Failed */}
+      {/* <Modal
+        imageSrc={ModalFailed}
+        title="Something’s Wrong"
+        subtitle="We’re unable to sent the instructions, please check your internet connection and tyr again."
+        btn1Text="Try Again"
+        btn2Text="Close"
+        // btn1Onpress={() =>{}}
+        visible={modalSuccess}
+        onClose={() => {
+          setModalSuccess(false);
+        }}
+      /> */}
+      <Modal
+        imageSrc={ModalSent}
+        title="Recovery link sent!"
+        subtitle="An instrcution to reset your password has been sent, please check your email"
+        visible={modalSuccess}
+        onClose={() => {
+          setModalSuccess(false);
+          navigation.navigate('NewPassword');
+        }}
+      />
+
       <View style={styles.inner_container}>
         <PageTitle
           title="Forgot Password"
-          leftImage={LeftArrowBlack}
+          isBlackArrow
           containerStyle={{backgroundColor: color.btn_white_2}}
           titleStyle={{color: 'black'}}
           navigation={navigation}
@@ -37,7 +62,7 @@ const ForgotPassword = ({navigation}) => {
           title="Send Instruction"
           titleStyle={{color: 'white'}}
           btnStyle={{backgroundColor: color.btn_black}}
-          onPress={() => navigation.navigate('NewPassword')}
+          onPress={() => setModalSuccess(true)}
         />
       </View>
     </SafeAreaView>
@@ -52,6 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.btn_white_2,
   },
   inner_container: {
+    // backgroundColor: 'yellow',
     backgroundColor: color.btn_white_2,
     paddingHorizontal: dimens.default,
     paddingBottom: dimens.default,

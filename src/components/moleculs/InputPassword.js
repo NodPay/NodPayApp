@@ -1,19 +1,24 @@
-import React from 'react';
-import {StyleSheet, TextInput, Text, View} from 'react-native';
-import {color, dimens, fonts} from '../../utils';
+import React, {useState} from 'react';
+import {StyleSheet, TouchableOpacity, Image, View} from 'react-native';
+import {FormLabel, TextInput} from '../atoms';
+import {PasswordHide} from '../../assets';
+import {dimens} from '../../utils';
 
-const InputPassword = ({label, value, placeholder, onChange}) => {
+const InputPassword = ({label, value, placeholder, onChangeText, labelStyle}) => {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{label}</Text>
+      <FormLabel label={label} labelStyle={labelStyle} />
       <TextInput
-        autoCompleteType="off"
+        autoCapitalize="none"
         placeholder={placeholder}
         value={value}
-        onChangeText={onChange}
-        secureTextEntry={true}
-        style={styles.input}
+        onChangeText={onChangeText}
+        secureTextEntry={!showPassword}
       />
+      <TouchableOpacity style={styles.rightIcon} onPress={() => setShowPassword(!showPassword)}>
+        <Image source={PasswordHide} style={styles.icon} />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -23,19 +28,16 @@ export default InputPassword;
 const styles = StyleSheet.create({
   container: {
     marginTop: dimens.medium,
+    position: 'relative',
   },
-  input: {
-    backgroundColor: 'white',
-    borderRadius: dimens.large_50,
-    paddingHorizontal: dimens.default_18,
-    fontFamily: fonts.sofia_regular,
-    fontSize: dimens.default_16,
-    color: color.btn_black,
+  rightIcon: {
+    position: 'absolute',
+    right: dimens.default_16,
+    top: dimens.large_40,
   },
-  label: {
-    fontFamily: fonts.sofia_regular,
-    fontSize: dimens.default_16,
-    color: color.btn_black,
-    marginBottom: dimens.small,
-  },
+  icon: {
+    width: 24,
+    height: 24,
+    resizeMode: 'cover',
+  }
 });

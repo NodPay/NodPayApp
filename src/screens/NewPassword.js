@@ -2,22 +2,41 @@ import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, View, StatusBar, Text} from 'react-native';
 
 //where local file imported
-import {Button, PageTitle, InputPassword, ErrorMessage} from '../components';
+import {
+  Button,
+  PageTitle,
+  InputPassword,
+  ErrorMessage,
+  Modal,
+} from '../components';
 import {color, dimens, fonts} from '../utils';
-import {LeftArrowBlack} from '../assets';
+import {LeftArrowBlack, ModalSuccess} from '../assets';
 
 const NewPassword = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [modalSuccess, setModalSuccess] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={color.btn_white_2} />
 
+      <Modal
+        imageSrc={ModalSuccess}
+        title="Reset Password Successful"
+        subtitle="Your password has been successfuly reseted,you can now log in to your account"
+        btn1Text="Log in"
+        // btn1Onpress={() =>{}}
+        visible={modalSuccess}
+        onClose={() => {
+          setModalSuccess(false);
+        }}
+      />
+
       <View style={styles.inner_container}>
         <PageTitle
           title="Forgot Password"
-          leftImage={LeftArrowBlack}
+          isBlackArrow
           containerStyle={{backgroundColor: color.btn_white_2}}
           titleStyle={{color: 'black'}}
           navigation={navigation}
@@ -43,7 +62,9 @@ const NewPassword = ({navigation}) => {
           title="Reset Password"
           titleStyle={{color: 'white'}}
           btnStyle={{backgroundColor: color.btn_black}}
-          // onPress={}
+          onPress={() => {
+            setModalSuccess(true);
+          }}
         />
       </View>
     </SafeAreaView>
