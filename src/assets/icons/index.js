@@ -4,6 +4,7 @@ import Next from './next.png';
 import Facebook from './facebook.png';
 import Email from './email.png';
 import Phone from './phone.png';
+import Close from './close.png';
 import FeatherPhone from './feather_phone.png';
 import Down from './down.png';
 import PasswordHide from './password-hide.png';
@@ -18,4 +19,5 @@ export {
   FeatherPhone,
   Down,
   PasswordHide,
+  Close,
 };
