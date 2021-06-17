@@ -1,16 +1,16 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {dimens, fonts} from '../../utils';
+import {color, dimens, fonts} from '../../utils';
 
 const SectionTitle = ({title, subtitle, textColor, type}) => {
-  // if (type == 'modal') {
-  //   return (
-  //     <View style={styles.container}>
-  //       <Text style={[styles.title, {color: textColor}]}>{title}</Text>
-  //       <Text style={[styles.subtitle, {color: textColor}]}>{subtitle}</Text>
-  //     </View>
-  //   );
-  // }
+  if (type == 'modal') {
+    return (
+      <View style={styles.modalContainer}>
+        <Text style={styles.modalTitle}>{title}</Text>
+        <Text style={styles.modalSubtitle}>{subtitle}</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -42,5 +42,24 @@ const styles = StyleSheet.create({
     fontSize: dimens.default_16,
     lineHeight: 24,
     color: 'black',
+  },
+
+  // Modal
+  modalContainer: {
+    backgroundColor: 'white',
+    marginTop: dimens.default,
+  },
+  modalTitle: {
+    color: color.btn_black,
+    fontFamily: fonts.sofia_bold,
+    fontSize: dimens.medium,
+    textAlign: 'center',
+  },
+  modalSubtitle: {
+    fontFamily: fonts.sofia_bold,
+    fontSize: dimens.default_16,
+    color: color.modal_subtitle,
+    textAlign: 'center',
+    marginTop: dimens.supersmall,
   },
 });
