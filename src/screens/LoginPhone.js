@@ -14,15 +14,16 @@ import {
   PageTitle,
   SectionTitle,
   LinkAction,
-  InputText,
+  InputPhoneNumber,
   InputPassword,
   ErrorMessage,
 } from '../components';
 import {SplashWaveGradient} from '../assets';
 import {clearAll, color, dimens, fonts} from '../utils';
 
-const LoginEmail = ({navigation}) => {
-  const [email, setEmail] = useState('');
+const LoginPhone = ({navigation}) => {
+  const [code, setCode] = useState('62');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
 
   useEffect(() => {
@@ -46,12 +47,13 @@ const LoginEmail = ({navigation}) => {
               textColor="white"
             />
             <View style={styles.form_container}>
-              <InputText 
+              <InputPhoneNumber 
                 labelStyle={{color: color.btn_black}}
-                label="Email" 
-                placeholder="Email" 
-                value={email} 
-                onChangeText={setEmail}
+                label="Mobile Number"
+                placeholder="Mobile Number"
+                phoneCode={code}
+                value={phone}
+                onChangeText={setPhone}
               />
               <InputPassword
                 labelStyle={{color: color.btn_black}}
@@ -68,7 +70,7 @@ const LoginEmail = ({navigation}) => {
                 navigation.navigate('ForgotPassword');
               }}
             />
-            <ErrorMessage message="The email or password is incorect." />
+            <ErrorMessage message="The mobile number or password is incorect." />
           </View>
         </View>
         <View style={styles.footer_container}>
@@ -100,7 +102,7 @@ const LoginEmail = ({navigation}) => {
   );
 };
 
-export default LoginEmail;
+export default LoginPhone;
 
 const styles = StyleSheet.create({
   container: {

@@ -13,6 +13,8 @@ const MobileNumberSection = ({isVerification}) => {
   const [second, setSecond] = useState(59);
   const [delay, setDelay] = useState(1000);
   const [show, setShow] = useState(false);
+  const [code, setCode] = useState('62');
+  const [number, setNumber] = useState('');
 
   useInterval(
     () => {
@@ -108,7 +110,17 @@ const MobileNumberSection = ({isVerification}) => {
       />
       <Gap t={dimens.default_16} />
       <View style={{paddingHorizontal: dimens.default_16, flex: 1}}>
-        <InputPhoneNumber dispatch={dispatch} />
+        <InputPhoneNumber
+          phoneCode={code}
+          value={number}
+          onChangeText={(value, code) => {
+            setNumber(value.toString());
+            dispatch({
+              type: 'SET_PHONE_NUMBER',
+              phoneNumber: `${code}${value}`,
+            });
+          }} 
+        />
       </View>
       <Gap t={dimens.default_16} />
       <View style={{paddingHorizontal: dimens.default_16}}>

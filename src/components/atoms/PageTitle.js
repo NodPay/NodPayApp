@@ -22,7 +22,6 @@ const PageTitle = ({
           <Image source={LeftArrow} />
         )}
       </TouchableOpacity>
-      <Image source={leftImage || LeftArrow} />
       <Text style={[styles.title, titleStyle]}>{title}</Text>
     </View>
   );
