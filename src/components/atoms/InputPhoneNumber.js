@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -27,7 +27,10 @@ const InputPhoneNumber = ({dispatch}) => {
         value={number.toString()}
         onChangeText={value => {
           setNumber(value.toString());
-          dispatch({type: 'SET_PHONE_NUMBER', payload: `${code}${value}`});
+          dispatch({
+            type: 'SET_PHONE_NUMBER',
+            phoneNumber: `${code}${value}`,
+          });
         }}
         style={styles.input}
         maxLength={11}

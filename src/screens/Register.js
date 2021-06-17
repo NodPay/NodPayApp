@@ -9,12 +9,49 @@ import useStateContext from '../store/useStateContext';
 
 const Register = ({navigation}) => {
   const {state, dispatch} = useStateContext();
+  const {activeStep, phoneNumber, isVerification, verificationCode} = state;
+
+  const onNextMobileNumber = () => {
+    // check if number is not null / empty
+    if (phoneNumber == '') {
+      dispatch({
+        type: 'SET_ERROR_REGISTER',
+        error: true,
+        errorMessage: "Phone number can't be empty.",
+      });
+    } else if (phoneNumber.length < 1) {
+      dispatch({
+        type: 'SET_ERROR_REGISTER',
+        error: true,
+        errorMessage: "Phone number can't be less than 11.",
+      });
+    } else if (phoneNumber == '6200000000000') {
+      dispatch({
+        type: 'SET_ERROR_REGISTER',
+        error: true,
+        errorMessage: 'Phone number already registered',
+      });
+    } else {
+      dispatch({type: 'SET_VERIFICATION', payload: true});
+      dispatch({type: 'SET_IS_RUNNING', payload: true});
+      dispatch({
+        type: 'SET_ERROR_REGISTER',
+        error: false,
+        errorMessage: '',
+      });
+    }
+  };
 
   const onNext = () => {
-    const {activeStep} = state;
+    //mobile number - verification section
+    console.log(verificationCode);
     if (activeStep == 0) {
-      //mobile number - verification section
-      dispatch({type: 'SET_VERIFICATION', payload: true});
+      // if had a valid verification code, go to the next step.
+      if (verificationCode == '') {
+        onNextMobileNumber();
+      } else {
+        dispatch({type: 'SET_ACTIVE_STEP'});
+      }
     }
   };
 

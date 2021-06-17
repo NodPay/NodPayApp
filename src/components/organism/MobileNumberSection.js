@@ -9,10 +9,8 @@ import useStateContext from '../../store/useStateContext';
 
 const MobileNumberSection = ({isVerification}) => {
   const {state, dispatch} = useStateContext();
-
   const [minute, setMinute] = useState(2);
   const [second, setSecond] = useState(59);
-  const [isRunning, setIsRunning] = useState(true);
   const [delay, setDelay] = useState(1000);
   const [show, setShow] = useState(false);
 
@@ -24,13 +22,13 @@ const MobileNumberSection = ({isVerification}) => {
         setSecond(59);
       }
       if (second === 0 && minute === 0) {
-        setIsRunning(false);
+        dispatch({type: 'SET_IS_RUNNING', payload: false});
         setShow(true);
         setMinute(0);
         setSecond(0);
       }
     },
-    isRunning ? delay : null,
+    state.isRunning ? delay : null,
   );
 
   function useInterval(callback, delay) {
@@ -77,8 +75,16 @@ const MobileNumberSection = ({isVerification}) => {
         </View>
         <Text style={styles.timer}>
           Resent code in:{' '}
-          <Text style={[styles.timer, {color: color.bg_color}]}>
-            {show ? `resent` : `${formatDate(minute)}:${formatDate(second)}`}
+          <Text
+            style={[styles.timer, {color: color.bg_color}]}
+            onPress={
+              show
+                ? () => {
+                    alert('resent verification code');
+                  }
+                : () => {}
+            }>
+            {show ? `Resent` : `${formatDate(minute)}:${formatDate(second)}`}
           </Text>
         </Text>
       </View>
@@ -123,5 +129,6 @@ const styles = StyleSheet.create({
     color: color.grey,
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_16,
+    paddingVertical: dimens.default_16,
   },
 });

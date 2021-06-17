@@ -11,6 +11,8 @@ const initialState = {
   errorMessage: '',
   phoneNumber: '',
   isVerification: false,
+  isRunning: false, //resent code countdown start
+  verificationCode: '',
 };
 
 const reducer = (state, action) => {
@@ -30,10 +32,26 @@ const reducer = (state, action) => {
         ...state,
         isVerification: action.payload,
       };
+    case 'SET_VERIFICATION_CODE':
+      return {
+        ...state,
+        verificationCode: action.payload,
+      };
+    case 'SET_IS_RUNNING':
+      return {
+        ...state,
+        isRunning: action.payload,
+      };
     case 'SET_PHONE_NUMBER':
       return {
         ...state,
-        phoneNumber: action.payload,
+        phoneNumber: action.phoneNumber,
+      };
+    case 'SET_ERROR_REGISTER':
+      return {
+        ...state,
+        error: action.error,
+        errorMessage: action.errorMessage,
       };
     default:
       return state;
