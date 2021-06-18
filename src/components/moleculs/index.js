@@ -5,6 +5,7 @@ import InputText from './InputText';
 import InputOtp from './InputOtp';
 import InputPhoto from './InputPhoto';
 import InputOption from './InputOption';
+import SelectAddressList from './SelectAddressList';
 
 export {
   SectionTitle,
@@ -14,4 +15,5 @@ export {
   InputOtp,
   InputPhoto,
   InputOption,
+  SelectAddressList,
 };

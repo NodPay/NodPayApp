@@ -9,7 +9,14 @@ import useStateContext from '../store/useStateContext';
 
 const Register = ({navigation}) => {
   const {state, dispatch} = useStateContext();
-  const {activeStep, phoneNumber, verificationCode, isFamilyRelation} = state;
+  const {
+    isComplete,
+    activeStep,
+    phoneNumber,
+    isVerification,
+    verificationCode,
+    isFamilyRelation,
+  } = state;
 
   const onNextMobileNumber = () => {
     // check if number is not null / empty
@@ -65,6 +72,11 @@ const Register = ({navigation}) => {
         onNextPersonalDetails();
       }
     }
+
+    //residential address
+    if (activeStep == 2) {
+      dispatch({type: 'SET_ACTIVE_STEP'});
+    }
   };
 
   return (
@@ -76,9 +88,10 @@ const Register = ({navigation}) => {
         navigation={navigation}
       />
       <StepForm
-        activeStep={state.activeStep}
-        isComplete={state.isComplete}
-        isVerification={state.isVerification}
+        activeStep={activeStep}
+        isComplete={isComplete}
+        isVerification={isVerification}
+        isFamilyRelation={isFamilyRelation}
       />
       <View style={styles.wrap_btn}>
         <Button

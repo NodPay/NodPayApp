@@ -8,6 +8,7 @@ import InputPhoneNumber from './InputPhoneNumber';
 import TextInput from './TextInput';
 import FormLabel from './FormLabel';
 import ErrorMessage from './ErrorMessage';
+import SelectAddressItem from './SelectAddressItem';
 
 export {
   Logo,
@@ -20,4 +21,5 @@ export {
   TextInput,
   FormLabel,
   ErrorMessage,
+  SelectAddressItem,
 };
