@@ -15,6 +15,7 @@ import PasswordHide from './password-hide.png';
 import Select from './select.png';
 import Selected from './selected.png';
 import GPS from './gps.png';
+import Document from './bg_document.png';
 
 export {
   LeftArrow,
@@ -34,4 +35,5 @@ export {
   Select,
   Selected,
   GPS,
+  Document,
 };

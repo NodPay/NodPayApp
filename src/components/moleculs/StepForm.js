@@ -5,6 +5,7 @@ import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 // where local files imported
 import {color, dimens, fonts} from '../../utils';
 import {
+  CNIC,
   MobileNumberSection,
   PersonalDetailsSection,
   ResidentialAddress,
@@ -15,6 +16,7 @@ const StepForm = ({
   isComplete,
   isVerification,
   isFamilyRelation,
+  cnicData,
 }) => {
   const progressStepsStyle = {
     activeStepIconBorderColor: 'white',
@@ -64,10 +66,9 @@ const StepForm = ({
         <ProgressStep
           label="CNIC"
           scrollViewProps={scrollViewProps}
-          removeBtnRow={true}>
-          <View style={{alignItems: 'center'}}>
-            <Text>This is the content within step 3!</Text>
-          </View>
+          removeBtnRow={true}
+          btnDisable>
+          <CNIC cnicData={cnicData} />
         </ProgressStep>
         <ProgressStep
           label={`Security\nPassword`}

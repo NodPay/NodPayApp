@@ -5,15 +5,18 @@ export const Dispatch = createContext();
 
 const initialState = {
   // create account
-  activeStep: 0,
-  isComplete: false,
-  error: false,
-  errorMessage: '',
-  phoneNumber: '',
-  isVerification: false,
+  activeStep: 0, //stepper counter
+  isComplete: false, //if all step completed, set to true
+  error: false, // error on register screen with ErrorMessage component,
+  errorMessage: '', // error message with ErrorMessage component
+  phoneNumber: '', // mobile phone number
+  isVerification: false, // check if verification set to true, then change te UI
   isRunning: false, //resent code countdown start
   verificationCode: '',
   isFamilyRelation: false, //family relation ui personal detail
+  isDisabled: false, //button next register
+  cnicData: null,
+  // create account end
 };
 
 const reducer = (state, action) => {
@@ -22,6 +25,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         activeStep: state.activeStep + 1,
+      };
+    case 'SET_ACTIVE_STEP_PAYLOAD':
+      return {
+        ...state,
+        activeStep: action.payload,
       };
     case 'SET_IS_COMPLETED':
       return {
@@ -58,6 +66,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         isFamilyRelation: action.payload,
+      };
+    case 'SET_BUTTON':
+      return {
+        ...state,
+        isDisabled: action.payload,
+      };
+    case 'SET_CNIC_DATA':
+      return {
+        ...state,
+        cnicData: action.payload,
       };
     default:
       return state;

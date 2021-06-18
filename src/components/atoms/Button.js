@@ -9,9 +9,11 @@ const Button = ({
   title,
   iconLeft,
   iconRight,
+  disabled,
 }) => {
   return (
     <TouchableOpacity
+      disabled={disabled}
       activeOpacity={0.8}
       onPress={onPress}
       style={[styles.btn, btnStyle]}>

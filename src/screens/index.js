@@ -8,6 +8,7 @@ import NewPassword from './NewPassword';
 import OnBoarding from './OnBoarding';
 import Loader from './Loader';
 import Register from './Register';
+import ScanResult from './ScanResult';
 
 export {
   Splash,
@@ -20,4 +21,5 @@ export {
   OnBoarding,
   Loader,
   Register,
+  ScanResult,
 };

@@ -16,6 +16,8 @@ const Register = ({navigation}) => {
     isVerification,
     verificationCode,
     isFamilyRelation,
+    isDisabled,
+    cnicData,
   } = state;
 
   const onNextMobileNumber = () => {
@@ -53,6 +55,15 @@ const Register = ({navigation}) => {
     dispatch({type: 'SET_FAMILY_RELATION', payload: true});
   };
 
+  const onNextResidentialAddress = () => {
+    dispatch({type: 'SET_ACTIVE_STEP'});
+    dispatch({type: 'SET_BUTTON', payload: true});
+  };
+
+  const onNextxCnic = () => {
+    dispatch({type: 'SET_ACTIVE_STEP'});
+  };
+
   const onNext = () => {
     //mobile number - verification section
     console.log(verificationCode);
@@ -75,7 +86,12 @@ const Register = ({navigation}) => {
 
     //residential address
     if (activeStep == 2) {
-      dispatch({type: 'SET_ACTIVE_STEP'});
+      onNextResidentialAddress();
+    }
+
+    //cnic
+    if (activeStep == 3) {
+      onNextxCnic();
     }
   };
 
@@ -92,13 +108,15 @@ const Register = ({navigation}) => {
         isComplete={isComplete}
         isVerification={isVerification}
         isFamilyRelation={isFamilyRelation}
+        cnicData={cnicData}
       />
       <View style={styles.wrap_btn}>
         <Button
+          disabled={isDisabled}
           onPress={onNext}
           title="Next"
           btnStyle={{
-            backgroundColor: color.btn_black,
+            backgroundColor: isDisabled ? color.grey : color.btn_black,
           }}
           titleStyle={{color: 'white'}}
           iconRight={Next}

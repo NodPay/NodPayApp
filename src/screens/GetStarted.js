@@ -17,36 +17,38 @@ import {SplashWave, GetStarted as GetStartedImage} from '../assets';
 const GetStarted = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar animated={true} backgroundColor={color.bg_color} />
-      <View style={styles.logo}>
-        <Logo />
-      </View>
-      <Image
-        source={GetStartedImage}
-        style={{
-          width: '100%',
-        }}
-      />
-      <Text style={styles.text}>
-        Safe{' '}
-        <Text style={[styles.text, {color: 'white'}]}>
-          {`way\nto transfer\nmoney`}
+      <ScrollView>
+        <StatusBar animated={true} backgroundColor={color.bg_color} />
+        <View style={styles.logo}>
+          <Logo />
+        </View>
+        <Image
+          source={GetStartedImage}
+          style={{
+            width: '100%',
+          }}
+        />
+        <Text style={styles.text}>
+          Safe{' '}
+          <Text style={[styles.text, {color: 'white'}]}>
+            {`way\nto transfer\nmoney`}
+          </Text>
         </Text>
-      </Text>
-      <View style={styles.wrap_btn}>
-        <Button
-          title="Log In"
-          btnStyle={{marginBottom: dimens.default_16}}
-          onPress={() => navigation.navigate('Login')}
-        />
-        <Button
-          title="Get Started"
-          btnStyle={{backgroundColor: color.btn_black}}
-          titleStyle={{color: 'white'}}
-          onPress={() => navigation.navigate('Register')}
-        />
-      </View>
-      <Image source={SplashWave} style={styles.img} />
+        <View style={styles.wrap_btn}>
+          <Button
+            title="Log In"
+            btnStyle={{marginBottom: dimens.default_16}}
+            onPress={() => navigation.navigate('Login')}
+          />
+          <Button
+            title="Get Started"
+            btnStyle={{backgroundColor: color.btn_black}}
+            titleStyle={{color: 'white'}}
+            onPress={() => navigation.navigate('Register')}
+          />
+        </View>
+        <Image source={SplashWave} style={styles.img} />
+      </ScrollView>
     </SafeAreaView>
   );
 };

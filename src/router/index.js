@@ -14,6 +14,7 @@ import {
   OnBoarding,
   Loader,
   Register,
+  ScanResult,
 } from '../screens';
 
 const Router = () => {
@@ -22,7 +23,7 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Splash"
+        initialRouteName="Register"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Loader" component={Loader} />
@@ -34,6 +35,7 @@ const Router = () => {
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="NewPassword" component={NewPassword} />
         <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="ScanResult" component={ScanResult} />
       </Stack.Navigator>
     </NavigationContainer>
   );
