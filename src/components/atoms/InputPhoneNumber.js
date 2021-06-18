@@ -30,7 +30,7 @@ const InputPhoneNumber = ({
       <View style={styles.container}>
         <TouchableOpacity style={styles.btn}>
           <Text style={styles.country_code}>{`+${code}`}</Text>
-          <Image source={Down} />
+          <Image source={Down} style={styles.leftIcon} />
         </TouchableOpacity>
         <TextInput
           keyboardType="number-pad"
@@ -80,13 +80,23 @@ const styles = StyleSheet.create({
     marginBottom: dimens.small,
   },
   container: {
+    fontFamily: fonts.sofia_regular,
+    fontSize: dimens.default_16,
+    color: color.btn_black,
     backgroundColor: 'white',
-    height: dimens.large_48,
-    borderRadius: dimens.large_48 / 2,
+    marginTop: dimens.small,
+    paddingHorizontal: dimens.default,
+    borderRadius: dimens.large_50,
+    height: dimens.large_50,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.04,
+    shadowRadius: 6,
+    elevation: 1,
     alignItems: 'center',
-    paddingHorizontal: dimens.default_16,
-    borderWidth: 0.1,
-    borderColor: color.grey,
     flexDirection: 'row',
   },
   input: {

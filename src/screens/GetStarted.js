@@ -6,6 +6,7 @@ import {
   Image,
   Text,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
 
 //where local file imported
@@ -15,7 +16,7 @@ import {SplashWave, GetStarted as GetStartedImage} from '../assets';
 
 const GetStarted = ({navigation}) => {
   return (
-    <ScrollView style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar animated={true} backgroundColor={color.bg_color} />
       <View style={styles.logo}>
         <Logo />
@@ -29,7 +30,7 @@ const GetStarted = ({navigation}) => {
       <Text style={styles.text}>
         Safe{' '}
         <Text style={[styles.text, {color: 'white'}]}>
-          {`way\n to transfer\n money`}
+          {`way\nto transfer\nmoney`}
         </Text>
       </Text>
       <View style={styles.wrap_btn}>
@@ -46,7 +47,7 @@ const GetStarted = ({navigation}) => {
         />
       </View>
       <Image source={SplashWave} style={styles.img} />
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -80,5 +81,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: color.btn_black,
     paddingHorizontal: dimens.default_16,
+    marginTop: dimens.default_16,
   },
 });
