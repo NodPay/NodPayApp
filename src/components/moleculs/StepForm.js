@@ -32,27 +32,47 @@ const StepForm = ({
     disabledStepNumColor: 'lightgray',
   };
 
+  const scrollViewProps = {
+    showsVerticalScrollIndicator: false,
+    showsHorizontalScrollIndicator: false,
+  };
+
   return (
     <View style={styles.container}>
       <ProgressSteps
         {...progressStepsStyle}
         activeStep={activeStep}
         isComplete={isComplete}>
-        <ProgressStep label={`Mobile\nNumber`} removeBtnRow={true}>
+        <ProgressStep
+          label={`Mobile\nNumber`}
+          removeBtnRow={true}
+          scrollViewProps={scrollViewProps}>
           <MobileNumberSection isVerification={isVerification} />
         </ProgressStep>
-        <ProgressStep label={`Personal\nDetails`} removeBtnRow={true}>
+        <ProgressStep
+          label={`Personal\nDetails`}
+          removeBtnRow={true}
+          scrollViewProps={scrollViewProps}>
           <PersonalDetailsSection isFamilyRelation={isFamilyRelation} />
         </ProgressStep>
-        <ProgressStep label={`Residential\nAddress`} removeBtnRow={true}>
+        <ProgressStep
+          label={`Residential\nAddress`}
+          removeBtnRow={true}
+          scrollViewProps={scrollViewProps}>
           <ResidentialAddress />
         </ProgressStep>
-        <ProgressStep label="CNIC" removeBtnRow={true}>
+        <ProgressStep
+          label="CNIC"
+          scrollViewProps={scrollViewProps}
+          removeBtnRow={true}>
           <View style={{alignItems: 'center'}}>
             <Text>This is the content within step 3!</Text>
           </View>
         </ProgressStep>
-        <ProgressStep label={`Security\nPassword`} removeBtnRow={true}>
+        <ProgressStep
+          label={`Security\nPassword`}
+          scrollViewProps={scrollViewProps}
+          removeBtnRow={true}>
           <View style={{alignItems: 'center'}}>
             <Text>This is the content within step 3!</Text>
           </View>

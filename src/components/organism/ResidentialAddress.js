@@ -10,9 +10,7 @@ const ResidentialAddress = () => {
   const [postalCode, setPostalCode] = useState('8989');
 
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      showsHorizontalScrollIndicator={false}>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <SectionTitle
         containerStyle={{
           padding: 0,
