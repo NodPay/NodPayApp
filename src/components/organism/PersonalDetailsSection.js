@@ -1,15 +1,12 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import useStateContext from '../../store/useStateContext';
 
 // where local files imported
 import {color, dimens} from '../../utils';
 import {Gap} from '../atoms';
 import {SectionTitle, InputPhoto, InputText, InputOption} from '../moleculs';
 
-const PersonalDetailsSection = () => {
-  const {state, dispath} = useStateContext();
-
+const PersonalDetailsSection = ({isFamilyRelation}) => {
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -22,7 +19,7 @@ const PersonalDetailsSection = () => {
 
   console.log(user);
 
-  if (state.isFamilyRelation) {
+  if (isFamilyRelation) {
     return (
       <View>
         <SectionTitle

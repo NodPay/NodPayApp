@@ -4,9 +4,18 @@ import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 
 // where local files imported
 import {color, dimens, fonts} from '../../utils';
-import {MobileNumberSection, PersonalDetailsSection} from '../organism';
+import {
+  MobileNumberSection,
+  PersonalDetailsSection,
+  ResidentialAddress,
+} from '../organism';
 
-const StepForm = ({activeStep, isComplete, isVerification}) => {
+const StepForm = ({
+  activeStep,
+  isComplete,
+  isVerification,
+  isFamilyRelation,
+}) => {
   const progressStepsStyle = {
     activeStepIconBorderColor: 'white',
     disabledStepIconColor: 'white',
@@ -33,12 +42,10 @@ const StepForm = ({activeStep, isComplete, isVerification}) => {
           <MobileNumberSection isVerification={isVerification} />
         </ProgressStep>
         <ProgressStep label={`Personal\nDetails`} removeBtnRow={true}>
-          <PersonalDetailsSection />
+          <PersonalDetailsSection isFamilyRelation={isFamilyRelation} />
         </ProgressStep>
         <ProgressStep label={`Residential\nAddress`} removeBtnRow={true}>
-          <View style={{alignItems: 'center'}}>
-            <Text>This is the content within step 3!</Text>
-          </View>
+          <ResidentialAddress />
         </ProgressStep>
         <ProgressStep label="CNIC" removeBtnRow={true}>
           <View style={{alignItems: 'center'}}>

@@ -12,6 +12,9 @@ import MaleActive from './male_active.png';
 import Female from './female.png';
 import FemaleActive from './female_active.png';
 import PasswordHide from './password-hide.png';
+import Select from './select.png';
+import Selected from './selected.png';
+import GPS from './gps.png';
 
 export {
   LeftArrow,
@@ -28,4 +31,7 @@ export {
   FemaleActive,
   PasswordHide,
   Close,
+  Select,
+  Selected,
+  GPS,
 };
