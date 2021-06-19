@@ -18,6 +18,9 @@ const Register = ({navigation}) => {
     isFamilyRelation,
     isDisabled,
     cnicData,
+    setUpBiometric,
+    showModal,
+    typeModal,
   } = state;
 
   const onNextMobileNumber = () => {
@@ -60,8 +63,17 @@ const Register = ({navigation}) => {
     dispatch({type: 'SET_BUTTON', payload: true});
   };
 
-  const onNextxCnic = () => {
+  const onNextCnic = () => {
     dispatch({type: 'SET_ACTIVE_STEP'});
+  };
+
+  const onNextSecurityPassword = () => {
+    if (!setUpBiometric) {
+      dispatch({type: 'SET_BIOMETRIC', payload: true});
+    } else {
+      // dispatch({type: 'SET_IS_COMPLETED', payload: true});
+      dispatch({type: 'SET_MODAL', showModal: true, typeModal: 'failed'});
+    }
   };
 
   const onNext = () => {
@@ -91,7 +103,12 @@ const Register = ({navigation}) => {
 
     //cnic
     if (activeStep == 3) {
-      onNextxCnic();
+      onNextCnic();
+    }
+
+    // security password
+    if (activeStep == 4) {
+      onNextSecurityPassword();
     }
   };
 
@@ -109,12 +126,21 @@ const Register = ({navigation}) => {
         isVerification={isVerification}
         isFamilyRelation={isFamilyRelation}
         cnicData={cnicData}
+        setUpBiometric={setUpBiometric}
+        showModal={showModal}
+        typeModal={typeModal}
       />
-      <View style={styles.wrap_btn}>
+      <View
+        style={{
+          paddingVertical: dimens.default_16,
+          backgroundColor: 'white',
+          justifyContent: 'center',
+          paddingHorizontal: dimens.default_16,
+        }}>
         <Button
           disabled={isDisabled}
           onPress={onNext}
-          title="Next"
+          title={activeStep == 4 ? 'Create Account' : 'Next'}
           btnStyle={{
             backgroundColor: isDisabled ? color.grey : color.btn_black,
           }}
@@ -132,9 +158,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FAFAFA',
-  },
-  wrap_btn: {
-    paddingHorizontal: dimens.default_16,
-    paddingVertical: dimens.default_16,
   },
 });

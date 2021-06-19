@@ -15,7 +15,10 @@ const initialState = {
   verificationCode: '',
   isFamilyRelation: false, //family relation ui personal detail
   isDisabled: false, //button next register
-  cnicData: null,
+  cnicData: null, //data cnic section
+  setUpBiometric: false, //setup biometric section
+  showModal: false, // createa account modal
+  typeModal: null, // check if modal success or failed
   // create account end
 };
 
@@ -76,6 +79,17 @@ const reducer = (state, action) => {
       return {
         ...state,
         cnicData: action.payload,
+      };
+    case 'SET_BIOMETRIC':
+      return {
+        ...state,
+        setUpBiometric: action.payload,
+      };
+    case 'SET_MODAL':
+      return {
+        ...state,
+        showModal: action.showModal,
+        typeModal: action.typeModal,
       };
     default:
       return state;

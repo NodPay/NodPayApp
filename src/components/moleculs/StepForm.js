@@ -9,6 +9,7 @@ import {
   MobileNumberSection,
   PersonalDetailsSection,
   ResidentialAddress,
+  SecurityPasswordSection,
 } from '../organism';
 
 const StepForm = ({
@@ -17,6 +18,9 @@ const StepForm = ({
   isVerification,
   isFamilyRelation,
   cnicData,
+  setUpBiometric,
+  showModal,
+  typeModal,
 }) => {
   const progressStepsStyle = {
     activeStepIconBorderColor: 'white',
@@ -74,9 +78,11 @@ const StepForm = ({
           label={`Security\nPassword`}
           scrollViewProps={scrollViewProps}
           removeBtnRow={true}>
-          <View style={{alignItems: 'center'}}>
-            <Text>This is the content within step 3!</Text>
-          </View>
+          <SecurityPasswordSection
+            setUpBiometric={setUpBiometric}
+            showModal={showModal}
+            typeModal={typeModal}
+          />
         </ProgressStep>
       </ProgressSteps>
     </View>

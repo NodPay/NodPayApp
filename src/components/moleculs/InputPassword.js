@@ -4,7 +4,13 @@ import {FormLabel, TextInput} from '../atoms';
 import {PasswordHide} from '../../assets';
 import {dimens} from '../../utils';
 
-const InputPassword = ({label, value, placeholder, onChangeText, labelStyle}) => {
+const InputPassword = ({
+  label,
+  value,
+  placeholder,
+  onChangeText,
+  labelStyle,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <View style={styles.container}>
@@ -16,7 +22,9 @@ const InputPassword = ({label, value, placeholder, onChangeText, labelStyle}) =>
         onChangeText={onChangeText}
         secureTextEntry={!showPassword}
       />
-      <TouchableOpacity style={styles.rightIcon} onPress={() => setShowPassword(!showPassword)}>
+      <TouchableOpacity
+        style={styles.rightIcon}
+        onPress={() => setShowPassword(!showPassword)}>
         <Image source={PasswordHide} style={styles.icon} />
       </TouchableOpacity>
     </View>
@@ -39,5 +47,5 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     resizeMode: 'cover',
-  }
+  },
 });

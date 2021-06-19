@@ -6,6 +6,7 @@ import InputOtp from './InputOtp';
 import InputPhoto from './InputPhoto';
 import InputOption from './InputOption';
 import SelectAddressList from './SelectAddressList';
+import CardInfoButton from './CardInfoButton';
 
 export {
   SectionTitle,
@@ -16,4 +17,5 @@ export {
   InputPhoto,
   InputOption,
   SelectAddressList,
+  CardInfoButton,
 };

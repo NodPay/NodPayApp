@@ -3,6 +3,7 @@ import MobileNumberSection from './MobileNumberSection';
 import PersonalDetailsSection from './PersonalDetailsSection';
 import ResidentialAddress from './ResidentialAddress';
 import CNIC from './CNIC';
+import SecurityPasswordSection from './SecurityPasswordSection';
 
 export {
   MobileNumberSection,
@@ -10,4 +11,5 @@ export {
   Modal,
   ResidentialAddress,
   CNIC,
+  SecurityPasswordSection,
 };
