@@ -12,6 +12,8 @@ target 'NodPayMobile' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-fingerprint-scanner', :path => '../node_modules/react-native-fingerprint-scanner'
+
   target 'NodPayMobileTests' do
     inherit! :complete
     # Pods for testing

@@ -9,6 +9,7 @@ import OnBoarding from './OnBoarding';
 import Loader from './Loader';
 import Register from './Register';
 import ScanResult from './ScanResult';
+import Biometrics from './Biometrics';
 
 export {
   Splash,
@@ -22,4 +23,5 @@ export {
   Loader,
   Register,
   ScanResult,
+  Biometrics,
 };

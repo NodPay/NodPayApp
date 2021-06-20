@@ -15,6 +15,7 @@ import {
   Loader,
   Register,
   ScanResult,
+  Biometrics,
 } from '../screens';
 
 const Router = () => {
@@ -36,6 +37,7 @@ const Router = () => {
         <Stack.Screen name="NewPassword" component={NewPassword} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="ScanResult" component={ScanResult} />
+        <Stack.Screen name="Biometrics" component={Biometrics} />
       </Stack.Navigator>
     </NavigationContainer>
   );

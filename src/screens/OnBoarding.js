@@ -21,21 +21,21 @@ const OnBoarding = ({navigation}) => {
       key: 0,
       title: 'Connect',
       text: ' Social Payments to connect with your friends and family! See what your community is up to.',
-      image: Wallet,
+      image: Transfer,
       backgroundColor: '#59b2ab',
     },
     {
       key: 1,
       title: 'No Bank. No Problem',
       text: ' Go to businesses near you to convert cash into digital money simply by using your QR code',
-      image: Transfer,
+      image: AtmCard,
       backgroundColor: '#59b2ab',
     },
     {
       key: 3,
       title: 'Shop everywhere',
       text: 'Your virtual and debit cards are ready now to buy food, clothes and more online and in person!',
-      image: AtmCard,
+      image: Wallet,
       backgroundColor: '#59b2ab',
     },
   ];
@@ -43,7 +43,7 @@ const OnBoarding = ({navigation}) => {
   const RenderItem = ({item}) => {
     return (
       <View style={styles.renderItem}>
-        <Image source={item.image} style={styles.image} resizeMode="cover" />
+        <Image source={item.image} style={styles.image} />
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.text}>{item.text}</Text>
       </View>
@@ -63,12 +63,15 @@ const OnBoarding = ({navigation}) => {
             //   isIntro: false,
             // });
           }}
-          btnStyle={{marginBottom: dimens.default_14}}
+          btnStyle={{height: dimens.large_48, marginBottom: dimens.default_16}}
         />
         <Button
           title="Get Started"
           titleStyle={{color: 'white'}}
-          btnStyle={{backgroundColor: color.btn_black}}
+          btnStyle={{
+            backgroundColor: color.btn_black,
+            height: dimens.large_48,
+          }}
           onPress={() => {
             navigation.replace('GetStarted');
             // storeData('session', {
@@ -89,6 +92,31 @@ const OnBoarding = ({navigation}) => {
     );
   };
 
+  const SkipButton = () => {
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.navigate('GetStarted')}
+        style={[
+          styles.btn,
+          {backgroundColor: null, marginTop: dimens.default_16},
+        ]}
+        activeOpacity={0.9}>
+        <Text
+          style={[
+            styles.btn_title,
+            {
+              fontFamily: fonts.sofia_bold,
+              color: 'black',
+              position: 'absolute',
+              top: -8,
+            },
+          ]}>
+          Skip
+        </Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar animated={true} backgroundColor={color.bg_color} />
@@ -98,26 +126,16 @@ const OnBoarding = ({navigation}) => {
       <AppIntroSlider
         data={slides}
         renderItem={RenderItem}
-        dotStyle={{backgroundColor: 'white'}}
-        activeDotStyle={{backgroundColor: color.btn_black}}
+        dotStyle={{backgroundColor: 'white', marginBottom: '25%'}}
+        activeDotStyle={{
+          backgroundColor: color.btn_black,
+          marginBottom: '25%',
+        }}
         bottomButton={true}
         showSkipButton={true}
         renderNextButton={NextButton}
         renderDoneButton={DoneButton}
-        renderSkipButton={() => (
-          <Button
-            onPress={() => {
-              navigation.replace('GetStarted');
-              // storeData('session', {
-              //   isLogin: true,
-              //   isIntro: false,
-              // });
-            }}
-            title="Skip"
-            titleStyle={{color: color.btn_black}}
-            btnStyle={{backgroundColor: null}}
-          />
-        )}
+        renderSkipButton={SkipButton}
       />
       <Image source={SplashWave} style={styles.img} />
     </SafeAreaView>
@@ -145,10 +163,11 @@ const styles = StyleSheet.create({
   },
   wrapLogo: {
     padding: dimens.default_16,
+    marginBottom: -50,
   },
   btn: {
     borderRadius: dimens.default_16,
-    height: dimens.large_40,
+    height: dimens.large_48,
     backgroundColor: color.btn_black,
     justifyContent: 'center',
     alignItems: 'center',
@@ -162,16 +181,18 @@ const styles = StyleSheet.create({
     fontFamily: fonts.sofia_bold,
     color: 'white',
     fontSize: dimens.large,
+    marginTop: dimens.default_16,
   },
   text: {
     fontFamily: fonts.sofia_regular,
     color: 'white',
     fontSize: dimens.default_16,
     textAlign: 'center',
-    paddingHorizontal: dimens.default_16,
+    paddingHorizontal: 24,
   },
   image: {
-    height: '50%',
-    width: '50%',
+    height: '65%',
+    width: '100%',
+    resizeMode: 'contain',
   },
 });

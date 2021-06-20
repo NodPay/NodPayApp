@@ -11,7 +11,8 @@ const Logo = ({titleStyle}) => {
       <Text
         style={[
           styles.title,
-          {fontFamily: fonts.noto_regular, fontWeight: '300'},titleStyle,
+          {fontFamily: fonts.noto_regular, fontWeight: '300'},
+          titleStyle,
         ]}>
         Pay
       </Text>
@@ -25,6 +26,6 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: fonts.noto_bold,
     color: 'white',
-    fontSize: dimens.large,
+    fontSize: dimens.large_40,
   },
 });
