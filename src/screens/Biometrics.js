@@ -1,12 +1,21 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, SafeAreaView, Platform} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Platform,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 
 //where local files imported
 import {PageTitle} from '../components';
-import {color} from '../utils';
+import {color, dimens, fonts} from '../utils';
+import {Fingerprint} from '../assets';
 
-const Biometrics = () => {
+const Biometrics = ({navigation}) => {
   const [biometryType, setBiometryType] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isAuthenticate, setIsAuthenticate] = useState(false);
@@ -21,31 +30,43 @@ const Biometrics = () => {
         setErrorMessage(e.message);
       });
 
-    if (Platform.OS == 'android') {
-      if (biometryType != '') {
-        FingerprintScanner.authenticate({
-          title: 'NodPay',
-          description:
-            'Scan your fingerprint on the devices scanner to continue',
-        })
-          .then(() => setIsAuthenticate(true))
-          .catch(e =>
-            console.log('error while authenticate fingerprint', e.message),
-          );
-      }
-    }
-
     return () => FingerprintScanner.release();
   }, []);
+
+  const onFingerPrint = () => {
+    FingerprintScanner.authenticate({
+      title: 'NodPay',
+      description: 'Scan your fingerprint on the devices scanner to continue',
+    })
+      .then(() => {
+        setIsAuthenticate(true);
+        navigation.replace('Register');
+      })
+      .catch(e =>
+        console.log('error while authenticate fingerprint', e.message),
+      );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <PageTitle
+        navigation={navigation}
         isBlackArrow
-        title="Touch ID"
+        title={'Touch ID'}
         titleStyle={{color: color.btn_black}}
       />
-      <Text>{errorMessage}</Text>
+      <Text style={styles.title}>
+        {errorMessage != ''
+          ? errorMessage
+          : 'Place your finger on right on top of the sensor above'}
+      </Text>
+      <View style={styles.wrapButton}>
+        <TouchableOpacity
+          onPress={onFingerPrint}
+          disabled={errorMessage != '' ? true : false}>
+          <Image source={Fingerprint} style={styles.img} />
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
@@ -56,5 +77,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  title: {
+    fontFamily: fonts.sofia_regular,
+    fontSize: dimens.default_16,
+    textAlign: 'center',
+    paddingHorizontal: dimens.default_16,
+    color: color.grey,
+  },
+  img: {
+    height: 220,
+    width: 220,
+    resizeMode: 'contain',
+  },
+  wrapButton: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

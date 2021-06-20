@@ -16,6 +16,7 @@ import Select from './select.png';
 import Selected from './selected.png';
 import GPS from './gps.png';
 import Document from './bg_document.png';
+import Fingerprint from './fingerprint.png';
 
 export {
   LeftArrow,
@@ -36,4 +37,5 @@ export {
   Selected,
   GPS,
   Document,
+  Fingerprint,
 };

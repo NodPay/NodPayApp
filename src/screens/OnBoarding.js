@@ -108,7 +108,7 @@ const OnBoarding = ({navigation}) => {
               fontFamily: fonts.sofia_bold,
               color: 'black',
               position: 'absolute',
-              top: -8,
+              top: -6,
             },
           ]}>
           Skip

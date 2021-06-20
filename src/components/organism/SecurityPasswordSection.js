@@ -83,6 +83,7 @@ const SecurityPasswordSection = ({setUpBiometric, showModal, typeModal}) => {
         />
         <Gap t={dimens.default_16} />
         <CardInfoButton
+          onPress={() => navigation.navigate('Biometrics')}
           title="Touch ID"
           subtitle="Active touch ID so you don’t have to confirm evrytime you sendmoney"
           btnTitle="Set Up Touch ID"
