@@ -52,7 +52,7 @@ const OnBoarding = ({navigation}) => {
 
   const DoneButton = () => {
     return (
-      <View>
+      <View style={{position: 'absolute', flex: 1, width: '100%', bottom: 0}}>
         <Button
           title="Log In"
           titleStyle={{color: color.btn_title_white}}
@@ -86,9 +86,12 @@ const OnBoarding = ({navigation}) => {
 
   const NextButton = () => {
     return (
-      <TouchableOpacity style={styles.btn} activeOpacity={0.9}>
-        <Text style={styles.btn_title}>Next</Text>
-      </TouchableOpacity>
+      <View>
+        <TouchableOpacity style={styles.btn} activeOpacity={0.9}>
+          <Text style={styles.btn_title}>Next</Text>
+        </TouchableOpacity>
+        <SkipButton />
+      </View>
     );
   };
 
@@ -96,10 +99,7 @@ const OnBoarding = ({navigation}) => {
     return (
       <TouchableOpacity
         onPress={() => navigation.navigate('GetStarted')}
-        style={[
-          styles.btn,
-          {backgroundColor: null, marginTop: dimens.default_16},
-        ]}
+        style={[styles.btn, {backgroundColor: null}]}
         activeOpacity={0.9}>
         <Text
           style={[
@@ -107,8 +107,6 @@ const OnBoarding = ({navigation}) => {
             {
               fontFamily: fonts.sofia_bold,
               color: 'black',
-              position: 'absolute',
-              top: -6,
             },
           ]}>
           Skip
@@ -126,16 +124,30 @@ const OnBoarding = ({navigation}) => {
       <AppIntroSlider
         data={slides}
         renderItem={RenderItem}
-        dotStyle={{backgroundColor: 'white', marginBottom: '25%'}}
+        dotStyle={{
+          backgroundColor: 'white',
+          position: 'relative',
+          bottom: '35%',
+        }}
         activeDotStyle={{
           backgroundColor: color.btn_black,
-          marginBottom: '25%',
+          position: 'relative',
+          bottom: '35%',
         }}
         bottomButton={true}
-        showSkipButton={true}
-        renderNextButton={NextButton}
+        showSkipButton={false}
+        renderNextButton={() => (
+          <View
+            style={{
+              position: 'absolute',
+              flex: 1,
+              bottom: -10,
+              width: '100%',
+            }}>
+            <NextButton />
+          </View>
+        )}
         renderDoneButton={DoneButton}
-        renderSkipButton={SkipButton}
       />
       <Image source={SplashWave} style={styles.img} />
     </SafeAreaView>
@@ -171,6 +183,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.btn_black,
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
   },
   btn_title: {
     fontFamily: fonts.sofia_regular,
@@ -181,7 +194,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.sofia_bold,
     color: 'white',
     fontSize: dimens.large,
-    marginTop: dimens.default_16,
+    paddingVertical: dimens.default_16,
   },
   text: {
     fontFamily: fonts.sofia_regular,
