@@ -77,7 +77,9 @@ const LoginEmail = ({navigation}) => {
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('DrawerNavigator');
+            }}
           />
           <Button
             title="Register"

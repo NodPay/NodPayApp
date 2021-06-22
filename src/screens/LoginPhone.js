@@ -47,7 +47,7 @@ const LoginPhone = ({navigation}) => {
               textColor="white"
             />
             <View style={styles.form_container}>
-              <InputPhoneNumber 
+              <InputPhoneNumber
                 labelStyle={{color: color.btn_black}}
                 label="Mobile Number"
                 placeholder="Mobile Number"
@@ -83,7 +83,9 @@ const LoginPhone = ({navigation}) => {
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('DrawerNavigator');
+            }}
           />
           <Button
             title="Register"
