@@ -47,12 +47,12 @@ const NewPassword = ({navigation}) => {
         <InputPassword
           label="New Password"
           value={password}
-          onChange={setPassword}
+          onChangeText={setPassword}
         />
         <InputPassword
           label="Confirm New Password"
           value={confirmPassword}
-          onChange={setConfirmPassword}
+          onChangeText={setConfirmPassword}
         />
         <ErrorMessage message="Password strength is too weak. Please use combination of number and symbols" />
       </View>

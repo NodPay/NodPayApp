@@ -1,8 +1,9 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
-// where screen should imported
+// where screens should be imported
 import {
   GetStarted,
   Login,
@@ -17,7 +18,9 @@ import {
   ScanResult,
   Biometrics,
   Contact,
+  Home,
 } from '../screens';
+import {Drawer as DrawerComponent} from '../components';
 
 const Router = () => {
   const Stack = createStackNavigator();
@@ -40,8 +43,24 @@ const Router = () => {
         <Stack.Screen name="ScanResult" component={ScanResult} />
         <Stack.Screen name="Biometrics" component={Biometrics} />
         <Stack.Screen name="Contact" component={Contact} />
+        <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
+  );
+};
+
+const DrawerNavigator = () => {
+  const Drawer = createDrawerNavigator();
+
+  return (
+    <Drawer.Navigator
+      drawerType="front"
+      drawerPosition="right"
+      drawerStyle={{backgroundColor: 'transparent'}}
+      screenOptions={{unmountOnBlur: true}}
+      drawerContent={props => <DrawerComponent {...props} />}>
+      <Drawer.Screen name="Home" component={Home} />
+    </Drawer.Navigator>
   );
 };
 

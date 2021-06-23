@@ -33,7 +33,7 @@ const LoginPhone = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar animated={true} backgroundColor={color.bg_color} />
-      <ScrollView>
+      <ScrollView style={styles.scroll}>
         <View style={styles.inner_container}>
           <PageTitle title="Login" navigation={navigation} />
         </View>
@@ -47,7 +47,7 @@ const LoginPhone = ({navigation}) => {
               textColor="white"
             />
             <View style={styles.form_container}>
-              <InputPhoneNumber 
+              <InputPhoneNumber
                 labelStyle={{color: color.btn_black}}
                 label="Mobile Number"
                 placeholder="Mobile Number"
@@ -83,7 +83,9 @@ const LoginPhone = ({navigation}) => {
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('DrawerNavigator');
+            }}
           />
           <Button
             title="Register"
@@ -109,8 +111,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: color.btn_white_2,
   },
+  scroll: {
+    marginTop: -50,
+    paddingTop: 50,
+  },
   inner_container: {
     backgroundColor: color.bg_color,
+    marginTop: -50,
+    paddingTop: 50,
   },
   center_container: {
     flex: 1,
@@ -120,6 +128,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: dimens.default_16,
   },
   form_container: {
+    marginTop: dimens.default_16,
     marginBottom: dimens.default_16,
   },
   bg_top: {
@@ -138,7 +147,7 @@ const styles = StyleSheet.create({
   },
   footer_container: {
     padding: dimens.default_16,
-    marginTop: dimens.large,
+    marginTop: dimens.x_large,
   },
   wave: {
     zIndex: -1,

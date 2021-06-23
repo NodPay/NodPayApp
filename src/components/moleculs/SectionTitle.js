@@ -41,7 +41,7 @@ export default SectionTitle;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    padding: dimens.default_16,
+    paddingVertical: dimens.default_16,
   },
   left_arrow: {
     padding: dimens.default_16,

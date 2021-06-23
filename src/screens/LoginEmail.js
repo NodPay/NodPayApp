@@ -28,7 +28,7 @@ const LoginEmail = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar animated={true} backgroundColor={color.bg_color} />
-      <ScrollView>
+      <ScrollView style={styles.scroll}>
         <View style={styles.inner_container}>
           <PageTitle title="Login" navigation={navigation} />
         </View>
@@ -77,7 +77,9 @@ const LoginEmail = ({navigation}) => {
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('DrawerNavigator');
+            }}
           />
           <Button
             title="Register"
@@ -103,8 +105,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: color.btn_white_2,
   },
+  scroll: {
+    marginTop: -50,
+    paddingTop: 50,
+  },
   inner_container: {
     backgroundColor: color.bg_color,
+    marginTop: -50,
+    paddingTop: 50,
   },
   center_container: {
     flex: 1,
@@ -132,7 +140,7 @@ const styles = StyleSheet.create({
   },
   footer_container: {
     padding: dimens.default_16,
-    marginTop: dimens.large,
+    marginTop: dimens.x_large,
   },
   wave: {
     zIndex: -1,
