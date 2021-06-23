@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginLeft: dimens.default_16,
+    flex: 1,
   },
   icons: {
     height: 24,

@@ -52,7 +52,7 @@ const OnBoarding = ({navigation}) => {
 
   const DoneButton = () => {
     return (
-      <View style={{position: 'absolute', flex: 1, width: '100%', bottom: 0}}>
+      <View>
         <Button
           title="Log In"
           titleStyle={{color: color.btn_title_white}}
@@ -63,7 +63,7 @@ const OnBoarding = ({navigation}) => {
             //   isIntro: false,
             // });
           }}
-          btnStyle={{height: dimens.large_48, marginBottom: dimens.default_16}}
+          btnStyle={{height: dimens.large_48, marginBottom: 8}}
         />
         <Button
           title="Get Started"
@@ -71,6 +71,7 @@ const OnBoarding = ({navigation}) => {
           btnStyle={{
             backgroundColor: color.btn_black,
             height: dimens.large_48,
+            marginBottom: -8,
           }}
           onPress={() => {
             navigation.replace('GetStarted');
@@ -86,12 +87,9 @@ const OnBoarding = ({navigation}) => {
 
   const NextButton = () => {
     return (
-      <View>
-        <TouchableOpacity style={styles.btn} activeOpacity={0.9}>
-          <Text style={styles.btn_title}>Next</Text>
-        </TouchableOpacity>
-        <SkipButton />
-      </View>
+      <TouchableOpacity style={styles.btn} activeOpacity={0.9}>
+        <Text style={styles.btn_title}>Next</Text>
+      </TouchableOpacity>
     );
   };
 
@@ -127,26 +125,17 @@ const OnBoarding = ({navigation}) => {
         dotStyle={{
           backgroundColor: 'white',
           position: 'relative',
-          bottom: '35%',
+          bottom: '10%',
         }}
         activeDotStyle={{
           backgroundColor: color.btn_black,
           position: 'relative',
-          bottom: '35%',
+          bottom: '10%',
         }}
         bottomButton={true}
-        showSkipButton={false}
-        renderNextButton={() => (
-          <View
-            style={{
-              position: 'absolute',
-              flex: 1,
-              bottom: -10,
-              width: '100%',
-            }}>
-            <NextButton />
-          </View>
-        )}
+        showSkipButton={true}
+        renderSkipButton={SkipButton}
+        renderNextButton={NextButton}
         renderDoneButton={DoneButton}
       />
       <Image source={SplashWave} style={styles.img} />
