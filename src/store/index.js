@@ -5,7 +5,7 @@ export const Dispatch = createContext();
 
 const initialState = {
   // create account
-  activeStep: 4, //stepper counter
+  activeStep: 0, //stepper counter
   isComplete: false, //if all step completed, set to true
   error: false, // error on register screen with ErrorMessage component,
   errorMessage: '', // error message with ErrorMessage component

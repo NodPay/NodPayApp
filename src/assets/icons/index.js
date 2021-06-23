@@ -5,6 +5,7 @@ import Facebook from './facebook.png';
 import Email from './email.png';
 import Phone from './phone.png';
 import Close from './close.png';
+import CloseRed from './close_red.png';
 import FeatherPhone from './feather_phone.png';
 import Down from './down.png';
 import Male from './male.png';
@@ -17,6 +18,7 @@ import Selected from './selected.png';
 import GPS from './gps.png';
 import Document from './bg_document.png';
 import Fingerprint from './fingerprint.png';
+import NoContact from './no_contact.png';
 
 export {
   LeftArrow,
@@ -38,4 +40,6 @@ export {
   GPS,
   Document,
   Fingerprint,
+  NoContact,
+  CloseRed,
 };

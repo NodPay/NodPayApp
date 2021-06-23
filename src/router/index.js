@@ -16,6 +16,7 @@ import {
   Register,
   ScanResult,
   Biometrics,
+  Contact,
 } from '../screens';
 
 const Router = () => {
@@ -24,7 +25,7 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="OnBoarding"
+        initialRouteName="Splash"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Loader" component={Loader} />
@@ -38,6 +39,7 @@ const Router = () => {
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="ScanResult" component={ScanResult} />
         <Stack.Screen name="Biometrics" component={Biometrics} />
+        <Stack.Screen name="Contact" component={Contact} />
       </Stack.Navigator>
     </NavigationContainer>
   );

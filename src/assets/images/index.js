@@ -9,6 +9,7 @@ import DefaultPict from './default_pict.png';
 import ModalSent from './modal_sent.png';
 import ModalFailed from './modal_failed.png';
 import ModalSuccess from './modal_success.png';
+import ContactBackground from './bg_contact.png';
 
 export {
   SplashWave,
@@ -22,4 +23,5 @@ export {
   ModalFailed,
   ModalSuccess,
   DefaultPict,
+  ContactBackground,
 };

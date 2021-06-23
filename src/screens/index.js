@@ -10,6 +10,7 @@ import Loader from './Loader';
 import Register from './Register';
 import ScanResult from './ScanResult';
 import Biometrics from './Biometrics';
+import Contact from './Contact';
 
 export {
   Splash,
@@ -24,4 +25,5 @@ export {
   Register,
   ScanResult,
   Biometrics,
+  Contact,
 };
