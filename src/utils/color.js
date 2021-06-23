@@ -14,4 +14,5 @@ export const color = {
   error_text: '#D21414',
   error_background: '#FBE8E8',
   modal_subtitle: '#6B7280',
+  drawerActive: '#6668E4',
 };

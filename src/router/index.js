@@ -52,7 +52,9 @@ const DrawerNavigator = () => {
 
   return (
     <Drawer.Navigator
+      drawerType="front"
       drawerPosition="right"
+      drawerStyle={{backgroundColor: 'transparent'}}
       screenOptions={{unmountOnBlur: true}}
       drawerContent={props => <DrawerComponent {...props} />}>
       <Drawer.Screen name="Home" component={Home} />

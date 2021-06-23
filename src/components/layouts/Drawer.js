@@ -1,12 +1,73 @@
 import React from 'react';
-import {View, ScrollView, Text} from 'react-native';
+import {View, ScrollView, StyleSheet} from 'react-native';
 
-const Drawer = ({navigation}) => {
+import {DrawerItem} from '../moleculs';
+import {
+  DrawerHomeActive,
+  DrawerCard,
+  DrawerBusiness,
+  DrawerContact,
+  DrawerBank,
+  DrawerInvite,
+  DrawerNotification,
+  DrawerSetting,
+  DrawerHelp,
+  DrawerLogout,
+} from '../../assets';
+import {dimens} from '../../utils';
+
+const Drawer = props => {
   return (
-    <>
-      <ScrollView contentContainerStyle={{flexGrow: 1}}></ScrollView>
-    </>
+    <View style={styles.drawerContainer}>
+      <ScrollView contentContainerStyle={styles.scrollviewContainer}>
+        <DrawerItem
+          label="Home"
+          isActive
+          image={DrawerHomeActive}
+          onPress={() => {}}
+        />
+        <DrawerItem label="My Card" image={DrawerCard} onPress={() => {}} />
+        <DrawerItem
+          label="Business Profile"
+          image={DrawerBusiness}
+          onPress={() => {}}
+        />
+        <DrawerItem label="Contacts" image={DrawerContact} onPress={() => {}} />
+        <DrawerItem
+          label="Bank Account"
+          image={DrawerBank}
+          onPress={() => {}}
+        />
+        <DrawerItem
+          label="Invite Your Friends"
+          image={DrawerInvite}
+          onPress={() => {}}
+        />
+        <DrawerItem
+          label="Notifications"
+          image={DrawerNotification}
+          onPress={() => {}}
+          unreadCount={4}
+        />
+        <DrawerItem label="Settings" image={DrawerSetting} onPress={() => {}} />
+        <DrawerItem label="Help" image={DrawerHelp} onPress={() => {}} />
+      </ScrollView>
+
+      <DrawerItem label="Log out" image={DrawerLogout} onPress={() => {}} />
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  drawerContainer: {
+    borderTopLeftRadius: dimens.default,
+    borderBottomLeftRadius: dimens.default,
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  scrollviewContainer: {
+    flexGrow: 1,
+  },
+});
 
 export default Drawer;

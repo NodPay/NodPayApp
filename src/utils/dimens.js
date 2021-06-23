@@ -5,6 +5,7 @@ export const dimens = {
   default_14: 14,
   default_16: 16,
   default_18: 18,
+  default_20: 20,
   default_22: 22,
   default_12: 12,
   medium: 24,

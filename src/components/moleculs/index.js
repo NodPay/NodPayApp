@@ -7,6 +7,7 @@ import InputPhoto from './InputPhoto';
 import InputOption from './InputOption';
 import SelectAddressList from './SelectAddressList';
 import CardInfoButton from './CardInfoButton';
+import DrawerItem from './DrawerItem';
 
 export {
   SectionTitle,
@@ -18,4 +19,5 @@ export {
   InputOption,
   SelectAddressList,
   CardInfoButton,
+  DrawerItem,
 };

@@ -17,6 +17,16 @@ import Selected from './selected.png';
 import GPS from './gps.png';
 import Document from './bg_document.png';
 import Fingerprint from './fingerprint.png';
+import DrawerHomeActive from './drawer_home_active.png';
+import DrawerBank from './drawer_bank.png';
+import DrawerBusiness from './drawer_business.png';
+import DrawerCard from './drawer_card.png';
+import DrawerContact from './drawer_contact.png';
+import DrawerHelp from './drawer_help.png';
+import DrawerInvite from './drawer_invite.png';
+import DrawerNotification from './drawer_notification.png';
+import DrawerSetting from './drawer_setting.png';
+import DrawerLogout from './drawer_logout.png';
 
 export {
   LeftArrow,
@@ -38,4 +48,14 @@ export {
   GPS,
   Document,
   Fingerprint,
+  DrawerHomeActive,
+  DrawerBank,
+  DrawerBusiness,
+  DrawerCard,
+  DrawerContact,
+  DrawerHelp,
+  DrawerInvite,
+  DrawerNotification,
+  DrawerSetting,
+  DrawerLogout,
 };
