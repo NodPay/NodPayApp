@@ -53,7 +53,7 @@ const Tabbed = ({ state, descriptors, navigation, position }) => {
             onLongPress={onLongPress}
             style={[styles.tabItem, {backgroundColor: isFocused ? 'white' : color.bg_tab}]}
           >
-            <Animated.Text style={[styles.tabText, { opacity }]}>
+            <Animated.Text style={[styles.tabText, {color: isFocused ? color.btn_black : color.grey}, { opacity }]}>
               {label}
             </Animated.Text>
           </TouchableOpacity>
@@ -84,6 +84,6 @@ const styles = StyleSheet.create({
   tabText: {
     fontFamily: fonts.noto_bold,
     fontSize: dimens.default_16,
-    color: 'black',
+    color: color.btn_black,
   },
 });
