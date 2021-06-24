@@ -8,6 +8,8 @@ import InputOption from './InputOption';
 import SelectAddressList from './SelectAddressList';
 import CardInfoButton from './CardInfoButton';
 import DrawerItem from './DrawerItem';
+import InputSearch from './InputSearch';
+import ContactList from './ContactList';
 import HeaderHome from './HeaderHome';
 import BalanceInfo from './BalanceInfo';
 import EmptyState from './EmptyState';
@@ -26,6 +28,8 @@ export {
   SelectAddressList,
   CardInfoButton,
   DrawerItem,
+  InputSearch,
+  ContactList,
   HeaderHome,
   BalanceInfo,
   EmptyState,

@@ -24,7 +24,9 @@ const GetStarted = ({navigation}) => {
       <Image
         source={GetStartedImage}
         style={{
+          height: 200,
           width: '100%',
+          resizeMode: 'stretch',
         }}
       />
       <Text style={styles.text}>
@@ -36,12 +38,12 @@ const GetStarted = ({navigation}) => {
       <View style={styles.wrap_btn}>
         <Button
           title="Log In"
-          btnStyle={{marginBottom: dimens.default_16}}
           onPress={() => navigation.navigate('Login')}
+          btnStyle={{marginBottom: 8}}
         />
         <Button
           title="Get Started"
-          btnStyle={{backgroundColor: color.btn_black}}
+          btnStyle={{backgroundColor: color.btn_black, marginBottom: 8}}
           titleStyle={{color: 'white'}}
           onPress={() => navigation.navigate('Register')}
         />
@@ -62,7 +64,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: dimens.default_16,
     justifyContent: 'flex-end',
-    marginVertical: dimens.default_16,
   },
   img: {
     position: 'absolute',

@@ -125,12 +125,12 @@ const OnBoarding = ({navigation}) => {
         dotStyle={{
           backgroundColor: 'white',
           position: 'relative',
-          bottom: '10%',
+          bottom: '5%',
         }}
         activeDotStyle={{
           backgroundColor: color.btn_black,
           position: 'relative',
-          bottom: '10%',
+          bottom: '5%',
         }}
         bottomButton={true}
         showSkipButton={true}
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.sofia_bold,
     color: 'white',
     fontSize: dimens.large,
-    paddingVertical: dimens.default_16,
+    marginTop: dimens.default_16,
   },
   text: {
     fontFamily: fonts.sofia_regular,
@@ -193,8 +193,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   image: {
-    height: '65%',
+    height: 250,
     width: '100%',
-    resizeMode: 'contain',
+    resizeMode: 'stretch',
+    marginTop: dimens.large_48,
   },
 });

@@ -23,7 +23,7 @@ const StepForm = ({
   typeModal,
 }) => {
   const progressStepsStyle = {
-    activeStepIconBorderColor: 'white',
+    activeStepIconBorderColor: color.green,
     disabledStepIconColor: 'white',
     borderWidth: 1,
     activeLabelColor: color.btn_black,
