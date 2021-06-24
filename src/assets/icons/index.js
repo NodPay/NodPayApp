@@ -30,6 +30,7 @@ import DrawerNotification from './drawer_notification.png';
 import DrawerSetting from './drawer_setting.png';
 import DrawerLogout from './drawer_logout.png';
 import Search from './search.png';
+import FacebookWhite from './facebook-white.png';
 import ProfileExample from './profile_example.png';
 import Plus from './plus.png';
 import LoveActive from './love_active.png';
@@ -38,6 +39,12 @@ import EmojiActive from './emoji_active.png';
 import EmojiInactive from './emoji_inactive.png';
 import CommentActive from './comment_active.png';
 import CommentInactive from './comment_inactive.png';
+import EmptyData from './empty_data.png';
+import Time from './time.png';
+import InviteCompleted from './invite_completed.png';
+import InviteFriend from './invite_friend.png';
+import Money from './money.png';
+import Copy from './copy.png';
 
 export {
   LeftArrow,
@@ -72,6 +79,7 @@ export {
   DrawerSetting,
   DrawerLogout,
   Search,
+  FacebookWhite,
   ProfileExample,
   Plus,
   LoveActive,
@@ -80,4 +88,10 @@ export {
   EmojiInactive,
   CommentActive,
   CommentInactive,
+  EmptyData,
+  Time,
+  InviteCompleted,
+  InviteFriend,
+  Money,
+  Copy,
 };

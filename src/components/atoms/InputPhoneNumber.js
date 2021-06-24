@@ -33,6 +33,7 @@ const InputPhoneNumber = ({
           <Image source={Down} style={styles.leftIcon} />
         </TouchableOpacity>
         <TextInput
+          allowFontScaling={true}
           keyboardType="number-pad"
           value={number.toString()}
           onChangeText={value => {
@@ -105,6 +106,7 @@ const styles = StyleSheet.create({
     fontSize: dimens.default_16,
     paddingLeft: dimens.default_16,
     letterSpacing: 1.2,
+    fontWeight: 'normal',
   },
   leftIcon: {
     width: 12,

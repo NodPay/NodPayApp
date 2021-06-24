@@ -48,7 +48,11 @@ const SecurityPasswordSection = ({setUpBiometric, showModal, typeModal}) => {
                 typeModal: null,
               });
               dispatch({type: 'SET_IS_COMPLETED', payload: true});
-              wait(100).then(() => navigation.replace('Login'));
+              wait(310).then(() => {
+                dispatch({type: 'RESET_REGISTER'});
+
+                navigation.replace('Login');
+              });
             } else {
               dispatch({
                 type: 'SET_MODAL',

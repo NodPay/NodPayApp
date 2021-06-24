@@ -43,6 +43,7 @@ const LoginPhone = ({navigation}) => {
           <View style={styles.center_content}>
             <SectionTitle
               title="Welcome Back!"
+              titleStyle={{fontSize: dimens.large_40}}
               subtitle={`Login to your account with your email or\nmobile number`}
               textColor="white"
             />
