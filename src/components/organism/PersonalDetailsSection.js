@@ -17,6 +17,8 @@ const PersonalDetailsSection = ({isFamilyRelation}) => {
     shortBio: '',
   });
 
+  const [familyRelation, setFamilyRelation] = useState('');
+
   console.log(user);
 
   if (isFamilyRelation) {
@@ -36,8 +38,8 @@ const PersonalDetailsSection = ({isFamilyRelation}) => {
           }}
         />
         <InputText
-          value={user.firstName}
-          onChangeText={value => setUser({...user, firstName: value})}
+          value={familyRelation}
+          onChangeText={value => setFamilyRelation(value)}
         />
         <Gap b={dimens.default_16} />
       </View>

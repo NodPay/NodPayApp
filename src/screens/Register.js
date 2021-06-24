@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import ImagePicker from 'react-native-image-crop-picker';
 
 //where local files imported
 import {color, dimens, fonts} from '../utils';
@@ -112,6 +113,20 @@ const Register = ({navigation}) => {
     }
   };
 
+  //start scan button
+
+  const takePhoto = () => {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+    })
+      .then(res => {
+        console.log('result', res);
+        navigation.navigate('ScanResult', {data: res});
+      })
+      .catch(e => console.log('error while taking photo', e));
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <PageTitle
@@ -137,6 +152,20 @@ const Register = ({navigation}) => {
           justifyContent: 'center',
           paddingHorizontal: dimens.default_16,
         }}>
+        {activeStep == 3 && (
+          <Button
+            onPress={takePhoto}
+            title="Start Scan"
+            btnStyle={{
+              backgroundColor: 'white',
+              marginBottom: 8,
+              borderWidth: 1,
+              borderColor: color.grey,
+            }}
+            titleStyle={{color: color.btn_title_white}}
+            iconRight={Next}
+          />
+        )}
         <Button
           disabled={isDisabled}
           onPress={onNext}

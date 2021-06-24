@@ -91,6 +91,24 @@ const reducer = (state, action) => {
         showModal: action.showModal,
         typeModal: action.typeModal,
       };
+    case 'RESET_REGISTER':
+      return {
+        ...state,
+        activeStep: 0,
+        isComplete: false,
+        error: false,
+        errorMessage: '',
+        phoneNumber: '',
+        isVerification: false,
+        isRunning: false,
+        verificationCode: '',
+        isFamilyRelation: false,
+        isDisabled: false,
+        cnicData: null,
+        setUpBiometric: false,
+        showModal: false,
+        typeModal: null,
+      };
     default:
       return state;
   }

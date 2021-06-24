@@ -1,28 +1,12 @@
 import React from 'react';
 import {StyleSheet, ScrollView, Text, View, Image} from 'react-native';
-import ImagePicker from 'react-native-image-crop-picker';
-import {useNavigation} from '@react-navigation/native';
 
 //where local files imported
 import {Document} from '../../assets';
 import {color, dimens, fonts} from '../../utils';
-import {Button, Gap} from '../atoms';
+import {Gap} from '../atoms';
 
 const CNIC = ({cnicData}) => {
-  const navigation = useNavigation();
-
-  const takePhoto = () => {
-    ImagePicker.openCamera({
-      width: 300,
-      height: 400,
-    })
-      .then(res => {
-        console.log('result', res);
-        navigation.navigate('ScanResult', {data: res});
-      })
-      .catch(e => console.log('error while taking photo', e));
-  };
-
   console.log('cnicData', cnicData);
 
   const RenderText = ({label, value}) => {
@@ -67,19 +51,6 @@ const CNIC = ({cnicData}) => {
         {`\u2022`} Don't use snac or photocopy
       </Text>
       <Gap t={dimens.default_16} />
-      <Button
-        onPress={takePhoto}
-        title="Start Scan"
-        btnStyle={{
-          backgroundColor: 'white',
-          borderWidth: 0.1,
-          borderColor: color.btn_black,
-        }}
-        titleStyle={{
-          color: color.btn_title_white,
-          fontFamily: fonts.sofia_bold,
-        }}
-      />
     </ScrollView>
   );
 };

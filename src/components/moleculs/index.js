@@ -8,6 +8,8 @@ import InputOption from './InputOption';
 import SelectAddressList from './SelectAddressList';
 import CardInfoButton from './CardInfoButton';
 import DrawerItem from './DrawerItem';
+import InputSearch from './InputSearch';
+import ContactList from './ContactList';
 
 export {
   SectionTitle,
@@ -20,4 +22,6 @@ export {
   SelectAddressList,
   CardInfoButton,
   DrawerItem,
+  InputSearch,
+  ContactList,
 };

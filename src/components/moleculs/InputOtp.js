@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: dimens.default_18,
     fontFamily: fonts.sofia_bold,
+    fontWeight: 'normal',
   },
   underlineStyleHighLighted: {
     borderColor: color.bg_color,

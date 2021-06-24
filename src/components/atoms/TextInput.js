@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   inputText: {
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_16,
+    fontWeight: 'normal',
     color: color.btn_black,
     backgroundColor: 'white',
     marginTop: dimens.small,

@@ -40,6 +40,7 @@ const Biometrics = ({navigation}) => {
     })
       .then(() => {
         setIsAuthenticate(true);
+        alert('Success Scan Touch ID');
         navigation.replace('Register');
       })
       .catch(e =>
