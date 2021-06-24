@@ -19,6 +19,7 @@ import {
   Biometrics,
   Contact,
   Home,
+  Notification,
 } from '../screens';
 import {Drawer as DrawerComponent} from '../components';
 
@@ -28,7 +29,7 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Splash"
+        initialRouteName="Notification"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Loader" component={Loader} />
@@ -43,6 +44,7 @@ const Router = () => {
         <Stack.Screen name="ScanResult" component={ScanResult} />
         <Stack.Screen name="Biometrics" component={Biometrics} />
         <Stack.Screen name="Contact" component={Contact} />
+        <Stack.Screen name="Notification" component={Notification} />
         <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
       </Stack.Navigator>
     </NavigationContainer>

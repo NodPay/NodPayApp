@@ -10,6 +10,8 @@ import CardInfoButton from './CardInfoButton';
 import DrawerItem from './DrawerItem';
 import HeaderHome from './HeaderHome';
 import BalanceInfo from './BalanceInfo';
+import EmptyState from './EmptyState';
+import NotifActivityItem from './NotifActivityItem';
 
 export {
   SectionTitle,
@@ -24,4 +26,6 @@ export {
   DrawerItem,
   HeaderHome,
   BalanceInfo,
+  EmptyState,
+  NotifActivityItem,
 };

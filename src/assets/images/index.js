@@ -11,6 +11,7 @@ import ModalFailed from './modal_failed.png';
 import ModalSuccess from './modal_success.png';
 import ContactBackground from './bg_contact.png';
 import HomeBalanceBackground from './bg_home_balance.png';
+import People1 from './people1.png';
 
 export {
   SplashWave,
@@ -26,4 +27,5 @@ export {
   DefaultPict,
   ContactBackground,
   HomeBalanceBackground,
+  People1,
 };

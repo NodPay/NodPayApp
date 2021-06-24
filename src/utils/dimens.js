@@ -1,4 +1,5 @@
 export const dimens = {
+  verysmall: 2,
   supersmall: 4,
   small: 8,
   default: 16,
@@ -9,10 +10,12 @@ export const dimens = {
   default_22: 22,
   default_12: 12,
   medium: 24,
+  large_25: 25,
   large: 32,
   large_40: 40,
   large_48: 48,
   large_50: 50,
+  large_56: 56,
   x_large: 64,
   very_large: 115,
   minus_spinner: -70,
