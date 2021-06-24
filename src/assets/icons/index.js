@@ -44,7 +44,8 @@ import Time from './time.png';
 import InviteCompleted from './invite_completed.png';
 import InviteFriend from './invite_friend.png';
 import Money from './money.png';
-import Copy from './copy.png';
+import People from './people.png';
+import Person from './person.png';
 
 export {
   LeftArrow,
@@ -94,4 +95,6 @@ export {
   InviteFriend,
   Money,
   Copy,
+  People,
+  Person,
 };
