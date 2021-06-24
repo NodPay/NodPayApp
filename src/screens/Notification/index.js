@@ -11,7 +11,7 @@ import {ContactBackground, EmptyData} from '../../assets';
 import Activity from './Activity';
 import Request from './Request';
 
-const Notification = () => {
+const Notification = ({navigation}) => {
   const [isEmpty, setIsEmpty] = useState(false);
 
   return (
@@ -20,6 +20,7 @@ const Notification = () => {
         isBlackArrow
         title="Notifications"
         titleStyle={{color: color.btn_black}}
+        navigation={navigation}
       />
       {isEmpty ? (
         <View style={{flex: 1, justifyContent: 'center'}}>
