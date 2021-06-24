@@ -32,6 +32,12 @@ import DrawerLogout from './drawer_logout.png';
 import Search from './search.png';
 import ProfileExample from './profile_example.png';
 import Plus from './plus.png';
+import LoveActive from './love_active.png';
+import LoveInactive from './love_inactive.png';
+import EmojiActive from './emoji_active.png';
+import EmojiInactive from './emoji_inactive.png';
+import CommentActive from './comment_active.png';
+import CommentInactive from './comment_inactive.png';
 
 export {
   LeftArrow,
@@ -68,4 +74,10 @@ export {
   Search,
   ProfileExample,
   Plus,
+  LoveActive,
+  LoveInactive,
+  EmojiActive,
+  EmojiInactive,
+  CommentActive,
+  CommentInactive,
 };

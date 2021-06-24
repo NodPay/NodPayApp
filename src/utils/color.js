@@ -9,6 +9,7 @@ export const color = {
   green: '#6FBC4B',
   grey: '#9A9B9E',
   grey_2: '#8E8F92',
+  grey_3: '#B3B4B6',
   red: '#D21414',
   bg_red_error_msg: '#FBE8E8',
   form_label: '#9A9B9E',
@@ -16,4 +17,7 @@ export const color = {
   error_background: '#FBE8E8',
   modal_subtitle: '#6B7280',
   drawerActive: '#6668E4',
+  love_active: '#DD0F72',
+  comment_active: '#548EFF',
+  emoji_active: '#6467E5',
 };

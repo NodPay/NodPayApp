@@ -1,6 +1,7 @@
 export const dimens = {
   supersmall: 4,
   small: 8,
+  small_10: 10,
   default: 16,
   default_14: 14,
   default_16: 16,

@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 
 //where local file imported
-import {HeaderHome, BalanceInfo} from '../components/';
+import {HeaderHome, BalanceInfo, FeedItem} from '../components/';
 import {color, dimens, fonts} from '../utils/';
 
 const Home = ({navigation}) => {
@@ -19,6 +19,8 @@ const Home = ({navigation}) => {
 
       <View style={{padding: dimens.default}}>
         <BalanceInfo type="home" moneyAmount="400.000" />
+
+        <FeedItem />
       </View>
     </SafeAreaView>
   );
