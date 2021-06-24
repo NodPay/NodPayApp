@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
       position: 'relative',
     },
     photo: {
-      height: 46,
-      width: 46,
+      height: dimens.large_46,
+      width: dimens.large_46,
       resizeMode: 'cover',
       marginRight: dimens.default_16,
     },
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     iconDate: {
-      height: 14,
-      width: 14,
+      height: dimens.default_14,
+      width: dimens.default_14,
       resizeMode: 'cover',
       marginRight: dimens.supersmall,
     },
@@ -87,8 +87,8 @@ const styles = StyleSheet.create({
     },
     containerLabel: {
       position: 'absolute',
-      top: 8,
-      right: 16,
+      top: dimens.small,
+      right: dimens.default_16,
       paddingHorizontal: dimens.small,
       paddingTop: dimens.verysmall,
       backgroundColor: color.grey,

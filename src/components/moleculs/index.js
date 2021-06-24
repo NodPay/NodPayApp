@@ -12,6 +12,7 @@ import HeaderHome from './HeaderHome';
 import BalanceInfo from './BalanceInfo';
 import EmptyState from './EmptyState';
 import NotifActivityItem from './NotifActivityItem';
+import RequestMoneyItem from './RequestMoneyItem';
 import Tabbed from './Tabbed';
 
 export {
@@ -29,5 +30,6 @@ export {
   BalanceInfo,
   EmptyState,
   NotifActivityItem,
+  RequestMoneyItem,
   Tabbed,
 };

@@ -80,7 +80,6 @@ const NotificationActivity = () => {
       isUnread: false,
     },
   ]);
-  const [notifRequestData, setNotifRequestData] = useState(null);
 
   today = () => {
     var result = moment().hours(0);   
