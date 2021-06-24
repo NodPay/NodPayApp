@@ -9,7 +9,9 @@ import {Search, ProfileExample} from '../../assets';
 const HeaderHome = ({onPressSearch, onPressProfile}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.imageWrapper} onPress={onPressSearch}>
+      <TouchableOpacity
+        style={[styles.imageWrapper, {paddingHorizontal: dimens.small}]}
+        onPress={onPressSearch}>
         <Image source={Search} style={styles.image} />
         <Text style={styles.imageDescription}>Search</Text>
       </TouchableOpacity>
@@ -35,7 +37,6 @@ const styles = StyleSheet.create({
   imageWrapper: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: dimens.small,
     paddingVertical: dimens.supersmall,
   },
   image: {

@@ -9,6 +9,7 @@ import SelectAddressList from './SelectAddressList';
 import CardInfoButton from './CardInfoButton';
 import DrawerItem from './DrawerItem';
 import HeaderHome from './HeaderHome';
+import BalanceInfo from './BalanceInfo';
 
 export {
   SectionTitle,
@@ -22,4 +23,5 @@ export {
   CardInfoButton,
   DrawerItem,
   HeaderHome,
+  BalanceInfo,
 };

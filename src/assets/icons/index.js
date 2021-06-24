@@ -31,6 +31,7 @@ import DrawerSetting from './drawer_setting.png';
 import DrawerLogout from './drawer_logout.png';
 import Search from './search.png';
 import ProfileExample from './profile_example.png';
+import Plus from './plus.png';
 
 export {
   LeftArrow,
@@ -66,4 +67,5 @@ export {
   DrawerLogout,
   Search,
   ProfileExample,
+  Plus,
 };

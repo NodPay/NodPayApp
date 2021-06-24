@@ -8,6 +8,7 @@ export const color = {
   bg_grey: '#F0F0F1',
   green: '#6FBC4B',
   grey: '#9A9B9E',
+  grey_2: '#8E8F92',
   red: '#D21414',
   bg_red_error_msg: '#FBE8E8',
   form_label: '#9A9B9E',

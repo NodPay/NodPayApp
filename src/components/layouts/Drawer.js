@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
 
-import {DrawerItem} from '../moleculs';
+import {DrawerItem, BalanceInfo} from '../moleculs';
 import {
   DrawerHomeActive,
   DrawerCard,
@@ -20,6 +20,10 @@ const Drawer = props => {
   return (
     <View style={styles.drawerContainer}>
       <ScrollView contentContainerStyle={styles.scrollviewContainer}>
+        <View style={{padding: dimens.default}}>
+          <BalanceInfo type="drawer" moneyAmount="400.000" />
+        </View>
+
         <DrawerItem
           label="Home"
           isActive
