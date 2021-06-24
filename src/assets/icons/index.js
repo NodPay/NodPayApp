@@ -29,6 +29,8 @@ import DrawerInvite from './drawer_invite.png';
 import DrawerNotification from './drawer_notification.png';
 import DrawerSetting from './drawer_setting.png';
 import DrawerLogout from './drawer_logout.png';
+import Search from './search.png';
+import ProfileExample from './profile_example.png';
 
 export {
   LeftArrow,
@@ -62,4 +64,6 @@ export {
   DrawerNotification,
   DrawerSetting,
   DrawerLogout,
+  Search,
+  ProfileExample,
 };
