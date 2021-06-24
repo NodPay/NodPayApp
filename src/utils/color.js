@@ -13,6 +13,7 @@ export const color = {
   grey_4: '#B3B4B6',
   purple: '#F0F0FC',
   red: '#D21414',
+  bg_tab: '#E9E9E9',
   bg_red_error_msg: '#FBE8E8',
   bg_success: '#E2F2DB',
   form_label: '#9A9B9E',

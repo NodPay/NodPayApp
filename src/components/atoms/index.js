@@ -9,6 +9,7 @@ import TextInput from './TextInput';
 import FormLabel from './FormLabel';
 import ErrorMessage from './ErrorMessage';
 import SelectAddressItem from './SelectAddressItem';
+import Tabbed from './Tabbed';
 
 export {
   Logo,
@@ -22,4 +23,5 @@ export {
   FormLabel,
   ErrorMessage,
   SelectAddressItem,
+  Tabbed,
 };
