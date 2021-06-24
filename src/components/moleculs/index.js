@@ -12,6 +12,7 @@ import HeaderHome from './HeaderHome';
 import BalanceInfo from './BalanceInfo';
 import EmptyState from './EmptyState';
 import NotifActivityItem from './NotifActivityItem';
+import Tabbed from './Tabbed';
 
 export {
   SectionTitle,
@@ -28,4 +29,5 @@ export {
   BalanceInfo,
   EmptyState,
   NotifActivityItem,
+  Tabbed,
 };
