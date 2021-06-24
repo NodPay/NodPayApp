@@ -31,6 +31,10 @@ import DrawerSetting from './drawer_setting.png';
 import DrawerLogout from './drawer_logout.png';
 import Search from './search.png';
 import FacebookWhite from './facebook-white.png';
+import ProfileExample from './profile_example.png';
+import Plus from './plus.png';
+import EmptyData from './empty_data.png';
+import Time from './time.png';
 
 export {
   LeftArrow,
@@ -66,4 +70,8 @@ export {
   DrawerLogout,
   Search,
   FacebookWhite,
+  ProfileExample,
+  Plus,
+  EmptyData,
+  Time,
 };

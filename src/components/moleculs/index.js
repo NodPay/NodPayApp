@@ -10,6 +10,12 @@ import CardInfoButton from './CardInfoButton';
 import DrawerItem from './DrawerItem';
 import InputSearch from './InputSearch';
 import ContactList from './ContactList';
+import HeaderHome from './HeaderHome';
+import BalanceInfo from './BalanceInfo';
+import EmptyState from './EmptyState';
+import NotifActivityItem from './NotifActivityItem';
+import RequestMoneyItem from './RequestMoneyItem';
+import Tabbed from './Tabbed';
 
 export {
   SectionTitle,
@@ -24,4 +30,10 @@ export {
   DrawerItem,
   InputSearch,
   ContactList,
+  HeaderHome,
+  BalanceInfo,
+  EmptyState,
+  NotifActivityItem,
+  RequestMoneyItem,
+  Tabbed,
 };

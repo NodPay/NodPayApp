@@ -12,6 +12,7 @@ import ScanResult from './ScanResult';
 import Biometrics from './Biometrics';
 import Contact from './Contact';
 import Home from './Home';
+import Notification from './Notification';
 
 export {
   Splash,
@@ -28,4 +29,5 @@ export {
   Biometrics,
   Contact,
   Home,
+  Notification,
 };

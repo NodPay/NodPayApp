@@ -43,20 +43,15 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingVertical: dimens.default_16,
   },
-  left_arrow: {
-    padding: dimens.default_16,
-    position: 'absolute',
-    left: 0,
-  },
   title: {
     fontFamily: fonts.sofia_bold,
-    fontSize: dimens.large_40,
+    fontSize: dimens.default_22,
     color: 'black',
   },
   subtitle: {
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_16,
-    lineHeight: 24,
+    lineHeight: dimens.medium,
     color: 'black',
   },
 
