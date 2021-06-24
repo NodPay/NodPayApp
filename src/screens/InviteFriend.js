@@ -6,10 +6,12 @@ const Tab = createMaterialTopTabNavigator();
 
 //where local files imported
 import {color, dimens} from '../utils';
-import {PageTitle, Button} from '../components';
+import {PageTitle, Button, StepInfo} from '../components';
 import {ContactBackground,PeopleInviteFriend} from '../assets';
 
 const InviteFriend = ({navigation}) => {
+  const stepInfo = ['You invite a friend', 'They Register & Topup', 'You both get XX'];
+
   return (
     <SafeAreaView style={styles.container}>
       <PageTitle
@@ -20,6 +22,9 @@ const InviteFriend = ({navigation}) => {
       />
       <View style={styles.containerCenter}>
         <Image source={PeopleInviteFriend} style={styles.photo} />
+        <StepInfo
+          items={stepInfo}
+        />
       </View>
       <View style={styles.wrapBtn}>
         <Button
@@ -49,6 +54,7 @@ const styles = StyleSheet.create({
     width: 136,
     height: 136,
     resizeMode: 'cover',
+    marginBottom: dimens.medium,
   },
   wrapBtn: {
     padding: dimens.default_22,

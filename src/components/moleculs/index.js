@@ -16,6 +16,7 @@ import EmptyState from './EmptyState';
 import NotifActivityItem from './NotifActivityItem';
 import RequestMoneyItem from './RequestMoneyItem';
 import Tabbed from './Tabbed';
+import StepInfo from './StepInfo';
 
 export {
   SectionTitle,
@@ -36,4 +37,5 @@ export {
   NotifActivityItem,
   RequestMoneyItem,
   Tabbed,
+  StepInfo,
 };
