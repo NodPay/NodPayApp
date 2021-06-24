@@ -11,9 +11,14 @@ import {
   EmojiInactive,
   CommentActive,
   CommentInactive,
+  Time,
+  People,
+  Person,
 } from '../../assets';
 
-const FeedItem = ({loveCount, commentCount, emojiCount}) => {
+const FeedItem = ({item}) => {
+  const {loveCount, commentCount, emojiCount, message} = item;
+
   return (
     <View style={{marginTop: dimens.default, flexDirection: 'row'}}>
       {/* Left part (profile photo and time) */}
@@ -23,7 +28,7 @@ const FeedItem = ({loveCount, commentCount, emojiCount}) => {
           style={{height: 50, width: 50, resizeMode: 'contain'}}
         />
         <View style={styles.timeContainer}>
-          <Image source={ProfileExample} style={styles.clockIcon} />
+          <Image source={Time} style={styles.clockIcon} />
           <Text style={{fontSize: dimens.default_12, color: color.grey_3}}>
             1m
           </Text>
@@ -100,7 +105,7 @@ const FeedItem = ({loveCount, commentCount, emojiCount}) => {
         </View>
 
         <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-          <Image source={ProfileExample} style={styles.publicityIcon} />
+          <Image source={People} style={styles.publicityIcon} />
           <Text style={styles.publicityText}>Public</Text>
         </View>
       </View>
