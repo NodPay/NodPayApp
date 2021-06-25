@@ -4,6 +4,7 @@ import Next from './next.png';
 import Facebook from './facebook.png';
 import Email from './email.png';
 import Phone from './phone.png';
+import PhonePurple from './phone_purple.png';
 import Close from './close.png';
 import CloseRed from './close_red.png';
 import FeatherPhone from './feather_phone.png';
@@ -56,6 +57,7 @@ export {
   Facebook,
   Email,
   Phone,
+  PhonePurple,
   FeatherPhone,
   Down,
   Male,

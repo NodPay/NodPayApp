@@ -1,13 +1,21 @@
-import React, {useState} from 'react';
+import React, {useRef, useMemo, useCallback} from 'react';
 import {StyleSheet, View, ScrollView, SafeAreaView, Image} from 'react-native';
+import BottomSheet from '@gorhom/bottom-sheet';
 
 //where local files imported
-import {color, dimens} from '../utils';
+import {color, dimens, fonts} from '../utils';
 import {PageTitle, Button, StepInfo, MenuItem, InputText} from '../components';
-import {PeopleInviteFriend, InviteAdd, Copy} from '../assets';
+import {PeopleInviteFriend, InviteAdd, Copy, Facebook, PhonePurple} from '../assets';
 
 const InviteFriend = ({navigation}) => {
   const stepInfo = ['You invite a friend', 'They Register & Topup', 'You both get XX'];
+  const refRBSheet = useRef(null);
+  const snapPoints = useMemo(() => ['0%', '30%'], []);
+
+  // callbacks
+  const handleSheetChanges = useCallback(index => {
+    console.log('handleSheetChanges', index);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -54,12 +62,51 @@ const InviteFriend = ({navigation}) => {
           inputStyle={{backgroundColor: color.grey_7, elevation: 0, shadowOpacity: 0, marginTop: 0}}
         />
         <Button
-          onPress={() => {}}
+          onPress={() => refRBSheet.current?.snapTo(1)}
           title="Share Invitation Link"
           btnStyle={{backgroundColor: color.btn_black}}
           titleStyle={{color: color.btn_white_2}}
         />
       </View>
+      <BottomSheet
+        ref={refRBSheet}
+        index={-1}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}>
+        <PageTitle
+          isCloseMode
+          title="Share Invitation Link"
+          titleStyle={{color: color.btn_black}}
+          navigation={navigation}
+          onPressClose={() => refRBSheet.current?.close()}
+        />
+        <View style={styles.containerModal}>
+          <Button
+            iconLeft={Facebook}
+            title="Sign in with Facebook"
+            btnStyle={{
+              backgroundColor: 'white',
+              marginBottom: dimens.default_16,
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
+            titleStyle={{fontFamily: fonts.sofia_bold, color: 'black', color: color.btn_title_white}}
+            onPress={() => {}}
+          />
+          <Button
+            iconLeft={PhonePurple}
+            title="Share via Mobile Number"
+            btnStyle={{
+              backgroundColor: 'white',
+              marginBottom: dimens.default_16,
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
+            titleStyle={{fontFamily: fonts.sofia_bold, color: 'black', color: color.btn_title_white}}
+            onPress={() => {}}
+          />
+        </View>
+      </BottomSheet>
     </SafeAreaView>
   );
 };
@@ -92,4 +139,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
+  containerModal: {
+    padding: dimens.default_16,
+  }
 });
