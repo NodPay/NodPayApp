@@ -16,7 +16,7 @@ import {
 } from '../../assets';
 import {dimens} from '../../utils';
 
-const Drawer = props => {
+const Drawer = ({navigation}) => {
   return (
     <View style={styles.drawerContainer}>
       <ScrollView contentContainerStyle={styles.scrollviewContainer}>
@@ -50,7 +50,9 @@ const Drawer = props => {
         <DrawerItem
           label="Notifications"
           image={DrawerNotification}
-          onPress={() => {}}
+          onPress={() => {
+            navigation.navigate('Notification');
+          }}
           unreadCount={4}
         />
         <DrawerItem label="Settings" image={DrawerSetting} onPress={() => {}} />
