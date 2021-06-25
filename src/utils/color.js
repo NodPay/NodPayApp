@@ -12,6 +12,8 @@ export const color = {
   grey_3: '#B3B4B6',
   grey_4: '#B3B4B6',
   grey_5: '#818386',
+  grey_6: '#E9EBF2',
+  grey_7: '#F5F5F5',
   purple: '#F0F0FC',
   red: '#D21414',
   bg_tab: '#E9E9E9',

@@ -4,6 +4,7 @@ import Next from './next.png';
 import Facebook from './facebook.png';
 import Email from './email.png';
 import Phone from './phone.png';
+import PhonePurple from './phone_purple.png';
 import Close from './close.png';
 import CloseRed from './close_red.png';
 import FeatherPhone from './feather_phone.png';
@@ -42,9 +43,10 @@ import CommentInactive from './comment_inactive.png';
 import EmptyData from './empty_data.png';
 import Time from './time.png';
 import InviteCompleted from './invite_completed.png';
-import InviteFriend from './invite_friend.png';
+import InviteAdd from './invite_add.png';
 import Money from './money.png';
 import Copy from './copy.png';
+import Right from './right.png';
 import People from './people.png';
 import Person from './person.png';
 
@@ -55,6 +57,7 @@ export {
   Facebook,
   Email,
   Phone,
+  PhonePurple,
   FeatherPhone,
   Down,
   Male,
@@ -93,9 +96,10 @@ export {
   EmptyData,
   Time,
   InviteCompleted,
-  InviteFriend,
+  InviteAdd,
   Money,
   Copy,
+  Right,
   People,
   Person,
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
-import {LeftArrow, BlackLeftArrow} from '../../assets';
+
+import {LeftArrow, BlackLeftArrow, CloseRed} from '../../assets';
 import {dimens, fonts} from '../../utils';
 
 const PageTitle = ({
@@ -8,20 +9,29 @@ const PageTitle = ({
   navigation,
   containerStyle,
   titleStyle,
-  leftImage,
   isBlackArrow,
+  isCloseMode,
+  onPressClose,
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
-      <TouchableOpacity
-        onPress={() => navigation.goBack()}
-        style={styles.left_arrow}>
-        {isBlackArrow ? (
-          <Image source={BlackLeftArrow} />
-        ) : (
-          <Image source={LeftArrow} />
-        )}
-      </TouchableOpacity>
+      {isCloseMode ? (
+        <TouchableOpacity
+          onPress={onPressClose}
+          style={{position: 'absolute', left: dimens.default_16}}>
+          <Image source={CloseRed} style={styles.close_icon} />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.left_arrow}>
+          {isBlackArrow ? (
+            <Image source={BlackLeftArrow} />
+          ) : (
+            <Image source={LeftArrow} />
+          )}
+        </TouchableOpacity>
+      )}
       <Text style={[styles.title, titleStyle]}>{title}</Text>
     </View>
   );
@@ -35,6 +45,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: dimens.default_16,
     alignItems: 'center',
+  },
+  close_icon: {
+    height: dimens.large_40,
+    width: dimens.large_40,
+    resizeMode: 'cover',
   },
   left_arrow: {
     padding: dimens.default_16,

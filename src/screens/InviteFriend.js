@@ -1,40 +1,112 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, SafeAreaView, Image} from 'react-native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-
-const Tab = createMaterialTopTabNavigator();
+import React, {useRef, useMemo, useCallback} from 'react';
+import {StyleSheet, View, ScrollView, SafeAreaView, Image} from 'react-native';
+import BottomSheet from '@gorhom/bottom-sheet';
 
 //where local files imported
-import {color, dimens} from '../utils';
-import {PageTitle, Button, StepInfo} from '../components';
-import {ContactBackground,PeopleInviteFriend} from '../assets';
+import {color, dimens, fonts} from '../utils';
+import {PageTitle, Button, StepInfo, MenuItem, InputText} from '../components';
+import {PeopleInviteFriend, InviteAdd, Copy, Facebook, PhonePurple} from '../assets';
 
 const InviteFriend = ({navigation}) => {
   const stepInfo = ['You invite a friend', 'They Register & Topup', 'You both get XX'];
+  const refRBSheet = useRef(null);
+  const snapPoints = useMemo(() => ['0%', '30%'], []);
+
+  // callbacks
+  const handleSheetChanges = useCallback(index => {
+    console.log('handleSheetChanges', index);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <PageTitle
         isBlackArrow
-        title="Your Sign Ups"
+        title="Invite Your Friends"
         titleStyle={{color: color.btn_black}}
         navigation={navigation}
       />
-      <View style={styles.containerCenter}>
-        <Image source={PeopleInviteFriend} style={styles.photo} />
-        <StepInfo
-          items={stepInfo}
-        />
-      </View>
+      <ScrollView>
+        <View style={styles.containerCenter}>
+          <Image source={PeopleInviteFriend} style={styles.photo} />
+          <StepInfo
+            items={stepInfo}
+          />
+        </View>
+        <View style={styles.containerContent}>
+          <MenuItem
+            icon={InviteAdd}
+            title="People Signed Up"
+            subtitle="This put you in the top X%"
+            info="2"
+            onPress={() => navigation.navigate("InviteFriendPeople")}
+          />
+          <MenuItem
+            icon={InviteAdd}
+            title="Money Earned"
+            info="Rs2000"
+            withoutArrow={true}
+            onPress={() => {}}
+          />
+        </View>
+      </ScrollView>
       <View style={styles.wrapBtn}>
+        <InputText
+          labelStyle={{color: color.btn_black}}
+          label=""
+          placeholder=""
+          value="nodpay.co/BB3435"
+          editable={false}
+          iconRight={Copy}
+          onPressRight={() => {}}
+          containerStyle={{marginBottom: dimens.default_14, marginTop: 0}}
+          inputStyle={{backgroundColor: color.grey_7, elevation: 0, shadowOpacity: 0, marginTop: 0}}
+        />
         <Button
-          onPress={() => {}}
+          onPress={() => refRBSheet.current?.snapTo(1)}
           title="Share Invitation Link"
           btnStyle={{backgroundColor: color.btn_black}}
           titleStyle={{color: color.btn_white_2}}
         />
       </View>
-      <Image source={ContactBackground} style={styles.bg_contact} />
+      <BottomSheet
+        ref={refRBSheet}
+        index={-1}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}>
+        <PageTitle
+          isCloseMode
+          title="Share Invitation Link"
+          titleStyle={{color: color.btn_black}}
+          navigation={navigation}
+          onPressClose={() => refRBSheet.current?.close()}
+        />
+        <View style={styles.containerModal}>
+          <Button
+            iconLeft={Facebook}
+            title="Sign in with Facebook"
+            btnStyle={{
+              backgroundColor: 'white',
+              marginBottom: dimens.default_16,
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
+            titleStyle={{fontFamily: fonts.sofia_bold, color: 'black', color: color.btn_title_white}}
+            onPress={() => {}}
+          />
+          <Button
+            iconLeft={PhonePurple}
+            title="Share via Mobile Number"
+            btnStyle={{
+              backgroundColor: 'white',
+              marginBottom: dimens.default_16,
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
+            titleStyle={{fontFamily: fonts.sofia_bold, color: 'black', color: color.btn_title_white}}
+            onPress={() => {}}
+          />
+        </View>
+      </BottomSheet>
     </SafeAreaView>
   );
 };
@@ -50,6 +122,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: dimens.medium,
   },
+  containerContent: {
+    padding: dimens.default_16,
+  },
   photo: {
     width: 136,
     height: 136,
@@ -64,13 +139,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
-  bg_contact: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    zIndex: -1,
-    width: '100%',
-    resizeMode: 'stretch',
-  },
+  containerModal: {
+    padding: dimens.default_16,
+  }
 });

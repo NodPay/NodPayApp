@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, ScrollView, SectionList} from 'react-native';
 import moment from 'moment';
 
 //where local files imported
@@ -79,6 +79,60 @@ const NotificationActivity = () => {
       amount: 125,
       isUnread: false,
     },
+    {
+      photo: People1,
+      name: 'John',
+      action: 'commented on your post',
+      info: 'For groceries',
+      date: moment().subtract(3, "days"),
+      type: '',
+      amount: 0,
+      isUnread: false,
+    },
+    {
+      photo: People1,
+      name: 'Diana',
+      action: 'request you money',
+      info: 'For groceries',
+      date: moment().subtract(4, "days"),
+      type: 'out',
+      amount: 125,
+      isUnread: false,
+    },
+    {
+      photo: People1,
+      name: 'John',
+      action: 'commented on your post',
+      info: 'For groceries',
+      date: moment().subtract(3, "days"),
+      type: '',
+      amount: 0,
+      isUnread: false,
+    },
+    {
+      photo: People1,
+      name: 'Diana',
+      action: 'request you money',
+      info: 'For groceries',
+      date: moment().subtract(4, "days"),
+      type: 'out',
+      amount: 125,
+      isUnread: false,
+    },
+  ]);
+  const [resultList, setResultList] = useState([
+    {
+      title: "Today",
+      data: notifActivityData.filter((item) => item.date > today()),
+    },
+    {
+      title: "Yesterday",
+      data: notifActivityData.filter((item) => item.date <= today() && item.date > yesterday()),
+    },
+    {
+      title: "This Week",
+      data: notifActivityData.filter((item) => item.date <= today() && item.date <= yesterday() && item.date > thisWeek()),
+    },
   ]);
 
   today = () => {
@@ -97,21 +151,12 @@ const NotificationActivity = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <SectionTitle
-        title="Today"
-        titleStyle={{
-          fontSize: dimens.default_16,
-        }}
-        containerStyle={{
-          paddingVertical: 0,
-          paddingHorizontal: dimens.default_16,
-          marginBottom: -20
-        }}
-      />
-      {notifActivityData.filter((item) => item.date > today()).map((item, index) => (
+    <SectionList
+      style={styles.container}
+      sections={resultList}
+      keyExtractor={(item, index) => item + index}
+      renderItem={({ item }) => (
         <NotifActivityItem
-          key={index}
           photo={item.photo}
           name={item.name}
           action={item.action}
@@ -121,56 +166,21 @@ const NotificationActivity = () => {
           amount={item.amount}
           isUnread={item.isUnread}
         />
-      ))}
-      <SectionTitle
-        title="Yesterday"
-        titleStyle={{
-          fontSize: dimens.default_16,
-        }}
-        containerStyle={{
-          paddingVertical: 0,
-          paddingHorizontal: dimens.default_16,
-          marginBottom: -20
-        }}
-      />
-      {notifActivityData.filter((item) => item.date <= today() && item.date > yesterday()).map((item, index) => (
-        <NotifActivityItem
-          key={index}
-          photo={item.photo}
-          name={item.name}
-          action={item.action}
-          info={item.info}
-          date={item.date}
-          type={item.type}
-          amount={item.amount}
-          isUnread={item.isUnread}
+      )}
+      renderSectionHeader={({ section: { title } }) => (
+        <SectionTitle
+          title={title}
+          titleStyle={{
+            fontSize: dimens.default_16,
+          }}
+          containerStyle={{
+            paddingVertical: 0,
+            paddingHorizontal: dimens.default_16,
+            marginBottom: -20
+          }}
         />
-      ))}
-      <SectionTitle
-        title="This Week"
-        titleStyle={{
-          fontSize: dimens.default_16,
-        }}
-        containerStyle={{
-          paddingVertical: 0,
-          paddingHorizontal: dimens.default_16,
-          marginBottom: -20
-        }}
-      />
-      {notifActivityData.filter((item) => item.date <= today() && item.date <= yesterday() && item.date > thisWeek()).map((item, index) => (
-        <NotifActivityItem
-          key={index}
-          photo={item.photo}
-          name={item.name}
-          action={item.action}
-          info={item.info}
-          date={item.date}
-          type={item.type}
-          amount={item.amount}
-          isUnread={item.isUnread}
-        />
-      ))}
-    </ScrollView>
+      )}
+    />
   );
 };
 

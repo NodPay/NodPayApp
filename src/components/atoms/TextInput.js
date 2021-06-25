@@ -9,6 +9,8 @@ const TextInput = ({
   secureTextEntry,
   autoCapitalize,
   keyboardType,
+  editable,
+  style,
 }) => {
   return (
     <InputText
@@ -16,11 +18,12 @@ const TextInput = ({
       autoCompleteType="off"
       placeholderTextColor={color.btn_black}
       placeholder={placeholder}
-      style={styles.inputText}
+      style={[styles.inputText, style]}
       value={value}
       onChangeText={onChangeText}
       keyboardType={keyboardType}
       secureTextEntry={secureTextEntry}
+      editable={editable}
     />
   );
 };
