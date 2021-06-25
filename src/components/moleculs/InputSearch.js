@@ -5,9 +5,9 @@ import {Search} from '../../assets';
 // where local files imported
 import {color, dimens, fonts} from '../../utils';
 
-const InputSearch = ({search, setSearch, placeholder}) => {
+const InputSearch = ({search, setSearch, placeholder, backgroundColor = color.grey_7}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: backgroundColor}]}>
       <Image source={Search} style={styles.icon} />
       <TextInput
         value={search}
@@ -17,9 +17,10 @@ const InputSearch = ({search, setSearch, placeholder}) => {
           fontFamily: fonts.sofia_regular,
           fontSize: dimens.default_16,
           fontWeight: 'normal',
+          paddingLeft: dimens.small,
         }}
         placeholder={placeholder}
-        placeholderTextColor="grey"
+        placeholderTextColor={color.grey}
       />
     </View>
   );
@@ -30,7 +31,7 @@ export default InputSearch;
 const styles = StyleSheet.create({
   container: {
     color: color.btn_black,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: color.grey_7,
     marginTop: dimens.small,
     paddingHorizontal: dimens.default,
     borderRadius: dimens.large_50,
