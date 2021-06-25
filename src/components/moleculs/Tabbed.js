@@ -1,13 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import Animated, {interpolateNode} from 'react-native-reanimated';
-import { color, dimens, fonts } from '../../utils';
+import {color, dimens, fonts} from '../../utils';
 
-const Tabbed = ({ state, descriptors, navigation, position }) => {
+const Tabbed = ({state, descriptors, navigation, position, containerStyle}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       {state.routes.map((route, index) => {
-        const { options } = descriptors[route.key];
+        const {options} = descriptors[route.key];
         const label =
           options.tabBarLabel !== undefined
             ? options.tabBarLabel
@@ -46,14 +46,21 @@ const Tabbed = ({ state, descriptors, navigation, position }) => {
           <TouchableOpacity
             key={index}
             accessibilityRole="button"
-            accessibilityState={isFocused ? { selected: true } : {}}
+            accessibilityState={isFocused ? {selected: true} : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={[styles.tabItem, {backgroundColor: isFocused ? 'white' : color.bg_tab}]}
-          >
-            <Animated.Text style={[styles.tabText, {color: isFocused ? color.btn_black : color.grey}, { opacity }]}>
+            style={[
+              styles.tabItem,
+              {backgroundColor: isFocused ? 'white' : color.bg_tab},
+            ]}>
+            <Animated.Text
+              style={[
+                styles.tabText,
+                {color: isFocused ? color.btn_black : color.grey},
+                {opacity},
+              ]}>
               {label}
             </Animated.Text>
           </TouchableOpacity>
@@ -61,7 +68,7 @@ const Tabbed = ({ state, descriptors, navigation, position }) => {
       })}
     </View>
   );
-}
+};
 
 export default Tabbed;
 
