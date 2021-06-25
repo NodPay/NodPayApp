@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 
-import {LeftArrow, BlackLeftArrow, CloseRed} from '../../assets';
-import {dimens, fonts} from '../../utils';
+import {LeftArrow, BlackLeftArrow, CloseRed, QRScan} from '../../assets';
+import {color, dimens, fonts} from '../../utils';
 
 const PageTitle = ({
   title,
@@ -12,6 +12,8 @@ const PageTitle = ({
   isBlackArrow,
   isCloseMode,
   onPressClose,
+  isRightQR,
+  onPressRight,
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
@@ -33,6 +35,12 @@ const PageTitle = ({
         </TouchableOpacity>
       )}
       <Text style={[styles.title, titleStyle]}>{title}</Text>
+      {isRightQR && (
+        <TouchableOpacity onPress={onPressRight} style={styles.containerQR}>
+          <Image source={QRScan} style={styles.iconQR} />
+          <Text style={styles.textQR}>QR Code</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -60,5 +68,24 @@ const styles = StyleSheet.create({
     fontFamily: fonts.sofia_bold,
     fontSize: dimens.default_18,
     color: 'white',
+  },
+  containerQR: {
+    alignItems: 'center',
+    position: 'absolute',
+    right: 0,
+    paddingTop: dimens.supersmall,
+    paddingRight: dimens.default_14,
+  },
+  iconQR: {
+    width: dimens.medium,
+    height: dimens.medium,
+    resizeMode: 'cover',
+  },
+  textQR: {
+    fontFamily: fonts.sofia_bold,
+    fontSize: dimens.default_12,
+    lineHeight: dimens.default_12,
+    color: color.btn_black,
+    marginTop: dimens.supersmall,
   },
 });

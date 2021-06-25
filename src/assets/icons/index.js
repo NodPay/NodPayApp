@@ -49,6 +49,7 @@ import Copy from './copy.png';
 import Right from './right.png';
 import People from './people.png';
 import Person from './person.png';
+import QRScan from './qr_scan.png';
 
 export {
   LeftArrow,
@@ -102,4 +103,5 @@ export {
   Right,
   People,
   Person,
+  QRScan,
 };

@@ -22,6 +22,7 @@ import {
   Notification,
   InviteFriend,
   InviteFriendPeople,
+  Search,
 } from '../screens';
 import {Drawer as DrawerComponent} from '../components';
 
@@ -31,7 +32,7 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="InviteFriend"
+        initialRouteName="Search"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Loader" component={Loader} />
@@ -48,6 +49,7 @@ const Router = () => {
         <Stack.Screen name="Contact" component={Contact} />
         <Stack.Screen name="Notification" component={Notification} />
         <Stack.Screen name="InviteFriend" component={InviteFriend} />
+        <Stack.Screen name="Search" component={Search} />
         <Stack.Screen
           name="InviteFriendPeople"
           component={InviteFriendPeople}

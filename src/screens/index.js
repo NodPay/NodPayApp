@@ -15,6 +15,7 @@ import Home from './Home';
 import Notification from './Notification';
 import InviteFriend from './InviteFriend';
 import InviteFriendPeople from './InviteFriendPeople';
+import Search from './Search';
 
 export {
   Splash,
@@ -34,4 +35,5 @@ export {
   Notification,
   InviteFriend,
   InviteFriendPeople,
+  Search,
 };
