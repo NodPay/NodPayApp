@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, ScrollView, FlatList} from 'react-native';
 import moment from 'moment';
 
 //where local files imported
@@ -10,6 +10,7 @@ import {People1} from '../../assets';
 const NotificationRequest = () => {
   const [notifRequestData, setNotifRequestData] = useState([
     {
+      id: 1,
       photo: People1,
       name: 'Connor',
       action: 'request you money',
@@ -20,6 +21,51 @@ const NotificationRequest = () => {
       isRequested: false,
     },
     {
+      id: 2,
+      photo: People1,
+      name: 'You',
+      action: 'requested Bruno',
+      info: 'For groceries',
+      date: '1m',
+      type: 'in',
+      amount: 75,
+      isRequested: true,
+    },
+    {
+      id: 3,
+      photo: People1,
+      name: 'Connor',
+      action: 'request you money',
+      info: 'For groceries',
+      date: '2m',
+      type: 'out',
+      amount: 125,
+      isRequested: false,
+    },
+    {
+      id: 4,
+      photo: People1,
+      name: 'You',
+      action: 'requested Bruno',
+      info: 'For groceries',
+      date: '1m',
+      type: 'in',
+      amount: 75,
+      isRequested: true,
+    },
+    {
+      id: 5,
+      photo: People1,
+      name: 'Connor',
+      action: 'request you money',
+      info: 'For groceries',
+      date: '2m',
+      type: 'out',
+      amount: 125,
+      isRequested: false,
+    },
+    {
+      id: 6,
       photo: People1,
       name: 'You',
       action: 'requested Bruno',
@@ -32,10 +78,12 @@ const NotificationRequest = () => {
   ]);
 
   return (
-    <ScrollView style={styles.container}>
-      {notifRequestData.map((item, index) => (
+    <FlatList
+      contentContainerStyle={{ paddingBottom: dimens.small }}
+      style={styles.container}
+      data={notifRequestData}
+      renderItem={({item}) => (
         <RequestMoneyItem
-          key={index}
           photo={item.photo}
           name={item.name}
           action={item.action}
@@ -45,8 +93,9 @@ const NotificationRequest = () => {
           amount={item.amount}
           isRequested={item.isRequested}
         />
-      ))}
-    </ScrollView>
+      )}
+      keyExtractor={item => item.id}
+    />
   );
 };
 

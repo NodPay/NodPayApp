@@ -36,9 +36,10 @@ import Plus from './plus.png';
 import EmptyData from './empty_data.png';
 import Time from './time.png';
 import InviteCompleted from './invite_completed.png';
-import InviteFriend from './invite_friend.png';
+import InviteAdd from './invite_add.png';
 import Money from './money.png';
 import Copy from './copy.png';
+import Right from './right.png';
 
 export {
   LeftArrow,
@@ -79,7 +80,8 @@ export {
   EmptyData,
   Time,
   InviteCompleted,
-  InviteFriend,
+  InviteAdd,
   Money,
   Copy,
+  Right,
 };

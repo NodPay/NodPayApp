@@ -5,7 +5,7 @@ import {color, dimens, fonts} from '../../utils';
 const SectionTitle = ({
   title,
   subtitle,
-  textColor,
+  textColor = color.btn_black,
   titleStyle,
   subTitleStyle,
   containerStyle,
@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: fonts.sofia_bold,
     fontSize: dimens.default_22,
-    color: 'black',
+    color: color.btn_black,
   },
   subtitle: {
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_16,
     lineHeight: dimens.medium,
-    color: 'black',
+    color: color.btn_black,
   },
 
   // Modal

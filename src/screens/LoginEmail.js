@@ -72,7 +72,7 @@ const LoginEmail = ({navigation}) => {
           <Button
             title="Login"
             btnStyle={{
-              backgroundColor: 'black',
+              backgroundColor: color.btn_black,
               marginBottom: dimens.default_12,
               borderColor: color.btn_white,
               borderWidth: 1,

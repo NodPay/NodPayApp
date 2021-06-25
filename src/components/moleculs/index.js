@@ -17,6 +17,8 @@ import NotifActivityItem from './NotifActivityItem';
 import RequestMoneyItem from './RequestMoneyItem';
 import Tabbed from './Tabbed';
 import StepInfo from './StepInfo';
+import MenuItem from './MenuItem';
+import InvitePeopleItem from './InvitePeopleItem';
 
 export {
   SectionTitle,
@@ -38,4 +40,6 @@ export {
   RequestMoneyItem,
   Tabbed,
   StepInfo,
+  MenuItem,
+  InvitePeopleItem,
 };

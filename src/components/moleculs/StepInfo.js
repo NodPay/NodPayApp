@@ -8,7 +8,7 @@ const StepInfo = ({items}) => {
   return (
     <View style={styles.container}>
       {items.map((item, index) => (
-        <View style={styles.item}>
+        <View key={index} style={styles.item}>
           <View style={styles.circle}>
             <Text style={styles.circleNumber}>{index + 1}</Text>
           </View>
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
       width: '100%',
       height: 3,
       borderWidth: 1,
+      borderRadius: 2,
       borderStyle: 'dashed',
       borderColor: color.grey,
     },
