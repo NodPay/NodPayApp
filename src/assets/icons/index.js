@@ -33,6 +33,12 @@ import Search from './search.png';
 import FacebookWhite from './facebook-white.png';
 import ProfileExample from './profile_example.png';
 import Plus from './plus.png';
+import LoveActive from './love_active.png';
+import LoveInactive from './love_inactive.png';
+import EmojiActive from './emoji_active.png';
+import EmojiInactive from './emoji_inactive.png';
+import CommentActive from './comment_active.png';
+import CommentInactive from './comment_inactive.png';
 import EmptyData from './empty_data.png';
 import Time from './time.png';
 import InviteCompleted from './invite_completed.png';
@@ -40,6 +46,8 @@ import InviteAdd from './invite_add.png';
 import Money from './money.png';
 import Copy from './copy.png';
 import Right from './right.png';
+import People from './people.png';
+import Person from './person.png';
 
 export {
   LeftArrow,
@@ -77,6 +85,12 @@ export {
   FacebookWhite,
   ProfileExample,
   Plus,
+  LoveActive,
+  LoveInactive,
+  EmojiActive,
+  EmojiInactive,
+  CommentActive,
+  CommentInactive,
   EmptyData,
   Time,
   InviteCompleted,
@@ -84,4 +98,6 @@ export {
   Money,
   Copy,
   Right,
+  People,
+  Person,
 };

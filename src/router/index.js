@@ -48,7 +48,10 @@ const Router = () => {
         <Stack.Screen name="Contact" component={Contact} />
         <Stack.Screen name="Notification" component={Notification} />
         <Stack.Screen name="InviteFriend" component={InviteFriend} />
-        <Stack.Screen name="InviteFriendPeople" component={InviteFriendPeople} />
+        <Stack.Screen
+          name="InviteFriendPeople"
+          component={InviteFriendPeople}
+        />
         <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
       </Stack.Navigator>
     </NavigationContainer>

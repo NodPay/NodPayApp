@@ -12,6 +12,7 @@ import InputSearch from './InputSearch';
 import ContactList from './ContactList';
 import HeaderHome from './HeaderHome';
 import BalanceInfo from './BalanceInfo';
+import FeedItem from './FeedItem';
 import EmptyState from './EmptyState';
 import NotifActivityItem from './NotifActivityItem';
 import RequestMoneyItem from './RequestMoneyItem';
@@ -35,6 +36,7 @@ export {
   ContactList,
   HeaderHome,
   BalanceInfo,
+  FeedItem,
   EmptyState,
   NotifActivityItem,
   RequestMoneyItem,

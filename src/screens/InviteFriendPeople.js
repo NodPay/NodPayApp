@@ -108,7 +108,7 @@ const InviteFriendPeople = ({navigation}) => {
           iconRight={Copy}
           onPressRight={() => {}}
           containerStyle={{marginBottom: dimens.default_14, marginTop: 0}}
-          inputStyle={{backgroundColor: color.grey_5, elevation: 0, shadowOpacity: 0, marginTop: 0}}
+          inputStyle={{backgroundColor: color.grey_7, elevation: 0, shadowOpacity: 0, marginTop: 0}}
         />
         <Button
           onPress={() => {}}
