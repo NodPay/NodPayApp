@@ -26,7 +26,9 @@ const NewPassword = ({navigation}) => {
         title="Reset Password Successful"
         subtitle="Your password has been successfuly reseted,you can now log in to your account"
         btn1Text="Log in"
-        // btn1Onpress={() =>{}}
+        btn1Onpress={() => {
+          navigation.navigate('Login');
+        }}
         visible={modalSuccess}
         onClose={() => {
           setModalSuccess(false);

@@ -16,7 +16,7 @@ import {
   Person,
 } from '../../assets';
 
-const FeedItem = ({item}) => {
+const FeedItem = ({item, onPressLove, onPressComment, onPressEmoji}) => {
   const {loveCount, commentCount, emojiCount, message} = item;
 
   return (
@@ -67,7 +67,9 @@ const FeedItem = ({item}) => {
                 18
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.actionButton}>
+            <TouchableOpacity
+              style={styles.actionButton}
+              onPress={onPressComment}>
               <Image
                 source={commentCount ? CommentActive : CommentInactive}
                 style={styles.actionIcon}

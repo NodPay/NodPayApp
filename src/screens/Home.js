@@ -51,7 +51,14 @@ const Feed = props => {
   return (
     <FlatList
       data={[{ok: 'ok'}, {ok: 'ok'}, {ok: 'ok'}, {ok: 'ok'}, {ok: 'ok'}]}
-      renderItem={FeedItem}
+      renderItem={props => (
+        <FeedItem
+          onPressComment={() => {
+            // alert('ok');
+          }}
+          {...props}
+        />
+      )}
       style={{backgroundColor: color.btn_white_2}}
       keyExtractor={(item, key) => key.toString()}
       // ItemSeparatorComponent={separatorItem}

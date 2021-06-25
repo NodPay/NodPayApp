@@ -45,7 +45,9 @@ const Drawer = ({navigation}) => {
         <DrawerItem
           label="Invite Your Friends"
           image={DrawerInvite}
-          onPress={() => {}}
+          onPress={() => {
+            navigation.navigate('InviteFriend');
+          }}
         />
         <DrawerItem
           label="Notifications"
