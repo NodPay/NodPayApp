@@ -23,6 +23,7 @@ import {
   InviteFriend,
   InviteFriendPeople,
   Search,
+  Settings,
 } from '../screens';
 import {Drawer as DrawerComponent} from '../components';
 
@@ -50,6 +51,7 @@ const Router = () => {
         <Stack.Screen name="Notification" component={Notification} />
         <Stack.Screen name="InviteFriend" component={InviteFriend} />
         <Stack.Screen name="Search" component={Search} />
+        <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen
           name="InviteFriendPeople"
           component={InviteFriendPeople}

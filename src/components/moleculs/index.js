@@ -20,6 +20,7 @@ import Tabbed from './Tabbed';
 import StepInfo from './StepInfo';
 import MenuItem from './MenuItem';
 import InvitePeopleItem from './InvitePeopleItem';
+import SettingsItem from './SettingsItem';
 
 export {
   SectionTitle,
@@ -44,4 +45,5 @@ export {
   StepInfo,
   MenuItem,
   InvitePeopleItem,
+  SettingsItem,
 };

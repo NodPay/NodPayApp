@@ -51,6 +51,15 @@ import People from './people.png';
 import Person from './person.png';
 import QRScan from './qr_scan.png';
 import ThreeDots from './three-dots.png';
+import AccountCircle from './account_circle.png';
+import Lock from './lock.png';
+import Profile from './profile.png';
+import Bell from './bell.png';
+import PhoneGrey from './phone_gray.png';
+import Detail from './detail.png';
+import Star from './star.png';
+import PencilEdit from './pencil_edit.png';
+import NextBlack from './next_black.png';
 
 export {
   LeftArrow,
@@ -106,4 +115,13 @@ export {
   Person,
   QRScan,
   ThreeDots,
+  AccountCircle,
+  Lock,
+  Profile,
+  Bell,
+  PhoneGrey,
+  Detail,
+  Star,
+  PencilEdit,
+  NextBlack,
 };
