@@ -50,6 +50,7 @@ import Right from './right.png';
 import People from './people.png';
 import Person from './person.png';
 import QRScan from './qr_scan.png';
+import ThreeDots from './three-dots.png';
 
 export {
   LeftArrow,
@@ -104,4 +105,5 @@ export {
   People,
   Person,
   QRScan,
+  ThreeDots,
 };

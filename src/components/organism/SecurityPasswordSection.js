@@ -48,10 +48,12 @@ const SecurityPasswordSection = ({setUpBiometric, showModal, typeModal}) => {
                 typeModal: null,
               });
               dispatch({type: 'SET_IS_COMPLETED', payload: true});
-              wait(310).then(() => {
+              wait(200).then(() => {
                 dispatch({type: 'RESET_REGISTER'});
 
-                navigation.replace('Login');
+                navigation.replace('DrawerNavigator', {
+                  screen: 'Home',
+                });
               });
             } else {
               dispatch({
@@ -163,6 +165,8 @@ const styles = StyleSheet.create({
   input: {
     marginLeft: dimens.default_16,
     flex: 1,
+    fontFamily: fonts.sofia_regular,
+    fontSize: dimens.default_16,
   },
   icons: {
     height: 24,

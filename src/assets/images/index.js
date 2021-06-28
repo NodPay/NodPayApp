@@ -13,6 +13,7 @@ import ContactBackground from './bg_contact.png';
 import HomeBalanceBackground from './bg_home_balance.png';
 import People1 from './people1.png';
 import PeopleInviteFriend from './people_invite_friend.png';
+import Dropdown from './Dropdown.png';
 
 export {
   SplashWave,
@@ -30,4 +31,5 @@ export {
   HomeBalanceBackground,
   People1,
   PeopleInviteFriend,
+  Dropdown,
 };

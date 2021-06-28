@@ -6,20 +6,14 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Image,
+  KeyboardAvoidingView,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
 
 //where local files imported
 import {color, dimens, fonts} from '../utils';
-import {
-  Button,
-  ContactList,
-  ContactItem,
-  Gap,
-  InputSearch,
-  PageTitle,
-} from '../components';
+import {Button, ContactItem, Gap, InputSearch, PageTitle} from '../components';
 import {
   ContactBackground,
   NoContact,
@@ -29,18 +23,84 @@ import {
 } from '../assets';
 
 const Contact = () => {
-  const [friendData, setFriendData] = useState(null);
-  const [getContact, setGetContact] = useState(false);
+  const [friendData, setFriendData] = useState([]);
+  const [getContact, setGetContact] = useState(true);
+  const [isContact, setIsContact] = useState(false);
+  const [isFacebook, setIsFacebook] = useState(false);
   const [search, setSearch] = useState('');
 
-  const refRBSheet = useRef(null);
+  // ref
+  const bottomSheetRef = useRef();
 
-  const snapPoints = useMemo(() => ['0%', '100%'], []);
+  // variables
+  const snapPoints = useMemo(() => ['0%', '0%', '0%', '100%'], []);
 
   // callbacks
   const handleSheetChanges = useCallback(index => {
     console.log('handleSheetChanges', index);
   }, []);
+
+  var initialData = [
+    {
+      id: 0,
+      name: 'Andi',
+      phoneNumber: '+62 696969699696',
+      added: false,
+    },
+    {
+      id: 1,
+      name: 'Bae',
+      phoneNumber: '+62 696969699696',
+      added: false,
+    },
+    {
+      id: 3,
+      name: 'Garry',
+      phoneNumber: '+62 696969699696',
+      added: false,
+    },
+    {
+      id: 4,
+      name: 'Widy',
+      phoneNumber: '+62 696969699696',
+      added: false,
+    },
+    {
+      id: 5,
+      name: 'Talha',
+      phoneNumber: '+62 696969699696',
+      added: true,
+    },
+    {
+      id: 6,
+      name: 'Gagan',
+      phoneNumber: '+62 696969699696',
+      added: true,
+    },
+    {
+      id: 7,
+      name: 'Muhammad',
+      phoneNumber: '+62 696969699696',
+      added: true,
+    },
+  ];
+
+  const [data, setData] = useState(initialData);
+
+  const onSearch = () => {
+    let filtered = initialData.filter(
+      item => item.name.toLowerCase() == search.toLowerCase(),
+    );
+    setData(filtered);
+  };
+
+  const onAdd = item => {
+    item.added = true;
+    let a = data.filter(res => res.id != item.id);
+    let b = a.concat(item).sort((a, b) => a.id - b.id);
+    setData(b);
+    setFriendData(data);
+  };
 
   const EmptyState = () => {
     return (
@@ -50,6 +110,186 @@ const Contact = () => {
           You currently have no friend. Find who you know by connecting your
           NodPay to your phone contact or Facebook
         </Text>
+      </View>
+    );
+  };
+
+  const RenderGetContact = () => {
+    return (
+      <View>
+        <Text style={styles.add_friend_section_desc}>
+          Connect with Facebook to see your frend that use NodPay
+        </Text>
+        <View
+          style={{
+            paddingHorizontal: dimens.default_16,
+            paddingVertical: dimens.default_16,
+          }}>
+          <Button
+            iconLeft={FacebookWhite}
+            title="Sign in with Facebook"
+            onPress={() => {
+              setIsFacebook(true);
+              setIsContact(false);
+            }}
+            btnStyle={{
+              backgroundColor: '#548EFF',
+              borderColor: color.btn_white,
+              borderWidth: 1,
+              marginBottom: dimens.supersmall,
+            }}
+            titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
+          />
+          <InputSearch
+            placeholder="Filter by Name"
+            value={search}
+            onChangeText={val => {
+              setSearch(val);
+            }}
+            onSubmitEditing={() => {
+              if (search == '') {
+                setData(initialData);
+              } else {
+                onSearch();
+              }
+            }}
+          />
+        </View>
+      </View>
+    );
+  };
+
+  const RenderFacebook = () => {
+    return (
+      <View
+        style={{
+          paddingLeft: dimens.default_16,
+        }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <Image source={Facebook} height={40} width={40} />
+          <Text
+            style={{
+              fontFamily: fonts.sofia_regular,
+              textAlign: 'left',
+              color: color.grey,
+              fontSize: dimens.default_18,
+              padding: dimens.default_16,
+            }}>
+            You currently have{' '}
+            <Text style={{color: '#6366E4', fontFamily: fonts.sofia_bold}}>
+              19 friends
+            </Text>{' '}
+            {`using \nNodPay on Facebook`}{' '}
+          </Text>
+        </View>
+        <InputSearch
+          placeholder="Filter by Name"
+          value={search}
+          onChangeText={val => {
+            setSearch(val);
+          }}
+          onSubmitEditing={() => {
+            if (search == '') {
+              setData(initialData);
+            } else {
+              onSearch();
+            }
+          }}
+        />
+        <Gap t={dimens.default_16} />
+      </View>
+    );
+  };
+
+  const RenderContact = () => {
+    const [current, setCurrent] = useState(0);
+    const [show, setShow] = useState(null);
+    const [id, setId] = useState(null);
+
+    const btn = [
+      {
+        title: 'All',
+      },
+      {
+        title: 'Local',
+      },
+      {
+        title: 'International',
+      },
+    ];
+
+    const FilterButton = ({title, onPress, index}) => {
+      return (
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={onPress}
+          style={{
+            paddingHorizontal: 15,
+            marginLeft: 8,
+            height: 25,
+            borderRadius: 10,
+            backgroundColor: current === index ? color.bg_color : 'lightgray',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text
+            style={{
+              fontFamily: fonts.sofia_regular,
+              color: current === index ? 'white' : color.bg_color,
+              fontSize: dimens.default_16,
+            }}>
+            {title}
+          </Text>
+        </TouchableOpacity>
+      );
+    };
+
+    return (
+      <View>
+        <KeyboardAvoidingView
+          behavior="height"
+          style={{paddingHorizontal: dimens.default_16}}>
+          <InputSearch
+            placeholder="Friend Name, Phone Number"
+            backgroundColor="white"
+          />
+        </KeyboardAvoidingView>
+        <Gap t={dimens.default_16} />
+        <View style={{flexDirection: 'row', paddingLeft: dimens.default_16}}>
+          {btn.map((item, index) => {
+            return (
+              <FilterButton
+                index={index}
+                title={item.title}
+                onPress={() => setCurrent(index)}
+              />
+            );
+          })}
+        </View>
+        <Gap t={dimens.default_16} />
+        {[
+          {id: 0, name: 'andi', phoneNumber: '+62 6969696969'},
+          {id: 1, name: 'bae', phoneNumber: '+62 6969696969'},
+          {id: 2, name: 'garry', phoneNumber: '+62 6969696969'},
+        ].map((item, index) => (
+          <ContactItem
+            key={item.id}
+            {...item}
+            isContact
+            show={item.id == id && show == true ? true : false}
+            onBlock={() => setShow(false)}
+            onReport={() => setShow(false)}
+            onUnfriend={() => setShow(false)}
+            onPress={() => {
+              setId(item.id);
+              setShow(true);
+            }}
+          />
+        ))}
       </View>
     );
   };
@@ -66,21 +306,25 @@ const Contact = () => {
           <EmptyState />
         </View>
       )}
+      {friendData != null && <RenderContact />}
       <View style={styles.wrapBtn}>
         <Button
-          onPress={() => refRBSheet.current?.snapTo(1)}
+          onPress={() => bottomSheetRef.current?.snapTo(3)}
           title="+ Add Friend"
           btnStyle={{backgroundColor: color.btn_black}}
           titleStyle={{color: color.btn_white_2}}
         />
       </View>
-      <Image source={ContactBackground} style={styles.bg_contact} />
       <BottomSheet
-        ref={refRBSheet}
+        ref={bottomSheetRef}
         index={-1}
         snapPoints={snapPoints}
         onChange={handleSheetChanges}>
-        <View style={{flex: 1, backgroundColor: 'white'}}>
+        <View
+          style={{
+            flex: isContact || isFacebook ? 0 : 1,
+            backgroundColor: 'white',
+          }}>
           <View
             style={{
               flexDirection: 'row',
@@ -88,13 +332,18 @@ const Contact = () => {
               alignItems: 'center',
             }}>
             <TouchableOpacity
-              onPress={() => refRBSheet.current?.close()}
+              onPress={() => {
+                bottomSheetRef.current?.close();
+                setGetContact(true);
+                setIsFacebook(false);
+                setIsContact(false);
+              }}
               style={{position: 'absolute', left: dimens.default_16}}>
               <Image source={CloseRed} style={styles.close_icon} />
             </TouchableOpacity>
             <Text style={styles.title}>Add Friends</Text>
           </View>
-          {!getContact && (
+          {getContact && (
             <View style={styles.add_friend_section}>
               <Text style={styles.add_friend_section_desc}>
                 By allowing access to your contact or Facebook you can connect
@@ -102,70 +351,56 @@ const Contact = () => {
               </Text>
             </View>
           )}
-          {!getContact && (
+          {getContact && (
             <View
               style={{
                 paddingHorizontal: dimens.default_16,
                 marginBottom: dimens.default_16,
               }}>
               <Button
-                iconLeft={Facebook}
+                iconLeft={FacebookWhite}
                 title="Sign in with Facebook"
-                btnStyle={{
-                  backgroundColor: color.btn_black,
-                  borderColor: color.btn_white,
-                  borderWidth: 1,
-                  marginBottom: 8,
+                onPress={() => {
+                  setGetContact(false);
+                  setIsFacebook(true);
                 }}
+                btnStyle={styles.btnSigninWithFacebook}
                 titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-                onPress={() => refRBSheet.current.open()}
               />
               <Button
-                onPress={() => setGetContact(true)}
-                title="Allow Contact Access"
-                btnStyle={{
-                  backgroundColor: color.btn_black,
-                  marginBottom: -8,
-                  height: 44,
+                onPress={() => {
+                  setGetContact(false);
+                  setIsContact(true);
                 }}
+                title="Allow Contact Access"
+                btnStyle={styles.btnAllowContactAccess}
                 titleStyle={{color: color.btn_white_2}}
               />
             </View>
           )}
-          {getContact && (
-            <View>
-              <Text style={styles.add_friend_section_desc}>
-                Connect with Facebook to see your frend that use NodPay
-              </Text>
-              <View
-                style={{
-                  paddingHorizontal: dimens.default_16,
-                  marginBottom: dimens.default_16,
-                }}>
-                <Button
-                  iconLeft={FacebookWhite}
-                  title="Sign in with Facebook"
-                  btnStyle={{
-                    backgroundColor: '#548EFF',
-                    borderColor: color.btn_white,
-                    borderWidth: 1,
-                    marginBottom: dimens.supersmall,
-                  }}
-                  titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-                />
-                <InputSearch
-                  placeholder="Filter by Name"
-                  search={search}
-                  setSearch={setSearch}
-                />
-                <Gap t={dimens.default_16} />
-
-                <Gap b={dimens.default_16} />
-              </View>
-            </View>
-          )}
         </View>
+        {isContact && <RenderGetContact />}
+        {isContact && (
+          <BottomSheetFlatList
+            keyExtractor={item => item.id}
+            data={data}
+            renderItem={({item}) => (
+              <ContactItem {...item} onPress={() => onAdd(item)} />
+            )}
+          />
+        )}
+        {isFacebook && <RenderFacebook />}
+        {isFacebook && (
+          <BottomSheetFlatList
+            keyExtractor={item => item.id}
+            data={data}
+            renderItem={({item}) => (
+              <ContactItem {...item} onPress={() => onAdd(item)} />
+            )}
+          />
+        )}
       </BottomSheet>
+      <Image source={ContactBackground} style={styles.bg_contact} />
     </SafeAreaView>
   );
 };
@@ -182,7 +417,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    zIndex: -1,
+    zIndex: -2,
     width: '100%',
     resizeMode: 'stretch',
   },
@@ -241,5 +476,16 @@ const styles = StyleSheet.create({
     padding: 6,
     margin: 6,
     backgroundColor: '#eee',
+  },
+  btnAllowContactAccess: {
+    backgroundColor: color.btn_black,
+    marginBottom: -8,
+    height: 44,
+  },
+  btnSigninWithFacebook: {
+    backgroundColor: '#548EFF',
+    borderColor: color.btn_white,
+    borderWidth: 1,
+    marginBottom: dimens.supersmall,
   },
 });

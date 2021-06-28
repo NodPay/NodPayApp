@@ -24,7 +24,6 @@ const GetStarted = ({navigation}) => {
       <Image
         source={GetStartedImage}
         style={{
-          height: 200,
           width: '100%',
           resizeMode: 'stretch',
         }}
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
     padding: dimens.default_16,
   },
   text: {
-    fontFamily: fonts.sofia_regular,
+    fontFamily: fonts.sofia_bold,
     fontSize: 56,
     fontWeight: 'bold',
     color: color.btn_black,

@@ -5,13 +5,20 @@ import {Search} from '../../assets';
 // where local files imported
 import {color, dimens, fonts} from '../../utils';
 
-const InputSearch = ({search, setSearch, placeholder, backgroundColor = color.grey_7}) => {
+const InputSearch = ({
+  value,
+  onChangeText,
+  placeholder,
+  onSubmitEditing,
+  backgroundColor = color.grey_7,
+}) => {
   return (
     <View style={[styles.container, {backgroundColor: backgroundColor}]}>
       <Image source={Search} style={styles.icon} />
       <TextInput
-        value={search}
-        onChangeText={val => setSearch(val)}
+        onSubmitEditing={onSubmitEditing}
+        value={value}
+        onChangeText={onChangeText}
         style={{
           flex: 1,
           fontFamily: fonts.sofia_regular,

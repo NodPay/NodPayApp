@@ -188,14 +188,13 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: fonts.sofia_regular,
     color: 'white',
-    fontSize: dimens.default_16,
+    fontSize: 19,
     textAlign: 'center',
     paddingHorizontal: 24,
   },
   image: {
-    height: 250,
+    height: '60%',
     width: '100%',
-    resizeMode: 'stretch',
-    marginTop: dimens.large_48,
+    resizeMode: 'contain',
   },
 });

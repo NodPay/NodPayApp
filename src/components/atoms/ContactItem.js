@@ -1,8 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
 
 //where local files imported
-import {DefaultPict} from '../../assets';
+import {DefaultPict, Dropdown, Facebook, ThreeDots} from '../../assets';
 import {color, dimens, fonts} from '../../utils';
 
 const ContactItem = ({
@@ -11,6 +18,11 @@ const ContactItem = ({
   picture = DefaultPict,
   added,
   onPress,
+  isContact,
+  show,
+  onBlock,
+  onReport,
+  onUnfriend,
 }) => {
   return (
     <View style={styles.container}>
@@ -21,18 +33,46 @@ const ContactItem = ({
           <Text style={styles.number}>{phoneNumber}</Text>
         </View>
       </View>
-      <TouchableOpacity
-        disabled={added}
-        style={[
-          styles.btn,
-          {backgroundColor: added ? 'lightgray' : color.btn_black},
-        ]}
-        activeOpacity={0.8}
-        onPress={onPress}>
-        <Text style={[styles.number, {color: 'white'}]}>
-          {added ? 'Added' : '+Add'}
-        </Text>
-      </TouchableOpacity>
+      {isContact ? (
+        <View>
+          <TouchableOpacity
+            style={{paddingTop: dimens.default_16}}
+            activeOpacity={0.8}
+            onPress={onPress}>
+            <Image source={ThreeDots} style={styles.icon} />
+          </TouchableOpacity>
+          {show && (
+            <ImageBackground source={Dropdown} style={styles.imageBackground}>
+              <View style={styles.insideDropdown}>
+                <TouchableOpacity onPress={onBlock}>
+                  <Text style={styles.titleInsideDropdown}>Block {name}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={onReport}>
+                  <Text style={styles.titleInsideDropdown}>Report {name}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={onUnfriend}>
+                  <Text style={[styles.titleInsideDropdown, {color: 'red'}]}>
+                    Unfriend
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </ImageBackground>
+          )}
+        </View>
+      ) : (
+        <TouchableOpacity
+          disabled={added}
+          style={[
+            styles.btn,
+            {backgroundColor: added ? 'lightgray' : color.btn_black},
+          ]}
+          activeOpacity={0.8}
+          onPress={onPress}>
+          <Text style={[styles.number, {color: 'white'}]}>
+            {added ? 'Added' : '+Add'}
+          </Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -44,6 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 8,
+    paddingHorizontal: dimens.default_16,
   },
   wrapProfile: {
     flexDirection: 'row',
@@ -76,5 +117,27 @@ const styles = StyleSheet.create({
     backgroundColor: color.btn_black,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  icon: {height: 24, width: 24, resizeMode: 'cover'},
+  imageBackground: {
+    resizeMode: 'contain',
+    position: 'absolute',
+    height: 150,
+    width: 200,
+    right: -dimens.default_16,
+    top: dimens.default_16,
+    zIndex: 1,
+  },
+  insideDropdown: {
+    position: 'relative',
+    left: 24,
+    top: 24,
+    paddingLeft: 8,
+    paddingTop: 8,
+  },
+  titleInsideDropdown: {
+    fontFamily: fonts.sofia_regular,
+    fontSize: 19,
+    color: color.btn_black,
   },
 });

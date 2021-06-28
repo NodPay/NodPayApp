@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 
 // where local files imported
-import {color, dimens} from '../../utils';
+import {color, dimens, fonts} from '../../utils';
 import {Gap} from '../atoms';
 import {SectionTitle, InputPhoto, InputText, InputOption} from '../moleculs';
 
