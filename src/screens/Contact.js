@@ -8,8 +8,8 @@ import {
   Image,
   KeyboardAvoidingView,
 } from 'react-native';
-import RBSheet from 'react-native-raw-bottom-sheet';
 import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
+import AlphabetList from 'react-native-flatlist-alphabet';
 
 //where local files imported
 import {color, dimens, fonts} from '../utils';
@@ -271,25 +271,63 @@ const Contact = () => {
           })}
         </View>
         <Gap t={dimens.default_16} />
-        {[
-          {id: 0, name: 'andi', phoneNumber: '+62 6969696969'},
-          {id: 1, name: 'bae', phoneNumber: '+62 6969696969'},
-          {id: 2, name: 'garry', phoneNumber: '+62 6969696969'},
-        ].map((item, index) => (
-          <ContactItem
-            key={item.id}
-            {...item}
-            isContact
-            show={item.id == id && show == true ? true : false}
-            onBlock={() => setShow(false)}
-            onReport={() => setShow(false)}
-            onUnfriend={() => setShow(false)}
-            onPress={() => {
-              setId(item.id);
-              setShow(true);
-            }}
-          />
-        ))}
+        <AlphabetList
+          data={[
+            {
+              key: 'a',
+              value: 'Andi',
+              name: 'Andi',
+              phoneNumber: '+62 699 6969',
+            },
+            {
+              key: 'a',
+              value: 'Ahmad',
+              name: 'Ahmad',
+              phoneNumber: '+62 699 6969',
+            },
+            {
+              key: 'b',
+              value: 'Bae',
+
+              name: 'Bae',
+              phoneNumber: '+62 699 6969',
+            },
+            {
+              key: 'g',
+              value: 'Garry',
+
+              name: 'Garry',
+              phoneNumber: '+62 699 6969',
+            },
+          ]}
+          renderSectionHeader={section => (
+            <View style={{paddingLeft: dimens.default_16, paddingVertical: 8}}>
+              <Text
+                style={{
+                  color: color.btn_black,
+                  fontFamily: fonts.sofia_bold,
+                  marginLeft: 8,
+                }}>
+                {section.title}
+              </Text>
+            </View>
+          )}
+          renderItem={item => (
+            <ContactItem
+              key={item.id}
+              {...item}
+              isContact
+              show={item.id == id && show == true ? true : false}
+              onBlock={() => setShow(false)}
+              onReport={() => setShow(false)}
+              onUnfriend={() => setShow(false)}
+              onPress={() => {
+                setId(item.id);
+                setShow(true);
+              }}
+            />
+          )}
+        />
       </View>
     );
   };
