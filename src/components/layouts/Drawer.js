@@ -36,7 +36,13 @@ const Drawer = ({navigation}) => {
           image={DrawerBusiness}
           onPress={() => {}}
         />
-        <DrawerItem label="Contacts" image={DrawerContact} onPress={() => {}} />
+        <DrawerItem
+          label="Contacts"
+          image={DrawerContact}
+          onPress={() => {
+            navigation.navigate('Contact');
+          }}
+        />
         <DrawerItem
           label="Bank Account"
           image={DrawerBank}

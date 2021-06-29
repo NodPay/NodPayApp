@@ -48,6 +48,11 @@ const Home = ({navigation}) => {
 };
 
 const Feed = props => {
+  // <EmptyState
+  //   icon={EmptyData}
+  //   iconSize={72}
+  //   content={`You currently have\nno notifications`}
+  // />;
   return (
     <FlatList
       data={[{ok: 'ok'}, {ok: 'ok'}, {ok: 'ok'}, {ok: 'ok'}, {ok: 'ok'}]}

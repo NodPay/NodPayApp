@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
-import Animated, {interpolateNode} from 'react-native-reanimated';
+import Animated, {interpolate} from 'react-native-reanimated';
 import {color, dimens, fonts} from '../../utils';
 
 const Tabbed = ({state, descriptors, navigation, position, containerStyle}) => {
@@ -37,7 +37,7 @@ const Tabbed = ({state, descriptors, navigation, position, containerStyle}) => {
         };
 
         const inputRange = state.routes.map((_, i) => i);
-        const opacity = interpolateNode(position, {
+        const opacity = interpolate(position, {
           inputRange,
           outputRange: inputRange.map(i => (i === index ? 1 : 1)),
         });
