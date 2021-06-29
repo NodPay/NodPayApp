@@ -47,7 +47,7 @@ const Home = ({navigation}) => {
   );
 };
 
-const Feed = props => {
+const Feed = ({navigation}) => {
   // <EmptyState
   //   icon={EmptyData}
   //   iconSize={72}
@@ -59,7 +59,7 @@ const Feed = props => {
       renderItem={props => (
         <FeedItem
           onPressComment={() => {
-            // alert('ok');
+            navigation.navigate('Comment');
           }}
           {...props}
         />

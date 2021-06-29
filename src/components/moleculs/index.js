@@ -21,6 +21,8 @@ import StepInfo from './StepInfo';
 import MenuItem from './MenuItem';
 import InvitePeopleItem from './InvitePeopleItem';
 import SettingsItem from './SettingsItem';
+import CommentReplyItem from './CommentReplyItem';
+import CommentSend from './CommentSend';
 
 export {
   SectionTitle,
@@ -46,4 +48,6 @@ export {
   MenuItem,
   InvitePeopleItem,
   SettingsItem,
+  CommentReplyItem,
+  CommentSend,
 };

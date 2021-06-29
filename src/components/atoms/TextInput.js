@@ -5,6 +5,7 @@ import {color, dimens, fonts} from '../../utils';
 const TextInput = ({
   value,
   placeholder,
+  placeholderTextColor,
   onChangeText,
   secureTextEntry,
   autoCapitalize,
@@ -16,7 +17,7 @@ const TextInput = ({
     <InputText
       autoCapitalize={autoCapitalize}
       autoCompleteType="off"
-      placeholderTextColor={color.btn_black}
+      placeholderTextColor={placeholderTextColor || color.btn_black}
       placeholder={placeholder}
       style={[styles.inputText, style]}
       value={value}

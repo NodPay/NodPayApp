@@ -60,6 +60,7 @@ import Detail from './detail.png';
 import Star from './star.png';
 import PencilEdit from './pencil_edit.png';
 import NextBlack from './next_black.png';
+import Send from './send.png';
 
 export {
   LeftArrow,
@@ -124,4 +125,5 @@ export {
   Star,
   PencilEdit,
   NextBlack,
+  Send,
 };

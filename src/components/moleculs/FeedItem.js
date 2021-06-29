@@ -16,22 +16,31 @@ import {
   Person,
 } from '../../assets';
 
-const FeedItem = ({item, onPressLove, onPressComment, onPressEmoji}) => {
+const FeedItem = ({
+  item = {},
+  onPressLove,
+  onPressComment,
+  onPressEmoji,
+  isHideComment,
+  isCommentReply,
+}) => {
   const {loveCount, commentCount, emojiCount, message} = item;
 
   return (
     <View style={{marginTop: dimens.default, flexDirection: 'row'}}>
       {/* Left part (profile photo and time) */}
-      <View style={{marginRight: dimens.default_12}}>
-        <Image
-          source={ProfileExample}
-          style={{height: 50, width: 50, resizeMode: 'contain'}}
-        />
-        <View style={styles.timeContainer}>
-          <Image source={Time} style={styles.clockIcon} />
-          <Text style={{fontSize: dimens.default_12, color: color.grey_3}}>
-            1m
-          </Text>
+      <View style={{width: 65}}>
+        <View style={{width: 50}}>
+          <Image
+            source={ProfileExample}
+            style={{height: 50, width: 50, resizeMode: 'contain'}}
+          />
+          <View style={styles.timeContainer}>
+            <Image source={Time} style={styles.clockIcon} />
+            <Text style={{fontSize: dimens.default_12, color: color.grey_3}}>
+              1m
+            </Text>
+          </View>
         </View>
       </View>
 
@@ -67,25 +76,27 @@ const FeedItem = ({item, onPressLove, onPressComment, onPressEmoji}) => {
                 18
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.actionButton}
-              onPress={onPressComment}>
-              <Image
-                source={commentCount ? CommentActive : CommentInactive}
-                style={styles.actionIcon}
-              />
-              <Text
-                style={[
-                  styles.actionCount,
-                  {
-                    color: commentCount
-                      ? color.comment_active
-                      : color.btn_title_white,
-                  },
-                ]}>
-                18
-              </Text>
-            </TouchableOpacity>
+            {!isHideComment && (
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={onPressComment}>
+                <Image
+                  source={commentCount ? CommentActive : CommentInactive}
+                  style={styles.actionIcon}
+                />
+                <Text
+                  style={[
+                    styles.actionCount,
+                    {
+                      color: commentCount
+                        ? color.comment_active
+                        : color.btn_title_white,
+                    },
+                  ]}>
+                  18
+                </Text>
+              </TouchableOpacity>
+            )}
             <TouchableOpacity style={styles.actionButton}>
               <Image
                 source={emojiCount ? EmojiActive : EmojiInactive}
@@ -164,14 +175,13 @@ const styles = StyleSheet.create({
   },
   actionButtonsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: dimens.default,
   },
   actionButton: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   actionIcon: {
     height: 18,
