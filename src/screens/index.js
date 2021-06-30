@@ -18,6 +18,7 @@ import InviteFriendPeople from './InviteFriendPeople';
 import Search from './Search';
 import Settings from './Settings';
 import Comment from './Comment';
+import Card from './Card';
 
 export {
   Splash,
@@ -40,4 +41,5 @@ export {
   Search,
   Settings,
   Comment,
+  Card,
 };

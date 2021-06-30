@@ -61,6 +61,10 @@ import Star from './star.png';
 import PencilEdit from './pencil_edit.png';
 import NextBlack from './next_black.png';
 import Send from './send.png';
+import HomeActive from './home_active.png';
+import HomeInactive from './home_inactive.png';
+import CardActive from './card_active.png';
+import CardInactive from './card_inactive.png';
 
 export {
   LeftArrow,
@@ -126,4 +130,8 @@ export {
   PencilEdit,
   NextBlack,
   Send,
+  HomeActive,
+  HomeInactive,
+  CardActive,
+  CardInactive,
 };

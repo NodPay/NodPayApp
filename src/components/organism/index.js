@@ -4,6 +4,7 @@ import PersonalDetailsSection from './PersonalDetailsSection';
 import ResidentialAddress from './ResidentialAddress';
 import CNIC from './CNIC';
 import SecurityPasswordSection from './SecurityPasswordSection';
+import HomeTabBar from './HomeTabBar';
 
 export {
   MobileNumberSection,
@@ -12,4 +13,5 @@ export {
   ResidentialAddress,
   CNIC,
   SecurityPasswordSection,
+  HomeTabBar,
 };

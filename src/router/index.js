@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // where screens should be imported
 import {
@@ -25,8 +26,9 @@ import {
   Search,
   Settings,
   Comment,
+  Card,
 } from '../screens';
-import {Drawer as DrawerComponent} from '../components';
+import {Drawer as DrawerComponent, HomeTabBar} from '../components';
 
 const Router = () => {
   const Stack = createStackNavigator();
@@ -74,8 +76,19 @@ const DrawerNavigator = () => {
       drawerStyle={{backgroundColor: 'transparent'}}
       screenOptions={{unmountOnBlur: true}}
       drawerContent={props => <DrawerComponent {...props} />}>
-      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="HomeTabs" component={HomeTabs} />
     </Drawer.Navigator>
+  );
+};
+
+const HomeTabs = () => {
+  const Tab = createBottomTabNavigator();
+
+  return (
+    <Tab.Navigator tabBar={HomeTabBar}>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Card" component={Card} />
+    </Tab.Navigator>
   );
 };
 
