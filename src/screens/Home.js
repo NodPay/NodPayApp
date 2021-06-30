@@ -32,7 +32,7 @@ const Home = ({navigation}) => {
         }}
       />
 
-      <View style={{padding: dimens.default, flex: 1}}>
+      <View style={{padding: dimens.default, paddingBottom: 0, flex: 1}}>
         <BalanceInfo type="home" moneyAmount="400.000" />
 
         <Tab.Navigator

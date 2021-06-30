@@ -12,58 +12,77 @@ const HomeTabBar = ({state, descriptors, navigation}) => {
     return null;
   }
 
+  const route = index => state.routes[index];
+  const options = index => descriptors[route(index).key].options;
+  const label = index =>
+    options(index).tabBarLabel !== undefined
+      ? options(index).tabBarLabel
+      : options(index).title !== undefined
+      ? options(index).title
+      : route(index).name;
+  const isFocused = index => state.index === index;
+  const tabIcon = index => {
+    let icon;
+    if (route(index).name === 'Home') {
+      icon = isFocused(index) ? HomeActive : HomeInactive;
+    } else if (route(index).name === 'Card') {
+      icon = isFocused(index) ? CardActive : CardInactive;
+    }
+
+    return icon;
+  };
+
+  const onPress = index => {
+    const event = navigation.emit({
+      type: 'tabPress',
+      target: route(index).key,
+      canPreventDefault: true,
+    });
+
+    if (!isFocused(index) && !event.defaultPrevented) {
+      navigation.navigate(route(index).name);
+    }
+  };
+
   return (
     <View style={styles.container}>
-      {state.routes.map((route, index) => {
-        const {options} = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
+      <TouchableOpacity
+        accessibilityRole="button"
+        accessibilityState={isFocused(0) ? {selected: true} : {}}
+        accessibilityLabel={options(0).tabBarAccessibilityLabel}
+        testID={options(0).tabBarTestID}
+        onPress={() => onPress(0)}
+        activeOpacity={0.8}
+        style={{flex: 1, paddingVertical: 6, alignItems: 'center'}}>
+        <Image source={tabIcon(0)} style={{width: 30, height: 30}} />
+        <Text
+          style={{
+            color: isFocused(0) ? color.bg_color : color.grey_3,
+            fontSize: dimens.default_12,
+            fontFamily: fonts.sofia_regular,
+          }}>
+          {label(0)}
+        </Text>
+      </TouchableOpacity>
 
-        const isFocused = state.index === index;
-
-        let icon;
-        if (route.name === 'Home') {
-          icon = isFocused ? HomeActive : HomeInactive;
-        } else if (route.name === 'Card') {
-          icon = isFocused ? CardActive : CardInactive;
-        }
-
-        const onPress = () => {
-          const event = navigation.emit({
-            type: 'tabPress',
-            target: route.key,
-            canPreventDefault: true,
-          });
-
-          if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name);
-          }
-        };
-        return (
-          <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityState={isFocused ? {selected: true} : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
-            onPress={onPress}
-            activeOpacity={0.8}
-            style={{flex: 1, paddingVertical: 6, alignItems: 'center'}}>
-            <Image source={icon} style={{width: 30, height: 30}} />
-            <Text
-              style={{
-                color: isFocused ? color.bg_color : color.grey_3,
-                fontSize: dimens.default_12,
-                fontFamily: fonts.sofia_regular,
-              }}>
-              {label}
-            </Text>
-          </TouchableOpacity>
-        );
-      })}
+      <TouchableOpacity
+        accessibilityRole="button"
+        accessibilityState={isFocused(1) ? {selected: true} : {}}
+        accessibilityLabel={options(1).tabBarAccessibilityLabel}
+        testID={options(1).tabBarTestID}
+        onPress={() => onPress(1)}
+        activeOpacity={0.8}
+        style={{flex: 1, paddingVertical: 6, alignItems: 'center'}}>
+        <Image source={tabIcon(1)} style={{width: 30, height: 30}} />
+        <Text
+          style={{
+            color: isFocused(1) ? color.bg_color : color.grey_3,
+            fontSize: dimens.default_12,
+            fontFamily: fonts.sofia_regular,
+          }}>
+          {label(1)}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
