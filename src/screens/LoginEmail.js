@@ -24,6 +24,14 @@ import {clearAll, color, dimens, fonts} from '../utils';
 const LoginEmail = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [submited, setSubmited] = useState(false);
+
+  const submit = () => {
+    setSubmited(true);
+    if (email !== '' && password !== '') {
+      navigation.navigate('DrawerNavigator');
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -65,7 +73,7 @@ const LoginEmail = ({navigation}) => {
                 navigation.navigate('ForgotPassword');
               }}
             />
-            <ErrorMessage message="The email or password is incorect." />
+            {submited && (email === '' || password === '') && <ErrorMessage message="The email or password is incorect." />}
           </View>
         </View>
         <View style={styles.footer_container}>
@@ -78,9 +86,7 @@ const LoginEmail = ({navigation}) => {
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-            onPress={() => {
-              navigation.navigate('DrawerNavigator');
-            }}
+            onPress={submit}
           />
           <Button
             title="Register"
