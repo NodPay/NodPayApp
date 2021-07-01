@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
       fontFamily: fonts.sofia_regular,
       fontSize: dimens.default_12,
       lineHeight: dimens.default_12,
-      color: color.grey_4,
+      color: color.grey_3,
     },
     containerLabel: {
       position: 'absolute',

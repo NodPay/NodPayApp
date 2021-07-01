@@ -10,10 +10,10 @@ const InputSearch = ({
   onChangeText,
   placeholder,
   onSubmitEditing,
-  backgroundColor = color.grey_7,
+  backgroundColor,
 }) => {
   return (
-    <View style={[styles.container, {backgroundColor: backgroundColor}]}>
+    <View style={[styles.container, {backgroundColor: backgroundColor || color.grey_7}]}>
       <Image source={Search} style={styles.icon} />
       <TextInput
         onSubmitEditing={onSubmitEditing}

@@ -3,11 +3,143 @@ import {StyleSheet, View, ScrollView, SafeAreaView, Image} from 'react-native';
 
 //where local files imported
 import {color, dimens, fonts} from '../utils';
-import {PageTitle, Button, InputSearch, SectionTitle} from '../components';
-import {PeopleInviteFriend} from '../assets';
+import {PageTitle, Button, InputSearch, SectionTitle, PeopleCircleItem, PeopleItem} from '../components';
+import {PeopleInviteFriend, People1} from '../assets';
 
 const Search = ({navigation}) => {
-  const stepInfo = ['You invite a friend', 'They Register & Topup', 'You both get XX'];
+  const topPeople = [
+    {
+      photo: People1,
+      name: "Ahmad",
+      isInternasional: true,
+    },
+    {
+      photo: People1,
+      name: "Amar",
+      isInternasional: false,
+    },
+    {
+      photo: People1,
+      name: "Ben",
+      isInternasional: false,
+    },
+    {
+      photo: People1,
+      name: "Bruno",
+      isInternasional: true,
+    },
+    {
+      photo: People1,
+      name: "Ahmad",
+      isInternasional: true,
+    },
+    {
+      photo: People1,
+      name: "Amar",
+      isInternasional: false,
+    },
+    {
+      photo: People1,
+      name: "Ben",
+      isInternasional: false,
+    },
+    {
+      photo: People1,
+      name: "Bruno",
+      isInternasional: true,
+    },
+  ];
+  const recentTransaction = [
+    {
+      photo: People1,
+      name: "Ahmad Malikil Kudus",
+      phone: "+92 - 3234 - 5456",
+      isInternasional: true,
+    },
+    {
+      photo: People1,
+      name: "Amar Lukman",
+      phone: "+92 - 9801 - 2358",
+      isInternasional: false,
+    },
+    {
+      photo: People1,
+      name: "Ammirudin Syarif",
+      phone: "+92 - 9814 - 1498",
+      isInternasional: false,
+    },
+    {
+      photo: People1,
+      name: "Ben Kasyafana",
+      phone: "+92 - 8519 -1257",
+      isInternasional: true,
+    },
+    {
+      photo: People1,
+      name: "Bruno Fernandes",
+      phone: "+92 - 1897 - 1285",
+      isInternasional: false,
+    },
+    {
+      photo: People1,
+      name: "Bruno Mars",
+      phone: "+92 - 1897 - 1285",
+      isInternasional: false,
+    },
+    {
+      photo: People1,
+      name: "Ahmad Malikil Kudus",
+      phone: "+92 - 3234 - 5456",
+      isInternasional: true,
+    },
+    {
+      photo: People1,
+      name: "Amar Lukman",
+      phone: "+92 - 9801 - 2358",
+      isInternasional: false,
+    },
+    {
+      photo: People1,
+      name: "Ammirudin Syarif",
+      phone: "+92 - 9814 - 1498",
+      isInternasional: false,
+    },
+    {
+      photo: People1,
+      name: "Ben Kasyafana",
+      phone: "+92 - 8519 -1257",
+      isInternasional: true,
+    },
+    {
+      photo: People1,
+      name: "Bruno Fernandes",
+      phone: "+92 - 1897 - 1285",
+      isInternasional: false,
+    },
+    {
+      photo: People1,
+      name: "Bruno Mars",
+      phone: "+92 - 1897 - 1285",
+      isInternasional: false,
+    },
+  ];
+  const searchPeople = [
+    {
+      photo: People1,
+      name: "Joana Banderas",
+      isInternasional: false,
+    },
+    {
+      photo: People1,
+      name: "John Brothers",
+      isInternasional: false,
+    },
+    {
+      photo: People1,
+      name: "Buroana Jonathan",
+      isInternasional: false,
+    },
+  ];
   const [search, setSearch] = useState('');
 
   return (
@@ -23,37 +155,72 @@ const Search = ({navigation}) => {
         <InputSearch
           backgroundColor={color.bg_grey}
           placeholder="Friend Name, Business"
-          search={search}
-          setSearch={setSearch}
+          value={search}
+          onChangeText={setSearch}
         />
-        <SectionTitle
-          title="Top People"
-          titleStyle={{
-            fontSize: dimens.default_16,
-          }}
-          containerStyle={{
-            paddingVertical: 0,
-            marginTop: dimens.medium,
-            marginBottom: -20
-          }}
-        />
-        <Button
-          onPress={() => {}}
-          title="Invite Friends"
-          btnStyle={{backgroundColor: color.btn_black}}
-          titleStyle={{color: color.btn_white_2, fontFamily: fonts.sofia_bold}}
-        />
-        <SectionTitle
-          title="Recent Transactions"
-          titleStyle={{
-            fontSize: dimens.default_16,
-          }}
-          containerStyle={{
-            paddingVertical: 0,
-            marginTop: dimens.medium,
-            marginBottom: -20
-          }}
-        />
+        {search !== '' ? (
+          <View style={styles.searchList}>
+            {searchPeople.map((item, index) => (
+              <PeopleItem
+                key={index}
+                photo={item.photo}
+                name={item.name}
+                isInternasional={item.isInternasional}
+                isSmall={true}
+              />
+            ))}
+          </View>
+        ) : (
+          <>
+            <SectionTitle
+              title="Top People"
+              titleStyle={{
+                fontSize: dimens.default_16,
+              }}
+              containerStyle={{
+                paddingVertical: 0,
+                marginTop: dimens.medium,
+                marginBottom: -20
+              }}
+            />
+            <ScrollView style={styles.peopleList} showsHorizontalScrollIndicator={false} horizontal>
+              {topPeople.map((item, index) => (
+                <PeopleCircleItem
+                  key={index}
+                  photo={item.photo}
+                  name={item.name}
+                  isInternasional={item.isInternasional}
+                />
+              ))}
+            </ScrollView>
+            <Button
+              onPress={() => {}}
+              title="Invite Friends"
+              btnStyle={{backgroundColor: color.btn_black}}
+              titleStyle={{color: color.btn_white_2, fontFamily: fonts.sofia_bold}}
+            />
+            <SectionTitle
+              title="Recent Transactions"
+              titleStyle={{
+                fontSize: dimens.default_16,
+              }}
+              containerStyle={{
+                paddingVertical: 0,
+                marginTop: dimens.medium,
+                marginBottom: -20
+              }}
+            />
+            {recentTransaction.map((item, index) => (
+              <PeopleItem
+                key={index}
+                photo={item.photo}
+                name={item.name}
+                phone={item.phone}
+                isInternasional={item.isInternasional}
+              />
+            ))}
+          </>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -64,10 +231,16 @@ export default Search;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: color.bg_greyy,
+    backgroundColor: color.btn_white_2,
   },
   containerContent: {
     padding: dimens.default_16,
+  },
+  peopleList: {
+    marginHorizontal: -dimens.small,
+  },
+  searchList: {
+    marginTop: dimens.small,
   },
   wrapBtn: {
     padding: dimens.default_22,
