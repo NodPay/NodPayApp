@@ -63,7 +63,7 @@ const Drawer = ({navigation}) => {
           }}
           unreadCount={4}
         />
-        <DrawerItem label="Settings" image={DrawerSetting} onPress={() => {}} />
+        <DrawerItem label="Settings" image={DrawerSetting} onPress={() => navigation.navigate("Settings")} />
         <DrawerItem label="Help" image={DrawerHelp} onPress={() => {}} />
       </ScrollView>
 
