@@ -12,6 +12,7 @@ export const dimens = {
   default_12: 12,
   medium: 24,
   large_25: 25,
+  large_28: 28,
   large: 32,
   large_40: 40,
   large_42: 42,

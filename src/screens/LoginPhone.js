@@ -22,7 +22,7 @@ import {SplashWaveGradient} from '../assets';
 import {clearAll, color, dimens, fonts} from '../utils';
 
 const LoginPhone = ({navigation}) => {
-  const [code, setCode] = useState('62');
+  const [code, setCode] = useState('1');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
 
@@ -55,6 +55,7 @@ const LoginPhone = ({navigation}) => {
                 phoneCode={code}
                 value={phone}
                 onChangeText={setPhone}
+                onChangeCode={setCode}
               />
               <InputPassword
                 labelStyle={{color: color.btn_black}}
