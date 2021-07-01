@@ -15,13 +15,14 @@ import {
   Star,
 } from '../assets';
 
-const Settings = () => {
+const Settings = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <PageTitle
         isBlackArrow
         title="Settings"
         titleStyle={{color: color.btn_black}}
+        navigation={navigation}
       />
       <SettingsItem icon={AccountCircle} title="Edit Profile" />
       <SettingsItem icon={Lock} title="Password & Security" />
