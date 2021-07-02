@@ -21,6 +21,15 @@ const SectionTitle = ({
     );
   }
 
+  if (type == 'auth') {
+    return (
+      <>
+        <Text style={styles.authSubtitle}>{title}</Text>
+        {subtitle && <Text style={styles.authDescription}>{subtitle}</Text>}
+      </>
+    );
+  }
+
   return (
     <View style={[styles.container, containerStyle]}>
       <Text style={[styles.title, {color: textColor}, titleStyle]}>
@@ -53,6 +62,20 @@ const styles = StyleSheet.create({
     fontSize: dimens.default_16,
     lineHeight: dimens.medium,
     color: color.btn_black,
+  },
+
+  // Auth
+  authSubtitle: {
+    fontSize: dimens.default_18,
+    fontFamily: fonts.noto_bold,
+    marginTop: dimens.small,
+    lineHeight: dimens.large_28,
+  },
+  authDescription: {
+    fontSize: dimens.default,
+    fontFamily: fonts.sofia_medium,
+    color: '#9A9B9E',
+    lineHeight: dimens.default_20,
   },
 
   // Modal

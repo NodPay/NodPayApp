@@ -8,6 +8,7 @@ import {
   InputPassword,
   ErrorMessage,
   Modal,
+  SectionTitle,
 } from '../components';
 import {color, dimens, fonts} from '../utils';
 import {LeftArrowBlack, ModalSuccess} from '../assets';
@@ -31,7 +32,7 @@ const NewPassword = ({navigation}) => {
         }}
         visible={modalSuccess}
         onClose={() => {
-          setModalSuccess(false);
+          navigation.navigate('Login');
         }}
       />
 
@@ -44,7 +45,7 @@ const NewPassword = ({navigation}) => {
           navigation={navigation}
         />
 
-        <Text style={styles.subtitle}>Reset Your Password</Text>
+        <SectionTitle type="auth" title="Reset Your Password" />
 
         <InputPassword
           label="New Password"
