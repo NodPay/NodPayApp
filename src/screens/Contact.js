@@ -22,7 +22,7 @@ import {
   FacebookWhite,
 } from '../assets';
 
-const Contact = () => {
+const Contact = ({navigation}) => {
   const [friendData, setFriendData] = useState([]);
   const [getContact, setGetContact] = useState(true);
   const [isContact, setIsContact] = useState(false);
@@ -338,6 +338,7 @@ const Contact = () => {
         isBlackArrow
         title="Contacts"
         titleStyle={{color: color.btn_black}}
+        navigation={navigation}
       />
       {friendData == null && (
         <View style={{flex: 1, justifyContent: 'center'}}>

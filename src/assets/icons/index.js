@@ -66,6 +66,13 @@ import HomeInactive from './home_inactive.png';
 import CardActive from './card_active.png';
 import CardInactive from './card_inactive.png';
 import Exchange from './exchange.png';
+import Internasional from './internasional.png';
+import FlagAr from './flag-ar.png';
+import FlagBr from './flag-br.png';
+import FlagHu from './flag-hu.png';
+import FlagMx from './flag-mx.png';
+import FlagUs from './flag-us.png';
+import Triangle from './triangle.png';
 
 export {
   LeftArrow,
@@ -136,4 +143,11 @@ export {
   CardActive,
   CardInactive,
   Exchange,
+  Internasional,
+  FlagAr,
+  FlagBr,
+  FlagHu,
+  FlagMx,
+  FlagUs,
+  Triangle,
 };

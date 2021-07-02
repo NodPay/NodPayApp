@@ -22,13 +22,21 @@ import {SplashWaveGradient} from '../assets';
 import {clearAll, color, dimens, fonts} from '../utils';
 
 const LoginPhone = ({navigation}) => {
-  const [code, setCode] = useState('62');
+  const [code, setCode] = useState('1');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [submited, setSubmited] = useState(false);
 
   useEffect(() => {
     clearAll().then(res => console.log('clear all', res));
   }, []);
+
+  const submit = () => {
+    setSubmited(true);
+    if (phone !== '' && password !== '') {
+      navigation.navigate('DrawerNavigator');
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -55,6 +63,7 @@ const LoginPhone = ({navigation}) => {
                 phoneCode={code}
                 value={phone}
                 onChangeText={setPhone}
+                onChangeCode={setCode}
               />
               <InputPassword
                 labelStyle={{color: color.btn_black}}
@@ -71,7 +80,7 @@ const LoginPhone = ({navigation}) => {
                 navigation.navigate('ForgotPassword');
               }}
             />
-            <ErrorMessage message="The mobile number or password is incorect." />
+            {submited && (phone === '' || password === '') && <ErrorMessage message="The mobile number or password is incorect." />}
           </View>
         </View>
         <View style={styles.footer_container}>
@@ -84,9 +93,7 @@ const LoginPhone = ({navigation}) => {
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-            onPress={() => {
-              navigation.navigate('DrawerNavigator');
-            }}
+            onPress={submit}
           />
           <Button
             title="Register"

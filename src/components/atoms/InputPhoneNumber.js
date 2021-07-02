@@ -6,29 +6,77 @@ import {
   View,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import {FormLabel} from '../atoms';
 
 // where local files imported
 import {color, dimens, fonts, formatPhoneNumber} from '../../utils';
-import {Down, FeatherPhone} from '../../assets';
+import {Down, FeatherPhone, FlagAr, FlagBr, FlagHu, FlagMx, FlagUs, Triangle} from '../../assets';
+
+const ModalCountry = ({items, onChangeCode, setShowModal}) => {
+  return (
+    <View style={styles.modal}>
+      <Image style={styles.modalTriangle} source={Triangle} />
+      <ScrollView style={styles.modalContainer}>
+        {items.map((item, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => {
+              onChangeCode(item.code);
+              setShowModal(false);
+            }}
+            style={styles.flagItem}
+          >
+            <Image style={styles.flag} source={item.flag} />
+            <Text>{`+${item.code}`}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </View>
+  );
+}
 
 const InputPhoneNumber = ({
   label,
   phoneCode = '',
   value = '',
   onChangeText,
+  onChangeCode,
   labelStyle,
   inputMobileNumber,
   dispatch,
 }) => {
-  const [code, setCode] = useState('62');
+  const codeList = [
+    {
+      flag: FlagUs,
+      code: '1',
+    },
+    {
+      flag: FlagAr,
+      code: '54',
+    },
+    {
+      flag: FlagBr,
+      code: '55',
+    },
+    {
+      flag: FlagMx,
+      code: '56',
+    },
+    {
+      flag: FlagHu,
+      code: '57',
+    },
+  ];
+  const [code, setCode] = useState('1');
   const [number, setNumber] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   if (inputMobileNumber) {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={() => setShowModal(true)}>
           <Text style={styles.country_code}>{`+${code}`}</Text>
           <Image source={Down} style={styles.leftIcon} />
         </TouchableOpacity>
@@ -47,6 +95,7 @@ const InputPhoneNumber = ({
           maxLength={11}
         />
         <Image source={FeatherPhone} style={styles.icon} />
+        {showModal && <ModalCountry items={codeList} onChangeCode={setCode} setShowModal={setShowModal} />}
       </View>
     );
   }
@@ -57,7 +106,7 @@ const InputPhoneNumber = ({
         <FormLabel labelStyle={[styles.label, labelStyle]} label={label} />
       )}
       <View style={styles.container}>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={() => setShowModal(true)}>
           <Text style={styles.country_code}>{`+${phoneCode}`}</Text>
           <Image source={Down} style={styles.leftIcon} />
         </TouchableOpacity>
@@ -69,6 +118,7 @@ const InputPhoneNumber = ({
           maxLength={11}
         />
         <Image source={FeatherPhone} style={styles.icon} />
+        {showModal && <ModalCountry items={codeList} onChangeCode={onChangeCode} setShowModal={setShowModal} />}
       </View>
     </>
   );
@@ -99,6 +149,8 @@ const styles = StyleSheet.create({
     elevation: 1,
     alignItems: 'center',
     flexDirection: 'row',
+    position: 'relative',
+    zIndex: 200,
   },
   input: {
     flex: 1,
@@ -126,5 +178,36 @@ const styles = StyleSheet.create({
   btn: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  modal: {
+    position: 'absolute',
+    top: dimens.large_50,
+    left: 0,
+    zIndex: 200,
+  },
+  modalTriangle: {
+    position: 'absolute',
+    top: 0,
+    left: dimens.default_14,
+    width: dimens.medium,
+    height: dimens.default_22,
+  },
+  modalContainer: {
+    backgroundColor: 'white',
+    paddingVertical: dimens.default_12,
+    paddingHorizontal: dimens.default_16,
+    borderRadius: dimens.small,
+    height: 100,
+    marginTop: dimens.default_12,
+  },
+  flagItem: {
+    flexDirection: 'row',
+    paddingVertical: dimens.small,
+    paddingBottom: dimens.default_22,
+  },
+  flag: {
+    height: dimens.default_20,
+    width: dimens.large_28,
+    marginRight: dimens.default_18,
   },
 });

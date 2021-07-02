@@ -27,7 +27,7 @@ const Home = ({navigation}) => {
       <StatusBar backgroundColor={color.btn_white_2} />
 
       <HeaderHome
-        onPressSearch={() => {}}
+        onPressSearch={() => navigation.navigate("Search")}
         onPressProfile={() => {
           navigation.openDrawer();
         }}

@@ -23,6 +23,8 @@ import InvitePeopleItem from './InvitePeopleItem';
 import SettingsItem from './SettingsItem';
 import CommentReplyItem from './CommentReplyItem';
 import CommentSend from './CommentSend';
+import PeopleCircleItem from './PeopleCircleItem';
+import PeopleItem from './PeopleItem';
 
 export {
   SectionTitle,
@@ -50,4 +52,6 @@ export {
   SettingsItem,
   CommentReplyItem,
   CommentSend,
+  PeopleCircleItem,
+  PeopleItem,
 };

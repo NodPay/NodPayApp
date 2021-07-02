@@ -10,6 +10,7 @@ const InputText = ({
   label,
   value,
   onChangeText,
+  placeholder,
   labelStyle,
   keyboardType,
   editable,
@@ -24,6 +25,7 @@ const InputText = ({
         keyboardType={keyboardType}
         value={value}
         onChangeText={onChangeText}
+        placeholder={placeholder}
         editable={editable}
         style={inputStyle}
       />
