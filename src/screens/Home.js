@@ -15,6 +15,7 @@ import {
   FeedItem,
   Tabbed,
   RequestMoneyItem,
+  Gap,
 } from '../components/';
 import {color, dimens, fonts} from '../utils/';
 import {People1} from '../assets/';
@@ -66,6 +67,7 @@ const Feed = ({navigation}) => {
       )}
       style={{backgroundColor: color.btn_white_2}}
       keyExtractor={(item, key) => key.toString()}
+      ListFooterComponent={<Gap t={dimens.default} />}
       // ItemSeparatorComponent={separatorItem}
       // ListFooterComponent={
       //   canLoadMore && (
@@ -122,6 +124,7 @@ const Request = props => {
         />
       )}
       keyExtractor={(item, key) => key.toString()}
+      ListFooterComponent={<Gap t={dimens.default} />}
     />
   );
 };

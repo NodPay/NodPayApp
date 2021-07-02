@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  View,
-  FlatList,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  ScrollView,
-} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, ScrollView} from 'react-native';
 
 //where local file imported
 import {
@@ -15,6 +7,7 @@ import {
   PageTitle,
   CommentReplyItem,
   CommentSend,
+  Gap,
 } from '../components/';
 import {color, dimens, fonts} from '../utils/';
 
@@ -37,6 +30,7 @@ const Comment = ({navigation}) => {
           .map((item, key) => {
             return <CommentReplyItem key={key} />;
           })}
+        <Gap t={dimens.default} />
       </ScrollView>
 
       <CommentSend />

@@ -3,7 +3,13 @@ import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 
 // where local files imported
 import {color, dimens, fonts} from '../../utils';
-import {HomeActive, HomeInactive, CardActive, CardInactive} from '../../assets';
+import {
+  HomeActive,
+  HomeInactive,
+  CardActive,
+  CardInactive,
+  Exchange,
+} from '../../assets';
 
 const HomeTabBar = ({state, descriptors, navigation}) => {
   const focusedOptions = descriptors[state.routes[state.index].key].options;
@@ -56,14 +62,29 @@ const HomeTabBar = ({state, descriptors, navigation}) => {
         style={{flex: 1, paddingVertical: 6, alignItems: 'center'}}>
         <Image source={tabIcon(0)} style={{width: 30, height: 30}} />
         <Text
-          style={{
-            color: isFocused(0) ? color.bg_color : color.grey_3,
-            fontSize: dimens.default_12,
-            fontFamily: fonts.sofia_regular,
-          }}>
+          style={[
+            styles.label,
+            {color: isFocused(0) ? color.bg_color : color.grey_3},
+          ]}>
           {label(0)}
         </Text>
       </TouchableOpacity>
+
+      {/* <View
+        style={{
+          flex: 1,
+          // paddingVertical: 6,
+          justifyContent: 'flex-end',
+          alignItems: 'flex-end',
+          backgroundColor: 'pink',
+        }}>
+        <TouchableOpacity style={styles.exchangeButton}>
+          <Image source={Exchange} style={{width: 30, height: 30}} />
+        </TouchableOpacity>
+        <Text style={[styles.label, {color: color.btn_black}]}>
+          Send & Request
+        </Text>
+      </View> */}
 
       <TouchableOpacity
         accessibilityRole="button"
@@ -72,14 +93,17 @@ const HomeTabBar = ({state, descriptors, navigation}) => {
         testID={options(1).tabBarTestID}
         onPress={() => onPress(1)}
         activeOpacity={0.8}
-        style={{flex: 1, paddingVertical: 6, alignItems: 'center'}}>
+        style={{
+          flex: 1,
+          paddingVertical: 6,
+          alignItems: 'center',
+        }}>
         <Image source={tabIcon(1)} style={{width: 30, height: 30}} />
         <Text
-          style={{
-            color: isFocused(1) ? color.bg_color : color.grey_3,
-            fontSize: dimens.default_12,
-            fontFamily: fonts.sofia_regular,
-          }}>
+          style={[
+            styles.label,
+            {color: isFocused(1) ? color.bg_color : color.grey_3},
+          ]}>
           {label(1)}
         </Text>
       </TouchableOpacity>
@@ -93,6 +117,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  label: {
+    fontSize: dimens.default_12,
+    fontFamily: fonts.sofia_regular,
+  },
+  exchangeButton: {
+    height: 58,
+    width: 58,
+    borderRadius: 58 / 2,
+    backgroundColor: color.bg_color,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowRadius: 5,
+    shadowOffset: {height: 5},
+    shadowOpacity: 0.3,
+    borderWidth: 5,
+    borderColor: 'lightgray',
+    shadowColor: 'lightgray',
+    position: 'absolute',
   },
 });
 

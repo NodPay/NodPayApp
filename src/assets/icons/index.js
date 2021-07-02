@@ -65,6 +65,7 @@ import HomeActive from './home_active.png';
 import HomeInactive from './home_inactive.png';
 import CardActive from './card_active.png';
 import CardInactive from './card_inactive.png';
+import Exchange from './exchange.png';
 
 export {
   LeftArrow,
@@ -134,4 +135,5 @@ export {
   HomeInactive,
   CardActive,
   CardInactive,
+  Exchange,
 };
