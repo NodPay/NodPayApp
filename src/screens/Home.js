@@ -27,7 +27,7 @@ const Home = ({navigation}) => {
       <StatusBar backgroundColor={color.btn_white_2} />
 
       <HeaderHome
-        onPressSearch={() => navigation.navigate("Search")}
+        onPressSearch={() => navigation.navigate('Search')}
         onPressProfile={() => {
           navigation.openDrawer();
         }}
@@ -49,6 +49,44 @@ const Home = ({navigation}) => {
 };
 
 const Feed = ({navigation}) => {
+  const data = [
+    {
+      isLoved: false,
+      isCommented: false,
+      isEmojied: true,
+      loveCount: null,
+      commentCount: null,
+      emojiCount: 1,
+      message: 'Thank you Lorem Ipsum 🤗😎😍😍',
+    },
+    {
+      isLoved: true,
+      isCommented: false,
+      isEmojied: false,
+      loveCount: 2,
+      commentCount: 13,
+      emojiCount: 12,
+      message: 'Thank you Lorem Ipsum 🤗😎😍😍',
+    },
+    {
+      isLoved: true,
+      isCommented: true,
+      isEmojied: false,
+      loveCount: 4,
+      commentCount: 5,
+      emojiCount: null,
+      message: 'Thank you Lorem Ipsum 🤗😎😍😍',
+    },
+    {
+      isLoved: true,
+      isCommented: true,
+      isEmojied: true,
+      loveCount: 3,
+      commentCount: 10,
+      emojiCount: 11,
+      message: 'Thank you Lorem Ipsum 🤗😎😍😍',
+    },
+  ];
   // <EmptyState
   //   icon={EmptyData}
   //   iconSize={72}
@@ -56,7 +94,7 @@ const Feed = ({navigation}) => {
   // />;
   return (
     <FlatList
-      data={[{ok: 'ok'}, {ok: 'ok'}, {ok: 'ok'}, {ok: 'ok'}, {ok: 'ok'}]}
+      data={data}
       renderItem={props => (
         <FeedItem
           onPressComment={() => {

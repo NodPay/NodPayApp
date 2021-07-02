@@ -18,14 +18,14 @@ const BalanceInfo = ({type, moneyAmount}) => {
       <ImageBackground
         source={HomeBalanceBackground}
         style={styles.container}
-        imageStyle={{borderRadius: dimens.default}}>
+        imageStyle={{borderRadius: dimens.default, resizeMode: 'stretch'}}>
         <View>
           <Text style={styles.title}>Available Balance</Text>
           <Text style={styles.moneyAmount}>Rs {moneyAmount || '0'}</Text>
         </View>
 
         <TouchableOpacity style={styles.addButton}>
-          <Image source={Plus} style={[styles.addIcon, {height: 60}]} />
+          <Image source={Plus} style={[styles.addIcon, {height: 50}]} />
         </TouchableOpacity>
       </ImageBackground>
     );

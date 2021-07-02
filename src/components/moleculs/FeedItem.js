@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 //where local file imported
@@ -24,7 +24,15 @@ const FeedItem = ({
   isHideComment,
   isCommentReply,
 }) => {
-  const {loveCount, commentCount, emojiCount, message} = item;
+  const {
+    loveCount,
+    commentCount,
+    emojiCount,
+    isLoved,
+    isCommented,
+    isEmojied,
+    message,
+  } = item;
 
   return (
     <View style={{marginTop: dimens.default, flexDirection: 'row'}}>
@@ -54,26 +62,22 @@ const FeedItem = ({
             </Text>
           </View>
 
-          <Text style={styles.message}>
-            Thank you very much Mr. Lorem Ipsum 🤗😎😍😍
-          </Text>
+          <Text style={styles.message}>{message}</Text>
 
           <View style={styles.actionButtonsContainer}>
             <TouchableOpacity style={styles.actionButton}>
               <Image
-                source={loveCount ? LoveActive : LoveInactive}
+                source={isLoved ? LoveActive : LoveInactive}
                 style={styles.actionIcon}
               />
               <Text
                 style={[
                   styles.actionCount,
                   {
-                    color: loveCount
-                      ? color.love_active
-                      : color.btn_title_white,
+                    color: isLoved ? color.love_active : color.btn_title_white,
                   },
                 ]}>
-                18
+                {loveCount}
               </Text>
             </TouchableOpacity>
             {!isHideComment && (
@@ -81,37 +85,37 @@ const FeedItem = ({
                 style={styles.actionButton}
                 onPress={onPressComment}>
                 <Image
-                  source={commentCount ? CommentActive : CommentInactive}
+                  source={isCommented ? CommentActive : CommentInactive}
                   style={styles.actionIcon}
                 />
                 <Text
                   style={[
                     styles.actionCount,
                     {
-                      color: commentCount
+                      color: isCommented
                         ? color.comment_active
                         : color.btn_title_white,
                     },
                   ]}>
-                  18
+                  {commentCount}
                 </Text>
               </TouchableOpacity>
             )}
             <TouchableOpacity style={styles.actionButton}>
               <Image
-                source={emojiCount ? EmojiActive : EmojiInactive}
+                source={isEmojied ? EmojiActive : EmojiInactive}
                 style={styles.actionIcon}
               />
               <Text
                 style={[
                   styles.actionCount,
                   {
-                    color: emojiCount
+                    color: isEmojied
                       ? color.emoji_active
                       : color.btn_title_white,
                   },
                 ]}>
-                18
+                {emojiCount}
               </Text>
             </TouchableOpacity>
           </View>
