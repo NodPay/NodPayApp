@@ -17,7 +17,11 @@ const DrawerItem = ({label, image, unreadCount, onPress, isActive}) => {
         </Text>
       </View>
 
-      {unreadCount && <Text style={styles.unreadCount}>{unreadCount}</Text>}
+      {unreadCount && (
+        <View style={styles.unreadWrapper}>
+          <Text style={styles.unreadNumber}>{unreadCount}</Text>
+        </View>
+      )}
     </TouchableOpacity>
   );
 };
@@ -52,6 +56,21 @@ const styles = StyleSheet.create({
     borderRadius: 300,
     paddingHorizontal: dimens.default_12,
     paddingVertical: dimens.small,
+  },
+  unreadNumber: {
+    fontFamily: fonts.sofia_regular,
+    fontSize: dimens.default_12,
+    color: 'white',
+  },
+  unreadWrapper: {
+    backgroundColor: color.error_text,
+    width: 28,
+    height: 28,
+    borderRadius: 300,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    right: 14,
   },
 });
 

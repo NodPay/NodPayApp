@@ -1,9 +1,16 @@
 import React from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
 import Animated, {interpolate} from 'react-native-reanimated';
 import {color, dimens, fonts} from '../../utils';
 
-const Tabbed = ({state, descriptors, navigation, position, containerStyle}) => {
+const Tabbed = ({
+  state,
+  descriptors,
+  navigation,
+  position,
+  containerStyle,
+  notification = {},
+}) => {
   return (
     <View style={[styles.container, containerStyle]}>
       {state.routes.map((route, index) => {
@@ -63,6 +70,11 @@ const Tabbed = ({state, descriptors, navigation, position, containerStyle}) => {
               ]}>
               {label}
             </Animated.Text>
+            {route.name == notification.name && !isFocused && (
+              <View style={styles.unreadTab}>
+                <Text style={styles.unreadNumber}>{notification.count}</Text>
+              </View>
+            )}
           </TouchableOpacity>
         );
       })}
@@ -92,5 +104,20 @@ const styles = StyleSheet.create({
     fontFamily: fonts.noto_bold,
     fontSize: dimens.default_16,
     color: color.btn_black,
+  },
+  unreadNumber: {
+    fontFamily: fonts.sofia_regular,
+    fontSize: dimens.default_12,
+    color: 'white',
+  },
+  unreadTab: {
+    backgroundColor: color.error_text,
+    width: 25,
+    height: 25,
+    borderRadius: 300,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    right: 14,
   },
 });

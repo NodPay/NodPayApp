@@ -24,7 +24,16 @@ const Comment = ({navigation}) => {
       />
 
       <ScrollView style={styles.listContainer}>
-        <FeedItem isHideComment />
+        <FeedItem
+          isHideComment
+          item={{
+            isLoved: true,
+            isEmojied: false,
+            loveCount: 4,
+            emojiCount: null,
+            message: 'Thank you Lorem Ipsum 🤗😎😍😍',
+          }}
+        />
         {Array(4)
           .fill(1)
           .map((item, key) => {

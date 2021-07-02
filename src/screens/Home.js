@@ -38,7 +38,11 @@ const Home = ({navigation}) => {
 
         <Tab.Navigator
           tabBar={props => (
-            <Tabbed {...props} containerStyle={styles.listContainer} />
+            <Tabbed
+              {...props}
+              containerStyle={styles.listContainer}
+              notification={{name: 'Request', count: 3}}
+            />
           )}>
           <Tab.Screen name="Feed" component={Feed} />
           <Tab.Screen name="Request" component={Request} />
