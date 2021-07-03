@@ -10,6 +10,7 @@ import FormLabel from './FormLabel';
 import ErrorMessage from './ErrorMessage';
 import SelectAddressItem from './SelectAddressItem';
 import ContactItem from './ContactItem';
+import SettingsSaveButton from './SettingsSaveButton';
 
 export {
   Logo,
@@ -24,4 +25,5 @@ export {
   ErrorMessage,
   SelectAddressItem,
   ContactItem,
+  SettingsSaveButton,
 };

@@ -29,7 +29,11 @@ const Settings = ({navigation}) => {
       <SettingsItem icon={Profile} title="Privacy & Socials" />
       <SettingsItem icon={Bell} title="Notification Settings" />
       <SettingsItem icon={PhoneGrey} title="Change Phone Number" />
-      <SettingsItem icon={Detail} title="Language" />
+      <SettingsItem
+        icon={Detail}
+        title="Language"
+        onPress={() => navigation.navigate('Language')}
+      />
       <SettingsItem icon={Star} title="Rate NodPay" />
       <SettingsItem icon={PencilEdit} title="Send Feedback" />
     </SafeAreaView>
