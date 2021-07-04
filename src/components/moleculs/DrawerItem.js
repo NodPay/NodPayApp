@@ -6,7 +6,9 @@ const DrawerItem = ({label, image, unreadCount, onPress, isActive}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.leftWrapper}>
-        <Image source={image} style={styles.icon} />
+        <View style={{width: dimens.large}}>
+          <Image source={image} style={styles.icon} />
+        </View>
 
         <Text
           style={[
@@ -41,7 +43,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    height: dimens.medium,
+    height: dimens.large_28,
+    width: dimens.large_28,
     resizeMode: 'contain',
   },
   text: {

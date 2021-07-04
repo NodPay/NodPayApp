@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet, Image, Text} from 'react-native';
 
 import {DrawerItem, BalanceInfo} from '../moleculs';
 import {
@@ -13,13 +13,25 @@ import {
   DrawerSetting,
   DrawerHelp,
   DrawerLogout,
+  ProfileExample,
 } from '../../assets';
-import {dimens} from '../../utils';
+import {dimens, color, fonts} from '../../utils';
 
 const Drawer = ({navigation}) => {
   return (
     <View style={styles.drawerContainer}>
       <ScrollView contentContainerStyle={styles.scrollviewContainer}>
+        <View style={styles.profileContainer}>
+          <Image
+            source={ProfileExample}
+            style={{height: 45, width: 45, resizeMode: 'contain'}}
+          />
+          <View style={{marginLeft: dimens.default}}>
+            <Text style={styles.realname}>Ahmad Jalaluddin</Text>
+            <Text style={styles.username}>@ahmadjalaluddin</Text>
+          </View>
+        </View>
+
         <View style={{padding: dimens.default}}>
           <BalanceInfo type="drawer" moneyAmount="400.000" />
         </View>
@@ -63,7 +75,11 @@ const Drawer = ({navigation}) => {
           }}
           unreadCount={4}
         />
-        <DrawerItem label="Settings" image={DrawerSetting} onPress={() => navigation.navigate("Settings")} />
+        <DrawerItem
+          label="Settings"
+          image={DrawerSetting}
+          onPress={() => navigation.navigate('Settings')}
+        />
         <DrawerItem label="Help" image={DrawerHelp} onPress={() => {}} />
       </ScrollView>
 
@@ -81,6 +97,22 @@ const styles = StyleSheet.create({
   },
   scrollviewContainer: {
     flexGrow: 1,
+  },
+  profileContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: dimens.default,
+    marginTop: dimens.medium,
+  },
+  realname: {
+    fontFamily: fonts.sofia_bold,
+    fontSize: dimens.default,
+    color: color.btn_black,
+  },
+  username: {
+    fontFamily: fonts.sofia_regular,
+    fontSize: 15,
+    color: color.grey,
   },
 });
 
