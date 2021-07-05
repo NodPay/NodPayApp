@@ -12,17 +12,29 @@ const FaqAccordionItem = ({title, description, showDescription, onPress}) => {
       style={styles.container}
       onPress={onPress}>
       <View style={{flexDirection: 'row'}}>
-        <Text>{title}</Text>
+        <Text style={styles.title}>{title}</Text>
       </View>
-      {showDescription && <Text>{description}</Text>}
+      {showDescription && <Text style={styles.description}>{description}</Text>}
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 10,
+    paddingVertical: dimens.small,
     flexGrow: 1,
+  },
+  title: {
+    color: color.grey_2,
+    fontFamily: fonts.sofia_regular,
+    fontSize: dimens.default,
+  },
+  description: {
+    color: color.btn_title_white,
+    fontFamily: fonts.sofia_regular,
+    fontSize: dimens.default_14,
+    lineHeight: dimens.default_18,
+    marginTop: dimens.small,
   },
 });
 

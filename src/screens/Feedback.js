@@ -61,7 +61,7 @@ const transition = (
 );
 
 const Feedback = ({navigation}) => {
-  const [accordionIndex, setAccordionIndex] = useState(null);
+  const [accordionIndex, setAccordionIndex] = useState(0);
   const accordionRef = useRef(null);
 
   return (
