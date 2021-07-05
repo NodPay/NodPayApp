@@ -28,8 +28,16 @@ const Settings = ({navigation}) => {
       <SettingsItem icon={Lock} title="Password & Security" />
       <SettingsItem icon={Profile} title="Privacy & Socials" />
       <SettingsItem icon={Bell} title="Notification Settings" />
-      <SettingsItem icon={PhoneGrey} title="Change Phone Number" />
-      <SettingsItem icon={Detail} title="Language" />
+      <SettingsItem
+        icon={PhoneGrey}
+        title="Change Phone Number"
+        onPress={() => navigation.navigate('ChangePhoneNumber')}
+      />
+      <SettingsItem
+        icon={Detail}
+        title="Language"
+        onPress={() => navigation.navigate('Language')}
+      />
       <SettingsItem icon={Star} title="Rate NodPay" />
       <SettingsItem
         icon={PencilEdit}

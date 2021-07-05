@@ -75,6 +75,7 @@ import FlagHu from './flag-hu.png';
 import FlagMx from './flag-mx.png';
 import FlagUs from './flag-us.png';
 import Triangle from './triangle.png';
+export * from './flags';
 
 export {
   LeftArrow,

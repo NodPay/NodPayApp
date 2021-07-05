@@ -28,6 +28,8 @@ import {
   Comment,
   Card,
   Feedback,
+  Language,
+  ChangePhoneNumber,
 } from '../screens';
 import {Drawer as DrawerComponent, HomeTabBar} from '../components';
 
@@ -58,6 +60,8 @@ const Router = () => {
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="Comment" component={Comment} />
         <Stack.Screen name="Feedback" component={Feedback} />
+        <Stack.Screen name="ChangePhoneNumber" component={ChangePhoneNumber} />
+        <Stack.Screen name="Language" component={Language} />
         <Stack.Screen
           name="InviteFriendPeople"
           component={InviteFriendPeople}

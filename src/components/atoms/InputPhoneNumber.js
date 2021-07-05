@@ -12,7 +12,16 @@ import {FormLabel} from '../atoms';
 
 // where local files imported
 import {color, dimens, fonts, formatPhoneNumber} from '../../utils';
-import {Down, FeatherPhone, FlagAr, FlagBr, FlagHu, FlagMx, FlagUs, Triangle} from '../../assets';
+import {
+  Down,
+  FeatherPhone,
+  FlagAr,
+  FlagBr,
+  FlagHu,
+  FlagMx,
+  FlagUs,
+  Triangle,
+} from '../../assets';
 
 const ModalCountry = ({items, onChangeCode, setShowModal}) => {
   return (
@@ -26,8 +35,7 @@ const ModalCountry = ({items, onChangeCode, setShowModal}) => {
               onChangeCode(item.code);
               setShowModal(false);
             }}
-            style={styles.flagItem}
-          >
+            style={styles.flagItem}>
             <Image style={styles.flag} source={item.flag} />
             <Text>{`+${item.code}`}</Text>
           </TouchableOpacity>
@@ -35,7 +43,7 @@ const ModalCountry = ({items, onChangeCode, setShowModal}) => {
       </ScrollView>
     </View>
   );
-}
+};
 
 const InputPhoneNumber = ({
   label,
@@ -76,7 +84,9 @@ const InputPhoneNumber = ({
   if (inputMobileNumber) {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.btn} onPress={() => setShowModal(true)}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => setShowModal(!showModal)}>
           <Text style={styles.country_code}>{`+${code}`}</Text>
           <Image source={Down} style={styles.leftIcon} />
         </TouchableOpacity>
@@ -95,7 +105,13 @@ const InputPhoneNumber = ({
           maxLength={11}
         />
         <Image source={FeatherPhone} style={styles.icon} />
-        {showModal && <ModalCountry items={codeList} onChangeCode={setCode} setShowModal={setShowModal} />}
+        {showModal && (
+          <ModalCountry
+            items={codeList}
+            onChangeCode={setCode}
+            setShowModal={setShowModal}
+          />
+        )}
       </View>
     );
   }
@@ -106,7 +122,9 @@ const InputPhoneNumber = ({
         <FormLabel labelStyle={[styles.label, labelStyle]} label={label} />
       )}
       <View style={styles.container}>
-        <TouchableOpacity style={styles.btn} onPress={() => setShowModal(true)}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => setShowModal(!showModal)}>
           <Text style={styles.country_code}>{`+${phoneCode}`}</Text>
           <Image source={Down} style={styles.leftIcon} />
         </TouchableOpacity>
@@ -118,7 +136,13 @@ const InputPhoneNumber = ({
           maxLength={11}
         />
         <Image source={FeatherPhone} style={styles.icon} />
-        {showModal && <ModalCountry items={codeList} onChangeCode={onChangeCode} setShowModal={setShowModal} />}
+        {showModal && (
+          <ModalCountry
+            items={codeList}
+            onChangeCode={onChangeCode}
+            setShowModal={setShowModal}
+          />
+        )}
       </View>
     </>
   );
