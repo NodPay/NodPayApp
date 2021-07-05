@@ -25,6 +25,7 @@ import CommentReplyItem from './CommentReplyItem';
 import CommentSend from './CommentSend';
 import PeopleCircleItem from './PeopleCircleItem';
 import PeopleItem from './PeopleItem';
+import FaqAccordionItem from './FaqAccordionItem';
 
 export {
   SectionTitle,
@@ -54,4 +55,5 @@ export {
   CommentSend,
   PeopleCircleItem,
   PeopleItem,
+  FaqAccordionItem,
 };

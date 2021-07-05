@@ -31,7 +31,13 @@ const Settings = ({navigation}) => {
       <SettingsItem icon={PhoneGrey} title="Change Phone Number" />
       <SettingsItem icon={Detail} title="Language" />
       <SettingsItem icon={Star} title="Rate NodPay" />
-      <SettingsItem icon={PencilEdit} title="Send Feedback" />
+      <SettingsItem
+        icon={PencilEdit}
+        title="Send Feedback"
+        onPress={() => {
+          navigation.navigate('Feedback');
+        }}
+      />
     </SafeAreaView>
   );
 };

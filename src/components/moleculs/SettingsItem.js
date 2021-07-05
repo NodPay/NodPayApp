@@ -7,7 +7,7 @@ import {NextBlack} from '../../assets';
 
 const SettingsItem = ({icon, title, onPress}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={[styles.wrapper, {justifyContent: 'space-between'}]}>
         <View style={styles.wrapper}>
           <Image source={icon} style={styles.icon} />

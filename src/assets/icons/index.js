@@ -9,6 +9,8 @@ import Close from './close.png';
 import CloseRed from './close_red.png';
 import FeatherPhone from './feather_phone.png';
 import Down from './down.png';
+import DownBlack from './down_black.png';
+import UpBlack from './up_black.png';
 import Male from './male.png';
 import MaleActive from './male_active.png';
 import Female from './female.png';
@@ -84,6 +86,8 @@ export {
   PhonePurple,
   FeatherPhone,
   Down,
+  DownBlack,
+  UpBlack,
   Male,
   MaleActive,
   Female,

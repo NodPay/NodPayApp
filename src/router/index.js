@@ -27,6 +27,7 @@ import {
   Settings,
   Comment,
   Card,
+  Feedback,
 } from '../screens';
 import {Drawer as DrawerComponent, HomeTabBar} from '../components';
 
@@ -36,7 +37,7 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Splash"
+        initialRouteName="Feedback"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Loader" component={Loader} />
@@ -56,6 +57,7 @@ const Router = () => {
         <Stack.Screen name="Search" component={Search} />
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="Comment" component={Comment} />
+        <Stack.Screen name="Feedback" component={Feedback} />
         <Stack.Screen
           name="InviteFriendPeople"
           component={InviteFriendPeople}

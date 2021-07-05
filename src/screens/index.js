@@ -19,6 +19,7 @@ import Search from './Search';
 import Settings from './Settings';
 import Comment from './Comment';
 import Card from './Card';
+import Feedback from './Feedback';
 
 export {
   Splash,
@@ -42,4 +43,5 @@ export {
   Settings,
   Comment,
   Card,
+  Feedback,
 };
