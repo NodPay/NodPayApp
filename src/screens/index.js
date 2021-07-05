@@ -20,6 +20,7 @@ import Settings from './Settings';
 import Comment from './Comment';
 import Card from './Card';
 import Language from './Language';
+import ChangePhoneNumber from './ChangePhoneNumber';
 
 export {
   Splash,
@@ -44,4 +45,5 @@ export {
   Comment,
   Card,
   Language,
+  ChangePhoneNumber,
 };
