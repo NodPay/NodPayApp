@@ -5,12 +5,7 @@ import {color, dimens, fonts} from '../../utils';
 import {InviteCompleted} from '../../assets';
 import {Button} from '../../components';
 
-const InvitePeopleItem = ({
-  backgroundIcon,
-  name,
-  step,
-  onPressRight,
-}) => {
+const InvitePeopleItem = ({backgroundIcon, name, step, onPressRight}) => {
   const stepInvite = ['Installed', 'Verified', 'Completed!'];
   const isCompleted = step === 3;
 
@@ -20,13 +15,15 @@ const InvitePeopleItem = ({
         <Text style={styles.iconText}>{name.substring(0, 1)}</Text>
       </View>
       <View style={styles.containerContent}>
-        <Text style={styles.name}>
-          {name}
-        </Text>
+        <Text style={styles.name}>{name}</Text>
         <View style={styles.containerStep}>
           {[...new Array(3)].map((item, index) => (
             <View key={index} style={styles.step}>
-              <View style={step > index ? styles.stepDotActive : styles.stepDotInactive} />
+              <View
+                style={
+                  step > index ? styles.stepDotActive : styles.stepDotInactive
+                }
+              />
             </View>
           ))}
           <Text style={styles.stepText}>{stepInvite[step - 1]}</Text>
@@ -39,8 +36,14 @@ const InvitePeopleItem = ({
           <Button
             onPress={onPressRight}
             title="Nudge"
-            btnStyle={{backgroundColor: color.btn_black, paddingHorizontal: dimens.default_20}}
-            titleStyle={{color: color.btn_white_2, fontFamily: fonts.sofia_bold}}
+            btnStyle={{
+              backgroundColor: color.btn_black,
+              paddingHorizontal: dimens.default_20,
+            }}
+            titleStyle={{
+              color: color.btn_white_2,
+              fontFamily: fonts.sofia_bold,
+            }}
           />
         )}
       </View>
@@ -115,5 +118,5 @@ const styles = StyleSheet.create({
     width: dimens.large,
     height: dimens.large,
     resizeMode: 'cover',
-  }
+  },
 });

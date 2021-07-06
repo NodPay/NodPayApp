@@ -1,6 +1,4 @@
-import {
-  Platform,
-} from 'react-native';
+import {Platform} from 'react-native';
 
 export const fonts = {
   noto_regular: Platform.OS === 'android' ? 'NotoSans-Regular' : 'NotoSans',

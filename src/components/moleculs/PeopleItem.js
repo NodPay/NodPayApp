@@ -15,18 +15,20 @@ const PeopleItem = ({
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.photoContainer}>
-        <Image source={photo} style={[styles.photo, isSmall ? {width: dimens.large_40, height: dimens.large_40} : {}]} />
-        {isInternasional && <Image source={Internasional} style={styles.icon} />}
+        <Image
+          source={photo}
+          style={[
+            styles.photo,
+            isSmall ? {width: dimens.large_40, height: dimens.large_40} : {},
+          ]}
+        />
+        {isInternasional && (
+          <Image source={Internasional} style={styles.icon} />
+        )}
       </View>
       <View style={styles.containerContent}>
-        <Text style={styles.name}>
-          {name}
-        </Text>
-        {!isSmall && (
-          <Text style={styles.phone}>
-            {phone}
-          </Text>
-        )}
+        <Text style={styles.name}>{name}</Text>
+        {!isSmall && <Text style={styles.phone}>{phone}</Text>}
       </View>
     </TouchableOpacity>
   );

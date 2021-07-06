@@ -4,21 +4,16 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 import {Internasional} from '../../assets';
 
-const PeopleCircleItem = ({
-  photo,
-  name,
-  onPress,
-  isInternasional
-}) => {
+const PeopleCircleItem = ({photo, name, onPress, isInternasional}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.photoContainer}>
         <Image source={photo} style={styles.photo} />
-        {isInternasional && <Image source={Internasional} style={styles.icon} />}
+        {isInternasional && (
+          <Image source={Internasional} style={styles.icon} />
+        )}
       </View>
-      <Text style={styles.name}>
-        {name}
-      </Text>
+      <Text style={styles.name}>{name}</Text>
     </TouchableOpacity>
   );
 };

@@ -4,7 +4,13 @@ import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
 
 //where local files imported
 import {color, dimens, fonts} from '../utils';
-import {PageTitle, StepInfo, InputText, Button, InvitePeopleItem} from '../components';
+import {
+  PageTitle,
+  StepInfo,
+  InputText,
+  Button,
+  InvitePeopleItem,
+} from '../components';
 import {Copy} from '../assets';
 
 const InviteFriendPeople = ({navigation}) => {
@@ -65,7 +71,7 @@ const InviteFriendPeople = ({navigation}) => {
       name: 'Bruno Fernandes',
       step: 3,
       onPressRight: () => {},
-    }
+    },
   ]);
 
   return (
@@ -79,13 +85,11 @@ const InviteFriendPeople = ({navigation}) => {
       <View style={styles.containerContent}>
         <View style={styles.containerStep}>
           <Text style={styles.title}>How its work?</Text>
-          <StepInfo
-            items={stepInfo}
-          />
+          <StepInfo items={stepInfo} />
         </View>
       </View>
       <FlatList
-        contentContainerStyle={{ paddingBottom: dimens.small }}
+        contentContainerStyle={{paddingBottom: dimens.small}}
         style={styles.list}
         data={peopleList}
         renderItem={({item}) => (
@@ -108,7 +112,12 @@ const InviteFriendPeople = ({navigation}) => {
           iconRight={Copy}
           onPressRight={() => {}}
           containerStyle={{marginBottom: dimens.default_14, marginTop: 0}}
-          inputStyle={{backgroundColor: color.grey_7, elevation: 0, shadowOpacity: 0, marginTop: 0}}
+          inputStyle={{
+            backgroundColor: color.grey_7,
+            elevation: 0,
+            shadowOpacity: 0,
+            marginTop: 0,
+          }}
         />
         <Button
           onPress={() => {}}

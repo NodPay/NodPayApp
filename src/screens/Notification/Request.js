@@ -79,7 +79,7 @@ const NotificationRequest = () => {
 
   return (
     <FlatList
-      contentContainerStyle={{ paddingBottom: dimens.small }}
+      contentContainerStyle={{paddingBottom: dimens.small}}
       style={styles.container}
       data={notifRequestData}
       renderItem={({item}) => (
@@ -104,5 +104,5 @@ export default NotificationRequest;
 const styles = StyleSheet.create({
   container: {
     paddingVertical: dimens.default_16,
-  }
+  },
 });

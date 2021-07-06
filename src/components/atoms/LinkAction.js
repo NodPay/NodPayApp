@@ -6,7 +6,9 @@ const LinkAction = ({text, actionText, onPress}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{text}</Text>
-      <Text style={styles.action_text} onPress={onPress}>{actionText}</Text>
+      <Text style={styles.action_text} onPress={onPress}>
+        {actionText}
+      </Text>
     </View>
   );
 };

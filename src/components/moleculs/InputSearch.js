@@ -13,7 +13,11 @@ const InputSearch = ({
   backgroundColor,
 }) => {
   return (
-    <View style={[styles.container, {backgroundColor: backgroundColor || color.grey_7}]}>
+    <View
+      style={[
+        styles.container,
+        {backgroundColor: backgroundColor || color.grey_7},
+      ]}>
       <Image source={Search} style={styles.icon} />
       <TextInput
         onSubmitEditing={onSubmitEditing}

@@ -36,7 +36,7 @@ const LoginPhone = ({navigation}) => {
     if (phone !== '' && password !== '') {
       navigation.navigate('DrawerNavigator');
     }
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -80,7 +80,9 @@ const LoginPhone = ({navigation}) => {
                 navigation.navigate('ForgotPassword');
               }}
             />
-            {submited && (phone === '' || password === '') && <ErrorMessage message="The mobile number or password is incorect." />}
+            {submited && (phone === '' || password === '') && (
+              <ErrorMessage message="The mobile number or password is incorect." />
+            )}
           </View>
         </View>
         <View style={styles.footer_container}>

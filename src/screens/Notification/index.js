@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, SafeAreaView, Image} from 'react-native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -31,7 +31,7 @@ const Notification = ({navigation}) => {
           />
         </View>
       ) : (
-        <Tab.Navigator tabBar={(props) => <Tabbed {...props} />}>
+        <Tab.Navigator tabBar={props => <Tabbed {...props} />}>
           <Tab.Screen name="Activity" component={Activity} />
           <Tab.Screen name="Request" component={Request} />
         </Tab.Navigator>

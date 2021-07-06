@@ -20,9 +20,7 @@ const Splash = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar
-        animated={true}
-        backgroundColor={color.bg_color} />
+      <StatusBar animated={true} backgroundColor={color.bg_color} />
       <Logo />
       <Image source={SplashWave} style={styles.img} />
     </SafeAreaView>

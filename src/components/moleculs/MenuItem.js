@@ -3,28 +3,15 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 import {Right} from '../../assets';
 
-const MenuItem = ({
-  icon,
-  title,
-  subtitle,
-  info,
-  withoutArrow,
-  onPress,
-}) => {
+const MenuItem = ({icon, title, subtitle, info, withoutArrow, onPress}) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.iconContainer}>
         <Image source={icon} style={styles.icon} />
       </View>
       <View style={styles.containerContent}>
-        <Text style={styles.title}>
-          {title}
-        </Text>
-        {subtitle && (
-          <Text style={styles.subtitle}>
-            {subtitle}
-          </Text>
-        )}
+        <Text style={styles.title}>{title}</Text>
+        {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
       </View>
       <View style={styles.containerRight}>
         {info && <Text style={styles.info}>{info}</Text>}

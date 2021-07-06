@@ -3,140 +3,147 @@ import {StyleSheet, View, ScrollView, SafeAreaView, Image} from 'react-native';
 
 //where local files imported
 import {color, dimens, fonts} from '../utils';
-import {PageTitle, Button, InputSearch, SectionTitle, PeopleCircleItem, PeopleItem} from '../components';
+import {
+  PageTitle,
+  Button,
+  InputSearch,
+  SectionTitle,
+  PeopleCircleItem,
+  PeopleItem,
+} from '../components';
 import {PeopleInviteFriend, People1} from '../assets';
 
 const Search = ({navigation}) => {
   const topPeople = [
     {
       photo: People1,
-      name: "Ahmad",
+      name: 'Ahmad',
       isInternasional: true,
     },
     {
       photo: People1,
-      name: "Amar",
+      name: 'Amar',
       isInternasional: false,
     },
     {
       photo: People1,
-      name: "Ben",
+      name: 'Ben',
       isInternasional: false,
     },
     {
       photo: People1,
-      name: "Bruno",
+      name: 'Bruno',
       isInternasional: true,
     },
     {
       photo: People1,
-      name: "Ahmad",
+      name: 'Ahmad',
       isInternasional: true,
     },
     {
       photo: People1,
-      name: "Amar",
+      name: 'Amar',
       isInternasional: false,
     },
     {
       photo: People1,
-      name: "Ben",
+      name: 'Ben',
       isInternasional: false,
     },
     {
       photo: People1,
-      name: "Bruno",
+      name: 'Bruno',
       isInternasional: true,
     },
   ];
   const recentTransaction = [
     {
       photo: People1,
-      name: "Ahmad Malikil Kudus",
-      phone: "+92 - 3234 - 5456",
+      name: 'Ahmad Malikil Kudus',
+      phone: '+92 - 3234 - 5456',
       isInternasional: true,
     },
     {
       photo: People1,
-      name: "Amar Lukman",
-      phone: "+92 - 9801 - 2358",
+      name: 'Amar Lukman',
+      phone: '+92 - 9801 - 2358',
       isInternasional: false,
     },
     {
       photo: People1,
-      name: "Ammirudin Syarif",
-      phone: "+92 - 9814 - 1498",
+      name: 'Ammirudin Syarif',
+      phone: '+92 - 9814 - 1498',
       isInternasional: false,
     },
     {
       photo: People1,
-      name: "Ben Kasyafana",
-      phone: "+92 - 8519 -1257",
+      name: 'Ben Kasyafana',
+      phone: '+92 - 8519 -1257',
       isInternasional: true,
     },
     {
       photo: People1,
-      name: "Bruno Fernandes",
-      phone: "+92 - 1897 - 1285",
+      name: 'Bruno Fernandes',
+      phone: '+92 - 1897 - 1285',
       isInternasional: false,
     },
     {
       photo: People1,
-      name: "Bruno Mars",
-      phone: "+92 - 1897 - 1285",
+      name: 'Bruno Mars',
+      phone: '+92 - 1897 - 1285',
       isInternasional: false,
     },
     {
       photo: People1,
-      name: "Ahmad Malikil Kudus",
-      phone: "+92 - 3234 - 5456",
+      name: 'Ahmad Malikil Kudus',
+      phone: '+92 - 3234 - 5456',
       isInternasional: true,
     },
     {
       photo: People1,
-      name: "Amar Lukman",
-      phone: "+92 - 9801 - 2358",
+      name: 'Amar Lukman',
+      phone: '+92 - 9801 - 2358',
       isInternasional: false,
     },
     {
       photo: People1,
-      name: "Ammirudin Syarif",
-      phone: "+92 - 9814 - 1498",
+      name: 'Ammirudin Syarif',
+      phone: '+92 - 9814 - 1498',
       isInternasional: false,
     },
     {
       photo: People1,
-      name: "Ben Kasyafana",
-      phone: "+92 - 8519 -1257",
+      name: 'Ben Kasyafana',
+      phone: '+92 - 8519 -1257',
       isInternasional: true,
     },
     {
       photo: People1,
-      name: "Bruno Fernandes",
-      phone: "+92 - 1897 - 1285",
+      name: 'Bruno Fernandes',
+      phone: '+92 - 1897 - 1285',
       isInternasional: false,
     },
     {
       photo: People1,
-      name: "Bruno Mars",
-      phone: "+92 - 1897 - 1285",
+      name: 'Bruno Mars',
+      phone: '+92 - 1897 - 1285',
       isInternasional: false,
     },
   ];
   const searchPeople = [
     {
       photo: People1,
-      name: "Joana Banderas",
+      name: 'Joana Banderas',
       isInternasional: false,
     },
     {
       photo: People1,
-      name: "John Brothers",
+      name: 'John Brothers',
       isInternasional: false,
     },
     {
       photo: People1,
-      name: "Buroana Jonathan",
+      name: 'Buroana Jonathan',
       isInternasional: false,
     },
   ];
@@ -180,10 +187,13 @@ const Search = ({navigation}) => {
               containerStyle={{
                 paddingVertical: 0,
                 marginTop: dimens.medium,
-                marginBottom: -20
+                marginBottom: -20,
               }}
             />
-            <ScrollView style={styles.peopleList} showsHorizontalScrollIndicator={false} horizontal>
+            <ScrollView
+              style={styles.peopleList}
+              showsHorizontalScrollIndicator={false}
+              horizontal>
               {topPeople.map((item, index) => (
                 <PeopleCircleItem
                   key={index}
@@ -197,7 +207,10 @@ const Search = ({navigation}) => {
               onPress={() => {}}
               title="Invite Friends"
               btnStyle={{backgroundColor: color.btn_black}}
-              titleStyle={{color: color.btn_white_2, fontFamily: fonts.sofia_bold}}
+              titleStyle={{
+                color: color.btn_white_2,
+                fontFamily: fonts.sofia_bold,
+              }}
             />
             <SectionTitle
               title="Recent Transactions"
@@ -207,7 +220,7 @@ const Search = ({navigation}) => {
               containerStyle={{
                 paddingVertical: 0,
                 marginTop: dimens.medium,
-                marginBottom: -20
+                marginBottom: -20,
               }}
             />
             {recentTransaction.map((item, index) => (
@@ -249,5 +262,5 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-  }
+  },
 });

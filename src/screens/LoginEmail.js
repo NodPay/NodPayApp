@@ -31,7 +31,7 @@ const LoginEmail = ({navigation}) => {
     if (email !== '' && password !== '') {
       navigation.navigate('DrawerNavigator');
     }
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -73,7 +73,9 @@ const LoginEmail = ({navigation}) => {
                 navigation.navigate('ForgotPassword');
               }}
             />
-            {submited && (email === '' || password === '') && <ErrorMessage message="The email or password is incorect." />}
+            {submited && (email === '' || password === '') && (
+              <ErrorMessage message="The email or password is incorect." />
+            )}
           </View>
         </View>
         <View style={styles.footer_container}>

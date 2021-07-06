@@ -5,10 +5,20 @@ import BottomSheet from '@gorhom/bottom-sheet';
 //where local files imported
 import {color, dimens, fonts} from '../utils';
 import {PageTitle, Button, StepInfo, MenuItem, InputText} from '../components';
-import {PeopleInviteFriend, InviteAdd, Copy, Facebook, PhonePurple} from '../assets';
+import {
+  PeopleInviteFriend,
+  InviteAdd,
+  Copy,
+  Facebook,
+  PhonePurple,
+} from '../assets';
 
 const InviteFriend = ({navigation}) => {
-  const stepInfo = ['You invite a friend', 'They Register & Topup', 'You both get XX'];
+  const stepInfo = [
+    'You invite a friend',
+    'They Register & Topup',
+    'You both get XX',
+  ];
   const refRBSheet = useRef(null);
   const snapPoints = useMemo(() => ['0%', '30%'], []);
 
@@ -28,9 +38,7 @@ const InviteFriend = ({navigation}) => {
       <ScrollView>
         <View style={styles.containerCenter}>
           <Image source={PeopleInviteFriend} style={styles.photo} />
-          <StepInfo
-            items={stepInfo}
-          />
+          <StepInfo items={stepInfo} />
         </View>
         <View style={styles.containerContent}>
           <MenuItem
@@ -38,7 +46,7 @@ const InviteFriend = ({navigation}) => {
             title="People Signed Up"
             subtitle="This put you in the top X%"
             info="2"
-            onPress={() => navigation.navigate("InviteFriendPeople")}
+            onPress={() => navigation.navigate('InviteFriendPeople')}
           />
           <MenuItem
             icon={InviteAdd}
@@ -59,7 +67,12 @@ const InviteFriend = ({navigation}) => {
           iconRight={Copy}
           onPressRight={() => {}}
           containerStyle={{marginBottom: dimens.default_14, marginTop: 0}}
-          inputStyle={{backgroundColor: color.grey_7, elevation: 0, shadowOpacity: 0, marginTop: 0}}
+          inputStyle={{
+            backgroundColor: color.grey_7,
+            elevation: 0,
+            shadowOpacity: 0,
+            marginTop: 0,
+          }}
         />
         <Button
           onPress={() => refRBSheet.current?.snapTo(1)}
@@ -90,7 +103,11 @@ const InviteFriend = ({navigation}) => {
               borderColor: color.btn_white,
               borderWidth: 1,
             }}
-            titleStyle={{fontFamily: fonts.sofia_bold, color: 'black', color: color.btn_title_white}}
+            titleStyle={{
+              fontFamily: fonts.sofia_bold,
+              color: 'black',
+              color: color.btn_title_white,
+            }}
             onPress={() => {}}
           />
           <Button
@@ -102,7 +119,11 @@ const InviteFriend = ({navigation}) => {
               borderColor: color.btn_white,
               borderWidth: 1,
             }}
-            titleStyle={{fontFamily: fonts.sofia_bold, color: 'black', color: color.btn_title_white}}
+            titleStyle={{
+              fontFamily: fonts.sofia_bold,
+              color: 'black',
+              color: color.btn_title_white,
+            }}
             onPress={() => {}}
           />
         </View>
@@ -141,5 +162,5 @@ const styles = StyleSheet.create({
   },
   containerModal: {
     padding: dimens.default_16,
-  }
+  },
 });
