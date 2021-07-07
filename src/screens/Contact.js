@@ -205,10 +205,12 @@ const Contact = ({navigation}) => {
     );
   };
 
+  // render contact state
+  const [id, setId] = useState('');
+  const [show, setShow] = useState(false);
+
   const RenderContact = () => {
     const [current, setCurrent] = useState(0);
-    const [show, setShow] = useState(null);
-    const [id, setId] = useState(null);
 
     const btn = [
       {
@@ -270,64 +272,6 @@ const Contact = ({navigation}) => {
             );
           })}
         </View>
-        <Gap t={dimens.default_16} />
-        <AlphabetList
-          data={[
-            {
-              key: 'a',
-              value: 'Andi',
-              name: 'Andi',
-              phoneNumber: '+62 699 6969',
-            },
-            {
-              key: 'a',
-              value: 'Ahmad',
-              name: 'Ahmad',
-              phoneNumber: '+62 699 6969',
-            },
-            {
-              key: 'b',
-              value: 'Bae',
-
-              name: 'Bae',
-              phoneNumber: '+62 699 6969',
-            },
-            {
-              key: 'g',
-              value: 'Garry',
-
-              name: 'Garry',
-              phoneNumber: '+62 699 6969',
-            },
-          ]}
-          renderSectionHeader={section => (
-            <View style={{paddingLeft: dimens.default_16, paddingVertical: 8}}>
-              <Text
-                style={{
-                  color: color.btn_black,
-                  fontFamily: fonts.sofia_bold,
-                  marginLeft: 8,
-                }}>
-                {section.title}
-              </Text>
-            </View>
-          )}
-          renderItem={item => (
-            <ContactItem
-              key={item.id}
-              {...item}
-              isContact
-              show={item.id == id && show == true ? true : false}
-              onBlock={() => setShow(false)}
-              onReport={() => setShow(false)}
-              onUnfriend={() => setShow(false)}
-              onPress={() => {
-                setId(item.id);
-                setShow(true);
-              }}
-            />
-          )}
-        />
       </View>
     );
   };
@@ -346,6 +290,72 @@ const Contact = ({navigation}) => {
         </View>
       )}
       {friendData != null && <RenderContact />}
+      <Gap t={dimens.default_16} />
+      <AlphabetList
+        style={{flex: 1}}
+        data={[
+          {
+            id: 0,
+            key: 'a',
+            value: 'Andi',
+            name: 'Andi',
+            phoneNumber: '+62 699 6969',
+          },
+          {
+            id: 2,
+            key: 'b',
+            value: 'Bae',
+            name: 'Bae',
+            phoneNumber: '+62 699 6969',
+          },
+          {
+            id: 3,
+            key: 'g',
+            value: 'Garry',
+            name: 'Garry',
+            phoneNumber: '+62 699 6969',
+          },
+        ]}
+        renderSectionHeader={section => (
+          <View
+            style={{
+              paddingLeft: dimens.default_16,
+              paddingVertical: 8,
+            }}>
+            <Text
+              style={{
+                color: color.btn_black,
+                fontFamily: fonts.sofia_bold,
+                marginLeft: 8,
+              }}>
+              {section.title}
+            </Text>
+          </View>
+        )}
+        renderItem={item => (
+          <ContactItem
+            {...item}
+            isContact
+            show={item.id == id && show == true ? true : false}
+            onBlock={() => {
+              setShow(false);
+              setId('');
+            }}
+            onReport={() => {
+              setShow(false);
+              setId('');
+            }}
+            onUnfriend={() => {
+              setShow(false);
+              setId('');
+            }}
+            onPress={() => {
+              setId(item.id);
+              setShow(true);
+            }}
+          />
+        )}
+      />
       <View style={styles.wrapBtn}>
         <Button
           onPress={() => bottomSheetRef.current?.snapTo(3)}
@@ -507,7 +517,6 @@ const styles = StyleSheet.create({
     color: color.grey,
     textAlign: 'center',
   },
-
   contentContainer: {
     backgroundColor: 'white',
   },

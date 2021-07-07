@@ -50,9 +50,8 @@ const SecurityPasswordSection = ({setUpBiometric, showModal, typeModal}) => {
               dispatch({type: 'SET_IS_COMPLETED', payload: true});
               wait(200).then(() => {
                 dispatch({type: 'RESET_REGISTER'});
-
                 navigation.replace('DrawerNavigator', {
-                  screen: 'Home',
+                  screen: 'Login',
                 });
               });
             } else {
@@ -63,9 +62,12 @@ const SecurityPasswordSection = ({setUpBiometric, showModal, typeModal}) => {
               });
             }
           }}
-          onClose={() =>
-            dispatch({type: 'SET_MODAL', showModal: false, typeModal: null})
-          }
+          onClose={() => {
+            dispatch({type: 'SET_MODAL', showModal: false, typeModal: null});
+            navigation.replace('DrawerNavigator', {
+              screen: 'Login',
+            });
+          }}
           btn2Text={typeModal == 'failed' ? 'Try Again' : null} // try again btn
           btn2Onpress={() => {
             dispatch({
@@ -167,6 +169,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_16,
+    color: 'black',
   },
   icons: {
     height: 24,

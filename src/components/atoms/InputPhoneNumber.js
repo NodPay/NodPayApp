@@ -183,6 +183,7 @@ const styles = StyleSheet.create({
     paddingLeft: dimens.default_16,
     letterSpacing: 1.2,
     fontWeight: 'normal',
+    color: 'black',
   },
   leftIcon: {
     width: 12,

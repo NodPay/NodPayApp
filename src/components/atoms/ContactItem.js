@@ -36,7 +36,11 @@ const ContactItem = ({
       {isContact ? (
         <View>
           <TouchableOpacity
-            style={{paddingTop: dimens.default_16}}
+            style={{
+              paddingTop: dimens.default_16,
+              position: 'absolute',
+              right: 16,
+            }}
             activeOpacity={0.8}
             onPress={onPress}>
             <Image source={ThreeDots} style={styles.icon} />
@@ -118,13 +122,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  icon: {height: 24, width: 24, resizeMode: 'cover'},
+  icon: {
+    height: 24,
+    width: 24,
+    resizeMode: 'cover',
+  },
   imageBackground: {
     resizeMode: 'contain',
-    position: 'absolute',
+    position: 'relative',
     height: 150,
     width: 200,
-    right: -dimens.default_16,
+    right: 0,
     top: dimens.default_16,
     zIndex: 1,
   },

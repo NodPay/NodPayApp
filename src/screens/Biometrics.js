@@ -41,7 +41,7 @@ const Biometrics = ({navigation}) => {
       .then(() => {
         setIsAuthenticate(true);
         alert('Success Scan Touch ID');
-        navigation.replace('Register');
+        navigation.replace('Login');
       })
       .catch(e =>
         console.log('error while authenticate fingerprint', e.message),
