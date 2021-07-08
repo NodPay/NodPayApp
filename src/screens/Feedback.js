@@ -9,15 +9,21 @@ import {
   KeyboardAvoidingView,
   StatusBar,
   ScrollView,
-  TextInput,
+  Alert,
 } from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import {Transition, Transitioning} from 'react-native-reanimated';
 
 //where local files imported
 import {color, dimens, fonts} from '../utils';
-import {Button, FaqAccordionItem, PageTitle, InputText} from '../components';
-import {CloseRed} from '../assets';
+import {
+  Button,
+  FaqAccordionItem,
+  PageTitle,
+  InputText,
+  Modal,
+} from '../components';
+import {CloseRed, ModalSent, ModalFailed} from '../assets';
 
 const accordionData = [
   {
@@ -56,20 +62,53 @@ const transition = (
 );
 
 const Feedback = ({navigation}) => {
+  // States
   const [accordionIndex, setAccordionIndex] = useState(null);
   const [feedback, setFeedback] = useState('');
+  const [modalSuccess, setModalSuccess] = useState(false);
+  // Refs
   const accordionRef = useRef();
   const bottomSheetRef = useRef();
 
   const snapPoints = useMemo(() => ['0%', '100%'], []);
 
   const handleSubmitFeedback = () => {
-    bottomSheetRef.current?.close();
+    if (feedback) {
+      bottomSheetRef.current?.close();
+      setModalSuccess(true);
+    } else {
+      Alert.alert('Feedback field is empty', 'Please write your feedback', [
+        {text: 'Ok'},
+      ]);
+    }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={color.btn_white_2} />
+
+      {/* Modals */}
+      {/* <Modal
+        imageSrc={ModalFailed}
+        title="Something’s Wrong"
+        subtitle="Failed to submit your feedback, please check your internet connection and try again."
+        btn1Text="Try Again"
+        btn2Text="Close"
+        // btn1Onpress={() =>{}}
+        visible={modalSuccess}
+        onClose={() => {
+          setModalSuccess(false);
+        }}
+      /> */}
+      <Modal
+        imageSrc={ModalSent}
+        title="Feedback sent!"
+        subtitle="Thank you for taking your time sharing how you feel, we appreciate it!"
+        visible={modalSuccess}
+        onClose={() => {
+          setModalSuccess(false);
+        }}
+      />
 
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <PageTitle
@@ -79,6 +118,7 @@ const Feedback = ({navigation}) => {
           navigation={navigation}
         />
 
+        {/* Feedback Information */}
         <View style={{paddingHorizontal: dimens.default}}>
           <View style={styles.feedbackBox}>
             <Text style={styles.feedbackText}>Feedback</Text>
@@ -119,6 +159,7 @@ const Feedback = ({navigation}) => {
         </View>
       </ScrollView>
 
+      {/* Feedback Form */}
       <BottomSheet ref={bottomSheetRef} snapPoints={snapPoints}>
         <View style={{flex: 1, backgroundColor: color.bg_bottomsheet}}>
           <View
