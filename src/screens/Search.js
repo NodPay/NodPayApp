@@ -158,26 +158,14 @@ const Search = ({navigation}) => {
         navigation={navigation}
         isRightQR
       />
-      <ScrollView style={styles.containerContent}>
+      <View style={styles.containerContent}>
         <InputSearch
           backgroundColor={color.bg_grey}
-          placeholder="Friend Name, Business"
+          placeholder="Friend Name, Business, Phone Number"
           value={search}
           onChangeText={setSearch}
         />
-        {search !== '' ? (
-          <View style={styles.searchList}>
-            {searchPeople.map((item, index) => (
-              <PeopleItem
-                key={index}
-                photo={item.photo}
-                name={item.name}
-                isInternasional={item.isInternasional}
-                isSmall={true}
-              />
-            ))}
-          </View>
-        ) : (
+        {search === '' && (
           <>
             <SectionTitle
               title="Top People"
@@ -204,7 +192,7 @@ const Search = ({navigation}) => {
               ))}
             </ScrollView>
             <Button
-              onPress={() => {}}
+              onPress={() => navigation.navigate('InviteFriend')}
               title="Invite Friends"
               btnStyle={{backgroundColor: color.btn_black}}
               titleStyle={{
@@ -212,6 +200,24 @@ const Search = ({navigation}) => {
                 fontFamily: fonts.sofia_bold,
               }}
             />
+          </>
+        )}
+      </View>
+      <ScrollView style={styles.containerContent}>
+        {search !== '' ? (
+          <View style={styles.searchList}>
+            {searchPeople.map((item, index) => (
+              <PeopleItem
+                key={index}
+                photo={item.photo}
+                name={item.name}
+                isInternasional={item.isInternasional}
+                isSmall={true}
+              />
+            ))}
+          </View>
+        ) : (
+          <>
             <SectionTitle
               title="Recent Transactions"
               titleStyle={{
@@ -219,7 +225,6 @@ const Search = ({navigation}) => {
               }}
               containerStyle={{
                 paddingVertical: 0,
-                marginTop: dimens.medium,
                 marginBottom: -20,
               }}
             />

@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.04,
     shadowRadius: 6,
-    elevation: 1,
+    // elevation: 1,
   },
 });

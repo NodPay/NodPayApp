@@ -6,6 +6,7 @@ import {
   ScrollView,
   Image,
   StatusBar,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 // where local file imported
@@ -41,75 +42,74 @@ const LoginPhone = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar animated={true} backgroundColor={color.bg_color} />
-      <ScrollView style={styles.scroll}>
-        <View style={styles.inner_container}>
-          <PageTitle title="Login" navigation={navigation} />
-        </View>
-        <View style={styles.center_container}>
-          <View style={styles.bg_top} />
-          <Image source={SplashWaveGradient} style={styles.image_bg_wave} />
-          <View style={styles.center_content}>
-            <SectionTitle
-              title="Welcome Back!"
-              titleStyle={{fontSize: dimens.large_40}}
-              subtitle={`Login to your account with your email or\nmobile number`}
-              textColor="white"
-            />
-            <View style={styles.form_container}>
-              <InputPhoneNumber
-                labelStyle={{color: color.btn_black}}
-                label="Mobile Number"
-                placeholder="Mobile Number"
-                phoneCode={code}
-                value={phone}
-                onChangeText={setPhone}
-                onChangeCode={setCode}
-              />
-              <InputPassword
-                labelStyle={{color: color.btn_black}}
-                label="Password"
-                placeholder="Password"
-                value={password}
-                onChangeText={setPassword}
-              />
-            </View>
-            <LinkAction
-              text="Forgot your password?"
-              actionText="Click here"
-              onPress={() => {
-                navigation.navigate('ForgotPassword');
-              }}
-            />
-            {submited && (phone === '' || password === '') && (
-              <ErrorMessage message="The mobile number or password is incorect." />
-            )}
+        <ScrollView style={styles.scroll}>
+          <View style={styles.inner_container}>
+            <PageTitle title="Login" navigation={navigation} />
           </View>
-        </View>
-        <View style={styles.footer_container}>
-          <Button
-            title="Login"
-            btnStyle={{
-              backgroundColor: color.btn_black,
-              marginBottom: dimens.default_12,
-              borderColor: color.btn_white,
-              borderWidth: 1,
-            }}
-            titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-            onPress={submit}
-          />
-          <Button
-            title="Register"
-            btnStyle={{
-              backgroundColor: 'white',
-              marginBottom: dimens.default_16,
-              borderColor: color.btn_white,
-              borderWidth: 1,
-            }}
-            titleStyle={{fontFamily: fonts.sofia_bold}}
-            onPress={() => navigation.navigate('Register')}
-          />
-        </View>
-      </ScrollView>
+          <View style={styles.center_container}>
+            <View style={styles.bg_top} />
+            <Image source={SplashWaveGradient} style={styles.image_bg_wave} />
+            <View style={styles.center_content}>
+              <SectionTitle
+                title="Welcome Back!"
+                titleStyle={{fontSize: dimens.large_40}}
+                subtitle={`Login to your account with your email or\nmobile number`}
+                textColor="white"
+              />
+              <View style={styles.form_container}>
+                <InputPhoneNumber
+                  labelStyle={{color: color.btn_black}}
+                  label="Mobile Number"
+                  placeholder="Mobile Number"
+                  phoneCode={code}
+                  value={phone}
+                  onChangeText={setPhone}
+                  onChangeCode={setCode}
+                />
+                <InputPassword
+                  labelStyle={{color: color.btn_black}}
+                  label="Password"
+                  placeholder="Password"
+                  value={password}
+                  onChangeText={setPassword}
+                />
+              </View>
+              <LinkAction
+                text="Forgot your password?"
+                actionText="Click here"
+                onPress={() => {
+                  navigation.navigate('ForgotPassword');
+                }}
+              />
+              {submited && (phone === '' || password === '') && (
+                <ErrorMessage message="The mobile number or password is incorect." />
+              )}
+            </View>
+          </View>
+        </ScrollView>
+      <View style={styles.footer_container}>
+        <Button
+          title="Login"
+          btnStyle={{
+            backgroundColor: color.btn_black,
+            marginBottom: dimens.default_12,
+            borderColor: color.btn_white,
+            borderWidth: 1,
+          }}
+          titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
+          onPress={submit}
+        />
+        <Button
+          title="Register"
+          btnStyle={{
+            backgroundColor: 'white',
+            borderColor: color.btn_white,
+            borderWidth: 1,
+          }}
+          titleStyle={{fontFamily: fonts.sofia_bold}}
+          onPress={() => navigation.navigate('Register')}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
   },
   center_content: {
     paddingHorizontal: dimens.default_16,
+    paddingBottom: dimens.very_large,
   },
   form_container: {
     marginTop: dimens.default_16,
@@ -157,7 +158,6 @@ const styles = StyleSheet.create({
   },
   footer_container: {
     padding: dimens.default_16,
-    marginTop: dimens.x_large,
   },
   wave: {
     zIndex: -1,

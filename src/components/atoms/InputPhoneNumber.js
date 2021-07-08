@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 import {FormLabel} from '../atoms';
 
@@ -22,6 +23,8 @@ import {
   FlagUs,
   Triangle,
 } from '../../assets';
+
+const {width: widthScreen, height: heightScreen} = Dimensions.get('window');
 
 const ModalCountry = ({items, onChangeCode, setShowModal}) => {
   return (
@@ -53,6 +56,7 @@ const InputPhoneNumber = ({
   onChangeCode,
   labelStyle,
   inputMobileNumber,
+  placeholder,
   dispatch,
 }) => {
   const codeList = [
@@ -93,6 +97,8 @@ const InputPhoneNumber = ({
         <TextInput
           allowFontScaling={true}
           keyboardType="number-pad"
+          placeholderTextColor="black"
+          placeholder={placeholder}
           value={number.toString()}
           onChangeText={value => {
             setNumber(value.toString());
@@ -130,6 +136,8 @@ const InputPhoneNumber = ({
         </TouchableOpacity>
         <TextInput
           keyboardType="number-pad"
+          placeholderTextColor="black"
+          placeholder={placeholder}
           value={value.toString()}
           onChangeText={onChangeText}
           style={styles.input}
@@ -144,6 +152,13 @@ const InputPhoneNumber = ({
           />
         )}
       </View>
+      {showModal && (
+        <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => setShowModal(false)}
+          style={styles.modalBg}
+        />
+      )}
     </>
   );
 };
@@ -178,7 +193,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    fontFamily: fonts.sofia_bold,
+    fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_16,
     paddingLeft: dimens.default_16,
     letterSpacing: 1.2,
@@ -203,6 +218,15 @@ const styles = StyleSheet.create({
   btn: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  modalBg: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    width: widthScreen,
+    height: heightScreen * 200,
+    left: -18,
+    top: -heightScreen,
+    zIndex: 100,
   },
   modal: {
     position: 'absolute',

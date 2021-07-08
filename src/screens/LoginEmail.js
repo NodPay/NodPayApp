@@ -78,31 +78,30 @@ const LoginEmail = ({navigation}) => {
             )}
           </View>
         </View>
-        <View style={styles.footer_container}>
-          <Button
-            title="Login"
-            btnStyle={{
-              backgroundColor: color.btn_black,
-              marginBottom: dimens.default_12,
-              borderColor: color.btn_white,
-              borderWidth: 1,
-            }}
-            titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-            onPress={submit}
-          />
-          <Button
-            title="Register"
-            btnStyle={{
-              backgroundColor: 'white',
-              marginBottom: dimens.default_16,
-              borderColor: color.btn_white,
-              borderWidth: 1,
-            }}
-            titleStyle={{fontFamily: fonts.sofia_bold}}
-            onPress={() => navigation.navigate('Register')}
-          />
-        </View>
       </ScrollView>
+      <View style={styles.footer_container}>
+        <Button
+          title="Login"
+          btnStyle={{
+            backgroundColor: color.btn_black,
+            marginBottom: dimens.default_12,
+            borderColor: color.btn_white,
+            borderWidth: 1,
+          }}
+          titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
+          onPress={submit}
+        />
+        <Button
+          title="Register"
+          btnStyle={{
+            backgroundColor: 'white',
+            borderColor: color.btn_white,
+            borderWidth: 1,
+          }}
+          titleStyle={{fontFamily: fonts.sofia_bold}}
+          onPress={() => navigation.navigate('Register')}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -129,6 +128,7 @@ const styles = StyleSheet.create({
   },
   center_content: {
     paddingHorizontal: dimens.default_16,
+    paddingBottom: dimens.very_large,
   },
   form_container: {
     marginBottom: dimens.default_16,
@@ -149,7 +149,6 @@ const styles = StyleSheet.create({
   },
   footer_container: {
     padding: dimens.default_16,
-    marginTop: dimens.x_large,
   },
   wave: {
     zIndex: -1,
