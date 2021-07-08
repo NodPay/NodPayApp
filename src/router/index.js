@@ -30,6 +30,8 @@ import {
   Feedback,
   Language,
   ChangePhoneNumber,
+  EditProfile,
+  PasswordSecurity,
 } from '../screens';
 import {Drawer as DrawerComponent, HomeTabBar} from '../components';
 
@@ -39,7 +41,7 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Splash"
+        initialRouteName="AppDrawer"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Loader" component={Loader} />
@@ -61,6 +63,8 @@ const Router = () => {
         <Stack.Screen name="Comment" component={Comment} />
         <Stack.Screen name="Feedback" component={Feedback} />
         <Stack.Screen name="ChangePhoneNumber" component={ChangePhoneNumber} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
+        <Stack.Screen name="PasswordSecurity" component={PasswordSecurity} />
         <Stack.Screen name="Language" component={Language} />
         <Stack.Screen
           name="InviteFriendPeople"

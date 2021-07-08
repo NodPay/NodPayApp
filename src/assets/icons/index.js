@@ -75,6 +75,7 @@ import FlagHu from './flag-hu.png';
 import FlagMx from './flag-mx.png';
 import FlagUs from './flag-us.png';
 import Triangle from './triangle.png';
+import CheckmarkWhite from './checkmark_white.png';
 export * from './flags';
 
 export {
@@ -155,4 +156,5 @@ export {
   FlagMx,
   FlagUs,
   Triangle,
+  CheckmarkWhite,
 };

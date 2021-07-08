@@ -6,7 +6,7 @@ import {color, dimens, fonts} from '../../utils';
 import {Gap} from '../atoms';
 import {SectionTitle, InputPhoto, InputText, InputOption} from '../moleculs';
 
-const PersonalDetailsSection = ({isFamilyRelation}) => {
+const PersonalDetailsSection = ({isFamilyRelation, withoutSectionTitle}) => {
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -51,19 +51,21 @@ const PersonalDetailsSection = ({isFamilyRelation}) => {
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled">
-      <SectionTitle
-        containerStyle={{
-          padding: 0,
-          // paddingHorizontal: dimens.default_16,
-        }}
-        title="Personal Details"
-        titleStyle={{color: 'black', fontSize: dimens.default_22}}
-        subtitle="Tell us more about you"
-        subTitleStyle={{
-          color: color.grey,
-          fontSize: dimens.default_16,
-        }}
-      />
+      {!withoutSectionTitle && (
+        <SectionTitle
+          containerStyle={{
+            padding: 0,
+            // paddingHorizontal: dimens.default_16,
+          }}
+          title="Personal Details"
+          titleStyle={{color: 'black', fontSize: dimens.default_22}}
+          subtitle="Tell us more about you"
+          subTitleStyle={{
+            color: color.grey,
+            fontSize: dimens.default_16,
+          }}
+        />
+      )}
       <Gap t={dimens.default_16} />
       <InputPhoto />
       <InputText

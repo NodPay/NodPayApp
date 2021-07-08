@@ -3,6 +3,7 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 
 // where local files imported
+import {FormLabel} from '../atoms';
 import {color, dimens, fonts} from '../../utils';
 import {DefaultPict} from '../../assets';
 
@@ -21,16 +22,19 @@ const InputPhoto = () => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={picture == '' ? DefaultPict : {uri: picture}}
-        style={styles.image}
-      />
-      <TouchableOpacity
-        style={styles.btn}
-        activeOpacity={0.8}
-        onPress={uploadPhoto}>
-        <Text style={styles.btnTitle}>Upload Photo</Text>
-      </TouchableOpacity>
+      <FormLabel label="Profile Photo" />
+      <View style={styles.content}>
+        <Image
+          source={picture == '' ? DefaultPict : {uri: picture}}
+          style={styles.image}
+        />
+        <TouchableOpacity
+          style={styles.btn}
+          activeOpacity={0.8}
+          onPress={uploadPhoto}>
+          <Text style={styles.btnTitle}>Upload Photo</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -39,9 +43,12 @@ export default InputPhoto;
 
 const styles = StyleSheet.create({
   container: {
+    paddingVertical: dimens.default_16,
+  },
+  content: {
     flexDirection: 'row',
-    padding: dimens.default_16,
     alignItems: 'center',
+    marginTop: dimens.small,
   },
   image: {
     height: 80,

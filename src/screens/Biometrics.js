@@ -47,7 +47,7 @@ const Biometrics = ({route, navigation}) => {
     })
       .then(() => {
         setIsAuthenticate(true);
-        alert('Success Scan Touch ID');
+        alert('Success Scan ' + biometryType);
         navigation.pop();
       })
       .catch(e =>
