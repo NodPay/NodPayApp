@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
 import AlphabetList from 'react-native-flatlist-alphabet';
@@ -372,7 +373,7 @@ const Contact = ({navigation}) => {
           style={{
             flex: isContact || isFacebook ? 0 : 1,
             backgroundColor: 'white',
-            paddingVertical: dimens.medium,
+            paddingVertical: Platform.OS === 'ios' ? dimens.medium : 0,
           }}>
           <PageTitle
             isCloseMode
