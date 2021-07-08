@@ -28,4 +28,5 @@ export const color = {
   comment_active: '#548EFF',
   emoji_active: '#6467E5',
   bg_input_comment: '#F0F0F1',
+  bg_bottomsheet: '#FDFDFD',
 };

@@ -12,6 +12,7 @@ const TextInput = ({
   keyboardType,
   editable,
   style,
+  additionalInputProps,
 }) => {
   return (
     <InputText
@@ -25,6 +26,7 @@ const TextInput = ({
       keyboardType={keyboardType}
       secureTextEntry={secureTextEntry}
       editable={editable}
+      {...additionalInputProps}
     />
   );
 };
