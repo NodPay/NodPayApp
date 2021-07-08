@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, ScrollView, StyleSheet, Image, Text} from 'react-native';
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Image,
+  Text,
+  SafeAreaView,
+} from 'react-native';
 
 import {DrawerItem, BalanceInfo} from '../moleculs';
 import {
@@ -19,7 +26,7 @@ import {dimens, color, fonts} from '../../utils';
 
 const Drawer = ({navigation}) => {
   return (
-    <View style={styles.drawerContainer}>
+    <SafeAreaView style={styles.drawerContainer}>
       <ScrollView contentContainerStyle={styles.scrollviewContainer}>
         <View style={styles.profileContainer}>
           <Image
@@ -84,7 +91,7 @@ const Drawer = ({navigation}) => {
       </ScrollView>
 
       <DrawerItem label="Log out" image={DrawerLogout} onPress={() => {}} />
-    </View>
+    </SafeAreaView>
   );
 };
 
