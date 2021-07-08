@@ -34,8 +34,16 @@ const Settings = ({navigation}) => {
         title="Password & Security"
         onPress={() => navigation.navigate('PasswordSecurity')}
       />
-      <SettingsItem icon={Profile} title="Privacy & Socials" />
-      <SettingsItem icon={Bell} title="Notification Settings" />
+      <SettingsItem
+        icon={Profile}
+        title="Privacy & Socials"
+        onPress={() => navigation.navigate('PrivacySocial')}
+      />
+      <SettingsItem
+        icon={Bell}
+        title="Notification Settings"
+        onPress={() => navigation.navigate('NotificationSetting')}
+      />
       <SettingsItem
         icon={PhoneGrey}
         title="Change Phone Number"

@@ -26,6 +26,8 @@ import CommentSend from './CommentSend';
 import PeopleCircleItem from './PeopleCircleItem';
 import PeopleItem from './PeopleItem';
 import FaqAccordionItem from './FaqAccordionItem';
+import InputSwitch from './InputSwitch';
+import InputCheck from './InputCheck';
 
 export {
   SectionTitle,
@@ -56,4 +58,6 @@ export {
   PeopleCircleItem,
   PeopleItem,
   FaqAccordionItem,
+  InputSwitch,
+  InputCheck,
 };

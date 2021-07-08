@@ -5,6 +5,7 @@ import {color, dimens, fonts} from '../../utils';
 const Button = ({
   onPress,
   btnStyle,
+  iconStyle,
   titleStyle,
   title,
   iconLeft,
@@ -17,7 +18,9 @@ const Button = ({
       activeOpacity={0.8}
       onPress={onPress}
       style={[styles.btn, btnStyle]}>
-      {iconLeft && <Image style={styles.btn_icon} source={iconLeft} />}
+      {iconLeft && (
+        <Image style={[styles.btn_icon, iconStyle]} source={iconLeft} />
+      )}
       <Text style={[styles.btn_title, titleStyle]}>{title}</Text>
       {iconRight && <Image source={iconRight} style={styles.iconRight} />}
     </TouchableOpacity>

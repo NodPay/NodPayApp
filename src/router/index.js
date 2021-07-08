@@ -32,6 +32,8 @@ import {
   ChangePhoneNumber,
   EditProfile,
   PasswordSecurity,
+  PrivacySocial,
+  NotificationSetting,
 } from '../screens';
 import {Drawer as DrawerComponent, HomeTabBar} from '../components';
 
@@ -65,6 +67,11 @@ const Router = () => {
         <Stack.Screen name="ChangePhoneNumber" component={ChangePhoneNumber} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
         <Stack.Screen name="PasswordSecurity" component={PasswordSecurity} />
+        <Stack.Screen name="PrivacySocial" component={PrivacySocial} />
+        <Stack.Screen
+          name="NotificationSetting"
+          component={NotificationSetting}
+        />
         <Stack.Screen name="Language" component={Language} />
         <Stack.Screen
           name="InviteFriendPeople"

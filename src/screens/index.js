@@ -24,6 +24,8 @@ import Language from './Language';
 import ChangePhoneNumber from './ChangePhoneNumber';
 import EditProfile from './EditProfile';
 import PasswordSecurity from './PasswordSecurity';
+import PrivacySocial from './PrivacySocial';
+import NotificationSetting from './NotificationSetting';
 
 export {
   Splash,
@@ -52,4 +54,6 @@ export {
   ChangePhoneNumber,
   EditProfile,
   PasswordSecurity,
+  PrivacySocial,
+  NotificationSetting,
 };

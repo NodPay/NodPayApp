@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, View, ScrollView} from 'react-native';
 
 //where local files imported
 import {dimens} from '../../utils';
-import {PersonalAddressSection} from '../../components';
+import {PersonalAddressSection, SettingsSaveButton} from '../../components';
 
 const EditProfileTabAddress = () => {
   return (
-    <ScrollView style={styles.container}>
-      <PersonalAddressSection withoutSectionTitle={true} />
-    </ScrollView>
+    <View style={styles.container}>
+      <ScrollView style={styles.content}>
+        <PersonalAddressSection withoutSectionTitle={true} />
+      </ScrollView>
+      <SettingsSaveButton />
+    </View>
   );
 };
 
@@ -17,6 +20,9 @@ export default EditProfileTabAddress;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  content: {
     paddingHorizontal: dimens.default_16,
   },
 });
