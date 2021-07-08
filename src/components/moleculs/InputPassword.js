@@ -15,18 +15,21 @@ const InputPassword = ({
   return (
     <View style={styles.container}>
       <FormLabel label={label} labelStyle={labelStyle} />
-      <TextInput
-        autoCapitalize="none"
-        placeholder={placeholder}
-        value={value}
-        onChangeText={onChangeText}
-        secureTextEntry={!showPassword}
-      />
-      <TouchableOpacity
-        style={styles.rightIcon}
-        onPress={() => setShowPassword(!showPassword)}>
-        <Image source={PasswordHide} style={styles.icon} />
-      </TouchableOpacity>
+      <View style={styles.inputContainer}>
+        <TextInput
+          autoCapitalize="none"
+          placeholder={placeholder}
+          value={value}
+          onChangeText={onChangeText}
+          secureTextEntry={!showPassword}
+          style={{marginTop: 0}}
+        />
+        <TouchableOpacity
+          style={styles.rightIcon}
+          onPress={() => setShowPassword(!showPassword)}>
+          <Image source={PasswordHide} style={styles.icon} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -38,10 +41,17 @@ const styles = StyleSheet.create({
     marginTop: dimens.medium,
     position: 'relative',
   },
+  inputContainer: {
+    backgroundColor: 'white',
+    elevation: 1,
+    borderRadius: dimens.large_50,
+    position: 'relative',
+    marginTop: dimens.small,
+  },
   rightIcon: {
     position: 'absolute',
     right: dimens.default_16,
-    top: dimens.large_40,
+    top: dimens.default_14,
   },
   icon: {
     width: 24,

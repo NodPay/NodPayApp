@@ -6,6 +6,8 @@ import {
   ScrollView,
   Image,
   StatusBar,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 
 // where local file imported
@@ -29,7 +31,7 @@ const LoginEmail = ({navigation}) => {
   const submit = () => {
     setSubmited(true);
     if (email !== '' && password !== '') {
-      navigation.navigate('DrawerNavigator');
+      navigation.navigate('AppDrawer');
     }
   };
 
@@ -79,29 +81,34 @@ const LoginEmail = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
-      <View style={styles.footer_container}>
-        <Button
-          title="Login"
-          btnStyle={{
-            backgroundColor: color.btn_black,
-            marginBottom: dimens.default_12,
-            borderColor: color.btn_white,
-            borderWidth: 1,
-          }}
-          titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-          onPress={submit}
-        />
-        <Button
-          title="Register"
-          btnStyle={{
-            backgroundColor: 'white',
-            borderColor: color.btn_white,
-            borderWidth: 1,
-          }}
-          titleStyle={{fontFamily: fonts.sofia_bold}}
-          onPress={() => navigation.navigate('Register')}
-        />
-      </View>
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}>
+        <View style={styles.footer_container}>
+          <Button
+            title="Login"
+            btnStyle={{
+              backgroundColor: color.btn_black,
+              marginBottom: dimens.default_12,
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
+            titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
+            onPress={submit}
+          />
+          <Button
+            title="Register"
+            btnStyle={{
+              backgroundColor: 'white',
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
+            titleStyle={{fontFamily: fonts.sofia_bold}}
+            onPress={() => navigation.navigate('Register')}
+          />
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

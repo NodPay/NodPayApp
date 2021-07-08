@@ -50,7 +50,7 @@ const SecurityPasswordSection = ({setUpBiometric, showModal, typeModal}) => {
               dispatch({type: 'SET_IS_COMPLETED', payload: true});
               wait(200).then(() => {
                 dispatch({type: 'RESET_REGISTER'});
-                navigation.replace('DrawerNavigator', {
+                navigation.replace('AppDrawer', {
                   screen: 'Login',
                 });
               });
@@ -64,7 +64,7 @@ const SecurityPasswordSection = ({setUpBiometric, showModal, typeModal}) => {
           }}
           onClose={() => {
             dispatch({type: 'SET_MODAL', showModal: false, typeModal: null});
-            navigation.replace('DrawerNavigator', {
+            navigation.replace('AppDrawer', {
               screen: 'Login',
             });
           }}
@@ -91,13 +91,14 @@ const SecurityPasswordSection = ({setUpBiometric, showModal, typeModal}) => {
         />
         <Gap t={dimens.default_16} />
         <CardInfoButton
-          onPress={() => navigation.navigate('Biometrics')}
+          onPress={() => navigation.navigate('Biometrics', {title: 'Touch ID'})}
           title="Touch ID"
           subtitle="Active touch ID so you don’t have to confirm evrytime you sendmoney"
           btnTitle="Set Up Touch ID"
         />
         <Gap t={dimens.default_16} />
         <CardInfoButton
+          onPress={() => navigation.navigate('Biometrics', {title: 'Face ID'})}
           title="Face ID"
           subtitle="Active face ID so you don’t have to confirm evrytime you sendmoney"
           btnTitle="Set Up Face ID"

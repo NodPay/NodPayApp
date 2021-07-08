@@ -7,6 +7,7 @@ import {
   Image,
   StatusBar,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 
 // where local file imported
@@ -35,81 +36,86 @@ const LoginPhone = ({navigation}) => {
   const submit = () => {
     setSubmited(true);
     if (phone !== '' && password !== '') {
-      navigation.navigate('DrawerNavigator');
+      navigation.navigate('AppDrawer');
     }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar animated={true} backgroundColor={color.bg_color} />
-        <ScrollView style={styles.scroll}>
-          <View style={styles.inner_container}>
-            <PageTitle title="Login" navigation={navigation} />
-          </View>
-          <View style={styles.center_container}>
-            <View style={styles.bg_top} />
-            <Image source={SplashWaveGradient} style={styles.image_bg_wave} />
-            <View style={styles.center_content}>
-              <SectionTitle
-                title="Welcome Back!"
-                titleStyle={{fontSize: dimens.large_40}}
-                subtitle={`Login to your account with your email or\nmobile number`}
-                textColor="white"
+      <ScrollView style={styles.scroll}>
+        <View style={styles.inner_container}>
+          <PageTitle title="Login" navigation={navigation} />
+        </View>
+        <View style={styles.center_container}>
+          <View style={styles.bg_top} />
+          <Image source={SplashWaveGradient} style={styles.image_bg_wave} />
+          <View style={styles.center_content}>
+            <SectionTitle
+              title="Welcome Back!"
+              titleStyle={{fontSize: dimens.large_40}}
+              subtitle={`Login to your account with your email or\nmobile number`}
+              textColor="white"
+            />
+            <View style={styles.form_container}>
+              <InputPhoneNumber
+                labelStyle={{color: color.btn_black}}
+                label="Mobile Number"
+                placeholder="Mobile Number"
+                phoneCode={code}
+                value={phone}
+                onChangeText={setPhone}
+                onChangeCode={setCode}
               />
-              <View style={styles.form_container}>
-                <InputPhoneNumber
-                  labelStyle={{color: color.btn_black}}
-                  label="Mobile Number"
-                  placeholder="Mobile Number"
-                  phoneCode={code}
-                  value={phone}
-                  onChangeText={setPhone}
-                  onChangeCode={setCode}
-                />
-                <InputPassword
-                  labelStyle={{color: color.btn_black}}
-                  label="Password"
-                  placeholder="Password"
-                  value={password}
-                  onChangeText={setPassword}
-                />
-              </View>
-              <LinkAction
-                text="Forgot your password?"
-                actionText="Click here"
-                onPress={() => {
-                  navigation.navigate('ForgotPassword');
-                }}
+              <InputPassword
+                labelStyle={{color: color.btn_black}}
+                label="Password"
+                placeholder="Password"
+                value={password}
+                onChangeText={setPassword}
               />
-              {submited && (phone === '' || password === '') && (
-                <ErrorMessage message="The mobile number or password is incorect." />
-              )}
             </View>
+            <LinkAction
+              text="Forgot your password?"
+              actionText="Click here"
+              onPress={() => {
+                navigation.navigate('ForgotPassword');
+              }}
+            />
+            {submited && (phone === '' || password === '') && (
+              <ErrorMessage message="The mobile number or password is incorect." />
+            )}
           </View>
-        </ScrollView>
-      <View style={styles.footer_container}>
-        <Button
-          title="Login"
-          btnStyle={{
-            backgroundColor: color.btn_black,
-            marginBottom: dimens.default_12,
-            borderColor: color.btn_white,
-            borderWidth: 1,
-          }}
-          titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-          onPress={submit}
-        />
-        <Button
-          title="Register"
-          btnStyle={{
-            backgroundColor: 'white',
-            borderColor: color.btn_white,
-            borderWidth: 1,
-          }}
-          titleStyle={{fontFamily: fonts.sofia_bold}}
-          onPress={() => navigation.navigate('Register')}
-        />
-      </View>
+        </View>
+      </ScrollView>
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}>
+        <View style={styles.footer_container}>
+          <Button
+            title="Login"
+            btnStyle={{
+              backgroundColor: color.btn_black,
+              marginBottom: dimens.default_12,
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
+            titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
+            onPress={submit}
+          />
+          <Button
+            title="Register"
+            btnStyle={{
+              backgroundColor: 'white',
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
+            titleStyle={{fontFamily: fonts.sofia_bold}}
+            onPress={() => navigation.navigate('Register')}
+          />
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

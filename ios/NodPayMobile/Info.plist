@@ -35,8 +35,27 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Allow permission</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow permission</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Allow permission</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Allow permission</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string>Allow permission</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>NotoSans-Bold.ttf</string>
+		<string>NotoSans-BoldItalic.ttf</string>
+		<string>NotoSans-Italic.ttf</string>
+		<string>NotoSans-Regular.ttf</string>
+		<string>SofiaPro-Bold.otf</string>
+		<string>SofiaPro-Italic.otf</string>
+		<string>SofiaPro-Medium.otf</string>
+		<string>SofiaPro-Regular.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -51,16 +70,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>NotoSans-Bold.ttf</string>
-		<string>NotoSans-BoldItalic.ttf</string>
-		<string>NotoSans-Italic.ttf</string>
-		<string>NotoSans-Regular.ttf</string>
-		<string>SofiaPro-Bold.otf</string>
-		<string>SofiaPro-Italic.otf</string>
-		<string>SofiaPro-Medium.otf</string>
-		<string>SofiaPro-Regular.otf</string>
-	</array>
 </dict>
 </plist>

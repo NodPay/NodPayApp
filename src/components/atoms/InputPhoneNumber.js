@@ -87,38 +87,47 @@ const InputPhoneNumber = ({
 
   if (inputMobileNumber) {
     return (
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => setShowModal(!showModal)}>
-          <Text style={styles.country_code}>{`+${code}`}</Text>
-          <Image source={Down} style={styles.leftIcon} />
-        </TouchableOpacity>
-        <TextInput
-          allowFontScaling={true}
-          keyboardType="number-pad"
-          placeholderTextColor="black"
-          placeholder={placeholder}
-          value={number.toString()}
-          onChangeText={value => {
-            setNumber(value.toString());
-            dispatch({
-              type: 'SET_PHONE_NUMBER',
-              phoneNumber: `${code}${value}`,
-            });
-          }}
-          style={styles.input}
-          maxLength={11}
-        />
-        <Image source={FeatherPhone} style={styles.icon} />
+      <>
+        <View style={styles.container}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => setShowModal(!showModal)}>
+            <Text style={styles.country_code}>{`+${code}`}</Text>
+            <Image source={Down} style={styles.leftIcon} />
+          </TouchableOpacity>
+          <TextInput
+            allowFontScaling={true}
+            keyboardType="number-pad"
+            placeholderTextColor="black"
+            placeholder={placeholder}
+            value={number.toString()}
+            onChangeText={value => {
+              setNumber(value.toString());
+              dispatch({
+                type: 'SET_PHONE_NUMBER',
+                phoneNumber: `${code}${value}`,
+              });
+            }}
+            style={styles.input}
+            maxLength={11}
+          />
+          <Image source={FeatherPhone} style={styles.icon} />
+          {showModal && (
+            <ModalCountry
+              items={codeList}
+              onChangeCode={setCode}
+              setShowModal={setShowModal}
+            />
+          )}
+        </View>
         {showModal && (
-          <ModalCountry
-            items={codeList}
-            onChangeCode={setCode}
-            setShowModal={setShowModal}
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => setShowModal(false)}
+            style={styles.modalBg}
           />
         )}
-      </View>
+      </>
     );
   }
 

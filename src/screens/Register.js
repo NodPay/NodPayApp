@@ -167,7 +167,7 @@ const Register = ({navigation}) => {
           />
         )}
         <Button
-          disabled={isDisabled}
+          // disabled={isDisabled}
           onPress={onNext}
           title={activeStep == 4 ? 'Create Account' : 'Next'}
           btnStyle={{
