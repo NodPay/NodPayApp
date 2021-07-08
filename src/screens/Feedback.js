@@ -9,14 +9,21 @@ import {
   KeyboardAvoidingView,
   StatusBar,
   ScrollView,
+  Alert,
 } from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import {Transition, Transitioning} from 'react-native-reanimated';
 
 //where local files imported
 import {color, dimens, fonts} from '../utils';
-import {Button, FaqAccordionItem, PageTitle} from '../components';
-import {CloseRed} from '../assets';
+import {
+  Button,
+  FaqAccordionItem,
+  PageTitle,
+  InputText,
+  Modal,
+} from '../components';
+import {CloseRed, ModalSent, ModalFailed} from '../assets';
 
 const accordionData = [
   {
@@ -55,34 +62,53 @@ const transition = (
 );
 
 const Feedback = ({navigation}) => {
+  // States
   const [accordionIndex, setAccordionIndex] = useState(null);
+  const [feedback, setFeedback] = useState('');
+  const [modalSuccess, setModalSuccess] = useState(false);
+  // Refs
   const accordionRef = useRef();
   const bottomSheetRef = useRef();
 
   const snapPoints = useMemo(() => ['0%', '100%'], []);
 
+  const handleSubmitFeedback = () => {
+    if (feedback) {
+      bottomSheetRef.current?.close();
+      setModalSuccess(true);
+    } else {
+      Alert.alert('Feedback field is empty', 'Please write your feedback', [
+        {text: 'Ok'},
+      ]);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={color.btn_white_2} />
-      <BottomSheet ref={bottomSheetRef} snapPoints={snapPoints}>
-        <View style={{flex: 2, backgroundColor: 'pink'}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                bottomSheetRef.current?.close();
-              }}
-              style={{position: 'absolute', left: dimens.default_16}}>
-              <Image source={CloseRed} style={styles.close_icon} />
-            </TouchableOpacity>
-            <Text style={styles.bottomSheetTitle}>Submit Feedback</Text>
-          </View>
-        </View>
-      </BottomSheet>
+
+      {/* Modals */}
+      {/* <Modal
+        imageSrc={ModalFailed}
+        title="Something’s Wrong"
+        subtitle="Failed to submit your feedback, please check your internet connection and try again."
+        btn1Text="Try Again"
+        btn2Text="Close"
+        // btn1Onpress={() =>{}}
+        visible={modalSuccess}
+        onClose={() => {
+          setModalSuccess(false);
+        }}
+      /> */}
+      <Modal
+        imageSrc={ModalSent}
+        title="Feedback sent!"
+        subtitle="Thank you for taking your time sharing how you feel, we appreciate it!"
+        visible={modalSuccess}
+        onClose={() => {
+          setModalSuccess(false);
+        }}
+      />
 
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <PageTitle
@@ -92,6 +118,7 @@ const Feedback = ({navigation}) => {
           navigation={navigation}
         />
 
+        {/* Feedback Information */}
         <View style={{paddingHorizontal: dimens.default}}>
           <View style={styles.feedbackBox}>
             <Text style={styles.feedbackText}>Feedback</Text>
@@ -131,6 +158,57 @@ const Feedback = ({navigation}) => {
           </Transitioning.View>
         </View>
       </ScrollView>
+
+      {/* Feedback Form */}
+      <BottomSheet ref={bottomSheetRef} snapPoints={snapPoints}>
+        <View style={{flex: 1, backgroundColor: color.bg_bottomsheet}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                bottomSheetRef.current?.close();
+              }}
+              style={{position: 'absolute', left: dimens.default_16}}>
+              <Image source={CloseRed} style={styles.close_icon} />
+            </TouchableOpacity>
+            <Text style={styles.bottomSheetTitle}>Submit Feedback</Text>
+          </View>
+          <View style={{flex: 1, marginHorizontal: dimens.default_16}}>
+            <Text style={styles.bottomSubtitle}>
+              What would you like to tell us.
+            </Text>
+            <InputText
+              containerStyle={{flex: 1, paddingTop: 0}}
+              value={feedback}
+              onChangeText={setFeedback}
+              label=""
+              placeholder="Your feedback"
+              placeholderTextColor="#BBB"
+              editable
+              inputStyle={styles.bottomSheetInput}
+              additionalInputProps={{multiline: true, textAlignVertical: 'top'}}
+            />
+          </View>
+
+          <KeyboardAvoidingView>
+            <Button
+              title="Submit Feedback"
+              titleStyle={{color: 'white'}}
+              btnStyle={{
+                backgroundColor: color.btn_black,
+                margin: dimens.default,
+              }}
+              onPress={() => {
+                handleSubmitFeedback();
+              }}
+            />
+          </KeyboardAvoidingView>
+        </View>
+      </BottomSheet>
     </SafeAreaView>
   );
 };
@@ -175,6 +253,17 @@ const styles = StyleSheet.create({
     fontSize: dimens.default_18,
     textAlign: 'center',
     padding: dimens.default_16,
+  },
+  bottomSubtitle: {
+    fontFamily: fonts.sofia_regular,
+    fontSize: dimens.default,
+    color: color.btn_title_white,
+  },
+  bottomSheetInput: {
+    borderRadius: dimens.default,
+    flex: 1,
+    marginTop: 0,
+    lineHeight: dimens.default_18,
   },
 });
 

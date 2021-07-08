@@ -11,23 +11,27 @@ const InputText = ({
   value,
   onChangeText,
   placeholder,
+  placeholderTextColor,
   labelStyle,
   keyboardType,
   editable,
   inputStyle,
   iconRight,
   onPressRight,
+  additionalInputProps,
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
-      {label !== '' && <FormLabel label={label} labelStyle={labelStyle} />}
+      {label != '' && <FormLabel label={label} labelStyle={labelStyle} />}
       <TextInput
         keyboardType={keyboardType}
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
+        placeholderTextColor={placeholderTextColor}
         editable={editable}
         style={inputStyle}
+        additionalInputProps={additionalInputProps}
       />
       <TouchableOpacity onPress={onPressRight} style={styles.containerRight}>
         <Image source={iconRight} style={styles.iconRight} />
