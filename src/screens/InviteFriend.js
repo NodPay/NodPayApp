@@ -1,5 +1,6 @@
 import React, {useRef, useState, useMemo, useCallback} from 'react';
 import {StyleSheet, View, ScrollView, SafeAreaView, Image} from 'react-native';
+import Clipboard from '@react-native-community/clipboard';
 import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 
 //where local files imported
@@ -60,7 +61,7 @@ const InviteFriend = ({navigation}) => {
           value="nodpay.co/BB3435"
           editable={false}
           iconRight={Copy}
-          onPressRight={() => {}}
+          onPressRight={() => Clipboard.setString('nodpay.co/BB3435')}
           containerStyle={{marginBottom: dimens.default_14, marginTop: 0}}
           inputStyle={{
             backgroundColor: color.grey_7,
