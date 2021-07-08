@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   wrap: {
     flexDirection: 'row',
     justifyContent: 'center',
-    paddingTop: dimens.default_16,
+    paddingVertical: dimens.default_16,
   },
   close: {
     position: 'absolute',
