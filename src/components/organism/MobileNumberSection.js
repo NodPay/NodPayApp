@@ -105,7 +105,11 @@ const MobileNumberSection = ({isVerification}) => {
         }}
       />
       <Gap t={dimens.default_16} />
-      <InputPhoneNumber dispatch={dispatch} inputMobileNumber={true} />
+      <InputPhoneNumber
+        placeholder="Mobile Number"
+        dispatch={dispatch}
+        inputMobileNumber={true}
+      />
       <Gap t={dimens.default_16} />
       {state?.error && <ErrorMessage message={state?.errorMessage} />}
     </View>

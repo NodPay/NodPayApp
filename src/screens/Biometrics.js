@@ -15,7 +15,8 @@ import {PageTitle} from '../components';
 import {color, dimens, fonts} from '../utils';
 import {Fingerprint} from '../assets';
 
-const Biometrics = ({navigation}) => {
+const Biometrics = ({route, navigation}) => {
+  const {title} = route.params;
   const [biometryType, setBiometryType] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isAuthenticate, setIsAuthenticate] = useState(false);
@@ -33,15 +34,21 @@ const Biometrics = ({navigation}) => {
     return () => FingerprintScanner.release();
   }, []);
 
-  const onFingerPrint = () => {
+  useEffect(() => {
+    if (biometryType === 'Face ID') {
+      onAuthenticate();
+    }
+  }, [biometryType]);
+
+  const onAuthenticate = () => {
     FingerprintScanner.authenticate({
       title: 'NodPay',
       description: 'Scan your fingerprint on the devices scanner to continue',
     })
       .then(() => {
         setIsAuthenticate(true);
-        alert('Success Scan Touch ID');
-        navigation.replace('Login');
+        alert('Success Scan ' + biometryType);
+        navigation.pop();
       })
       .catch(e =>
         console.log('error while authenticate fingerprint', e.message),
@@ -53,7 +60,7 @@ const Biometrics = ({navigation}) => {
       <PageTitle
         navigation={navigation}
         isBlackArrow
-        title={'Touch ID'}
+        title={title}
         titleStyle={{color: color.btn_black}}
       />
       <Text style={styles.title}>
@@ -63,7 +70,7 @@ const Biometrics = ({navigation}) => {
       </Text>
       <View style={styles.wrapButton}>
         <TouchableOpacity
-          onPress={onFingerPrint}
+          onPress={onAuthenticate}
           disabled={errorMessage != '' ? true : false}>
           <Image source={Fingerprint} style={styles.img} />
         </TouchableOpacity>

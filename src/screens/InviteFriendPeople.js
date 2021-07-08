@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useRef, useState, useMemo, useCallback, useEffect} from 'react';
 import {StyleSheet, View, SafeAreaView, FlatList, Text} from 'react-native';
-import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
+import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 
 //where local files imported
 import {color, dimens, fonts} from '../utils';
@@ -11,7 +11,7 @@ import {
   Button,
   InvitePeopleItem,
 } from '../components';
-import {Copy} from '../assets';
+import {Copy, Facebook, PhonePurple} from '../assets';
 
 const InviteFriendPeople = ({navigation}) => {
   const stepInfo = ['Installed', 'Verified', 'Top up'];
@@ -73,6 +73,8 @@ const InviteFriendPeople = ({navigation}) => {
       onPressRight: () => {},
     },
   ]);
+  const refRBSheet = useRef(null);
+  const snapPoints = useMemo(() => ['-30%', '30%'], []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -120,12 +122,64 @@ const InviteFriendPeople = ({navigation}) => {
           }}
         />
         <Button
-          onPress={() => {}}
+          onPress={() => refRBSheet.current?.snapTo(1)}
           title="Share With More People!"
           btnStyle={{backgroundColor: color.btn_black}}
           titleStyle={{color: color.btn_white_2}}
         />
       </View>
+      <BottomSheet
+        ref={refRBSheet}
+        snapPoints={snapPoints}
+        backdropComponent={backdropProps => (
+          <BottomSheetBackdrop
+            {...backdropProps}
+            enableTouchThrough={true}
+            pressBehavior="collapse"
+          />
+        )}>
+        <PageTitle
+          isCloseMode
+          title="Share Invitation Link"
+          titleStyle={{color: color.btn_black}}
+          navigation={navigation}
+          onPressClose={() => refRBSheet.current?.close()}
+        />
+        <View style={styles.containerModal}>
+          <Button
+            iconLeft={Facebook}
+            title="Sign in with Facebook"
+            btnStyle={{
+              backgroundColor: 'white',
+              marginBottom: dimens.default_16,
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
+            titleStyle={{
+              fontFamily: fonts.sofia_bold,
+              color: 'black',
+              color: color.btn_title_white,
+            }}
+            onPress={() => {}}
+          />
+          <Button
+            iconLeft={PhonePurple}
+            title="Share via Mobile Number"
+            btnStyle={{
+              backgroundColor: 'white',
+              marginBottom: dimens.default_16,
+              borderColor: color.btn_white,
+              borderWidth: 1,
+            }}
+            titleStyle={{
+              fontFamily: fonts.sofia_bold,
+              color: 'black',
+              color: color.btn_title_white,
+            }}
+            onPress={() => {}}
+          />
+        </View>
+      </BottomSheet>
     </SafeAreaView>
   );
 };
@@ -160,7 +214,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   wrapBtn: {
-    padding: dimens.default_22,
+    paddingHorizontal: dimens.default_22,
+    paddingTop: dimens.default_22,
+    paddingBottom: dimens.large,
     backgroundColor: 'white',
     position: 'absolute',
     bottom: 0,

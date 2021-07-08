@@ -6,6 +6,8 @@ import {
   ScrollView,
   Image,
   StatusBar,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 
 // where local file imported
@@ -29,7 +31,7 @@ const LoginEmail = ({navigation}) => {
   const submit = () => {
     setSubmited(true);
     if (email !== '' && password !== '') {
-      navigation.navigate('DrawerNavigator');
+      navigation.navigate('AppDrawer');
     }
   };
 
@@ -78,6 +80,11 @@ const LoginEmail = ({navigation}) => {
             )}
           </View>
         </View>
+      </ScrollView>
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}>
         <View style={styles.footer_container}>
           <Button
             title="Login"
@@ -94,7 +101,6 @@ const LoginEmail = ({navigation}) => {
             title="Register"
             btnStyle={{
               backgroundColor: 'white',
-              marginBottom: dimens.default_16,
               borderColor: color.btn_white,
               borderWidth: 1,
             }}
@@ -102,7 +108,7 @@ const LoginEmail = ({navigation}) => {
             onPress={() => navigation.navigate('Register')}
           />
         </View>
-      </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -129,6 +135,7 @@ const styles = StyleSheet.create({
   },
   center_content: {
     paddingHorizontal: dimens.default_16,
+    paddingBottom: dimens.very_large,
   },
   form_container: {
     marginBottom: dimens.default_16,
@@ -149,7 +156,6 @@ const styles = StyleSheet.create({
   },
   footer_container: {
     padding: dimens.default_16,
-    marginTop: dimens.x_large,
   },
   wave: {
     zIndex: -1,

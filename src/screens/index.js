@@ -22,6 +22,10 @@ import Card from './Card';
 import Feedback from './Feedback';
 import Language from './Language';
 import ChangePhoneNumber from './ChangePhoneNumber';
+import EditProfile from './EditProfile';
+import PasswordSecurity from './PasswordSecurity';
+import PrivacySocial from './PrivacySocial';
+import NotificationSetting from './NotificationSetting';
 
 export {
   Splash,
@@ -48,4 +52,8 @@ export {
   Feedback,
   Language,
   ChangePhoneNumber,
+  EditProfile,
+  PasswordSecurity,
+  PrivacySocial,
+  NotificationSetting,
 };

@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 import {FormLabel} from '../atoms';
 
@@ -22,6 +23,8 @@ import {
   FlagUs,
   Triangle,
 } from '../../assets';
+
+const {width: widthScreen, height: heightScreen} = Dimensions.get('window');
 
 const ModalCountry = ({items, onChangeCode, setShowModal}) => {
   return (
@@ -53,6 +56,7 @@ const InputPhoneNumber = ({
   onChangeCode,
   labelStyle,
   inputMobileNumber,
+  placeholder,
   dispatch,
 }) => {
   const codeList = [
@@ -83,36 +87,47 @@ const InputPhoneNumber = ({
 
   if (inputMobileNumber) {
     return (
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => setShowModal(!showModal)}>
-          <Text style={styles.country_code}>{`+${code}`}</Text>
-          <Image source={Down} style={styles.leftIcon} />
-        </TouchableOpacity>
-        <TextInput
-          allowFontScaling={true}
-          keyboardType="number-pad"
-          value={number.toString()}
-          onChangeText={value => {
-            setNumber(value.toString());
-            dispatch({
-              type: 'SET_PHONE_NUMBER',
-              phoneNumber: `${code}${value}`,
-            });
-          }}
-          style={styles.input}
-          maxLength={11}
-        />
-        <Image source={FeatherPhone} style={styles.icon} />
+      <>
+        <View style={styles.container}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => setShowModal(!showModal)}>
+            <Text style={styles.country_code}>{`+${code}`}</Text>
+            <Image source={Down} style={styles.leftIcon} />
+          </TouchableOpacity>
+          <TextInput
+            allowFontScaling={true}
+            keyboardType="number-pad"
+            placeholderTextColor="black"
+            placeholder={placeholder}
+            value={number.toString()}
+            onChangeText={value => {
+              setNumber(value.toString());
+              dispatch({
+                type: 'SET_PHONE_NUMBER',
+                phoneNumber: `${code}${value}`,
+              });
+            }}
+            style={styles.input}
+            maxLength={11}
+          />
+          <Image source={FeatherPhone} style={styles.icon} />
+          {showModal && (
+            <ModalCountry
+              items={codeList}
+              onChangeCode={setCode}
+              setShowModal={setShowModal}
+            />
+          )}
+        </View>
         {showModal && (
-          <ModalCountry
-            items={codeList}
-            onChangeCode={setCode}
-            setShowModal={setShowModal}
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => setShowModal(false)}
+            style={styles.modalBg}
           />
         )}
-      </View>
+      </>
     );
   }
 
@@ -130,6 +145,8 @@ const InputPhoneNumber = ({
         </TouchableOpacity>
         <TextInput
           keyboardType="number-pad"
+          placeholderTextColor="black"
+          placeholder={placeholder}
           value={value.toString()}
           onChangeText={onChangeText}
           style={styles.input}
@@ -144,6 +161,13 @@ const InputPhoneNumber = ({
           />
         )}
       </View>
+      {showModal && (
+        <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => setShowModal(false)}
+          style={styles.modalBg}
+        />
+      )}
     </>
   );
 };
@@ -178,7 +202,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    fontFamily: fonts.sofia_bold,
+    fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_16,
     paddingLeft: dimens.default_16,
     letterSpacing: 1.2,
@@ -203,6 +227,15 @@ const styles = StyleSheet.create({
   btn: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  modalBg: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    width: widthScreen,
+    height: heightScreen * 200,
+    left: -18,
+    top: -heightScreen,
+    zIndex: 100,
   },
   modal: {
     position: 'absolute',

@@ -19,6 +19,7 @@ const initialState = {
   setUpBiometric: false, //setup biometric section
   showModal: false, // createa account modal
   typeModal: null, // check if modal success or failed
+  modalPhoneCode: false, // check if modal phone code success or failed
   // create account end
 };
 
@@ -90,6 +91,11 @@ const reducer = (state, action) => {
         ...state,
         showModal: action.showModal,
         typeModal: action.typeModal,
+      };
+    case 'SET_MODAL_PHONE_CODE':
+      return {
+        ...state,
+        modalPhoneCode: action.modalPhoneCode,
       };
     case 'RESET_REGISTER':
       return {

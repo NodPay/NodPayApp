@@ -24,10 +24,26 @@ const Settings = ({navigation}) => {
         titleStyle={{color: color.btn_black}}
         navigation={navigation}
       />
-      <SettingsItem icon={AccountCircle} title="Edit Profile" />
-      <SettingsItem icon={Lock} title="Password & Security" />
-      <SettingsItem icon={Profile} title="Privacy & Socials" />
-      <SettingsItem icon={Bell} title="Notification Settings" />
+      <SettingsItem
+        icon={AccountCircle}
+        title="Edit Profile"
+        onPress={() => navigation.navigate('EditProfile')}
+      />
+      <SettingsItem
+        icon={Lock}
+        title="Password & Security"
+        onPress={() => navigation.navigate('PasswordSecurity')}
+      />
+      <SettingsItem
+        icon={Profile}
+        title="Privacy & Socials"
+        onPress={() => navigation.navigate('PrivacySocial')}
+      />
+      <SettingsItem
+        icon={Bell}
+        title="Notification Settings"
+        onPress={() => navigation.navigate('NotificationSetting')}
+      />
       <SettingsItem
         icon={PhoneGrey}
         title="Change Phone Number"

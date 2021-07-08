@@ -1,6 +1,6 @@
-import React, {useRef, useMemo, useCallback} from 'react';
+import React, {useRef, useState, useMemo, useCallback} from 'react';
 import {StyleSheet, View, ScrollView, SafeAreaView, Image} from 'react-native';
-import BottomSheet from '@gorhom/bottom-sheet';
+import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 
 //where local files imported
 import {color, dimens, fonts} from '../utils';
@@ -20,12 +20,7 @@ const InviteFriend = ({navigation}) => {
     'You both get XX',
   ];
   const refRBSheet = useRef(null);
-  const snapPoints = useMemo(() => ['0%', '30%'], []);
-
-  // callbacks
-  const handleSheetChanges = useCallback(index => {
-    console.log('handleSheetChanges', index);
-  }, []);
+  const snapPoints = useMemo(() => ['-30%', '30%'], []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -84,7 +79,13 @@ const InviteFriend = ({navigation}) => {
       <BottomSheet
         ref={refRBSheet}
         snapPoints={snapPoints}
-        onChange={handleSheetChanges}>
+        backdropComponent={backdropProps => (
+          <BottomSheetBackdrop
+            {...backdropProps}
+            enableTouchThrough={true}
+            pressBehavior="collapse"
+          />
+        )}>
         <PageTitle
           isCloseMode
           title="Share Invitation Link"
@@ -152,7 +153,9 @@ const styles = StyleSheet.create({
     marginBottom: dimens.medium,
   },
   wrapBtn: {
-    padding: dimens.default_22,
+    paddingHorizontal: dimens.default_22,
+    paddingTop: dimens.default_22,
+    paddingBottom: dimens.large,
     backgroundColor: 'white',
     position: 'absolute',
     bottom: 0,

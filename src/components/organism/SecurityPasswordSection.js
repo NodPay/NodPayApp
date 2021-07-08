@@ -18,7 +18,12 @@ import {CardInfoButton, SectionTitle} from '../moleculs';
 import useStateContext from '../../store/useStateContext';
 import Modal from './Modal';
 
-const SecurityPasswordSection = ({setUpBiometric, showModal, typeModal}) => {
+const SecurityPasswordSection = ({
+  setUpBiometric,
+  showModal,
+  typeModal,
+  withoutSectionTitle,
+}) => {
   const {state, dispatch} = useStateContext();
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -50,7 +55,7 @@ const SecurityPasswordSection = ({setUpBiometric, showModal, typeModal}) => {
               dispatch({type: 'SET_IS_COMPLETED', payload: true});
               wait(200).then(() => {
                 dispatch({type: 'RESET_REGISTER'});
-                navigation.replace('DrawerNavigator', {
+                navigation.replace('AppDrawer', {
                   screen: 'Login',
                 });
               });
@@ -64,7 +69,7 @@ const SecurityPasswordSection = ({setUpBiometric, showModal, typeModal}) => {
           }}
           onClose={() => {
             dispatch({type: 'SET_MODAL', showModal: false, typeModal: null});
-            navigation.replace('DrawerNavigator', {
+            navigation.replace('AppDrawer', {
               screen: 'Login',
             });
           }}
@@ -77,27 +82,30 @@ const SecurityPasswordSection = ({setUpBiometric, showModal, typeModal}) => {
             });
           }}
         />
-        <SectionTitle
-          containerStyle={{
-            padding: 0,
-          }}
-          title="Set Up Touch and face ID "
-          titleStyle={{color: 'black', fontSize: dimens.default_22}}
-          subtitle="You can set face and touch ID later on your password and security settings"
-          subTitleStyle={{
-            color: color.grey,
-            fontSize: dimens.default_16,
-          }}
-        />
+        {!withoutSectionTitle && (
+          <SectionTitle
+            containerStyle={{
+              padding: 0,
+            }}
+            title="Set Up Touch and face ID "
+            titleStyle={{color: 'black', fontSize: dimens.default_22}}
+            subtitle="You can set face and touch ID later on your password and security settings"
+            subTitleStyle={{
+              color: color.grey,
+              fontSize: dimens.default_16,
+            }}
+          />
+        )}
         <Gap t={dimens.default_16} />
         <CardInfoButton
-          onPress={() => navigation.navigate('Biometrics')}
+          onPress={() => navigation.navigate('Biometrics', {title: 'Touch ID'})}
           title="Touch ID"
           subtitle="Active touch ID so you don’t have to confirm evrytime you sendmoney"
           btnTitle="Set Up Touch ID"
         />
         <Gap t={dimens.default_16} />
         <CardInfoButton
+          onPress={() => navigation.navigate('Biometrics', {title: 'Face ID'})}
           title="Face ID"
           subtitle="Active face ID so you don’t have to confirm evrytime you sendmoney"
           btnTitle="Set Up Face ID"
@@ -108,18 +116,20 @@ const SecurityPasswordSection = ({setUpBiometric, showModal, typeModal}) => {
 
   return (
     <View>
-      <SectionTitle
-        containerStyle={{
-          padding: 0,
-        }}
-        title="Security Password"
-        titleStyle={{color: 'black', fontSize: dimens.default_22}}
-        subtitle="Set your password and face / touch ID"
-        subTitleStyle={{
-          color: color.grey,
-          fontSize: dimens.default_16,
-        }}
-      />
+      {!withoutSectionTitle && (
+        <SectionTitle
+          containerStyle={{
+            padding: 0,
+          }}
+          title="Security Password"
+          titleStyle={{color: 'black', fontSize: dimens.default_22}}
+          subtitle="Set your password and face / touch ID"
+          subTitleStyle={{
+            color: color.grey,
+            fontSize: dimens.default_16,
+          }}
+        />
+      )}
       <Gap t={dimens.default_16} />
       <View style={styles.containerInput}>
         <TextInput
