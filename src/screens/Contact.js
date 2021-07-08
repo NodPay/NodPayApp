@@ -33,7 +33,7 @@ const Contact = ({navigation}) => {
   const bottomSheetRef = useRef();
 
   // variables
-  const snapPoints = useMemo(() => ['0%', '0%', '0%', '100%'], []);
+  const snapPoints = useMemo(() => ['0%', '100%'], []);
 
   // callbacks
   const handleSheetChanges = useCallback(index => {
@@ -358,7 +358,7 @@ const Contact = ({navigation}) => {
       />
       <View style={styles.wrapBtn}>
         <Button
-          onPress={() => bottomSheetRef.current?.snapTo(3)}
+          onPress={() => bottomSheetRef.current?.expand()}
           title="+ Add Friend"
           btnStyle={{backgroundColor: color.btn_black}}
           titleStyle={{color: color.btn_white_2}}
@@ -366,7 +366,6 @@ const Contact = ({navigation}) => {
       </View>
       <BottomSheet
         ref={bottomSheetRef}
-        index={-1}
         snapPoints={snapPoints}
         onChange={handleSheetChanges}>
         <View

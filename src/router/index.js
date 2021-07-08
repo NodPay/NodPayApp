@@ -39,7 +39,7 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Splash"
+        initialRouteName="AppDrawer"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Loader" component={Loader} />
@@ -66,13 +66,13 @@ const Router = () => {
           name="InviteFriendPeople"
           component={InviteFriendPeople}
         />
-        <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
+        <Stack.Screen name="AppDrawer" component={AppDrawer} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
-const DrawerNavigator = () => {
+const AppDrawer = () => {
   const Drawer = createDrawerNavigator();
 
   return (

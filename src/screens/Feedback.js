@@ -1,4 +1,4 @@
-import React, {useState, useRef, useMemo, useCallback} from 'react';
+import React, {useState, useRef, useMemo} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,19 +10,13 @@ import {
   StatusBar,
   ScrollView,
 } from 'react-native';
-import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
+import BottomSheet from '@gorhom/bottom-sheet';
 import {Transition, Transitioning} from 'react-native-reanimated';
 
 //where local files imported
 import {color, dimens, fonts} from '../utils';
-import {Button, FaqAccordionItem, Gap, PageTitle} from '../components';
-import {
-  ContactBackground,
-  NoContact,
-  CloseRed,
-  Facebook,
-  FacebookWhite,
-} from '../assets';
+import {Button, FaqAccordionItem, PageTitle} from '../components';
+import {CloseRed} from '../assets';
 
 const accordionData = [
   {
@@ -55,18 +49,40 @@ const accordionData = [
 const transition = (
   <Transition.Together>
     <Transition.In type="fade" durationMs={200} />
-    <Transition.Change type="fade" durationMs={200} />
-    <Transition.Out />
+    <Transition.Change />
+    <Transition.Out type="fade" durationMs={200} />
   </Transition.Together>
 );
 
 const Feedback = ({navigation}) => {
-  const [accordionIndex, setAccordionIndex] = useState(0);
-  const accordionRef = useRef(null);
+  const [accordionIndex, setAccordionIndex] = useState(null);
+  const accordionRef = useRef();
+  const bottomSheetRef = useRef();
+
+  const snapPoints = useMemo(() => ['0%', '100%'], []);
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={color.btn_white_2} />
+      <BottomSheet ref={bottomSheetRef} snapPoints={snapPoints}>
+        <View style={{flex: 2, backgroundColor: 'pink'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                bottomSheetRef.current?.close();
+              }}
+              style={{position: 'absolute', left: dimens.default_16}}>
+              <Image source={CloseRed} style={styles.close_icon} />
+            </TouchableOpacity>
+            <Text style={styles.bottomSheetTitle}>Submit Feedback</Text>
+          </View>
+        </View>
+      </BottomSheet>
 
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <PageTitle
@@ -91,7 +107,7 @@ const Feedback = ({navigation}) => {
                 marginTop: dimens.default_12,
               }}
               onPress={() => {
-                // setModalSuccess(true);
+                bottomSheetRef.current?.expand();
               }}
             />
           </View>
@@ -149,6 +165,16 @@ const styles = StyleSheet.create({
     fontSize: dimens.default_20,
     color: color.btn_black,
     marginTop: dimens.medium,
+  },
+  close_icon: {
+    height: dimens.large_40,
+    width: dimens.large_40,
+  },
+  bottomSheetTitle: {
+    fontFamily: fonts.sofia_bold,
+    fontSize: dimens.default_18,
+    textAlign: 'center',
+    padding: dimens.default_16,
   },
 });
 
