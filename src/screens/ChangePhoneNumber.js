@@ -119,7 +119,11 @@ const ChangePhoneNumber = ({navigation}) => {
             Enter your phone number. We’ll send you a code to make sure it’s you
           </Text>
           <Gap t={72} />
-          <InputPhoneNumber dispatch={dispatch} inputMobileNumber={true} />
+          <InputPhoneNumber
+            placeholder="Mobile Number"
+            dispatch={dispatch}
+            inputMobileNumber={true}
+          />
           <Gap t={16} />
           <View style={styles.containerMessage}>
             <Text style={styles.message}>
