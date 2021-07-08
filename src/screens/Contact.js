@@ -372,25 +372,20 @@ const Contact = ({navigation}) => {
           style={{
             flex: isContact || isFacebook ? 0 : 1,
             backgroundColor: 'white',
+            paddingVertical: dimens.medium,
           }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <TouchableOpacity
-              onPress={() => {
-                bottomSheetRef.current?.close();
-                setGetContact(true);
-                setIsFacebook(false);
-                setIsContact(false);
-              }}
-              style={{position: 'absolute', left: dimens.default_16}}>
-              <Image source={CloseRed} style={styles.close_icon} />
-            </TouchableOpacity>
-            <Text style={styles.title}>Add Friends</Text>
-          </View>
+          <PageTitle
+            isCloseMode
+            title="Add Friends"
+            titleStyle={{color: color.btn_black}}
+            navigation={navigation}
+            onPressClose={() => {
+              bottomSheetRef.current?.close();
+              setGetContact(true);
+              setIsFacebook(false);
+              setIsContact(false);
+            }}
+          />
           {getContact && (
             <View style={styles.add_friend_section}>
               <Text style={styles.add_friend_section_desc}>
