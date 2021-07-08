@@ -70,7 +70,7 @@ const InviteFriend = ({navigation}) => {
           }}
         />
         <Button
-          onPress={() => refRBSheet.current?.snapTo(1)}
+          onPress={() => refRBSheet.current?.expand()}
           title="Share Invitation Link"
           btnStyle={{backgroundColor: color.btn_black}}
           titleStyle={{color: color.btn_white_2}}
