@@ -71,14 +71,19 @@ const HomeTabBar = ({state, descriptors, navigation}) => {
       </TouchableOpacity>
 
       {/* <View
-        style={{
-          flex: 1,
-          // paddingVertical: 6,
-          justifyContent: 'flex-end',
-          alignItems: 'flex-end',
-          backgroundColor: 'pink',
-        }}>
-        <TouchableOpacity style={styles.exchangeButton}>
+        style={
+          {
+            // paddingVertical: 6,
+            // flex: 1,
+            // justifyContent: 'center',
+            // alignItems: 'center',
+          }
+        }>
+        <TouchableOpacity
+          style={styles.exchangeButton}
+          onPress={() => {
+            alert('oks');
+          }}>
           <Image source={Exchange} style={{width: 30, height: 30}} />
         </TouchableOpacity>
         <Text style={[styles.label, {color: color.btn_black}]}>
@@ -117,15 +122,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    borderTopWidth: 3.5,
+    borderTopColor: color.grey_7,
+    shadowColor: color.grey_7,
+    // Android only
+    elevation: 2,
+    // IOS only
+    shadowRadius: 5,
+    shadowOffset: {height: -2},
+    shadowOpacity: 0.3,
   },
   label: {
     fontSize: dimens.default_12,
     fontFamily: fonts.sofia_regular,
   },
   exchangeButton: {
-    height: 58,
-    width: 58,
-    borderRadius: 58 / 2,
+    height: 64,
+    width: 64,
+    borderRadius: 64 / 2,
     backgroundColor: color.bg_color,
     justifyContent: 'center',
     alignItems: 'center',
@@ -133,9 +147,11 @@ const styles = StyleSheet.create({
     shadowOffset: {height: 5},
     shadowOpacity: 0.3,
     borderWidth: 5,
-    borderColor: 'lightgray',
-    shadowColor: 'lightgray',
+    borderColor: color.grey_7,
+    shadowColor: color.grey_7,
     position: 'absolute',
+    bottom: 15,
+    alignSelf: 'center',
   },
 });
 
