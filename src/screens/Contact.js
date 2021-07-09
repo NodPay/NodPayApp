@@ -232,8 +232,8 @@ const Contact = ({navigation}) => {
           onPress={onPress}
           style={{
             paddingHorizontal: 15,
+            paddingBottom: 3,
             marginLeft: 8,
-            height: 25,
             borderRadius: 10,
             backgroundColor: current === index ? color.bg_color : 'lightgray',
             justifyContent: 'center',
