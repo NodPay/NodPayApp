@@ -232,6 +232,7 @@ const Contact = ({navigation}) => {
           onPress={onPress}
           style={{
             paddingHorizontal: 15,
+            paddingTop: Platform.OS === 'ios' ? 4 : 0,
             paddingBottom: 3,
             marginLeft: 8,
             borderRadius: 10,
