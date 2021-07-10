@@ -23,7 +23,7 @@ import {
   InputText,
   Modal,
 } from '../components';
-import {CloseRed, ModalSent, ModalFailed} from '../assets';
+import {CloseRed, ModalSuccess, ModalFailed} from '../assets';
 
 const accordionData = [
   {
@@ -63,7 +63,6 @@ const transition = (
 
 const Feedback = ({navigation}) => {
   // States
-  const [accordionIndex, setAccordionIndex] = useState(null);
   const [feedback, setFeedback] = useState('');
   const [modalSuccess, setModalSuccess] = useState(false);
   // Refs
@@ -76,6 +75,7 @@ const Feedback = ({navigation}) => {
     if (feedback) {
       bottomSheetRef.current?.close();
       setModalSuccess(true);
+      setFeedback('');
     } else {
       Alert.alert('Feedback field is empty', 'Please write your feedback', [
         {text: 'Ok'},
@@ -101,7 +101,7 @@ const Feedback = ({navigation}) => {
         }}
       /> */}
       <Modal
-        imageSrc={ModalSent}
+        imageSrc={ModalSuccess}
         title="Feedback sent!"
         subtitle="Thank you for taking your time sharing how you feel, we appreciate it!"
         visible={modalSuccess}
@@ -119,7 +119,11 @@ const Feedback = ({navigation}) => {
         />
 
         {/* Feedback Information */}
-        <View style={{paddingHorizontal: dimens.default}}>
+        <View
+          style={{
+            paddingHorizontal: dimens.default,
+            paddingBottom: dimens.default,
+          }}>
           <View style={styles.feedbackBox}>
             <Text style={styles.feedbackText}>Feedback</Text>
             <Text style={styles.feedbackDescription}>
@@ -128,11 +132,7 @@ const Feedback = ({navigation}) => {
             <Button
               title="Submit Feedback"
               titleStyle={{color: 'white'}}
-              btnStyle={{
-                backgroundColor: color.btn_black,
-                paddingHorizontal: dimens.large,
-                marginTop: dimens.default_12,
-              }}
+              btnStyle={styles.submitFeedbackButton}
               onPress={() => {
                 bottomSheetRef.current?.expand();
               }}
@@ -147,10 +147,8 @@ const Feedback = ({navigation}) => {
                   key={index}
                   title={title}
                   description={description}
-                  showDescription={index === accordionIndex}
                   onPress={() => {
                     accordionRef.current.animateNextTransition();
-                    setAccordionIndex(index === accordionIndex ? null : index);
                   }}
                 />
               );
@@ -190,7 +188,7 @@ const Feedback = ({navigation}) => {
               placeholderTextColor="#BBB"
               editable
               inputStyle={styles.bottomSheetInput}
-              additionalInputProps={{multiline: true, textAlignVertical: 'top'}}
+              additionalInputProps={{textAlignVertical: 'top'}}
             />
           </View>
 
@@ -202,9 +200,7 @@ const Feedback = ({navigation}) => {
                 backgroundColor: color.btn_black,
                 margin: dimens.default,
               }}
-              onPress={() => {
-                handleSubmitFeedback();
-              }}
+              onPress={handleSubmitFeedback}
             />
           </KeyboardAvoidingView>
         </View>
@@ -243,6 +239,11 @@ const styles = StyleSheet.create({
     fontSize: dimens.default_20,
     color: color.btn_black,
     marginTop: dimens.medium,
+  },
+  submitFeedbackButton: {
+    backgroundColor: color.btn_black,
+    paddingHorizontal: dimens.large,
+    marginTop: dimens.default_12,
   },
   close_icon: {
     height: dimens.large_40,
