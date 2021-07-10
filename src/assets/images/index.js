@@ -14,6 +14,7 @@ import HomeBalanceBackground from './bg_home_balance.png';
 import People1 from './people1.png';
 import PeopleInviteFriend from './people_invite_friend.png';
 import Dropdown from './Dropdown.png';
+import ModalParty from './modal_party.png';
 
 export {
   SplashWave,
@@ -26,6 +27,7 @@ export {
   ModalSent,
   ModalFailed,
   ModalSuccess,
+  ModalParty,
   DefaultPict,
   ContactBackground,
   HomeBalanceBackground,

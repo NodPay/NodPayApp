@@ -12,7 +12,7 @@ import {
 import {dimens, fonts, color} from '../../utils';
 import {Plus, HomeBalanceBackground} from '../../assets';
 
-const BalanceInfo = ({type, moneyAmount}) => {
+const BalanceInfo = ({type, moneyAmount, onPressAdd}) => {
   if (type == 'home') {
     return (
       <ImageBackground
@@ -24,7 +24,7 @@ const BalanceInfo = ({type, moneyAmount}) => {
           <Text style={styles.moneyAmount}>Rs {moneyAmount || '0'}</Text>
         </View>
 
-        <TouchableOpacity style={styles.addButton}>
+        <TouchableOpacity style={styles.addButton} onPress={onPressAdd}>
           <Image source={Plus} style={[styles.addIcon, {height: 50}]} />
         </TouchableOpacity>
       </ImageBackground>
