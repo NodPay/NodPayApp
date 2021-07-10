@@ -34,6 +34,7 @@ import {
   PasswordSecurity,
   PrivacySocial,
   NotificationSetting,
+  BankAccount,
 } from '../screens';
 import {Drawer as DrawerComponent, HomeTabBar} from '../components';
 
@@ -77,6 +78,7 @@ const Router = () => {
           name="InviteFriendPeople"
           component={InviteFriendPeople}
         />
+        <Stack.Screen name="BankAccount" component={BankAccount} />
         <Stack.Screen name="AppDrawer" component={AppDrawer} />
       </Stack.Navigator>
     </NavigationContainer>

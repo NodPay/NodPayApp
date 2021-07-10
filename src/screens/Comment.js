@@ -64,5 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// #E5E5E5
 export default Comment;
