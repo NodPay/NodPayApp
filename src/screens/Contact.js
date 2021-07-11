@@ -8,6 +8,7 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
+  Pressable
 } from 'react-native';
 import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
 import AlphabetList from 'react-native-flatlist-alphabet';
@@ -280,6 +281,10 @@ const Contact = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Pressable style={{flex:1}} onPress={() => {
+        setId('') 
+        setShow(false)
+      }}>
       <PageTitle
         isBlackArrow
         title="Contacts"
@@ -446,6 +451,7 @@ const Contact = ({navigation}) => {
         )}
       </BottomSheet>
       <Image source={ContactBackground} style={styles.bg_contact} />
+      </Pressable>
     </SafeAreaView>
   );
 };

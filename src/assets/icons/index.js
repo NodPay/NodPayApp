@@ -78,6 +78,8 @@ import FlagUs from './flag-us.png';
 import Triangle from './triangle.png';
 import CheckmarkWhite from './checkmark_white.png';
 export * from './flags';
+import Gallery from './gallery.png'
+import Camera from './camera.png'
 
 export {
   LeftArrow,
@@ -159,4 +161,6 @@ export {
   FlagUs,
   Triangle,
   CheckmarkWhite,
+  Gallery,
+  Camera,
 };
