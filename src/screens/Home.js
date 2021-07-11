@@ -5,6 +5,9 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  Text,
+  TouchableOpacity,
+  Image
 } from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
@@ -18,7 +21,7 @@ import {
   Gap,
 } from '../components/';
 import {color, dimens, fonts} from '../utils/';
-import {People1} from '../assets/';
+import {CardInactive, Exchange, HomeActive, People1} from '../assets/';
 
 const Tab = createMaterialTopTabNavigator();
 const Home = ({navigation}) => {
@@ -48,6 +51,29 @@ const Home = ({navigation}) => {
           <Tab.Screen name="Request" component={Request} />
         </Tab.Navigator>
       </View>
+
+      <Gap t={100}/>
+
+      {/* Bottom Tab Navigator */}
+    <View style={styles.bottomTab}>
+        <View style={{flexDirection:'row',justifyContent:'space-evenly',alignItems:'center'}}>
+          <TouchableOpacity>
+            <Image source={HomeActive} style={{width: 30, height: 30}} />
+            <Text>Home</Text>
+          </TouchableOpacity>
+          <View>
+
+          <TouchableOpacity style={{top:-35,height:80,width:80,backgroundColor:color.bg_color,borderRadius:40,justifyContent:'center',alignItems:'center',borderWidth:10,borderColor:color.btn_white_2}}>
+            <Image source={Exchange} style={{width: 30, height: 30}} />
+          </TouchableOpacity>
+            <Text>Exchange</Text>
+          </View>
+          <TouchableOpacity>
+            <Image source={CardInactive} style={{width: 30, height: 30}} />
+            <Text>Card</Text>
+          </TouchableOpacity>
+        </View>
+    </View>
     </SafeAreaView>
   );
 };
@@ -186,7 +212,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
     paddingVertical: 0,
     alignItems: 'flex-start',
+    zIndex:-1
   },
+  bottomTab:{
+    height:60,
+    backgroundColor:'white',
+    position:'absolute',
+    left:0,
+    right:0,
+    bottom:0,
+    justifyContent:'center',
+    paddingHorizontal:dimens.default_16,
+    zIndex:1,
+  }
 });
 
 export default Home;
