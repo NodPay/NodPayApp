@@ -23,7 +23,7 @@ const Comment = ({navigation}) => {
         navigation={navigation}
       />
 
-      <ScrollView style={styles.listContainer}>
+      <ScrollView contentContainerStyle={styles.listContainer}>
         <FeedItem
           isHideComment
           item={{
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   listContainer: {
     marginHorizontal: dimens.default,
     marginVertical: 0,
-    flex: 1,
+    flexGrow: 1,
   },
 });
 

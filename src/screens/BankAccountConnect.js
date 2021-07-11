@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {
   View,
-  FlatList,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -11,12 +10,20 @@ import {
 } from 'react-native';
 
 //where local file imported
-import {PageTitle, Gap, EmptyState, Button} from '../components/';
+import {
+  PageTitle,
+  Gap,
+  ErrorMessage,
+  InfoMessage,
+  Button,
+} from '../components/';
 import {color, dimens, fonts} from '../utils/';
-import {EmptyData} from '../assets/';
+import {LockPurple} from '../assets/';
 
-const BankAccount = ({navigation}) => {
-  const [isEmpty, setIsEmpty] = useState(true);
+const BankAccountConnect = ({navigation}) => {
+  const handleConnectAccount = () => {
+    alert('ok');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -24,32 +31,27 @@ const BankAccount = ({navigation}) => {
 
       <PageTitle
         isBlackArrow
-        title="Bank Account"
+        title="Connect Bank Account"
         titleStyle={styles.pageTitle}
         navigation={navigation}
       />
 
-      {isEmpty ? (
-        <View style={{flex: 1, justifyContent: 'center'}}>
-          <EmptyState
-            icon={EmptyData}
-            iconSize={72}
-            content={`You currently have no Bank account.\nyou can connect to an existing bank account\n or open a new one`}
+      <ScrollView contentContainerStyle={styles.listContainer}>
+        <View style={{flex: 1}}>
+          <InfoMessage
+            icon={LockPurple}
+            message="Your bank account information is safe and protected with NodPay"
           />
         </View>
-      ) : (
-        <ScrollView contentContainerStyle={styles.listContainer}>
-          <Gap t={dimens.default} />
-        </ScrollView>
-      )}
+        <ErrorMessage message="Invalid Bank account information, please check your information and try again" />
+      </ScrollView>
 
       <View style={styles.addButtonContainer}>
         <Button
-          onPress={() => {
-            navigation.navigate('BankAccountConnect');
-          }}
-          title="Add Bank / Card"
-          btnStyle={{backgroundColor: color.loading, flex: 1}}
+          disabled
+          onPress={handleConnectAccount}
+          title="Connect Bank Account"
+          btnStyle={{backgroundColor: color.grey, flex: 1}}
           titleStyle={{color: 'white'}}
         />
       </View>
@@ -59,7 +61,7 @@ const BankAccount = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: color.btn_white_2,
   },
   pageTitle: {
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
   listContainer: {
     marginHorizontal: dimens.default,
     marginVertical: 0,
-    flexGrow: 1,
+    flex: 1,
   },
   addButtonContainer: {
     backgroundColor: 'white',
@@ -82,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BankAccount;
+export default BankAccountConnect;

@@ -27,6 +27,7 @@ import PasswordSecurity from './PasswordSecurity';
 import PrivacySocial from './PrivacySocial';
 import NotificationSetting from './NotificationSetting';
 import BankAccount from './BankAccount';
+import BankAccountConnect from './BankAccountConnect';
 
 export {
   Splash,
@@ -58,4 +59,5 @@ export {
   PrivacySocial,
   NotificationSetting,
   BankAccount,
+  BankAccountConnect,
 };

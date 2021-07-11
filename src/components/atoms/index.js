@@ -8,6 +8,7 @@ import InputPhoneNumber from './InputPhoneNumber';
 import TextInput from './TextInput';
 import FormLabel from './FormLabel';
 import ErrorMessage from './ErrorMessage';
+import InfoMessage from './InfoMessage';
 import SelectAddressItem from './SelectAddressItem';
 import ContactItem from './ContactItem';
 import SettingsSaveButton from './SettingsSaveButton';
@@ -23,6 +24,7 @@ export {
   TextInput,
   FormLabel,
   ErrorMessage,
+  InfoMessage,
   SelectAddressItem,
   ContactItem,
   SettingsSaveButton,

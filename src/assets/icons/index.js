@@ -55,6 +55,7 @@ import QRScan from './qr_scan.png';
 import ThreeDots from './three-dots.png';
 import AccountCircle from './account_circle.png';
 import Lock from './lock.png';
+import LockPurple from './lock_purple.png';
 import Profile from './profile.png';
 import Bell from './bell.png';
 import PhoneGrey from './phone_gray.png';
@@ -136,6 +137,7 @@ export {
   ThreeDots,
   AccountCircle,
   Lock,
+  LockPurple,
   Profile,
   Bell,
   PhoneGrey,

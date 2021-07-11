@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 
+// Red text of error message inside red box
 const ErrorMessage = ({message}) => {
   return (
     <View style={styles.container}>
