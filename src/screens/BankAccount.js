@@ -11,12 +11,45 @@ import {
 } from 'react-native';
 
 //where local file imported
-import {PageTitle, Gap, EmptyState, Button} from '../components/';
+import {
+  PageTitle,
+  Gap,
+  EmptyState,
+  Button,
+  BankAccountItem,
+} from '../components/';
 import {color, dimens, fonts} from '../utils/';
-import {EmptyData} from '../assets/';
+import {EmptyData, LogoCitibank} from '../assets/';
+
+const BankAccountList = [
+  {
+    logo: LogoCitibank,
+    accountName: 'Citi Bank',
+    accountCode: 2356,
+    accountAmount: 123.456,
+  },
+  {
+    logo: LogoCitibank,
+    accountName: 'Citi Bank',
+    accountCode: 2356,
+    accountAmount: 123.456,
+  },
+  {
+    logo: LogoCitibank,
+    accountName: 'Citi Bank',
+    accountCode: 2356,
+    accountAmount: 123.456,
+  },
+  {
+    logo: LogoCitibank,
+    accountName: 'Citi Bank',
+    accountCode: 2356,
+    accountAmount: 123.456,
+  },
+];
 
 const BankAccount = ({navigation}) => {
-  const [isEmpty, setIsEmpty] = useState(true);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -39,6 +72,27 @@ const BankAccount = ({navigation}) => {
         </View>
       ) : (
         <ScrollView contentContainerStyle={styles.listContainer}>
+          {BankAccountList.map((item, index) => {
+            return (
+              <BankAccountItem
+                key={index}
+                {...item}
+                rightButton={
+                  <Button
+                    onPress={() => {
+                      navigation.navigate('BankAccountConnect');
+                    }}
+                    title="Edit"
+                    btnStyle={styles.editButton}
+                    titleStyle={{
+                      color: color.btn_title_white,
+                      fontSize: dimens.default_14,
+                    }}
+                  />
+                }
+              />
+            );
+          })}
           <Gap t={dimens.default} />
         </ScrollView>
       )}
@@ -79,6 +133,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: dimens.default,
     paddingVertical: dimens.default_12,
+  },
+  editButton: {
+    backgroundColor: 'white',
+    width: 76,
+    height: 40,
+    borderWidth: 0.1,
+    borderColor: dimens.btn_white,
   },
 });
 

@@ -15,6 +15,7 @@ import People1 from './people1.png';
 import PeopleInviteFriend from './people_invite_friend.png';
 import Dropdown from './Dropdown.png';
 import ModalParty from './modal_party.png';
+import LogoCitibank from './logo_citibank.png';
 
 export {
   SplashWave,
@@ -34,4 +35,5 @@ export {
   People1,
   PeopleInviteFriend,
   Dropdown,
+  LogoCitibank,
 };

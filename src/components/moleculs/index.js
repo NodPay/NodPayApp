@@ -28,6 +28,7 @@ import PeopleItem from './PeopleItem';
 import FaqAccordionItem from './FaqAccordionItem';
 import InputSwitch from './InputSwitch';
 import InputCheck from './InputCheck';
+import BankAccountItem from './BankAccountItem';
 
 export {
   SectionTitle,
@@ -60,4 +61,5 @@ export {
   FaqAccordionItem,
   InputSwitch,
   InputCheck,
+  BankAccountItem,
 };
