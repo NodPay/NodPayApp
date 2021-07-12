@@ -10,7 +10,7 @@ import {
 
 //where local file imported
 import {dimens, fonts, color} from '../../utils';
-import {LogoCitibank} from '../../assets';
+import {CitiBank} from '../../assets';
 
 const BankAccountItem = ({
   logo,

@@ -19,29 +19,29 @@ import {
   BankAccountItem,
 } from '../components/';
 import {color, dimens, fonts} from '../utils/';
-import {EmptyData, LogoCitibank} from '../assets/';
+import {EmptyData, CitiBank} from '../assets/';
 
 const BankAccountList = [
   {
-    logo: LogoCitibank,
+    logo: CitiBank,
     accountName: 'Citi Bank',
     accountCode: 2356,
     accountAmount: 123.456,
   },
   {
-    logo: LogoCitibank,
+    logo: CitiBank,
     accountName: 'Citi Bank',
     accountCode: 2356,
     accountAmount: 123.456,
   },
   {
-    logo: LogoCitibank,
+    logo: CitiBank,
     accountName: 'Citi Bank',
     accountCode: 2356,
     accountAmount: 123.456,
   },
   {
-    logo: LogoCitibank,
+    logo: CitiBank,
     accountName: 'Citi Bank',
     accountCode: 2356,
     accountAmount: 123.456,
