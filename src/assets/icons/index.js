@@ -78,8 +78,14 @@ import FlagUs from './flag-us.png';
 import Triangle from './triangle.png';
 import CheckmarkWhite from './checkmark_white.png';
 export * from './flags';
-import Gallery from './gallery.png'
-import Camera from './camera.png'
+import Gallery from './gallery.png';
+import Camera from './camera.png';
+import AddMoney from './add_money.png';
+import CashACheck from './cash_a_check.png';
+import TransferToBank from './transfer_to_bank.png';
+import Share from './share.png';
+import Check from './check.png';
+import OutlineCamera from './outline_camera.png';
 
 export {
   LeftArrow,
@@ -163,4 +169,10 @@ export {
   CheckmarkWhite,
   Gallery,
   Camera,
+  AddMoney,
+  CashACheck,
+  TransferToBank,
+  Share,
+  Check,
+  OutlineCamera,
 };

@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {View,Text} from 'react-native'
+import {View, Text} from 'react-native';
 
 // where screens should be imported
 import {
@@ -37,6 +37,9 @@ import {
   NotificationSetting,
   BankAccount,
   BankAccountConnect,
+  QRCode,
+  TransferToBank,
+  CashACheck,
 } from '../screens';
 import {Drawer as DrawerComponent, HomeTabBar} from '../components';
 
@@ -86,6 +89,9 @@ const Router = () => {
           component={BankAccountConnect}
         />
         <Stack.Screen name="AppDrawer" component={AppDrawer} />
+        <Stack.Screen name="QRCode" component={QRCode} />
+        <Stack.Screen name="TransferToBank" component={TransferToBank} />
+        <Stack.Screen name="CashACheck" component={CashACheck} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -112,7 +118,6 @@ const AppDrawer = () => {
 //   const Exchange = () => {
 //     return null
 //   }
-
 
 //   return (
 //     <Tab.Navigator>

@@ -15,6 +15,12 @@ import People1 from './people1.png';
 import PeopleInviteFriend from './people_invite_friend.png';
 import Dropdown from './Dropdown.png';
 import ModalParty from './modal_party.png';
+import BackgroundQRCode from './bg_qrcde.png';
+import QRCodeSample from './qr-code.png';
+import CitiBank from './citibank.png';
+import FaysalBank from './faysal.png';
+import HabibBank from './hbl.png';
+import OCBCBank from './ocbc.png';
 
 export {
   SplashWave,
@@ -34,4 +40,10 @@ export {
   People1,
   PeopleInviteFriend,
   Dropdown,
+  BackgroundQRCode,
+  QRCodeSample,
+  CitiBank,
+  FaysalBank,
+  HabibBank,
+  OCBCBank,
 };

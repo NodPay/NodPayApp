@@ -1,20 +1,18 @@
-import React, {useState,useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
-import RBSheet from "react-native-raw-bottom-sheet";
+import RBSheet from 'react-native-raw-bottom-sheet';
 
 // where local files imported
 import {FormLabel} from '../atoms';
 import {color, dimens, fonts} from '../../utils';
-import {Camera, CloseRed, DefaultPict} from '../../assets';
+import {Camera, CloseRed, DefaultPict, Gallery} from '../../assets';
 import {Gap} from '../../components';
 
 const InputPhoto = () => {
   const [picture, setPicture] = useState('');
-  const btnRef = useRef(null)
+  const btnRef = useRef(null);
 
-
-  
   const openCamera = () => {
     ImagePicker.openCamera({
       width: 300,
@@ -23,9 +21,8 @@ const InputPhoto = () => {
       console.log('result', res);
       setPicture(res.path);
     });
-    btnRef.current.close()
+    btnRef.current.close();
   };
-
 
   const openGallery = () => {
     ImagePicker.openPicker({
@@ -35,7 +32,7 @@ const InputPhoto = () => {
       console.log('result', res);
       setPicture(res.path);
     });
-    btnRef.current.close()
+    btnRef.current.close();
   };
 
   return (
@@ -53,41 +50,58 @@ const InputPhoto = () => {
           <Text style={styles.btnTitle}>Upload Photo</Text>
         </TouchableOpacity>
       </View>
-      <RBSheet ref={btnRef} 
-       height={300}
-       openDuration={250}
-       customStyles={{
-         container:{
-           borderTopLeftRadius:dimens.default_16,
-           borderTopRightRadius:dimens.default_16
-         }
-       }}
-       >
-        <View style={{padding:dimens.default_16}}>
-          <View style={{paddingTop:dimens.default_16 / 2,}}>
-            <TouchableOpacity onPress={() => btnRef.current.close()} >
-            <Image source={CloseRed} style={{height:40,width:40,left:0,top:0}}/>
-            </TouchableOpacity>
-            <Text style={{fontFamily:fonts.sofia_bold,fontSize:dimens.default_18,textAlign:'center',marginTop:-32,zIndex:-1}}>Upload Photo</Text>
-            <Gap t={dimens.large}/>
+      <RBSheet
+        ref={btnRef}
+        height={300}
+        openDuration={250}
+        customStyles={{
+          container: {
+            borderTopLeftRadius: dimens.default_16,
+            borderTopRightRadius: dimens.default_16,
+          },
+        }}>
+        <View style={{padding: dimens.default_16}}>
+          <View style={{paddingTop: dimens.default_16 / 2}}>
+            <View
+              style={{
+                justifyContent: 'flex-start',
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}>
+              <TouchableOpacity onPress={() => btnRef.current.close()}>
+                <Image source={CloseRed} style={{height: 40, width: 40}} />
+              </TouchableOpacity>
+              <Text style={styles.btmSheetTitle}>Upload Photo</Text>
+            </View>
+            <Gap t={dimens.large} />
             {/* open camera */}
-            <TouchableOpacity style={{flexDirection:"row"}} activeOpacity={0.8} onPress={openCamera}>
-              <Image source={Camera} style={{height:48,width:48}}/>
-              <Gap l={dimens.default_16}/>
+            <TouchableOpacity
+              style={{flexDirection: 'row'}}
+              activeOpacity={0.8}
+              onPress={openCamera}>
+              <Image source={Camera} style={{height: 48, width: 48}} />
+              <Gap l={dimens.default_16} />
               <View>
-              <Text style={{fontFamily:fonts.sofia_bold,fontSize:dimens.default_16}}>Open Camera</Text>
-              <Text style={{fontFamily:fonts.sofia_regular,fontSize:dimens.default_14}}>Take Picture with Your Camera</Text>
+                <Text style={styles.title}>Open Camera</Text>
+                <Text style={styles.description}>
+                  Take Picture with Your Camera
+                </Text>
               </View>
               {/* <Image /> */}
             </TouchableOpacity>
             {/* open gallery */}
-            <Gap t={dimens.large}/>
-            <TouchableOpacity style={{flexDirection:"row"}} activeOpacity={0.8} onPress={openGallery}>
-              <Image source={Camera} style={{height:48,width:48}}/>
-              <Gap l={dimens.default_16}/>
+            <Gap t={dimens.large} />
+            <TouchableOpacity
+              style={{flexDirection: 'row'}}
+              activeOpacity={0.8}
+              onPress={openGallery}>
+              <Image source={Gallery} style={{height: 48, width: 48}} />
+              <Gap l={dimens.default_16} />
               <View>
-              <Text style={{fontFamily:fonts.sofia_bold,fontSize:dimens.default_16}}>Open Gallery</Text>
-              <Text style={{fontFamily:fonts.sofia_regular,fontSize:dimens.default_14}}>Browse Image from Your Gallery</Text>
+                <Text style={styles.title}>Open Gallery</Text>
+                <Text style={styles.description}>
+                  Browse Image from Your Gallery
+                </Text>
               </View>
               {/* <Image /> */}
             </TouchableOpacity>
@@ -129,5 +143,19 @@ const styles = StyleSheet.create({
     padding: dimens.default_14,
     fontFamily: fonts.sofia_bold,
     fontSize: dimens.default_16,
+  },
+  title: {
+    fontFamily: fonts.sofia_bold,
+    fontSize: dimens.default_16,
+  },
+  description: {
+    fontFamily: fonts.sofia_regular,
+    fontSize: dimens.default_14,
+  },
+  btmSheetTitle: {
+    fontFamily: fonts.sofia_bold,
+    fontSize: dimens.default_18,
+    textAlign: 'center',
+    flex: 0.9,
   },
 });

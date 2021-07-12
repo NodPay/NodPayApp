@@ -28,6 +28,8 @@ import PeopleItem from './PeopleItem';
 import FaqAccordionItem from './FaqAccordionItem';
 import InputSwitch from './InputSwitch';
 import InputCheck from './InputCheck';
+import MainActionList from './MainActionList';
+import TransferToBankList from './TransferToBankList';
 
 export {
   SectionTitle,
@@ -60,4 +62,6 @@ export {
   FaqAccordionItem,
   InputSwitch,
   InputCheck,
+  MainActionList,
+  TransferToBankList,
 };
