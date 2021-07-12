@@ -14,6 +14,8 @@ const PageTitle = ({
   onPressClose,
   isRightQR,
   onPressRight,
+  cancel,
+  isCancel,
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
@@ -21,7 +23,17 @@ const PageTitle = ({
         <TouchableOpacity
           onPress={onPressClose}
           style={{position: 'absolute', left: dimens.default_16}}>
-          <Image source={CloseRed} style={styles.close_icon} />
+          <Image source={CloseRed} style={[styles.close_icon, cancel]} />
+          {isCancel && (
+            <Text
+              style={{
+                fontFamily: fonts.noto_bold,
+                fontSize: dimens.default_12,
+                textAlign: 'center',
+              }}>
+              Cancel
+            </Text>
+          )}
         </TouchableOpacity>
       ) : (
         <TouchableOpacity

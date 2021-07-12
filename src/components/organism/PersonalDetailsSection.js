@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 
+
 // where local files imported
 import {color, dimens, fonts} from '../../utils';
 import {Gap} from '../atoms';
@@ -19,7 +20,7 @@ const PersonalDetailsSection = ({isFamilyRelation, withoutSectionTitle}) => {
 
   const [familyRelation, setFamilyRelation] = useState('');
 
-  console.log(user);
+
 
   if (isFamilyRelation) {
     return (

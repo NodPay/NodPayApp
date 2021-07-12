@@ -28,6 +28,9 @@ import PrivacySocial from './PrivacySocial';
 import NotificationSetting from './NotificationSetting';
 import BankAccount from './BankAccount';
 import BankAccountConnect from './BankAccountConnect';
+import QRCode from './QRCode';
+import TransferToBank from './TransferToBank';
+import CashACheck from './CashACheck';
 
 export {
   Splash,
@@ -60,4 +63,7 @@ export {
   NotificationSetting,
   BankAccount,
   BankAccountConnect,
+  QRCode,
+  TransferToBank,
+  CashACheck,
 };

@@ -70,13 +70,13 @@ const HomeTabBar = ({state, descriptors, navigation}) => {
         </Text>
       </TouchableOpacity>
 
-      {/* <View
+      <View
         style={
           {
-            // paddingVertical: 6,
-            // flex: 1,
-            // justifyContent: 'center',
-            // alignItems: 'center',
+            position:'absolute',
+            bottom:0,
+            left:0,
+            right:0
           }
         }>
         <TouchableOpacity
@@ -89,7 +89,7 @@ const HomeTabBar = ({state, descriptors, navigation}) => {
         <Text style={[styles.label, {color: color.btn_black}]}>
           Send & Request
         </Text>
-      </View> */}
+      </View>
 
       <TouchableOpacity
         accessibilityRole="button"
@@ -146,11 +146,11 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     shadowOffset: {height: 5},
     shadowOpacity: 0.3,
-    borderWidth: 5,
-    borderColor: color.grey_7,
-    shadowColor: color.grey_7,
-    position: 'absolute',
-    bottom: 15,
+    borderWidth: 20,
+    borderColor: 'black',
+    shadowColor: 'black',
+    // position: 'absolute',
+    // bottom: 15,
     alignSelf: 'center',
   },
 });

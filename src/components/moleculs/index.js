@@ -29,6 +29,8 @@ import FaqAccordionItem from './FaqAccordionItem';
 import InputSwitch from './InputSwitch';
 import InputCheck from './InputCheck';
 import BankAccountItem from './BankAccountItem';
+import MainActionList from './MainActionList';
+import TransferToBankList from './TransferToBankList';
 
 export {
   SectionTitle,
@@ -62,4 +64,6 @@ export {
   InputSwitch,
   InputCheck,
   BankAccountItem,
+  MainActionList,
+  TransferToBankList,
 };
