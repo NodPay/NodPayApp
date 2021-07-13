@@ -23,6 +23,7 @@ const FeedItem = ({
   onPressEmoji,
   isHideComment,
   isCommentReply,
+  onPressPhoto, //added for view other user profile
 }) => {
   const {
     loveCount,
@@ -39,10 +40,12 @@ const FeedItem = ({
       {/* Left part (profile photo and time) */}
       <View style={{width: 65}}>
         <View style={{width: 50}}>
-          <Image
-            source={ProfileExample}
-            style={{height: 50, width: 50, resizeMode: 'contain'}}
-          />
+          <TouchableOpacity onPress={onPressPhoto}>
+            <Image
+              source={ProfileExample}
+              style={{height: 50, width: 50, resizeMode: 'contain'}}
+            />
+          </TouchableOpacity>
           <View style={styles.timeContainer}>
             <Image source={Time} style={styles.clockIcon} />
             <Text style={{fontSize: dimens.default_12, color: color.grey_3}}>

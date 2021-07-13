@@ -40,6 +40,8 @@ import {
   QRCode,
   TransferToBank,
   CashACheck,
+  Profile,
+  OtherUserProfile,
 } from '../screens';
 import {Drawer as DrawerComponent, HomeTabBar} from '../components';
 
@@ -92,6 +94,8 @@ const Router = () => {
         <Stack.Screen name="QRCode" component={QRCode} />
         <Stack.Screen name="TransferToBank" component={TransferToBank} />
         <Stack.Screen name="CashACheck" component={CashACheck} />
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="OtherUserProfile" component={OtherUserProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

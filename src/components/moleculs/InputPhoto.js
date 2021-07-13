@@ -17,6 +17,8 @@ const InputPhoto = () => {
     ImagePicker.openCamera({
       width: 300,
       height: 400,
+      cropping: true,
+      cropperCircleOverlay: true,
     }).then(res => {
       console.log('result', res);
       setPicture(res.path);
@@ -28,6 +30,8 @@ const InputPhoto = () => {
     ImagePicker.openPicker({
       width: 300,
       height: 400,
+      cropping: true,
+      cropperCircleOverlay: true,
     }).then(res => {
       console.log('result', res);
       setPicture(res.path);

@@ -86,6 +86,8 @@ import TransferToBank from './transfer_to_bank.png';
 import Share from './share.png';
 import Check from './check.png';
 import OutlineCamera from './outline_camera.png';
+import PencilEditWhite from './pencil_edit_white.png';
+import ThreeDotsVertical from './three-dots-vertical.png';
 
 export {
   LeftArrow,
@@ -175,4 +177,6 @@ export {
   Share,
   Check,
   OutlineCamera,
+  PencilEditWhite,
+  ThreeDotsVertical,
 };

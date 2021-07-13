@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
   View,
   ScrollView,
@@ -23,8 +23,11 @@ import {
   ProfileExample,
 } from '../../assets';
 import {dimens, color, fonts} from '../../utils';
+import {MainAction} from '../organism';
 
 const Drawer = ({navigation}) => {
+  const mainActionRef = useRef(null);
+
   return (
     <SafeAreaView style={styles.drawerContainer}>
       <ScrollView contentContainerStyle={styles.scrollviewContainer}>
@@ -40,7 +43,11 @@ const Drawer = ({navigation}) => {
         </View>
 
         <View style={{padding: dimens.default}}>
-          <BalanceInfo type="drawer" moneyAmount="400.000" />
+          <BalanceInfo
+            type="drawer"
+            moneyAmount="400.000"
+            onPressAdd={() => mainActionRef.current.open()}
+          />
         </View>
 
         <DrawerItem
@@ -93,6 +100,10 @@ const Drawer = ({navigation}) => {
       </ScrollView>
 
       <DrawerItem label="Log out" image={DrawerLogout} onPress={() => {}} />
+
+      {/* MainAction BottomSheet */}
+      <MainAction mainActionRef={mainActionRef} />
+      {/* MainAction BottomSheet End*/}
     </SafeAreaView>
   );
 };

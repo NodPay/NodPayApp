@@ -43,7 +43,7 @@ const BalanceInfo = ({type, moneyAmount, onPressAdd}) => {
         <Text style={styles.drawerMoneyAmount}>Rs {moneyAmount || '0'}</Text>
       </View>
 
-      <TouchableOpacity style={styles.drawerAddButton}>
+      <TouchableOpacity style={styles.drawerAddButton} onPress={onPressAdd}>
         <Image source={Plus} style={[styles.addIcon, {height: 30}]} />
       </TouchableOpacity>
     </View>

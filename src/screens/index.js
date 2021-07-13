@@ -31,6 +31,8 @@ import BankAccountConnect from './BankAccountConnect';
 import QRCode from './QRCode';
 import TransferToBank from './TransferToBank';
 import CashACheck from './CashACheck';
+import Profile from './Profile';
+import OtherUserProfile from './OtherUserProfile';
 
 export {
   Splash,
@@ -66,4 +68,6 @@ export {
   QRCode,
   TransferToBank,
   CashACheck,
+  Profile,
+  OtherUserProfile,
 };

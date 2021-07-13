@@ -1,7 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 
-import {LeftArrow, BlackLeftArrow, CloseRed, QRScan} from '../../assets';
+import {
+  LeftArrow,
+  BlackLeftArrow,
+  CloseRed,
+  QRScan,
+  PencilEditWhite,
+  ThreeDotsVertical,
+} from '../../assets';
 import {color, dimens, fonts} from '../../utils';
 
 const PageTitle = ({
@@ -16,6 +23,9 @@ const PageTitle = ({
   onPressRight,
   cancel,
   isCancel,
+  isProfile,
+  onEdit,
+  isOtherProfile,
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
@@ -51,6 +61,24 @@ const PageTitle = ({
         <TouchableOpacity onPress={onPressRight} style={styles.containerQR}>
           <Image source={QRScan} style={styles.iconQR} />
           <Text style={styles.textQR}>QR Code</Text>
+        </TouchableOpacity>
+      )}
+      {/* Edit Profile */}
+      {isProfile && (
+        <TouchableOpacity onPress={onEdit} style={styles.containerQR}>
+          <Image
+            source={PencilEditWhite}
+            style={{height: 40, width: 40, resizeMode: 'contain'}}
+          />
+        </TouchableOpacity>
+      )}
+      {/* Other User Profile */}
+      {isOtherProfile && (
+        <TouchableOpacity onPress={onEdit} style={styles.containerQR}>
+          <Image
+            source={ThreeDotsVertical}
+            style={{height: 24, width: 24, resizeMode: 'contain'}}
+          />
         </TouchableOpacity>
       )}
     </View>
