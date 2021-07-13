@@ -10,12 +10,13 @@ import {
 
 //where local file imported
 import {dimens, fonts, color} from '../../utils';
-import {CitiBank} from '../../assets';
+import {Ellipsis} from '../../assets';
 
+// Item of Bank Account List that will be looped
 const BankAccountItem = ({
   logo,
-  accountName,
-  accountCode,
+  routingNumber,
+  accountNumber,
   accountAmount,
   rightButton,
 }) => {
@@ -25,8 +26,11 @@ const BankAccountItem = ({
         <Image source={logo} style={{width: 46, resizeMode: 'contain'}} />
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.accountName}>{accountName}</Text>
-        <Text style={styles.accountCode}>{accountCode}</Text>
+        <Text style={styles.routingNumber}>{routingNumber}</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image source={Ellipsis} style={{width: 34, resizeMode: 'contain'}} />
+          <Text style={styles.accountNumber}>{accountNumber}</Text>
+        </View>
         <Text style={styles.accountAmount}>
           Rs <Text style={{color: color.green}}>{accountAmount}</Text>
         </Text>
@@ -55,16 +59,18 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: dimens.default,
   },
-  accountName: {
+  routingNumber: {
     color: color.btn_black,
     fontSize: dimens.default,
     fontFamily: fonts.sofia_regular,
     fontWeight: '400',
   },
-  accountCode: {
+  accountNumber: {
     color: color.grey_8,
     fontSize: dimens.default_12,
     fontFamily: fonts.sofia_regular,
+    marginLeft: dimens.small,
+    marginBottom: dimens.verysmall,
   },
   accountAmount: {
     color: color.green2,

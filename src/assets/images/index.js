@@ -21,6 +21,7 @@ import CitiBank from './citibank.png';
 import FaysalBank from './faysal.png';
 import HabibBank from './hbl.png';
 import OCBCBank from './ocbc.png';
+import Ellipsis from './ellipsis.png';
 
 export {
   SplashWave,
@@ -46,4 +47,5 @@ export {
   FaysalBank,
   HabibBank,
   OCBCBank,
+  Ellipsis,
 };

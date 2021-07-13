@@ -19,31 +19,25 @@ import {
   BankAccountItem,
 } from '../components/';
 import {color, dimens, fonts} from '../utils/';
-import {EmptyData, CitiBank} from '../assets/';
+import {EmptyData, CitiBank, FaysalBank, HabibBank} from '../assets/';
 
 const BankAccountList = [
   {
     logo: CitiBank,
-    accountName: 'Citi Bank',
-    accountCode: 2356,
+    routingNumber: 'Citi Bank',
+    accountNumber: 2356,
     accountAmount: 123.456,
   },
   {
-    logo: CitiBank,
-    accountName: 'Citi Bank',
-    accountCode: 2356,
+    logo: FaysalBank,
+    routingNumber: 'Faysal Bank',
+    accountNumber: 2356,
     accountAmount: 123.456,
   },
   {
-    logo: CitiBank,
-    accountName: 'Citi Bank',
-    accountCode: 2356,
-    accountAmount: 123.456,
-  },
-  {
-    logo: CitiBank,
-    accountName: 'Citi Bank',
-    accountCode: 2356,
+    logo: HabibBank,
+    routingNumber: 'Habib Bank',
+    accountNumber: 2356,
     accountAmount: 123.456,
   },
 ];
@@ -80,7 +74,7 @@ const BankAccount = ({navigation}) => {
                 rightButton={
                   <Button
                     onPress={() => {
-                      navigation.navigate('BankAccountConnect');
+                      // navigation.navigate('BankAccountConnect');
                     }}
                     title="Edit"
                     btnStyle={styles.editButton}

@@ -22,15 +22,18 @@ import {color, dimens, fonts} from '../utils/';
 import {LockPurple, ModalSuccess, ModalFailed} from '../assets/';
 
 const BankAccountConnect = ({navigation}) => {
-  const [bankName, setBankName] = useState('');
-  const [bankCode, setBankCode] = useState('');
-  const [accountNumber, setAccountNumber] = useState('');
+  const [form, setForm] = useState({
+    routingNumber: '',
+    accountNumber: '',
+    confirmAccountNumber: '',
+  });
   const [modalSuccess, setModalSuccess] = useState(false);
 
   const handleConnectAccount = () => {
     setModalSuccess(true);
   };
-  const isButtonSubmitEnabled = bankName && bankCode && accountNumber;
+  const isButtonSubmitEnabled =
+    form.routingNumber && form.accountNumber && form.confirmAccountNumber;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -78,19 +81,34 @@ const BankAccountConnect = ({navigation}) => {
       <ScrollView contentContainerStyle={styles.listContainer}>
         <View style={{flex: 1}}>
           <InputText
-            label="Bank Name"
-            value={bankName}
-            onChangeText={setBankName}
+            label="Routing Number"
+            placeholder="Enter routing number"
+            placeholderTextColor={color.grey_3}
+            value={form.routingNumber}
+            onChangeText={val =>
+              setForm(prev => ({...prev, routingNumber: val}))
+            }
+            keyboardType="number-pad"
           />
           <InputText
-            label="Bank Code"
-            value={bankCode}
-            onChangeText={setBankCode}
+            label="Account Number"
+            placeholder="Enter account number"
+            placeholderTextColor={color.grey_3}
+            value={form.accountNumber}
+            onChangeText={val =>
+              setForm(prev => ({...prev, accountNumber: val}))
+            }
+            keyboardType="number-pad"
           />
           <InputText
-            label="Your Account"
-            value={accountNumber}
-            onChangeText={setAccountNumber}
+            label="Confirm Account Number"
+            placeholder="Confirm account number"
+            placeholderTextColor={color.grey_3}
+            value={form.confirmAccountNumber}
+            onChangeText={val =>
+              setForm(prev => ({...prev, confirmAccountNumber: val}))
+            }
+            keyboardType="number-pad"
           />
 
           <InfoMessage
@@ -98,7 +116,7 @@ const BankAccountConnect = ({navigation}) => {
             message="Your bank account information is safe and protected with NodPay"
           />
         </View>
-        <ErrorMessage message="Invalid Bank account information, please check your information and try again" />
+        {/* <ErrorMessage message="Invalid Bank account information, please check your information and try again" /> */}
       </ScrollView>
 
       <KeyboardAvoidingView
