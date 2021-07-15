@@ -23,7 +23,7 @@ import {
 } from '../assets';
 import {Modal} from '../components';
 
-const TransferToBank = () => {
+const TransferToBank = ({navigation}) => {
   const [transfer, setTransfer] = useState(false);
   const [selected, setSelected] = useState(null);
   const [isInput, setIsInput] = useState(false);
@@ -151,6 +151,7 @@ const TransferToBank = () => {
             width: 32,
             marginLeft: 5,
           }}
+          navigation={navigation}
         />
         {/* Header End */}
 
@@ -239,6 +240,7 @@ const TransferToBank = () => {
         isBlackArrow
         title="Transfer To Bank"
         titleStyle={{color: color.btn_black}}
+        navigation={navigation}
       />
       {/* Header End */}
 

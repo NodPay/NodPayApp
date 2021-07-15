@@ -35,7 +35,7 @@ const QRCode = ({navigation}) => {
     return (
       <View style={{flex: 1, backgroundColor: color.bg_color}}>
         <StatusBar backgroundColor={color.bg_color} />
-        <PageTitle title="Scan QR Code" />
+        <PageTitle title="Scan QR Code" navigation={navigation} />
         <QRCodeScanner
           topViewStyle={{backgroundColor: color.bg_color}}
           bottomViewStyle={{backgroundColor: color.bg_color}}
