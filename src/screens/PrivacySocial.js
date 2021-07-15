@@ -17,17 +17,17 @@ const PrivacySocial = ({navigation}) => {
   const [profilePrivate, setProfilePrivate] = useState(true);
   const [valueList, setValueList] = useState([
     {
-      group: 'Comment',
+      group: 'Transactions',
       label: 'From friend of Fiends',
       value: false,
     },
     {
-      group: 'Comment',
+      group: 'Transactions',
       label: 'From your friend only',
       value: false,
     },
     {
-      group: 'Comment',
+      group: 'Transactions',
       label: 'From everyone',
       value: true,
     },
@@ -43,21 +43,6 @@ const PrivacySocial = ({navigation}) => {
     },
     {
       group: 'Comments',
-      label: 'From everyone',
-      value: true,
-    },
-    {
-      group: 'Request',
-      label: 'From friend of Fiends',
-      value: false,
-    },
-    {
-      group: 'Request',
-      label: 'From your friend only',
-      value: false,
-    },
-    {
-      group: 'Request',
       label: 'From everyone',
       value: true,
     },
@@ -108,14 +93,18 @@ const PrivacySocial = ({navigation}) => {
                   value={item.value}
                   onChange={() => {
                     const newData = valueList.map(row => {
-                      if (
-                        row.group === itemGroup.group &&
-                        row.label === item.label
-                      ) {
-                        return {
-                          ...row,
-                          value: !row.value,
-                        };
+                      if (row.group === itemGroup.group) {
+                        if (row.label === item.label) {
+                          return {
+                            ...row,
+                            value: !row.value,
+                          };
+                        } else {
+                          return {
+                            ...row,
+                            value: false,
+                          };
+                        }
                       }
 
                       return row;

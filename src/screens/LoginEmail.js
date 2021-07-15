@@ -8,6 +8,7 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Platform,
+  Keyboard,
 } from 'react-native';
 
 // where local file imported
@@ -27,6 +28,33 @@ const LoginEmail = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submited, setSubmited] = useState(false);
+  const [isKeyboardShow, setIsKeyboardShow] = useState(false);
+  let keyboardDidShowListener;
+  let keyboardDidHideListener;
+
+  useEffect(() => {
+    keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      _keyboardDidShow,
+    );
+    keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      _keyboardDidHide,
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
+
+  const _keyboardDidShow = () => {
+    setIsKeyboardShow(true);
+  };
+
+  const _keyboardDidHide = () => {
+    setIsKeyboardShow(false);
+  };
 
   const submit = () => {
     setSubmited(true);
@@ -90,23 +118,25 @@ const LoginEmail = ({navigation}) => {
             title="Login"
             btnStyle={{
               backgroundColor: color.btn_black,
-              marginBottom: dimens.default_12,
               borderColor: color.btn_white,
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
             onPress={submit}
           />
-          <Button
-            title="Register"
-            btnStyle={{
-              backgroundColor: 'white',
-              borderColor: color.btn_white,
-              borderWidth: 1,
-            }}
-            titleStyle={{fontFamily: fonts.sofia_bold}}
-            onPress={() => navigation.navigate('Register')}
-          />
+          {!isKeyboardShow && (
+            <Button
+              title="Register"
+              btnStyle={{
+                backgroundColor: 'white',
+                borderColor: color.btn_white,
+                borderWidth: 1,
+                marginTop: dimens.default_12,
+              }}
+              titleStyle={{fontFamily: fonts.sofia_bold}}
+              onPress={() => navigation.navigate('Register')}
+            />
+          )}
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>

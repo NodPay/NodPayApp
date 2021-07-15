@@ -98,14 +98,18 @@ const NotificationSetting = ({navigation}) => {
                   value={item.value}
                   onChange={() => {
                     const newData = valueList.map(row => {
-                      if (
-                        row.group === itemGroup.group &&
-                        row.label === item.label
-                      ) {
-                        return {
-                          ...row,
-                          value: !row.value,
-                        };
+                      if (row.group === itemGroup.group) {
+                        if (row.label === item.label) {
+                          return {
+                            ...row,
+                            value: !row.value,
+                          };
+                        } else {
+                          return {
+                            ...row,
+                            value: false,
+                          };
+                        }
                       }
 
                       return row;
