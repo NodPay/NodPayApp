@@ -8,7 +8,10 @@ import {
   StatusBar,
   Image,
   TouchableOpacity,
+  ToastAndroid,
 } from 'react-native';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import {RNCamera} from 'react-native-camera';
 
 //where local files imported
 import {
@@ -18,11 +21,73 @@ import {
   LeftArrow,
   Share,
 } from '../assets';
-import {Gap} from '../components';
+import {Gap, PageTitle} from '../components';
 import {color, dimens, fonts} from '../utils';
 
 const QRCode = ({navigation}) => {
-  const [selected, setSelected] = useState(1);
+  const [selected, setSelected] = useState(2);
+
+  const showToast = message => {
+    ToastAndroid.show(message, ToastAndroid.SHORT);
+  };
+
+  if (selected == 2) {
+    return (
+      <View style={{flex: 1, backgroundColor: color.bg_color}}>
+        <StatusBar backgroundColor={color.bg_color} />
+        <PageTitle title="Scan QR Code" />
+        <QRCodeScanner
+          topViewStyle={{backgroundColor: color.bg_color}}
+          bottomViewStyle={{backgroundColor: color.bg_color}}
+          onRead={res => {
+            showToast(res.data);
+            setSelected(1);
+          }}
+          // flashMode={RNCamera.Constants.FlashMode.torch}
+        />
+        {/* Button Start */}
+        <View style={styles.tabButton}>
+          <TouchableOpacity
+            onPress={() => setSelected(1)}
+            style={[
+              styles.btn,
+              {
+                backgroundColor: selected === 1 ? 'white' : 'transparent',
+              },
+            ]}>
+            <Text
+              style={[
+                styles.btnTitle,
+                {
+                  color: selected === 1 ? color.btn_black : 'gray',
+                },
+              ]}>
+              NodMe
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setSelected(2)}
+            style={[
+              styles.btn,
+              {
+                backgroundColor: selected === 2 ? 'white' : 'transparent',
+              },
+            ]}>
+            <Text
+              style={[
+                styles.btnTitle,
+                {
+                  color: selected === 2 ? color.btn_black : 'gray',
+                },
+              ]}>
+              Scan
+            </Text>
+          </TouchableOpacity>
+        </View>
+        {/* Button End */}
+      </View>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -45,18 +110,20 @@ const QRCode = ({navigation}) => {
         <Gap t={100} />
 
         {/* Box Start */}
-        <View style={styles.box}>
-          <View style={styles.imageProfileWrapper}>
-            <Image source={DefaultPict} style={styles.imageProfile} />
-            <Text style={styles.profileName}>Artour Babaev</Text>
-            <Text style={styles.profileLink}>@arteezyevilgeniuses</Text>
-            <Gap t={dimens.default} />
-            <Image
-              source={QRCodeSample}
-              style={{height: 225, width: 225, resizeMode: 'cover'}}
-            />
+        {selected == 1 && (
+          <View style={styles.box}>
+            <View style={styles.imageProfileWrapper}>
+              <Image source={DefaultPict} style={styles.imageProfile} />
+              <Text style={styles.profileName}>Artour Babaev</Text>
+              <Text style={styles.profileLink}>@arteezyevilgeniuses</Text>
+              <Gap t={dimens.default} />
+              <Image
+                source={QRCodeSample}
+                style={{height: 225, width: 225, resizeMode: 'cover'}}
+              />
+            </View>
           </View>
-        </View>
+        )}
         {/* Box End */}
 
         {/* Button Start */}
@@ -156,6 +223,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderRadius: 11,
     height: 46,
+    position: 'absolute',
+    left: dimens.default,
+    right: dimens.default,
+    bottom: 50,
   },
   btn: {
     justifyContent: 'center',
