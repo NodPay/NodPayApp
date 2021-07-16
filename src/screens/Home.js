@@ -91,7 +91,10 @@ const Home = ({navigation}) => {
             </TouchableOpacity>
             <Text>Exchange</Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Card');
+            }}>
             <Image source={CardInactive} style={{width: 30, height: 30}} />
             <Text>Card</Text>
           </TouchableOpacity>
