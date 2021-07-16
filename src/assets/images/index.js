@@ -22,6 +22,7 @@ import FaysalBank from './faysal.png';
 import HabibBank from './hbl.png';
 import OCBCBank from './ocbc.png';
 import Ellipsis from './ellipsis.png';
+import VirtualCard from './virtual_card.png';
 
 export {
   SplashWave,
@@ -48,4 +49,5 @@ export {
   HabibBank,
   OCBCBank,
   Ellipsis,
+  VirtualCard,
 };

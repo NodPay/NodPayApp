@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 
+// ! temporary copy
 // where local files imported
 import {color, dimens, fonts} from '../../utils';
 import {
@@ -116,20 +117,19 @@ const HomeTabBar = ({state, descriptors, navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 60,
     backgroundColor: 'white',
-    // flexDirection: 'row',
+    flexDirection: 'row',
     justifyContent: 'center',
-    // alignItems: 'center',
-    // borderTopWidth: 3.5,
-    // borderTopColor: color.grey_7,
-    // shadowColor: color.grey_7,
-    // // Android only
-    // elevation: 2,
-    // // IOS only
-    // shadowRadius: 5,
-    // shadowOffset: {height: -2},
-    // shadowOpacity: 0.3,
+    alignItems: 'center',
+    borderTopWidth: 3.5,
+    borderTopColor: color.grey_7,
+    shadowColor: color.grey_7,
+    // Android only
+    elevation: 2,
+    // IOS only
+    shadowRadius: 5,
+    shadowOffset: {height: -2},
+    shadowOpacity: 0.3,
   },
   label: {
     fontSize: dimens.default_12,

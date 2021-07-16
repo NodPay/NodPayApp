@@ -56,6 +56,7 @@ import ThreeDots from './three-dots.png';
 import AccountCircle from './account_circle.png';
 import Lock from './lock.png';
 import LockPurple from './lock_purple.png';
+import LockOpenPurple from './lock_open_purple.png';
 import Profile from './profile.png';
 import Bell from './bell.png';
 import PhoneGrey from './phone_gray.png';
@@ -88,8 +89,15 @@ import Check from './check.png';
 import OutlineCamera from './outline_camera.png';
 import PencilEditWhite from './pencil_edit_white.png';
 import ThreeDotsVertical from './three-dots-vertical.png';
+import EditPurple from './edit_purple.png';
+import GlobePurple from './globe_purple.png';
+import PlanePurple from './plane_purple.png';
+import NameCardPurple from './namecard_purple.png';
 
 export {
+  GlobePurple,
+  PlanePurple,
+  NameCardPurple,
   LeftArrow,
   BlackLeftArrow,
   Next,
@@ -148,6 +156,7 @@ export {
   AccountCircle,
   Lock,
   LockPurple,
+  LockOpenPurple,
   Profile,
   Bell,
   PhoneGrey,
@@ -179,4 +188,5 @@ export {
   OutlineCamera,
   PencilEditWhite,
   ThreeDotsVertical,
+  EditPurple,
 };

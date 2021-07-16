@@ -1,9 +1,18 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {Switch} from 'react-native-switch';
 import {color, dimens, fonts} from '../../utils';
 import {Right} from '../../assets';
 
-const MenuItem = ({icon, title, subtitle, info, withoutArrow, onPress}) => {
+const MenuItem = ({
+  icon,
+  title,
+  subtitle,
+  info,
+  withoutArrow,
+  onPress,
+  toggleSwitch,
+}) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.iconContainer}>
@@ -16,6 +25,24 @@ const MenuItem = ({icon, title, subtitle, info, withoutArrow, onPress}) => {
       <View style={styles.containerRight}>
         {info && <Text style={styles.info}>{info}</Text>}
         {!withoutArrow && <Image source={Right} style={styles.iconRight} />}
+        {toggleSwitch && (
+          <Switch
+            value={toggleSwitch.value}
+            onValueChange={toggleSwitch.onChange}
+            activeText=""
+            inActiveText=""
+            circleBorderWidth={0}
+            backgroundActive="#6FBC4B"
+            backgroundInactive="#E6E6E7"
+            circleActiveColor="#FFFFFF"
+            circleInActiveColor="#FFFFFF"
+            circleSize={28}
+            barHeight={30}
+            switchLeftPx={4}
+            switchRightPx={4}
+            switchWidthMultiplier={1.8}
+          />
+        )}
       </View>
     </TouchableOpacity>
   );

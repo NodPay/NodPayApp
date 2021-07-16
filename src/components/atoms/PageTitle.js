@@ -11,6 +11,7 @@ import {
 } from '../../assets';
 import {color, dimens, fonts} from '../../utils';
 
+// * Page title with optional buttons on the left and right
 const PageTitle = ({
   title,
   navigation,
@@ -26,36 +27,38 @@ const PageTitle = ({
   isProfile,
   onEdit,
   isOtherProfile,
+  isNoBackButton,
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
-      {isCloseMode ? (
-        <TouchableOpacity
-          onPress={onPressClose}
-          style={{position: 'absolute', left: dimens.default_16}}>
-          <Image source={CloseRed} style={[styles.close_icon, cancel]} />
-          {isCancel && (
-            <Text
-              style={{
-                fontFamily: fonts.noto_bold,
-                fontSize: dimens.default_12,
-                textAlign: 'center',
-              }}>
-              Cancel
-            </Text>
-          )}
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={styles.left_arrow}>
-          {isBlackArrow ? (
-            <Image source={BlackLeftArrow} />
-          ) : (
-            <Image source={LeftArrow} />
-          )}
-        </TouchableOpacity>
-      )}
+      {!isNoBackButton &&
+        (isCloseMode ? (
+          <TouchableOpacity
+            onPress={onPressClose}
+            style={{position: 'absolute', left: dimens.default_16}}>
+            <Image source={CloseRed} style={[styles.close_icon, cancel]} />
+            {isCancel && (
+              <Text
+                style={{
+                  fontFamily: fonts.noto_bold,
+                  fontSize: dimens.default_12,
+                  textAlign: 'center',
+                }}>
+                Cancel
+              </Text>
+            )}
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={styles.left_arrow}>
+            {isBlackArrow ? (
+              <Image source={BlackLeftArrow} />
+            ) : (
+              <Image source={LeftArrow} />
+            )}
+          </TouchableOpacity>
+        ))}
       <Text style={[styles.title, titleStyle]}>{title}</Text>
       {isRightQR && (
         <TouchableOpacity onPress={onPressRight} style={styles.containerQR}>
