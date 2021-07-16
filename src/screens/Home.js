@@ -85,7 +85,8 @@ const Home = ({navigation}) => {
                 alignItems: 'center',
                 borderWidth: 10,
                 borderColor: color.btn_white_2,
-              }}>
+              }}
+              onPress={() => navigation.navigate('Transaction')}>
               <Image source={Exchange} style={{width: 30, height: 30}} />
             </TouchableOpacity>
             <Text>Exchange</Text>

@@ -33,6 +33,7 @@ import TransferToBank from './TransferToBank';
 import CashACheck from './CashACheck';
 import Profile from './Profile';
 import OtherUserProfile from './OtherUserProfile';
+import Transaction from './Transaction';
 
 export {
   Splash,
@@ -70,4 +71,5 @@ export {
   CashACheck,
   Profile,
   OtherUserProfile,
+  Transaction,
 };

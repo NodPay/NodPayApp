@@ -8,7 +8,7 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
-  Pressable
+  Pressable,
 } from 'react-native';
 import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
 import AlphabetList from 'react-native-flatlist-alphabet';
@@ -16,13 +16,7 @@ import AlphabetList from 'react-native-flatlist-alphabet';
 //where local files imported
 import {color, dimens, fonts} from '../utils';
 import {Button, ContactItem, Gap, InputSearch, PageTitle} from '../components';
-import {
-  ContactBackground,
-  NoContact,
-  CloseRed,
-  Facebook,
-  FacebookWhite,
-} from '../assets';
+import {NoContact, Facebook, FacebookWhite} from '../assets';
 
 const Contact = ({navigation}) => {
   const [friendData, setFriendData] = useState([]);
@@ -233,11 +227,10 @@ const Contact = ({navigation}) => {
           onPress={onPress}
           style={{
             paddingHorizontal: 15,
-            paddingTop: Platform.OS === 'ios' ? 4 : 0,
-            paddingBottom: 3,
+            height: 32,
             marginLeft: 8,
-            borderRadius: 10,
-            backgroundColor: current === index ? color.bg_color : 'lightgray',
+            borderRadius: 50,
+            backgroundColor: current === index ? color.bg_color : '#F0F0FC',
             justifyContent: 'center',
             alignItems: 'center',
           }}>
@@ -246,6 +239,7 @@ const Contact = ({navigation}) => {
               fontFamily: fonts.sofia_regular,
               color: current === index ? 'white' : color.bg_color,
               fontSize: dimens.default_16,
+              lineHeight: dimens.default_16,
             }}>
             {title}
           </Text>
@@ -259,7 +253,7 @@ const Contact = ({navigation}) => {
           behavior="height"
           style={{paddingHorizontal: dimens.default_16}}>
           <InputSearch
-            placeholder="Friend Name, Phone Number"
+            placeholder="Friend name, Phone Number, Business"
             backgroundColor="white"
           />
         </KeyboardAvoidingView>
@@ -281,176 +275,177 @@ const Contact = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Pressable style={{flex:1}} onPress={() => {
-        setId('') 
-        setShow(false)
-      }}>
-      <PageTitle
-        isBlackArrow
-        title="Contacts"
-        titleStyle={{color: color.btn_black}}
-        navigation={navigation}
-      />
-      {friendData == null && (
-        <View style={{flex: 1, justifyContent: 'center'}}>
-          <EmptyState />
-        </View>
-      )}
-      {friendData != null && <RenderContact />}
-      <Gap t={dimens.default_16} />
-      <AlphabetList
+      <Pressable
         style={{flex: 1}}
-        data={[
-          {
-            id: 0,
-            key: 'a',
-            value: 'Andi',
-            name: 'Andi',
-            phoneNumber: '+62 699 6969',
-          },
-          {
-            id: 2,
-            key: 'b',
-            value: 'Bae',
-            name: 'Bae',
-            phoneNumber: '+62 699 6969',
-          },
-          {
-            id: 3,
-            key: 'g',
-            value: 'Garry',
-            name: 'Garry',
-            phoneNumber: '+62 699 6969',
-          },
-        ]}
-        renderSectionHeader={section => (
-          <View
-            style={{
-              paddingLeft: dimens.default_16,
-              paddingVertical: 8,
-            }}>
-            <Text
-              style={{
-                color: color.btn_black,
-                fontFamily: fonts.sofia_bold,
-                marginLeft: 8,
-              }}>
-              {section.title}
-            </Text>
+        onPress={() => {
+          setId('');
+          setShow(false);
+        }}>
+        <PageTitle
+          isBlackArrow
+          title="Contacts"
+          titleStyle={{color: color.btn_black}}
+          navigation={navigation}
+        />
+        {friendData == null && (
+          <View style={{flex: 1, justifyContent: 'center'}}>
+            <EmptyState />
           </View>
         )}
-        renderItem={item => (
-          <ContactItem
-            {...item}
-            isContact
-            show={item.id == id && show == true ? true : false}
-            onBlock={() => {
-              setShow(false);
-              setId('');
-            }}
-            onReport={() => {
-              setShow(false);
-              setId('');
-            }}
-            onUnfriend={() => {
-              setShow(false);
-              setId('');
-            }}
-            onPress={() => {
-              setId(item.id);
-              setShow(true);
-            }}
-          />
-        )}
-      />
-      <View style={styles.wrapBtn}>
-        <Button
-          onPress={() => bottomSheetRef.current?.expand()}
-          title="+ Add Friend"
-          btnStyle={{backgroundColor: color.btn_black}}
-          titleStyle={{color: color.btn_white_2}}
-        />
-      </View>
-      <BottomSheet
-        ref={bottomSheetRef}
-        snapPoints={snapPoints}
-        onChange={handleSheetChanges}>
-        <View
-          style={{
-            flex: isContact || isFacebook ? 0 : 1,
-            backgroundColor: 'white',
-            paddingVertical: Platform.OS === 'ios' ? dimens.medium : 0,
-          }}>
-          <PageTitle
-            isCloseMode
-            title="Add Friends"
-            titleStyle={{color: color.btn_black}}
-            navigation={navigation}
-            onPressClose={() => {
-              bottomSheetRef.current?.close();
-              setGetContact(true);
-              setIsFacebook(false);
-              setIsContact(false);
-            }}
-          />
-          {getContact && (
-            <View style={styles.add_friend_section}>
-              <Text style={styles.add_friend_section_desc}>
-                By allowing access to your contact or Facebook you can connect
-                with your friend that use NodPay
+        {friendData != null && <RenderContact />}
+        <Gap t={dimens.default_16} />
+        <AlphabetList
+          style={{flex: 1}}
+          data={[
+            {
+              id: 0,
+              key: 'a',
+              value: 'Andi',
+              name: 'Andi',
+              phoneNumber: '+62 699 6969',
+            },
+            {
+              id: 2,
+              key: 'b',
+              value: 'Bae',
+              name: 'Bae',
+              phoneNumber: '+62 699 6969',
+            },
+            {
+              id: 3,
+              key: 'g',
+              value: 'Garry',
+              name: 'Garry',
+              phoneNumber: '+62 699 6969',
+            },
+          ]}
+          renderSectionHeader={section => (
+            <View
+              style={{
+                paddingLeft: dimens.default_16,
+                paddingVertical: 8,
+              }}>
+              <Text
+                style={{
+                  color: color.btn_black,
+                  fontFamily: fonts.sofia_bold,
+                  marginLeft: 8,
+                }}>
+                {section.title}
               </Text>
             </View>
           )}
-          {getContact && (
-            <View
-              style={{
-                paddingHorizontal: dimens.default_16,
-                marginBottom: dimens.default_16,
-              }}>
-              <Button
-                iconLeft={FacebookWhite}
-                title="Sign in with Facebook"
-                onPress={() => {
-                  setGetContact(false);
-                  setIsFacebook(true);
-                }}
-                btnStyle={styles.btnSigninWithFacebook}
-                titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-              />
-              <Button
-                onPress={() => {
-                  setGetContact(false);
-                  setIsContact(true);
-                }}
-                title="Allow Contact Access"
-                btnStyle={styles.btnAllowContactAccess}
-                titleStyle={{color: color.btn_white_2}}
-              />
-            </View>
+          renderItem={item => (
+            <ContactItem
+              {...item}
+              isContact
+              show={item.id == id && show == true ? true : false}
+              onBlock={() => {
+                setShow(false);
+                setId('');
+              }}
+              onReport={() => {
+                setShow(false);
+                setId('');
+              }}
+              onUnfriend={() => {
+                setShow(false);
+                setId('');
+              }}
+              onPress={() => {
+                setId(item.id);
+                setShow(true);
+              }}
+            />
           )}
+        />
+        <View style={styles.wrapBtn}>
+          <Button
+            onPress={() => bottomSheetRef.current?.expand()}
+            title="+ Add Friend"
+            btnStyle={{backgroundColor: color.btn_black}}
+            titleStyle={{color: color.btn_white_2}}
+          />
         </View>
-        {isContact && <RenderGetContact />}
-        {isContact && (
-          <BottomSheetFlatList
-            keyExtractor={item => item.id}
-            data={data}
-            renderItem={({item}) => (
-              <ContactItem {...item} onPress={() => onAdd(item)} />
+        <BottomSheet
+          ref={bottomSheetRef}
+          snapPoints={snapPoints}
+          onChange={handleSheetChanges}>
+          <View
+            style={{
+              flex: isContact || isFacebook ? 0 : 1,
+              backgroundColor: 'white',
+              paddingVertical: Platform.OS === 'ios' ? dimens.medium : 0,
+            }}>
+            <PageTitle
+              isCloseMode
+              title="Add Friends"
+              titleStyle={{color: color.btn_black}}
+              navigation={navigation}
+              onPressClose={() => {
+                bottomSheetRef.current?.close();
+                setGetContact(true);
+                setIsFacebook(false);
+                setIsContact(false);
+              }}
+            />
+            {getContact && (
+              <View style={styles.add_friend_section}>
+                <Text style={styles.add_friend_section_desc}>
+                  By allowing access to your contact or Facebook you can connect
+                  with your friend that use NodPay
+                </Text>
+              </View>
             )}
-          />
-        )}
-        {isFacebook && <RenderFacebook />}
-        {isFacebook && (
-          <BottomSheetFlatList
-            keyExtractor={item => item.id}
-            data={data}
-            renderItem={({item}) => (
-              <ContactItem {...item} onPress={() => onAdd(item)} />
+            {getContact && (
+              <View
+                style={{
+                  paddingHorizontal: dimens.default_16,
+                  marginBottom: dimens.default_16,
+                }}>
+                <Button
+                  iconLeft={FacebookWhite}
+                  title="Sign in with Facebook"
+                  onPress={() => {
+                    setGetContact(false);
+                    setIsFacebook(true);
+                  }}
+                  btnStyle={styles.btnSigninWithFacebook}
+                  titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
+                />
+                <Button
+                  onPress={() => {
+                    setGetContact(false);
+                    setIsContact(true);
+                  }}
+                  title="Allow Contact Access"
+                  btnStyle={styles.btnAllowContactAccess}
+                  titleStyle={{color: color.btn_white_2}}
+                />
+              </View>
             )}
-          />
-        )}
-      </BottomSheet>
-      <Image source={ContactBackground} style={styles.bg_contact} />
+          </View>
+          {isContact && <RenderGetContact />}
+          {isContact && (
+            <BottomSheetFlatList
+              keyExtractor={item => item.id}
+              data={data}
+              renderItem={({item}) => (
+                <ContactItem {...item} onPress={() => onAdd(item)} />
+              )}
+            />
+          )}
+          {isFacebook && <RenderFacebook />}
+          {isFacebook && (
+            <BottomSheetFlatList
+              keyExtractor={item => item.id}
+              data={data}
+              renderItem={({item}) => (
+                <ContactItem {...item} onPress={() => onAdd(item)} />
+              )}
+            />
+          )}
+        </BottomSheet>
       </Pressable>
     </SafeAreaView>
   );
@@ -461,7 +456,7 @@ export default Contact;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: color.bg_greyy,
+    backgroundColor: color.btn_white_2,
   },
   bg_contact: {
     position: 'absolute',

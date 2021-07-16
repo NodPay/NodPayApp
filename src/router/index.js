@@ -42,6 +42,7 @@ import {
   CashACheck,
   Profile,
   OtherUserProfile,
+  Transaction,
 } from '../screens';
 import {Drawer as DrawerComponent, HomeTabBar} from '../components';
 
@@ -96,6 +97,7 @@ const Router = () => {
         <Stack.Screen name="CashACheck" component={CashACheck} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="OtherUserProfile" component={OtherUserProfile} />
+        <Stack.Screen name="Transaction" component={Transaction} />
       </Stack.Navigator>
     </NavigationContainer>
   );
