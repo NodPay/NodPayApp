@@ -8,10 +8,13 @@ import {FormLabel} from '../atoms';
 import {color, dimens, fonts} from '../../utils';
 import {Camera, CloseRed, DefaultPict, Gallery} from '../../assets';
 import {Gap} from '../../components';
+import useStateContext from '../../store/useStateContext';
+import {setFormRegister} from '../../store/action';
 
 const InputPhoto = () => {
   const [picture, setPicture] = useState('');
   const btnRef = useRef(null);
+  const {dispatch} = useStateContext();
 
   const openCamera = () => {
     ImagePicker.openCamera({
@@ -22,6 +25,7 @@ const InputPhoto = () => {
     }).then(res => {
       console.log('result', res);
       setPicture(res.path);
+      dispatch(setFormRegister('profileImage', res.path));
     });
     btnRef.current.close();
   };
@@ -35,6 +39,7 @@ const InputPhoto = () => {
     }).then(res => {
       console.log('result', res);
       setPicture(res.path);
+      dispatch(setFormRegister('profileImage', res.path));
     });
     btnRef.current.close();
   };

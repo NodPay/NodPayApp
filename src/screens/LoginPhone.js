@@ -22,9 +22,13 @@ import {
   ErrorMessage,
 } from '../components';
 import {SplashWaveGradient} from '../assets';
-import {clearAll, color, dimens, fonts} from '../utils';
+import {clearAll, color, dimens, fonts, storeData, wait} from '../utils';
 
 const LoginPhone = ({navigation}) => {
+  const PHONE_NUMBER = '000000000000';
+  const PASSWORD = 'admin';
+
+  const [isLoading, setIsLoading] = useState(false);
   const [code, setCode] = useState('1');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
@@ -57,14 +61,40 @@ const LoginPhone = ({navigation}) => {
     setIsKeyboardShow(false);
   };
 
-  useEffect(() => {
-    clearAll().then(res => console.log('clear all', res));
-  }, []);
+  const [error, setError] = useState({
+    status: false,
+    message: '',
+  });
 
-  const submit = () => {
-    setSubmited(true);
-    if (phone !== '' && password !== '') {
-      navigation.navigate('AppDrawer');
+  const onLogin = () => {
+    setIsLoading(true);
+    // check auth
+    if (phone == '' || password == '') {
+      wait(100).then(() => {
+        setIsLoading(false);
+        setError({
+          status: true,
+          message: "Phone Number or Password Can't be empty.",
+        });
+      });
+    } else if (phone != PHONE_NUMBER && password != PASSWORD) {
+      wait(100).then(() => {
+        setIsLoading(false);
+        setError({
+          status: true,
+          message: 'Phone Number not found or wrong password!',
+        });
+      });
+    } else {
+      wait(300).then(() => {
+        console.log('login success');
+        storeData('session', {
+          isLogin: true, // if auth success, then save token for current user then user doesn't need to relogin
+          isBoarding: true,
+        });
+        setError({status: false, message: ''});
+        navigation.replace('AppDrawer');
+      });
     }
   };
 
@@ -110,9 +140,7 @@ const LoginPhone = ({navigation}) => {
                 navigation.navigate('ForgotPassword');
               }}
             />
-            {submited && (phone === '' || password === '') && (
-              <ErrorMessage message="The mobile number or password is incorect." />
-            )}
+            {error.status == true && <ErrorMessage message={error.message} />}
           </View>
         </View>
       </ScrollView>
@@ -122,6 +150,7 @@ const LoginPhone = ({navigation}) => {
         enabled={Platform.OS === 'android' ? false : true}>
         <View style={styles.footer_container}>
           <Button
+            isLoading={isLoading}
             title="Login"
             btnStyle={{
               backgroundColor: color.btn_black,
@@ -129,7 +158,7 @@ const LoginPhone = ({navigation}) => {
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-            onPress={submit}
+            onPress={onLogin}
           />
           {!isKeyboardShow && (
             <Button

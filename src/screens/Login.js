@@ -1,12 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View, SafeAreaView, Image, StatusBar} from 'react-native';
 
 // where local file imported
 import {Button, PageTitle, SectionTitle, LinkAction} from '../components';
 import {Facebook, Email, Phone, SplashWaveGradient} from '../assets';
-import {clearAll, color, dimens, fonts} from '../utils';
+import {clearAll, color, dimens, fonts, storeData} from '../utils';
 
 const Login = ({navigation}) => {
+  useEffect(() => {
+    storeData('session', {
+      isLogin: false,
+      isBoarding: true, // because user have seen the boarding screen, the screen doesnt need to show anymore with current user.
+    }).then(() => {
+      console.log('session added!');
+    });
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar animated={true} backgroundColor={color.bg_color} />

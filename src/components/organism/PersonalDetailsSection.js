@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 
-
 // where local files imported
+import {setFormRegister} from '../../store/action';
+import useStateContext from '../../store/useStateContext';
 import {color, dimens, fonts} from '../../utils';
 import {Gap} from '../atoms';
 import {SectionTitle, InputPhoto, InputText, InputOption} from '../moleculs';
@@ -18,13 +19,13 @@ const PersonalDetailsSection = ({isFamilyRelation, withoutSectionTitle}) => {
     shortBio: '',
   });
 
+  const {dispatch} = useStateContext();
+
   const [familyRelation, setFamilyRelation] = useState('');
-
-
 
   if (isFamilyRelation) {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <SectionTitle
           containerStyle={{
             padding: 0,
@@ -38,11 +39,17 @@ const PersonalDetailsSection = ({isFamilyRelation, withoutSectionTitle}) => {
             fontSize: dimens.default_16,
           }}
         />
+        <Gap t={-50} />
+
         <InputText
           value={familyRelation}
-          onChangeText={value => setFamilyRelation(value)}
+          placeholder="Enter name.."
+          onChangeText={value => {
+            setFamilyRelation(value);
+            dispatch(setFormRegister('familyRelationName', value));
+          }}
         />
-        <Gap b={dimens.default_16} />
+        <Gap b={50} />
       </View>
     );
   }
@@ -72,23 +79,35 @@ const PersonalDetailsSection = ({isFamilyRelation, withoutSectionTitle}) => {
       <InputText
         label="First Name"
         value={user.firstName}
-        onChangeText={value => setUser({...user, firstName: value})}
+        onChangeText={value => {
+          setUser({...user, firstName: value});
+          dispatch(setFormRegister('firstName', value));
+        }}
       />
       <InputText
         label="Last Name"
         value={user.lastName}
-        onChangeText={value => setUser({...user, lastName: value})}
+        onChangeText={value => {
+          setUser({...user, lastName: value});
+          dispatch(setFormRegister('lastName', value));
+        }}
       />
       <InputText
         label="Username"
         value={user.username}
-        onChangeText={value => setUser({...user, username: value})}
+        onChangeText={value => {
+          setUser({...user, username: value});
+          dispatch(setFormRegister('username', value));
+        }}
       />
       <InputText
         label="Age"
         keyboardType="number-pad"
         value={user.age}
-        onChangeText={value => setUser({...user, age: value})}
+        onChangeText={value => {
+          setUser({...user, age: value});
+          dispatch(setFormRegister('age', value));
+        }}
       />
       <Gap t={dimens.default_16} />
       <InputOption user={user} setUser={setUser} />
@@ -96,12 +115,18 @@ const PersonalDetailsSection = ({isFamilyRelation, withoutSectionTitle}) => {
         label="Email"
         value={user.email}
         keyboardType="email-address"
-        onChangeText={value => setUser({...user, email: value})}
+        onChangeText={value => {
+          setUser({...user, email: value});
+          dispatch(setFormRegister('email', value));
+        }}
       />
       <InputText
         label="Short Bio"
         value={user.shortBio}
-        onChangeText={value => setUser({...user, shortBio: value})}
+        onChangeText={value => {
+          setUser({...user, shortBio: value});
+          dispatch(setFormRegister('bio', value));
+        }}
       />
       <Gap b={dimens.default_16} />
     </ScrollView>

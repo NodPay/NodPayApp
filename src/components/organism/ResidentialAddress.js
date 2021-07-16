@@ -27,7 +27,10 @@ const ResidentialAddress = () => {
       <Gap b={-25} />
       <InputText
         value={postalCode}
-        onChangeText={value => setPostalCode(value)}
+        onChangeText={value => {
+          setPostalCode(value);
+          dispatch(setFormRegister('address', value));
+        }}
         keyboardType="number-pad"
       />
       <Gap t={dimens.default_16} />

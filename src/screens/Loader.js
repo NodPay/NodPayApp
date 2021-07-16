@@ -3,11 +3,21 @@ import {StyleSheet, StatusBar, SafeAreaView} from 'react-native';
 
 // where local file imported
 import {Loading, Logo} from '../components';
-import {color, wait} from '../utils';
+import {color, wait, getData, storeData} from '../utils';
 
 const Loader = ({navigation}) => {
   useEffect(() => {
-    wait(500).then(() => navigation.replace('OnBoarding'));
+    getData('session').then(res => {
+      console.log('session', res);
+      if (typeof res == 'undefined') {
+        wait(500).then(() => navigation.replace('OnBoarding'));
+      } else if (res.isBoarding && res.isLogin == false) {
+        wait(500).then(() => navigation.replace('Login'));
+      } else if (res.isBoarding && res.isLogin) {
+        // user has logged in.
+        wait(300).then(() => navigation.replace('AppDrawer'));
+      }
+    });
   }, []);
   return (
     <SafeAreaView style={styles.container}>

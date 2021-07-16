@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect} from 'react';
 import {
   View,
   FlatList,
@@ -21,12 +21,20 @@ import {
   Gap,
   MainAction,
 } from '../components/';
-import {color, dimens, fonts} from '../utils/';
+import {color, dimens, fonts, getData} from '../utils/';
 import {CardInactive, Exchange, HomeActive, People1} from '../assets/';
 
 const Tab = createMaterialTopTabNavigator();
 const Home = ({navigation}) => {
   const mainActionRef = useRef(null);
+
+  useEffect(() => {
+    getData('session')
+      .then(res => {
+        console.log('home get session', res);
+      })
+      .catch(e => console.log('error while getData', e));
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>

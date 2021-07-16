@@ -12,10 +12,8 @@ const Register = ({navigation}) => {
   const {state, dispatch} = useStateContext();
   const {
     isComplete,
-    activeStep,
-    phoneNumber,
     isVerification,
-    verificationCode,
+    activeStep,
     isFamilyRelation,
     isDisabled,
     cnicData,
@@ -23,6 +21,8 @@ const Register = ({navigation}) => {
     showModal,
     typeModal,
   } = state;
+
+  const {phoneNumber, verificationCode} = state.formRegister;
 
   const onNextMobileNumber = () => {
     // check if number is not null / empty
@@ -38,7 +38,7 @@ const Register = ({navigation}) => {
         error: true,
         errorMessage: "Phone number can't be less than 11.",
       });
-    } else if (phoneNumber == '6200000000000') {
+    } else if (phoneNumber == '100000000000') {
       dispatch({
         type: 'SET_ERROR_REGISTER',
         error: true,
@@ -47,6 +47,29 @@ const Register = ({navigation}) => {
     } else {
       dispatch({type: 'SET_VERIFICATION', payload: true});
       dispatch({type: 'SET_IS_RUNNING', payload: true});
+      dispatch({
+        type: 'SET_ERROR_REGISTER',
+        error: false,
+        errorMessage: '',
+      });
+    }
+  };
+
+  const onNextMobileNumberCheckOTP = () => {
+    if (verificationCode == '' || verificationCode == undefined) {
+      dispatch({
+        type: 'SET_ERROR_REGISTER',
+        error: true,
+        errorMessage: 'Please Input OTP Code',
+      });
+    } else if (verificationCode != 1234) {
+      dispatch({
+        type: 'SET_ERROR_REGISTER',
+        error: true,
+        errorMessage: 'Invalid Code',
+      });
+    } else {
+      dispatch({type: 'SET_ACTIVE_STEP'});
       dispatch({
         type: 'SET_ERROR_REGISTER',
         error: false,
@@ -78,14 +101,14 @@ const Register = ({navigation}) => {
   };
 
   const onNext = () => {
+    //check store
+    console.log('state', state);
     //mobile number - verification section
-    console.log(verificationCode);
     if (activeStep == 0) {
-      // if had a valid verification code, go to the next step.
-      if (verificationCode == '') {
+      if (!isVerification) {
         onNextMobileNumber();
       } else {
-        dispatch({type: 'SET_ACTIVE_STEP'});
+        onNextMobileNumberCheckOTP();
       }
     }
     //personal details - family relation
@@ -121,7 +144,6 @@ const Register = ({navigation}) => {
       height: 400,
     })
       .then(res => {
-        console.log('result', res);
         navigation.navigate('ScanResult', {data: res});
       })
       .catch(e => console.log('error while taking photo', e));
@@ -138,7 +160,6 @@ const Register = ({navigation}) => {
       <StepForm
         activeStep={activeStep}
         isComplete={isComplete}
-        isVerification={isVerification}
         isFamilyRelation={isFamilyRelation}
         cnicData={cnicData}
         setUpBiometric={setUpBiometric}

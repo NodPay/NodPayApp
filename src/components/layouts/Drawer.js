@@ -22,7 +22,7 @@ import {
   DrawerLogout,
   ProfileExample,
 } from '../../assets';
-import {dimens, color, fonts} from '../../utils';
+import {dimens, color, fonts, removeData, storeData} from '../../utils';
 import {MainAction} from '../organism';
 
 const Drawer = ({navigation}) => {
@@ -99,7 +99,23 @@ const Drawer = ({navigation}) => {
         <DrawerItem label="Help" image={DrawerHelp} onPress={() => {}} />
       </ScrollView>
 
-      <DrawerItem label="Log out" image={DrawerLogout} onPress={() => {}} />
+      <DrawerItem
+        label="Log out"
+        image={DrawerLogout}
+        onPress={() => {
+          removeData('session')
+            .then(() => {
+              console.log('session removed');
+              storeData('session', {
+                isLogin: false,
+                isBoarding: true,
+              });
+            })
+            .then(() => {
+              navigation.replace('Splash');
+            });
+        }}
+      />
 
       {/* MainAction BottomSheet */}
       <MainAction mainActionRef={mainActionRef} />

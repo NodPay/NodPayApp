@@ -22,9 +22,13 @@ import {
   ErrorMessage,
 } from '../components';
 import {SplashWaveGradient} from '../assets';
-import {clearAll, color, dimens, fonts} from '../utils';
+import {clearAll, color, dimens, fonts, wait, storeData} from '../utils';
 
 const LoginEmail = ({navigation}) => {
+  const EMAIL = 'admin@nodpay.app';
+  const PASSWORD = 'admin';
+
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submited, setSubmited] = useState(false);
@@ -55,14 +59,44 @@ const LoginEmail = ({navigation}) => {
   const _keyboardDidHide = () => {
     setIsKeyboardShow(false);
   };
+  const [error, setError] = useState({
+    status: false,
+    message: '',
+  });
 
-  const submit = () => {
-    setSubmited(true);
-    if (email !== '' && password !== '') {
-      navigation.navigate('AppDrawer');
+  const onLogin = () => {
+    setIsLoading(true);
+    // check auth
+    if (email == '' || password == '') {
+      wait(100).then(() => {
+        setIsLoading(false);
+        setError({
+          status: true,
+          message: "Email or Password Can't be empty.",
+        });
+      });
+    } else if (email != EMAIL && password != PASSWORD) {
+      wait(100).then(() => {
+        setIsLoading(false);
+        setError({
+          status: true,
+          message: 'Email or password is wrong!',
+        });
+      });
+    } else {
+      wait(300).then(() => {
+        console.log('login success');
+        storeData('session', {
+          isLogin: true, // if auth success, then save token for current user then user doesn't need to relogin
+          isBoarding: true,
+        });
+        setError({status: false, message: ''});
+        navigation.replace('AppDrawer', {
+          screen: 'Home',
+        });
+      });
     }
   };
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar animated={true} backgroundColor={color.bg_color} />
@@ -103,9 +137,7 @@ const LoginEmail = ({navigation}) => {
                 navigation.navigate('ForgotPassword');
               }}
             />
-            {submited && (email === '' || password === '') && (
-              <ErrorMessage message="The email or password is incorect." />
-            )}
+            {error.status == true && <ErrorMessage message={error.message} />}
           </View>
         </View>
       </ScrollView>
@@ -115,6 +147,7 @@ const LoginEmail = ({navigation}) => {
         enabled={Platform.OS === 'android' ? false : true}>
         <View style={styles.footer_container}>
           <Button
+            isLoading={isLoading}
             title="Login"
             btnStyle={{
               backgroundColor: color.btn_black,
@@ -122,7 +155,7 @@ const LoginEmail = ({navigation}) => {
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-            onPress={submit}
+            onPress={onLogin}
           />
           {!isKeyboardShow && (
             <Button

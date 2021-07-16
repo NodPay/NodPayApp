@@ -17,6 +17,7 @@ const InputOption = ({user, setUser}) => {
           <TouchableOpacity
             onPress={() => {
               setUser({...user, gender: 'male'});
+              dispatch(setFormRegister('gender', 'male'));
             }}>
             <Image
               source={user.gender == 'male' ? MaleActive : Male}
@@ -30,6 +31,7 @@ const InputOption = ({user, setUser}) => {
           <TouchableOpacity
             onPress={() => {
               setUser({...user, gender: 'female'});
+              dispatch(setFormRegister('gender', 'female'));
             }}>
             <Image
               source={user.gender == 'female' ? FemaleActive : Female}

@@ -7,8 +7,6 @@ import {color, dimens, fonts} from '../../utils';
 import {Gap} from '../atoms';
 
 const CNIC = ({cnicData}) => {
-  console.log('cnicData', cnicData);
-
   const RenderText = ({label, value}) => {
     return (
       <View>

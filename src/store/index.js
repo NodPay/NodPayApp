@@ -9,10 +9,8 @@ const initialState = {
   isComplete: false, //if all step completed, set to true
   error: false, // error on register screen with ErrorMessage component,
   errorMessage: '', // error message with ErrorMessage component
-  phoneNumber: '', // mobile phone number
   isVerification: false, // check if verification set to true, then change te UI
   isRunning: false, //resent code countdown start
-  verificationCode: '',
   isFamilyRelation: false, //family relation ui personal detail
   isDisabled: false, //button next register
   cnicData: null, //data cnic section
@@ -21,6 +19,23 @@ const initialState = {
   typeModal: null, // check if modal success or failed
   modalPhoneCode: false, // check if modal phone code success or failed
   // create account end
+  formRegister: {
+    phoneNumber: '',
+    verificationCode: '',
+    profileImage: '',
+    firstName: '',
+    lastName: '',
+    username: '',
+    age: '',
+    gender: '', // male or female,
+    email: '',
+    bio: '',
+    familyRelationName: '',
+    address: '', // postal code
+    cnicImage: '',
+    cnicNumber: '',
+    password: '',
+  },
 };
 
 const reducer = (state, action) => {
@@ -45,20 +60,10 @@ const reducer = (state, action) => {
         ...state,
         isVerification: action.payload,
       };
-    case 'SET_VERIFICATION_CODE':
-      return {
-        ...state,
-        verificationCode: action.payload,
-      };
     case 'SET_IS_RUNNING':
       return {
         ...state,
         isRunning: action.payload,
-      };
-    case 'SET_PHONE_NUMBER':
-      return {
-        ...state,
-        phoneNumber: action.phoneNumber,
       };
     case 'SET_ERROR_REGISTER':
       return {
@@ -114,6 +119,14 @@ const reducer = (state, action) => {
         setUpBiometric: false,
         showModal: false,
         typeModal: null,
+      };
+    case 'SET_FORM_REGISTER':
+      return {
+        ...state,
+        formRegister: {
+          ...state.formRegister,
+          [action.inputType]: action.inputValue,
+        },
       };
     default:
       return state;
