@@ -34,6 +34,7 @@ import CashACheck from './CashACheck';
 import Profile from './Profile';
 import OtherUserProfile from './OtherUserProfile';
 import Transaction from './Transaction';
+import RegisterBusiness from './RegisterBusiness';
 
 export {
   Splash,
@@ -72,4 +73,5 @@ export {
   Profile,
   OtherUserProfile,
   Transaction,
+  RegisterBusiness,
 };

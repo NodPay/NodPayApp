@@ -31,6 +31,7 @@ import InputCheck from './InputCheck';
 import BankAccountItem from './BankAccountItem';
 import MainActionList from './MainActionList';
 import TransferToBankList from './TransferToBankList';
+import StepFormBusiness from './StepFormBusiness';
 
 export {
   SectionTitle,
@@ -66,4 +67,5 @@ export {
   BankAccountItem,
   MainActionList,
   TransferToBankList,
+  StepFormBusiness,
 };

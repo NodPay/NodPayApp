@@ -36,6 +36,22 @@ const initialState = {
     cnicNumber: '',
     password: '',
   },
+  // form create account for business
+  activeStepBusiness: 0,
+  isCompleteBusiness: false,
+  errorBusiness: false,
+  formRegisterBusiness: {
+    name: '',
+    category: '',
+    description: '',
+    email: '',
+    number: '',
+    logo: '',
+    secpImage: '',
+    ntnImage: '',
+    cnicImage: '',
+    address: '', //postal code
+  },
 };
 
 const reducer = (state, action) => {
@@ -50,10 +66,25 @@ const reducer = (state, action) => {
         ...state,
         activeStep: action.payload,
       };
+    case 'SET_ACTIVE_STEP_BUSINESS':
+      return {
+        ...state,
+        activeStepBusiness: state.activeStepBusiness + 1,
+      };
+    case 'SET_ACTIVE_STEP_PAYLOAD_BUSINESS':
+      return {
+        ...state,
+        activeStepBusiness: action.payload,
+      };
     case 'SET_IS_COMPLETED':
       return {
         ...state,
         isComplete: action.payload,
+      };
+    case 'SET_IS_COMPLETED_BUSINESS':
+      return {
+        ...state,
+        isCompleteBusiness: action.payload,
       };
     case 'SET_VERIFICATION':
       return {
@@ -127,6 +158,19 @@ const reducer = (state, action) => {
           ...state.formRegister,
           [action.inputType]: action.inputValue,
         },
+      };
+    case 'SET_FORM_REGISTER_BUSINESS':
+      return {
+        ...state,
+        formRegisterBusiness: {
+          ...state.formRegisterBusiness,
+          [action.inputType]: action.inputValue,
+        },
+      };
+    case 'SET_ERROR_REGISTER_BUSINESS':
+      return {
+        ...state,
+        errorBusiness: action.payload,
       };
     default:
       return state;

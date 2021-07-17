@@ -5,3 +5,11 @@ export const setFormRegister = (key, value) => {
     inputValue: value,
   };
 };
+
+export const setFormRegisterBusiness = (key, value) => {
+  return {
+    type: 'SET_FORM_REGISTER_BUSINESS',
+    inputType: key,
+    inputValue: value,
+  };
+};
