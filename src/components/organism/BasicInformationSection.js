@@ -17,7 +17,7 @@ import {InputText, SectionTitle} from '../moleculs';
 import {Camera, CloseRed, Gallery, UploadLogo} from '../../assets';
 import {setFormRegisterBusiness} from '../../store/action';
 import useStateContext from '../../store/useStateContext';
-import {ErrorMessage} from '../atoms';
+import {ErrorMessage, PickerItem} from '../atoms';
 
 const BasicInformationSection = ({}) => {
   const {state, dispatch} = useStateContext();
@@ -58,6 +58,20 @@ const BasicInformationSection = ({}) => {
     });
     btnRef.current.close();
   };
+
+  const [category, setCategory] = useState([
+    {
+      id: 0,
+      title: 'Select Category',
+    },
+    {
+      id: 1,
+      title: 'Food And Beverage',
+    },
+  ]);
+
+  const [selectedCategory, setSelectedCategory] = useState(category[0].title);
+
   return (
     <View style={{flex: 1}}>
       <SectionTitle
@@ -73,7 +87,8 @@ const BasicInformationSection = ({}) => {
           fontSize: dimens.default_16,
         }}
       />
-      <ScrollView>
+
+      <ScrollView style={{paddingBottom: dimens.default}}>
         <Text style={styles.label}>Business Logo</Text>
         {picture == '' && (
           <TouchableOpacity
@@ -97,7 +112,7 @@ const BasicInformationSection = ({}) => {
           </View>
         )}
         {formRegisterBusiness.logo == '' && errorBusiness && (
-          <ErrorMessage message="Please input a photo." />
+          <ErrorMessage message="please input a photo." />
         )}
         <InputText
           label="Business Name"
@@ -112,7 +127,7 @@ const BasicInformationSection = ({}) => {
         {formRegisterBusiness.name == '' && errorBusiness && (
           <ErrorMessage message="please add your business name" />
         )}
-        <InputText
+        {/* <InputText
           label="Business Category"
           value={data.category}
           placeholder="Select Category"
@@ -121,6 +136,20 @@ const BasicInformationSection = ({}) => {
             setData({...data, category: value});
             dispatch(setFormRegisterBusiness('category', value));
           }}
+        /> */}
+        <PickerItem
+          data={category}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={item => {
+            setSelectedCategory(item.title);
+            if (item.id == 0) {
+              // select category id
+              dispatch(setFormRegisterBusiness('category', ''));
+            } else {
+              dispatch(setFormRegisterBusiness('category', item.title));
+            }
+          }}
+          label="Business Category"
         />
         {formRegisterBusiness.category == '' && errorBusiness && (
           <ErrorMessage message="please select your business category" />
@@ -167,6 +196,7 @@ const BasicInformationSection = ({}) => {
           <ErrorMessage message="please add your business number" />
         )}
       </ScrollView>
+
       <RBSheet
         ref={btnRef}
         height={300}
