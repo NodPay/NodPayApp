@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
 import {color, dimens, fonts} from '../../utils';
-import {Internasional} from '../../assets';
+import {Internasional, CheckmarkWhite} from '../../assets';
 
 const PeopleItem = ({
   photo,
@@ -11,9 +11,16 @@ const PeopleItem = ({
   onPress,
   isInternasional,
   isSmall,
+  selectedMode,
+  isSelected,
 }) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity
+      style={[
+        styles.container,
+        selectedMode && isSelected ? {backgroundColor: color.purple} : {},
+      ]}
+      onPress={onPress}>
       <View style={styles.photoContainer}>
         <Image
           source={photo}
@@ -30,6 +37,17 @@ const PeopleItem = ({
         <Text style={styles.name}>{name}</Text>
         {!isSmall && <Text style={styles.phone}>{phone}</Text>}
       </View>
+      {selectedMode && isSelected && (
+        <View
+          style={[
+            styles.checkContainer,
+            isSelected ? {backgroundColor: color.green} : {},
+          ]}>
+          {isSelected && (
+            <Image source={CheckmarkWhite} style={styles.checkIcon} />
+          )}
+        </View>
+      )}
     </TouchableOpacity>
   );
 };
@@ -41,6 +59,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: dimens.small,
+    paddingHorizontal: dimens.default_20,
   },
   photoContainer: {
     position: 'relative',
@@ -74,5 +93,19 @@ const styles = StyleSheet.create({
     lineHeight: dimens.default_14,
     color: color.grey_3,
     marginTop: dimens.supersmall,
+  },
+  checkContainer: {
+    width: dimens.large,
+    height: dimens.large,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: dimens.small_6,
+    borderWidth: 1,
+    borderColor: '#CDCDCE',
+  },
+  checkIcon: {
+    width: dimens.medium,
+    height: dimens.medium,
+    resizeMode: 'contain',
   },
 });

@@ -30,6 +30,7 @@ import {NoContact, People1} from '../assets';
 const Contact = ({navigation}) => {
   const [friendData, setFriendData] = useState([]);
   const [search, setSearch] = useState('');
+  const [contactSelected, setContactSelected] = useState(null);
 
   const topPeople = [
     {
@@ -120,6 +121,7 @@ const Contact = ({navigation}) => {
   ];
   const contactList = [
     {
+      id: 1,
       value: 'Ahmad Malikil Kudus',
       photo: People1,
       name: 'Ahmad Malikil Kudus',
@@ -127,6 +129,7 @@ const Contact = ({navigation}) => {
       isInternasional: true,
     },
     {
+      id: 2,
       value: 'Amar Lukman',
       photo: People1,
       name: 'Amar Lukman',
@@ -134,6 +137,7 @@ const Contact = ({navigation}) => {
       isInternasional: false,
     },
     {
+      id: 3,
       value: 'Ammirudin Syarif',
       photo: People1,
       name: 'Ammirudin Syarif',
@@ -141,6 +145,7 @@ const Contact = ({navigation}) => {
       isInternasional: false,
     },
     {
+      id: 4,
       value: 'Ben Kasyafana',
       photo: People1,
       name: 'Ben Kasyafana',
@@ -148,6 +153,7 @@ const Contact = ({navigation}) => {
       isInternasional: true,
     },
     {
+      id: 5,
       value: 'Bruno Fernandes',
       photo: People1,
       name: 'Bruno Fernandes',
@@ -155,6 +161,7 @@ const Contact = ({navigation}) => {
       isInternasional: false,
     },
     {
+      id: 6,
       value: 'Bruno Mars',
       photo: People1,
       name: 'Bruno Mars',
@@ -162,6 +169,7 @@ const Contact = ({navigation}) => {
       isInternasional: false,
     },
     {
+      id: 7,
       value: 'Ahmad Malikil Kudus',
       photo: People1,
       name: 'Ahmad Malikil Kudus',
@@ -169,6 +177,7 @@ const Contact = ({navigation}) => {
       isInternasional: true,
     },
     {
+      id: 8,
       value: 'Amar Lukman',
       photo: People1,
       name: 'Amar Lukman',
@@ -176,6 +185,7 @@ const Contact = ({navigation}) => {
       isInternasional: false,
     },
     {
+      id: 9,
       value: 'Ammirudin Syarif',
       photo: People1,
       name: 'Ammirudin Syarif',
@@ -183,6 +193,7 @@ const Contact = ({navigation}) => {
       isInternasional: false,
     },
     {
+      id: 10,
       value: 'Ben Kasyafana',
       photo: People1,
       name: 'Ben Kasyafana',
@@ -190,6 +201,7 @@ const Contact = ({navigation}) => {
       isInternasional: true,
     },
     {
+      id: 11,
       value: 'Bruno Fernandes',
       photo: People1,
       name: 'Bruno Fernandes',
@@ -197,6 +209,7 @@ const Contact = ({navigation}) => {
       isInternasional: false,
     },
     {
+      id: 12,
       value: 'Bruno Mars',
       photo: People1,
       name: 'Bruno Mars',
@@ -254,7 +267,7 @@ const Contact = ({navigation}) => {
           }}>
           <Text
             style={{
-              fontFamily: fonts.sofia_regular,
+              fontFamily: fonts.sofia_medium,
               color: current === index ? 'white' : color.bg_color,
               fontSize: dimens.default_16,
               lineHeight: dimens.default_16,
@@ -269,14 +282,14 @@ const Contact = ({navigation}) => {
       <View>
         <KeyboardAvoidingView
           behavior="height"
-          style={{paddingHorizontal: dimens.default_16}}>
+          style={{paddingHorizontal: dimens.default_20}}>
           <InputSearch
             placeholder="Friend name, Phone Number, Business"
             backgroundColor="white"
           />
         </KeyboardAvoidingView>
         <Gap t={dimens.default_16} />
-        <View style={{flexDirection: 'row', paddingLeft: dimens.small}}>
+        <View style={{flexDirection: 'row', paddingLeft: dimens.small_10}}>
           {btn.map((item, index) => {
             return (
               <FilterButton
@@ -287,7 +300,7 @@ const Contact = ({navigation}) => {
             );
           })}
         </View>
-        <View style={{paddingHorizontal: dimens.default_16}}>
+        <View style={{paddingHorizontal: dimens.default_20}}>
           <SectionTitle
             title="Top People"
             titleStyle={{
@@ -331,6 +344,7 @@ const Contact = ({navigation}) => {
             title="Send & Request"
             titleStyle={{color: color.btn_black}}
             navigation={navigation}
+            isRightQR
           />
           {friendData == null && (
             <View style={{flex: 1, justifyContent: 'center'}}>
@@ -342,17 +356,17 @@ const Contact = ({navigation}) => {
           <AlphabetList
             style={{flex: 1}}
             data={contactList}
+            alphabetContainer={{opacity: 0}}
             renderSectionHeader={section => (
               <View
                 style={{
-                  paddingLeft: dimens.default_16,
-                  paddingVertical: 8,
+                  paddingVertical: dimens.small,
+                  paddingHorizontal: dimens.medium,
                 }}>
                 <Text
                   style={{
                     color: color.btn_black,
                     fontFamily: fonts.sofia_bold,
-                    marginLeft: 8,
                   }}>
                   {section.title}
                 </Text>
@@ -365,19 +379,30 @@ const Contact = ({navigation}) => {
                 name={item.name}
                 phone={item.phone}
                 isInternasional={item.isInternasional}
+                selectedMode
+                isSelected={
+                  contactSelected ? contactSelected.id === item.id : false
+                }
+                onPress={() =>
+                  contactSelected && contactSelected.id === item.id
+                    ? setContactSelected(null)
+                    : setContactSelected(item)
+                }
               />
             )}
           />
         </Pressable>
       </ScrollView>
-      <View style={styles.wrapBtn}>
-        <Button
-          onPress={() => {}}
-          title="Continue"
-          btnStyle={{backgroundColor: color.btn_black}}
-          titleStyle={{color: color.btn_white_2}}
-        />
-      </View>
+      {contactSelected && (
+        <View style={styles.wrapBtn}>
+          <Button
+            onPress={() => {}}
+            title="Continue"
+            btnStyle={{backgroundColor: color.btn_black}}
+            titleStyle={{color: color.btn_white_2}}
+          />
+        </View>
+      )}
     </SafeAreaView>
   );
 };
