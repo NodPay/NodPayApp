@@ -7,7 +7,7 @@ import {color, dimens, fonts} from '../utils';
 import {PageTitle, Button, StepForm} from '../components';
 import {Next} from '../assets';
 import useStateContext from '../store/useStateContext';
-
+import {checkValidPhoneNumber} from '../api/registration.api';
 const Register = ({navigation}) => {
   const {state, dispatch} = useStateContext();
   const {
@@ -24,33 +24,45 @@ const Register = ({navigation}) => {
     typeModal,
   } = state;
 
-  const onNextMobileNumber = () => {
-    // check if number is not null / empty
-    if (phoneNumber == '') {
+  const onNextMobileNumber = async () => {
+    try {
+      // check if number is not null / empty
+      if (phoneNumber == '') {
+        dispatch({
+          type: 'SET_ERROR_REGISTER',
+          error: true,
+          errorMessage: "Phone number can't be empty.",
+        });
+      }
+      if (phoneNumber.length < 11) {
+        dispatch({
+          type: 'SET_ERROR_REGISTER',
+          error: true,
+          errorMessage: "Phone number can't be less than 11.",
+        });
+      }
+      const isValid = await checkValidPhoneNumber(phoneNumber);
+      if (!isValid) {
+        dispatch({
+          type: 'SET_ERROR_REGISTER',
+          error: true,
+          errorMessage: 'Phone number is invalid or has already registered',
+        });
+      } else {
+        dispatch({type: 'SET_VERIFICATION', payload: true});
+        dispatch({type: 'SET_IS_RUNNING', payload: true});
+        dispatch({
+          type: 'SET_ERROR_REGISTER',
+          error: false,
+          errorMessage: '',
+        });
+      }
+    } catch (error) {
+      console.log(error)
       dispatch({
         type: 'SET_ERROR_REGISTER',
         error: true,
-        errorMessage: "Phone number can't be empty.",
-      });
-    } else if (phoneNumber.length < 11) {
-      dispatch({
-        type: 'SET_ERROR_REGISTER',
-        error: true,
-        errorMessage: "Phone number can't be less than 11.",
-      });
-    } else if (phoneNumber == '6200000000000') {
-      dispatch({
-        type: 'SET_ERROR_REGISTER',
-        error: true,
-        errorMessage: 'Phone number already registered',
-      });
-    } else {
-      dispatch({type: 'SET_VERIFICATION', payload: true});
-      dispatch({type: 'SET_IS_RUNNING', payload: true});
-      dispatch({
-        type: 'SET_ERROR_REGISTER',
-        error: false,
-        errorMessage: '',
+        errorMessage: error,
       });
     }
   };
