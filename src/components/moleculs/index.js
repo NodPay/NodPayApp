@@ -32,6 +32,8 @@ import BankAccountItem from './BankAccountItem';
 import MainActionList from './MainActionList';
 import TransferToBankList from './TransferToBankList';
 import StepFormBusiness from './StepFormBusiness';
+import CustomerItem from './CustomerItem';
+import TransactionItem from './TransactionItem';
 
 export {
   SectionTitle,
@@ -68,4 +70,6 @@ export {
   MainActionList,
   TransferToBankList,
   StepFormBusiness,
+  CustomerItem,
+  TransactionItem,
 };

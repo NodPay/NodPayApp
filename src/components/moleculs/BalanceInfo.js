@@ -10,7 +10,7 @@ import {
 
 //where local file imported
 import {dimens, fonts, color} from '../../utils';
-import {Plus, HomeBalanceBackground} from '../../assets';
+import {Plus, HomeBalanceBackground, Withdraw} from '../../assets';
 
 const BalanceInfo = ({type, moneyAmount, onPressAdd}) => {
   if (type == 'home') {
@@ -30,6 +30,28 @@ const BalanceInfo = ({type, moneyAmount, onPressAdd}) => {
       </ImageBackground>
     );
   }
+
+  if (type == 'business') {
+    return (
+      <View
+        style={[
+          styles.container,
+          {backgroundColor: color.btn_white_2, borderRadius: dimens.default},
+        ]}>
+        <View>
+          <Text style={[styles.title, {color: color.grey_2}]}>
+            Available Balance
+          </Text>
+          <Text style={styles.drawerMoneyAmount}>Rs {moneyAmount || '0'}</Text>
+        </View>
+
+        <TouchableOpacity style={styles.drawerAddButton} onPress={onPressAdd}>
+          <Image source={Withdraw} style={[styles.addIcon, {height: 30}]} />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   return (
     <View
       style={[

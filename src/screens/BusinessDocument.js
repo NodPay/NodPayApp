@@ -1,34 +1,51 @@
 import React, {useState, useRef} from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import RBSheet from 'react-native-raw-bottom-sheet';
 
 // where local files imported
-import {FormLabel} from '../atoms';
-import {color, dimens, fonts} from '../../utils';
-import {Camera, CloseRed, DefaultPict, Gallery} from '../../assets';
-import {Gap} from '../../components';
-import useStateContext from '../../store/useStateContext';
-import {setFormRegister, setFormEditProfileBusiness} from '../../store/action';
+import {color, dimens, fonts} from '../utils';
+import {Gap, PageTitle, SettingsSaveButton} from '../components';
+import {
+  Camera,
+  CloseRed,
+  Gallery,
+  UploadOtherCNIC,
+  UploadOtherNTN,
+  UploadOtherSECP,
+} from '../assets';
+import {setFormRegisterBusiness} from '../store/action';
+import useStateContext from '../store/useStateContext';
 
-const InputPhoto = ({type}) => {
-  const [picture, setPicture] = useState('');
+const BusinessDocument = ({navigation}) => {
+  const {state, dispatch} = useStateContext();
+  const [data, setData] = useState({
+    secpImage: '',
+    ntnImage: '',
+    cnicImage: '',
+  });
+  const [selected, setSelected] = useState(0);
   const btnRef = useRef(null);
-  const {dispatch} = useStateContext();
 
   const openCamera = () => {
     ImagePicker.openCamera({
       width: 300,
       height: 400,
-      cropping: true,
-      cropperCircleOverlay: true,
     }).then(res => {
       console.log('result', res);
-      setPicture(res.path);
-      if (type == 'business') {
-        dispatch(setFormEditProfileBusiness('logo', res.path));
+      if (selected == 0) {
+        setData({...data, secpImage: res.path});
+      } else if (selected == 1) {
+        setData({...data, ntnImage: res.path});
       } else {
-        dispatch(setFormRegister('profileImage', res.path));
+        setData({...data, cnicImage: res.path});
       }
     });
     btnRef.current.close();
@@ -38,39 +55,89 @@ const InputPhoto = ({type}) => {
     ImagePicker.openPicker({
       width: 300,
       height: 400,
-      cropping: true,
-      cropperCircleOverlay: true,
     }).then(res => {
       console.log('result', res);
-      setPicture(res.path);
-      if (type == 'business') {
-        dispatch(setFormEditProfileBusiness('logo', res.path));
+      if (selected == 0) {
+        setData({...data, secpImage: res.path});
+      } else if (selected == 1) {
+        setData({...data, ntnImage: res.path});
       } else {
-        dispatch(setFormRegister('profileImage', res.path));
+        setData({...data, cnicImage: res.path});
       }
     });
     btnRef.current.close();
   };
 
+  const onSave = () => {
+    // TODO
+  };
+
   return (
-    <View style={styles.container}>
-      <FormLabel
-        label={type == 'business' ? 'Business Logo' : 'Profile Photo'}
+    <SafeAreaView style={styles.container}>
+      <PageTitle
+        isCloseMode
+        onPressClose={() => navigation.goBack()}
+        title="Business Document"
+        titleStyle={{color: color.btn_black}}
       />
-      <View style={styles.content}>
-        <Image
-          source={picture == '' ? DefaultPict : {uri: picture}}
-          style={styles.image}
-        />
+      <View style={{padding: dimens.default}}>
+        <Text style={styles.label}>SECP</Text>
         <TouchableOpacity
-          style={styles.btn}
-          activeOpacity={0.8}
-          onPress={() => btnRef.current.open()}>
-          <Text style={styles.btnTitle}>
-            {type == 'business' ? 'Upload Logo' : 'Upload Photo'}
-          </Text>
+          style={{paddingVertical: dimens.default}}
+          onPress={() => {
+            setSelected(0);
+            btnRef.current.open();
+          }}>
+          <Image
+            source={
+              data.secpImage == '' ? UploadOtherSECP : {uri: data.secpImage}
+            }
+            style={{
+              borderRadius: 16,
+              resizeMode: 'cover',
+              height: 135,
+              width: '100%',
+            }}
+          />
+        </TouchableOpacity>
+        <Text style={styles.label}>NTN</Text>
+        <TouchableOpacity
+          style={{paddingVertical: dimens.default}}
+          onPress={() => {
+            setSelected(1);
+            btnRef.current.open();
+          }}>
+          <Image
+            source={data.ntnImage == '' ? UploadOtherNTN : {uri: data.ntnImage}}
+            style={{
+              borderRadius: 16,
+              resizeMode: 'cover',
+              height: 135,
+              width: '100%',
+            }}
+          />
+        </TouchableOpacity>
+        <Text style={styles.label}>CNIC</Text>
+        <TouchableOpacity
+          style={{paddingVertical: dimens.default}}
+          onPress={() => {
+            setSelected(2);
+            btnRef.current.open();
+          }}>
+          <Image
+            source={
+              data.cnicImage == '' ? UploadOtherCNIC : {uri: data.cnicImage}
+            }
+            style={{
+              borderRadius: 16,
+              resizeMode: 'cover',
+              height: 135,
+              width: '100%',
+            }}
+          />
         </TouchableOpacity>
       </View>
+
       <RBSheet
         ref={btnRef}
         height={300}
@@ -92,9 +159,7 @@ const InputPhoto = ({type}) => {
               <TouchableOpacity onPress={() => btnRef.current.close()}>
                 <Image source={CloseRed} style={{height: 40, width: 40}} />
               </TouchableOpacity>
-              <Text style={styles.btmSheetTitle}>
-                {type == 'business' ? 'Upload Logo' : 'Upload Photo'}
-              </Text>
+              <Text style={styles.btmSheetTitle}>Upload Photo</Text>
             </View>
             <Gap t={dimens.large} />
             {/* open camera */}
@@ -131,15 +196,24 @@ const InputPhoto = ({type}) => {
           </View>
         </View>
       </RBSheet>
-    </View>
+      <View style={{position: 'absolute', left: 0, bottom: 0, right: 0}}>
+        <SettingsSaveButton
+          onCancel={() => navigation.goBack()}
+          onSave={onSave}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
-export default InputPhoto;
+export default BusinessDocument;
 
 const styles = StyleSheet.create({
-  container: {
-    paddingVertical: dimens.default_16,
+  container: {flex: 1, backgroundColor: color.bg_grey},
+  label: {
+    fontFamily: fonts.sofia_regular,
+    fontSize: dimens.default_22,
+    color: color.grey_2,
   },
   content: {
     flexDirection: 'row',

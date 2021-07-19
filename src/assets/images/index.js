@@ -27,6 +27,9 @@ import UploadLogo from './upload_logo.png';
 import UploadCNIC from './upload_cnic.png';
 import UploadNTN from './upload_ntn.png';
 import UploadSECP from './upload_secp.png';
+import UploadOtherCNIC from './upload_other_cnic.png';
+import UploadOtherNTN from './upload_other_ntn.png';
+import UploadOtherSECP from './upload_other_secp.png';
 
 export {
   SplashWave,
@@ -58,4 +61,7 @@ export {
   UploadCNIC,
   UploadNTN,
   UploadSECP,
+  UploadOtherCNIC,
+  UploadOtherNTN,
+  UploadOtherSECP,
 };

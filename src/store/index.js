@@ -52,6 +52,18 @@ const initialState = {
     cnicImage: '',
     address: '', //postal code
   },
+  // from edit profile business
+  formEditProfileBusiness: {
+    name: '',
+    logo: '',
+    description: '',
+    category: '',
+    zipCode: '',
+    country: '',
+    state: '',
+    city: '',
+    detailAddress: '',
+  },
 };
 
 const reducer = (state, action) => {
@@ -164,6 +176,14 @@ const reducer = (state, action) => {
         ...state,
         formRegisterBusiness: {
           ...state.formRegisterBusiness,
+          [action.inputType]: action.inputValue,
+        },
+      };
+    case 'SET_FORM_EDIT_PROFILE_BUSINESS':
+      return {
+        ...state,
+        formEditProfileBusiness: {
+          ...state.formEditProfileBusiness,
           [action.inputType]: action.inputValue,
         },
       };

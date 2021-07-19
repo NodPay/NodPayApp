@@ -93,6 +93,8 @@ import EditPurple from './edit_purple.png';
 import GlobePurple from './globe_purple.png';
 import PlanePurple from './plane_purple.png';
 import NameCardPurple from './namecard_purple.png';
+import Withdraw from './Withdraw.png';
+import FileDocument from './document.png';
 
 export {
   GlobePurple,
@@ -189,4 +191,6 @@ export {
   PencilEditWhite,
   ThreeDotsVertical,
   EditPurple,
+  Withdraw,
+  FileDocument,
 };

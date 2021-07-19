@@ -35,6 +35,9 @@ import Profile from './Profile';
 import OtherUserProfile from './OtherUserProfile';
 import Transaction from './Transaction';
 import RegisterBusiness from './RegisterBusiness';
+import BusinessProfile from './BusinessProfile';
+import EditProfileBusiness from './EditProfileBusiness';
+import BusinessDocument from './BusinessDocument';
 
 export {
   Splash,
@@ -74,4 +77,7 @@ export {
   OtherUserProfile,
   Transaction,
   RegisterBusiness,
+  BusinessProfile,
+  EditProfileBusiness,
+  BusinessDocument,
 };
