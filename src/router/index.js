@@ -48,8 +48,13 @@ import {
   EditProfileBusiness,
   BusinessDocument,
   HomeBusiness,
+  BookKeeping,
 } from '../screens';
-import {Drawer as DrawerComponent, HomeTabBar} from '../components';
+import {
+  Drawer as DrawerComponent,
+  BusinessDrawer,
+  HomeTabBar,
+} from '../components';
 
 const Router = () => {
   const Stack = createStackNavigator();
@@ -57,7 +62,7 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="HomeBusiness"
+        initialRouteName="AppBusinessDrawer"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Loader" component={Loader} />
@@ -97,6 +102,7 @@ const Router = () => {
           component={BankAccountConnect}
         />
         <Stack.Screen name="AppDrawer" component={AppDrawer} />
+        <Stack.Screen name="AppBusinessDrawer" component={AppBusinessDrawer} />
         <Stack.Screen name="QRCode" component={QRCode} />
         <Stack.Screen name="TransferToBank" component={TransferToBank} />
         <Stack.Screen name="CashACheck" component={CashACheck} />
@@ -110,7 +116,6 @@ const Router = () => {
           component={EditProfileBusiness}
         />
         <Stack.Screen name="BusinessDocument" component={BusinessDocument} />
-        <Stack.Screen name="HomeBusiness" component={HomeBusiness} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -128,6 +133,22 @@ const AppDrawer = () => {
       drawerContent={props => <DrawerComponent {...props} />}>
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Card" component={Card} />
+    </Drawer.Navigator>
+  );
+};
+
+const AppBusinessDrawer = () => {
+  const Drawer = createDrawerNavigator();
+
+  return (
+    <Drawer.Navigator
+      drawerType="front"
+      drawerPosition="right"
+      drawerStyle={{backgroundColor: 'transparent'}}
+      screenOptions={{unmountOnBlur: true}}
+      drawerContent={props => <BusinessDrawer {...props} />}>
+      <Drawer.Screen name="HomeBusiness" component={HomeBusiness} />
+      <Drawer.Screen name="BookKeeping" component={BookKeeping} />
     </Drawer.Navigator>
   );
 };

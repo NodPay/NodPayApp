@@ -26,7 +26,7 @@ import {color, dimens, fonts, getData} from '../utils/';
 import {CardInactive, Exchange, HomeActive, People1} from '../assets/';
 
 const Tab = createMaterialTopTabNavigator();
-const HomeBusiness = () => {
+const HomeBusiness = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={color.btn_white_2} />
@@ -59,6 +59,47 @@ const HomeBusiness = () => {
       </View>
 
       <Gap t={100} />
+
+      {/* Bottom Tab Navigator */}
+      <View style={styles.bottomTab}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+          }}>
+          <TouchableOpacity>
+            <Image source={HomeActive} style={{width: 30, height: 30}} />
+            <Text>Home</Text>
+          </TouchableOpacity>
+          <View>
+            <TouchableOpacity
+              style={{
+                top: -35,
+                height: 80,
+                width: 80,
+                backgroundColor: color.bg_color,
+                borderRadius: 40,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderWidth: 10,
+                borderColor: color.btn_white_2,
+              }}
+              onPress={() => navigation.navigate('Transaction')}>
+              <Image source={Exchange} style={{width: 30, height: 30}} />
+            </TouchableOpacity>
+            <Text>Exchange</Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Card');
+            }}>
+            <Image source={CardInactive} style={{width: 30, height: 30}} />
+            <Text>Card</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      {/* Bottom Tab Navigator End*/}
     </SafeAreaView>
   );
 };
