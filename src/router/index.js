@@ -47,6 +47,7 @@ import {
   BusinessProfile,
   EditProfileBusiness,
   BusinessDocument,
+  HomeBusiness,
 } from '../screens';
 import {Drawer as DrawerComponent, HomeTabBar} from '../components';
 
@@ -56,7 +57,7 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Splash"
+        initialRouteName="HomeBusiness"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Loader" component={Loader} />
@@ -109,6 +110,7 @@ const Router = () => {
           component={EditProfileBusiness}
         />
         <Stack.Screen name="BusinessDocument" component={BusinessDocument} />
+        <Stack.Screen name="HomeBusiness" component={HomeBusiness} />
       </Stack.Navigator>
     </NavigationContainer>
   );

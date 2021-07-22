@@ -38,6 +38,7 @@ import RegisterBusiness from './RegisterBusiness';
 import BusinessProfile from './BusinessProfile';
 import EditProfileBusiness from './EditProfileBusiness';
 import BusinessDocument from './BusinessDocument';
+import HomeBusiness from './HomeBusiness';
 
 export {
   Splash,
@@ -80,4 +81,5 @@ export {
   BusinessProfile,
   EditProfileBusiness,
   BusinessDocument,
+  HomeBusiness,
 };
