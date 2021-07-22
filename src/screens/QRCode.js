@@ -25,7 +25,7 @@ import {Gap, PageTitle} from '../components';
 import {color, dimens, fonts} from '../utils';
 
 const QRCode = ({navigation}) => {
-  const [selected, setSelected] = useState(2);
+  const [selected, setSelected] = useState(1);
 
   const showToast = message => {
     ToastAndroid.show(message, ToastAndroid.SHORT);

@@ -27,6 +27,8 @@ import {CardInactive, Exchange, HomeActive, People1} from '../assets/';
 
 const Tab = createMaterialTopTabNavigator();
 const HomeBusiness = ({navigation}) => {
+  const mainActionRef = useRef(null);
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={color.btn_white_2} />
@@ -100,6 +102,10 @@ const HomeBusiness = ({navigation}) => {
         </View>
       </View>
       {/* Bottom Tab Navigator End*/}
+
+      {/* MainAction BottomSheet */}
+      <MainAction mainActionRef={mainActionRef} />
+      {/* MainAction BottomSheet End*/}
     </SafeAreaView>
   );
 };
