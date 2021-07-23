@@ -49,6 +49,7 @@ import {
   BusinessDocument,
   HomeBusiness,
   BookKeeping,
+  Employee,
 } from '../screens';
 import {
   Drawer as DrawerComponent,
@@ -116,6 +117,7 @@ const Router = () => {
           component={EditProfileBusiness}
         />
         <Stack.Screen name="BusinessDocument" component={BusinessDocument} />
+        <Stack.Screen name="Employee" component={Employee} />
       </Stack.Navigator>
     </NavigationContainer>
   );

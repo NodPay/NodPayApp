@@ -65,7 +65,7 @@ export default MainAction;
 
 const styles = StyleSheet.create({
   title: {
-    fontFamily: fonts.noto_bold,
+    fontFamily: fonts.sofia_bold,
     fontSize: dimens.default_18,
     textAlign: 'center',
     flex: 1,

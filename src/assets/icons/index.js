@@ -98,6 +98,8 @@ import FileDocument from './document.png';
 import DrawerSwitch from './drawer_switch.png';
 import DrawerEmployee from './drawer_employee.png';
 import BookInactive from './book_inactive.png';
+import SearchBlack from './search_black.png';
+import InviteBlack from './invite_black.png';
 
 export {
   DrawerSwitch,
@@ -199,4 +201,6 @@ export {
   EditPurple,
   Withdraw,
   FileDocument,
+  SearchBlack,
+  InviteBlack,
 };

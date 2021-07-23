@@ -34,6 +34,7 @@ import TransferToBankList from './TransferToBankList';
 import StepFormBusiness from './StepFormBusiness';
 import CustomerItem from './CustomerItem';
 import TransactionItem from './TransactionItem';
+import EmployeeItem from './EmployeeItem';
 
 export {
   SectionTitle,
@@ -72,4 +73,5 @@ export {
   StepFormBusiness,
   CustomerItem,
   TransactionItem,
+  EmployeeItem,
 };
