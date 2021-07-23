@@ -5,7 +5,7 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {dimens, fonts, color} from '../../utils';
 import {DefaultPict} from '../../assets';
 
-const TransactionItem = ({name, type, pay}) => {
+const TransactionItem = ({name, type, pay, isMinus}) => {
   return (
     <View style={styles.container}>
       <View style={styles.leftWrap}>
@@ -20,16 +20,16 @@ const TransactionItem = ({name, type, pay}) => {
       </View>
       <Text
         style={{
-          color: color.green,
+          color: isMinus ? color.red : color.green,
           fontFamily: fonts.sofia_bold,
-          backgroundColor: color.bg_success,
+          backgroundColor: isMinus ? color.error_background : color.bg_success,
           height: 30,
           width: 60,
           borderRadius: 30,
           textAlign: 'center',
           textAlignVertical: 'center',
         }}>
-        + {pay || 0} Rs
+        {isMinus ? `- Rs ${pay}` : `+ ${pay || 0} Rs`}
       </Text>
     </View>
   );

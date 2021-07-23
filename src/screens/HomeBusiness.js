@@ -23,7 +23,7 @@ import {
   MainAction,
 } from '../components/';
 import {color, dimens, fonts, getData} from '../utils/';
-import {CardInactive, Exchange, HomeActive, People1} from '../assets/';
+import {BookInactive, Exchange, HomeActive, People1} from '../assets/';
 
 const Tab = createMaterialTopTabNavigator();
 const HomeBusiness = ({navigation}) => {
@@ -96,8 +96,11 @@ const HomeBusiness = ({navigation}) => {
             onPress={() => {
               navigation.navigate('Card');
             }}>
-            <Image source={CardInactive} style={{width: 30, height: 30}} />
-            <Text>Card</Text>
+            <Image
+              source={BookInactive}
+              style={{width: 30, height: 30, alignSelf: 'center'}}
+            />
+            <Text>Bookkeeping</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -169,21 +172,15 @@ const Customer = ({navigation}) => {
 
 const Transaction = props => {
   const data = [
-    {
-      title: 'June 12, 30',
-      data: [
-        {name: 'Starbuck', type: 'Groceries', pay: '75'},
-        {name: 'Apple', type: 'Tech', pay: '69'},
-        {name: '', type: '', pay: ''},
-      ],
-    },
+    {name: 'Starbuck', type: 'Groceries', pay: '75'},
+    {name: 'Apple', type: 'Tech', pay: '69'},
   ];
 
   return (
     <FlatList
       data={data}
       style={{backgroundColor: color.btn_white_2}}
-      renderItem={({item}) => <TransactionItem {...item} />}
+      renderItem={({item}) => <TransactionItem isMinus {...item} />}
       keyExtractor={(item, key) => key.toString()}
       ListFooterComponent={<Gap t={dimens.default} />}
     />

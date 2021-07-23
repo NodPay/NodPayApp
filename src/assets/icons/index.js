@@ -95,8 +95,14 @@ import PlanePurple from './plane_purple.png';
 import NameCardPurple from './namecard_purple.png';
 import Withdraw from './Withdraw.png';
 import FileDocument from './document.png';
+import DrawerSwitch from './drawer_switch.png';
+import DrawerEmployee from './drawer_employee.png';
+import BookInactive from './book_inactive.png';
 
 export {
+  DrawerSwitch,
+  DrawerEmployee,
+  BookInactive,
   GlobePurple,
   PlanePurple,
   NameCardPurple,

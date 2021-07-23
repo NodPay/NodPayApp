@@ -11,9 +11,7 @@ import {
 import {DrawerItem, BalanceInfo} from '../moleculs';
 import {
   DrawerHomeActive,
-  DrawerCard,
-  DrawerBusiness,
-  DrawerContact,
+  DrawerSwitch,
   DrawerBank,
   DrawerInvite,
   DrawerNotification,
@@ -21,6 +19,7 @@ import {
   DrawerHelp,
   DrawerLogout,
   ProfileExample,
+  DrawerEmployee,
 } from '../../assets';
 import {dimens, color, fonts, removeData, storeData} from '../../utils';
 import {MainAction} from '../organism';
@@ -37,8 +36,8 @@ const BusinessDrawer = ({navigation}) => {
             style={{height: 45, width: 45, resizeMode: 'contain'}}
           />
           <View style={{marginLeft: dimens.default}}>
-            <Text style={styles.realname}>Ahmad Jalaluddin</Text>
-            <Text style={styles.username}>@ahmadjalaluddin</Text>
+            <Text style={styles.realname}>Sempolan.id</Text>
+            <Text style={styles.username}>Food and Beverage</Text>
           </View>
         </View>
 
@@ -56,32 +55,10 @@ const BusinessDrawer = ({navigation}) => {
           image={DrawerHomeActive}
           onPress={() => {}}
         />
-        <DrawerItem label="My Card" image={DrawerCard} onPress={() => {}} />
         <DrawerItem
-          label="Business Profile"
-          image={DrawerBusiness}
+          label="Employee"
+          image={DrawerEmployee}
           onPress={() => {}}
-        />
-        <DrawerItem
-          label="Contacts"
-          image={DrawerContact}
-          onPress={() => {
-            navigation.navigate('Contact');
-          }}
-        />
-        <DrawerItem
-          label="Bank Account"
-          image={DrawerBank}
-          onPress={() => {
-            navigation.navigate('BankAccount');
-          }}
-        />
-        <DrawerItem
-          label="Invite Your Friends"
-          image={DrawerInvite}
-          onPress={() => {
-            navigation.navigate('InviteFriend');
-          }}
         />
         <DrawerItem
           label="Notifications"
@@ -92,6 +69,20 @@ const BusinessDrawer = ({navigation}) => {
           unreadCount={4}
         />
         <DrawerItem
+          label="Bank Account"
+          image={DrawerBank}
+          onPress={() => {
+            navigation.navigate('BankAccount');
+          }}
+        />
+        <DrawerItem
+          label="Invite Other Business"
+          image={DrawerInvite}
+          onPress={() => {
+            navigation.navigate('InviteFriend');
+          }}
+        />
+        <DrawerItem
           label="Settings"
           image={DrawerSetting}
           onPress={() => navigation.navigate('Settings')}
@@ -99,6 +90,11 @@ const BusinessDrawer = ({navigation}) => {
         <DrawerItem label="Help" image={DrawerHelp} onPress={() => {}} />
       </ScrollView>
 
+      <DrawerItem
+        label="Switch Account"
+        image={DrawerSwitch}
+        onPress={() => {}}
+      />
       <DrawerItem
         label="Log out"
         image={DrawerLogout}
