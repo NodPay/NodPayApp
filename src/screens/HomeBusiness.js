@@ -36,7 +36,7 @@ const HomeBusiness = ({navigation}) => {
       <HeaderHome
         onPressSearch={() => navigation.navigate('Search')}
         onPressProfile={() => {
-          navigation.openDrawer();
+          navigation.navigate('BusinessProfile');
         }}
       />
 

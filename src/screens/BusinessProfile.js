@@ -137,6 +137,7 @@ const BusinessProfile = ({navigation}) => {
       {/* Header */}
       <View style={styles.bg_blue}>
         <PageTitle
+          navigation={navigation}
           title="Business Profile"
           isProfile
           onEdit={() => navigation.navigate('EditProfile')}
