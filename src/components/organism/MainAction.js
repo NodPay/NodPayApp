@@ -9,7 +9,7 @@ import {dimens, fonts} from '../../utils';
 import {Gap} from '../atoms';
 import {MainActionList} from '../moleculs';
 
-const MainAction = ({mainActionRef}) => {
+const MainAction = ({mainActionRef, type}) => {
   const navigation = useNavigation();
 
   return (
@@ -40,7 +40,7 @@ const MainAction = ({mainActionRef}) => {
         <Gap t={dimens.supersmall} />
         <MainActionList
           icon={AddMoney}
-          title="Add Money"
+          title={type == 'business' ? 'Top Up Transaction' : 'Add Money'}
           description="Transfer money to your nod balance"
           onPress={() => navigation.navigate('QRCode')}
         />

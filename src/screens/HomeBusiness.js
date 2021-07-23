@@ -107,7 +107,7 @@ const HomeBusiness = ({navigation}) => {
       {/* Bottom Tab Navigator End*/}
 
       {/* MainAction BottomSheet */}
-      <MainAction mainActionRef={mainActionRef} />
+      <MainAction type="business" mainActionRef={mainActionRef} />
       {/* MainAction BottomSheet End*/}
     </SafeAreaView>
   );
