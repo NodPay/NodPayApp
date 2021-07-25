@@ -33,6 +33,7 @@ import UploadOtherNTN from './upload_other_ntn.png';
 import UploadOtherSECP from './upload_other_secp.png';
 import BGButton from './bg_button.png';
 import InviteBusiness from './invite_business.png';
+import Starbucks from './starbucks.png';
 
 export {
   SplashWave,
@@ -70,4 +71,5 @@ export {
   UploadOtherSECP,
   BGButton,
   InviteBusiness,
+  Starbucks,
 };

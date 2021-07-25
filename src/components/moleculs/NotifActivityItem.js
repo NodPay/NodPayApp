@@ -9,6 +9,7 @@ const NotifActivityItem = ({
   photo,
   name,
   action,
+  action2,
   info,
   date,
   type,
@@ -24,7 +25,8 @@ const NotifActivityItem = ({
       {photo && <Image source={photo} style={styles.photo} />}
       <View>
         <Text style={styles.description}>
-          <Text style={styles.name}>{name}</Text> {action}
+          <Text style={styles.name}>{name}</Text> {action}{' '}
+          {action2 !== '' && <Text style={styles.name}>{action2}</Text>}
         </Text>
         {info !== '' && <Text style={styles.info}>{info}</Text>}
         <View style={styles.containerDate}>

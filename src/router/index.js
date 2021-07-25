@@ -59,6 +59,7 @@ import {
   LoginPhoneBusiness,
   InviteOtherBusiness,
   InviteSignupBusiness,
+  NotificationBusiness,
 } from '../screens';
 import {
   Drawer as DrawerComponent,
@@ -72,7 +73,7 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="InviteOtherBusiness"
+        initialRouteName="NotificationBusiness"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Loader" component={Loader} />
@@ -153,6 +154,10 @@ const Router = () => {
         <Stack.Screen
           name="InviteSignupBusiness"
           component={InviteSignupBusiness}
+        />
+        <Stack.Screen
+          name="NotificationBusiness"
+          component={NotificationBusiness}
         />
       </Stack.Navigator>
     </NavigationContainer>

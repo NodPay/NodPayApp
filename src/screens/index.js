@@ -50,6 +50,7 @@ import LoginPhoneBusiness from './LoginPhoneBusiness';
 import LoginEmailBusiness from './LoginEmailBusiness';
 import InviteOtherBusiness from './InviteOtherBusiness';
 import InviteSignupBusiness from './InviteSignupBusiness';
+import NotificationBusiness from './NotificationBusiness';
 
 export {
   Splash,
@@ -104,4 +105,5 @@ export {
   LoginEmailBusiness,
   InviteOtherBusiness,
   InviteSignupBusiness,
+  NotificationBusiness,
 };
