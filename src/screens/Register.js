@@ -7,15 +7,18 @@ import {color, dimens, fonts} from '../utils';
 import {PageTitle, Button, StepForm} from '../components';
 import {Next} from '../assets';
 import useStateContext from '../store/useStateContext';
-import {checkValidPhoneNumber} from '../api/registration.api';
+import {
+  checkValidPhoneNumber,
+  getVerificationCode,
+  validateVerificationCode,
+  signup,
+} from '../api/registration.api';
 const Register = ({navigation}) => {
   const {state, dispatch} = useStateContext();
   const {
     isComplete,
-    activeStep,
-    phoneNumber,
     isVerification,
-    verificationCode,
+    activeStep,
     isFamilyRelation,
     isDisabled,
     cnicData,
@@ -24,6 +27,7 @@ const Register = ({navigation}) => {
     typeModal,
   } = state;
 
+  const {phoneNumber, verificationCode} = state.formRegister;
   const onNextMobileNumber = async () => {
     try {
       // check if number is not null / empty
@@ -49,6 +53,7 @@ const Register = ({navigation}) => {
           errorMessage: 'Phone number is invalid or has already registered',
         });
       } else {
+        await getVerificationCode(phoneNumber);
         dispatch({type: 'SET_VERIFICATION', payload: true});
         dispatch({type: 'SET_IS_RUNNING', payload: true});
         dispatch({
@@ -58,7 +63,43 @@ const Register = ({navigation}) => {
         });
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      dispatch({
+        type: 'SET_ERROR_REGISTER',
+        error: true,
+        errorMessage: error,
+      });
+    }
+  };
+
+  const onNextMobileNumberCheckOTP = async () => {
+    try {
+      if (verificationCode == '' || verificationCode == undefined) {
+        dispatch({
+          type: 'SET_ERROR_REGISTER',
+          error: true,
+          errorMessage: 'Please Input OTP Code',
+        });
+      }
+      const codeIsValid = await validateVerificationCode(
+        phoneNumber,
+        verificationCode,
+      );
+      if (!codeIsValid) {
+        dispatch({
+          type: 'SET_ERROR_REGISTER',
+          error: true,
+          errorMessage: 'Invalid Code',
+        });
+      } else {
+        dispatch({type: 'SET_ACTIVE_STEP'});
+        dispatch({
+          type: 'SET_ERROR_REGISTER',
+          error: false,
+          errorMessage: '',
+        });
+      }
+    } catch (error) {
       dispatch({
         type: 'SET_ERROR_REGISTER',
         error: true,
@@ -81,23 +122,34 @@ const Register = ({navigation}) => {
   };
 
   const onNextSecurityPassword = () => {
-    if (!setUpBiometric) {
-      dispatch({type: 'SET_BIOMETRIC', payload: true});
-    } else {
-      // dispatch({type: 'SET_IS_COMPLETED', payload: true});
+    // if (!setUpBiometric) {
+    //   dispatch({type: 'SET_BIOMETRIC', payload: true});
+    // } else {
+    //   // dispatch({type: 'SET_IS_COMPLETED', payload: true});
+    //   dispatch({type: 'SET_MODAL', showModal: true, typeModal: 'failed'});
+    // }
+    handleSignup();
+  };
+
+  const handleSignup = async () => {
+    try {
+      await signup(state.formRegister);
+      dispatch({type: 'SET_MODAL', showModal: true, typeModal: 'success'});
+      dispatch({type: 'SET_IS_COMPLETED', payload: true});
+    } catch (error) {
       dispatch({type: 'SET_MODAL', showModal: true, typeModal: 'failed'});
     }
   };
 
   const onNext = () => {
+    //check store
+    console.log('state', state);
     //mobile number - verification section
-    console.log(verificationCode);
     if (activeStep == 0) {
-      // if had a valid verification code, go to the next step.
-      if (verificationCode == '') {
+      if (!isVerification) {
         onNextMobileNumber();
       } else {
-        dispatch({type: 'SET_ACTIVE_STEP'});
+        onNextMobileNumberCheckOTP();
       }
     }
     //personal details - family relation
@@ -133,7 +185,6 @@ const Register = ({navigation}) => {
       height: 400,
     })
       .then(res => {
-        console.log('result', res);
         navigation.navigate('ScanResult', {data: res});
       })
       .catch(e => console.log('error while taking photo', e));
@@ -150,7 +201,6 @@ const Register = ({navigation}) => {
       <StepForm
         activeStep={activeStep}
         isComplete={isComplete}
-        isVerification={isVerification}
         isFamilyRelation={isFamilyRelation}
         cnicData={cnicData}
         setUpBiometric={setUpBiometric}

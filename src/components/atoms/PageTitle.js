@@ -1,9 +1,17 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 
-import {LeftArrow, BlackLeftArrow, CloseRed, QRScan} from '../../assets';
+import {
+  LeftArrow,
+  BlackLeftArrow,
+  CloseRed,
+  QRScan,
+  PencilEditWhite,
+  ThreeDotsVertical,
+} from '../../assets';
 import {color, dimens, fonts} from '../../utils';
 
+// * Page title with optional buttons on the left and right
 const PageTitle = ({
   title,
   navigation,
@@ -14,31 +22,66 @@ const PageTitle = ({
   onPressClose,
   isRightQR,
   onPressRight,
+  cancel,
+  isCancel,
+  isProfile,
+  onEdit,
+  isOtherProfile,
+  isNoBackButton,
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
-      {isCloseMode ? (
-        <TouchableOpacity
-          onPress={onPressClose}
-          style={{position: 'absolute', left: dimens.default_16}}>
-          <Image source={CloseRed} style={styles.close_icon} />
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={styles.left_arrow}>
-          {isBlackArrow ? (
-            <Image source={BlackLeftArrow} />
-          ) : (
-            <Image source={LeftArrow} />
-          )}
-        </TouchableOpacity>
-      )}
+      {!isNoBackButton &&
+        (isCloseMode ? (
+          <TouchableOpacity
+            onPress={onPressClose}
+            style={{position: 'absolute', left: dimens.default_16}}>
+            <Image source={CloseRed} style={[styles.close_icon, cancel]} />
+            {isCancel && (
+              <Text
+                style={{
+                  fontFamily: fonts.noto_bold,
+                  fontSize: dimens.default_12,
+                  textAlign: 'center',
+                }}>
+                Cancel
+              </Text>
+            )}
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={styles.left_arrow}>
+            {isBlackArrow ? (
+              <Image source={BlackLeftArrow} />
+            ) : (
+              <Image source={LeftArrow} />
+            )}
+          </TouchableOpacity>
+        ))}
       <Text style={[styles.title, titleStyle]}>{title}</Text>
       {isRightQR && (
         <TouchableOpacity onPress={onPressRight} style={styles.containerQR}>
           <Image source={QRScan} style={styles.iconQR} />
           <Text style={styles.textQR}>QR Code</Text>
+        </TouchableOpacity>
+      )}
+      {/* Edit Profile */}
+      {isProfile && (
+        <TouchableOpacity onPress={onEdit} style={styles.containerQR}>
+          <Image
+            source={PencilEditWhite}
+            style={{height: 40, width: 40, resizeMode: 'contain'}}
+          />
+        </TouchableOpacity>
+      )}
+      {/* Other User Profile */}
+      {isOtherProfile && (
+        <TouchableOpacity onPress={onEdit} style={styles.containerQR}>
+          <Image
+            source={ThreeDotsVertical}
+            style={{height: 24, width: 24, resizeMode: 'contain'}}
+          />
         </TouchableOpacity>
       )}
     </View>

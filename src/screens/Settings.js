@@ -13,9 +13,11 @@ import {
   PhoneGrey,
   Profile,
   Star,
+  FileDocument,
 } from '../assets';
 
-const Settings = ({navigation}) => {
+const Settings = ({navigation, type}) => {
+  type = 'business';
   return (
     <SafeAreaView style={styles.container}>
       <PageTitle
@@ -27,28 +29,39 @@ const Settings = ({navigation}) => {
       <SettingsItem
         icon={AccountCircle}
         title="Edit Profile"
-        onPress={() => navigation.navigate('EditProfile')}
+        onPress={() => navigation.navigate('EditProfileBusiness')}
       />
+      {type == 'business' && (
+        <SettingsItem
+          icon={FileDocument}
+          title="Business Document"
+          onPress={() => navigation.navigate('BusinessDocument')}
+        />
+      )}
       <SettingsItem
         icon={Lock}
         title="Password & Security"
         onPress={() => navigation.navigate('PasswordSecurity')}
       />
-      <SettingsItem
-        icon={Profile}
-        title="Privacy & Socials"
-        onPress={() => navigation.navigate('PrivacySocial')}
-      />
+      {type != 'business' && (
+        <SettingsItem
+          icon={Profile}
+          title="Privacy & Socials"
+          onPress={() => navigation.navigate('PrivacySocial')}
+        />
+      )}
       <SettingsItem
         icon={Bell}
         title="Notification Settings"
         onPress={() => navigation.navigate('NotificationSetting')}
       />
-      <SettingsItem
-        icon={PhoneGrey}
-        title="Change Phone Number"
-        onPress={() => navigation.navigate('ChangePhoneNumber')}
-      />
+      {type != 'business' && (
+        <SettingsItem
+          icon={PhoneGrey}
+          title="Change Phone Number"
+          onPress={() => navigation.navigate('ChangePhoneNumber')}
+        />
+      )}
       <SettingsItem
         icon={Detail}
         title="Language"

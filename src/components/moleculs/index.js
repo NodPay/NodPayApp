@@ -28,6 +28,13 @@ import PeopleItem from './PeopleItem';
 import FaqAccordionItem from './FaqAccordionItem';
 import InputSwitch from './InputSwitch';
 import InputCheck from './InputCheck';
+import BankAccountItem from './BankAccountItem';
+import MainActionList from './MainActionList';
+import TransferToBankList from './TransferToBankList';
+import StepFormBusiness from './StepFormBusiness';
+import CustomerItem from './CustomerItem';
+import TransactionItem from './TransactionItem';
+import EmployeeItem from './EmployeeItem';
 
 export {
   SectionTitle,
@@ -60,4 +67,11 @@ export {
   FaqAccordionItem,
   InputSwitch,
   InputCheck,
+  BankAccountItem,
+  MainActionList,
+  TransferToBankList,
+  StepFormBusiness,
+  CustomerItem,
+  TransactionItem,
+  EmployeeItem,
 };

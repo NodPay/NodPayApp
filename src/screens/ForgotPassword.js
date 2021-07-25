@@ -72,7 +72,9 @@ const ForgotPassword = ({navigation}) => {
         <ErrorMessage message="The email isn’t associated with a NodPay Account" />
       </View>
 
-      <KeyboardAvoidingView style={styles.btnContainer}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS == 'ios' && 'position'}
+        style={styles.btnContainer}>
         <Button
           title="Send Instruction"
           titleStyle={{color: 'white'}}

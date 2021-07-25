@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import {
   View,
   FlatList,
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  Text,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
@@ -16,12 +19,23 @@ import {
   Tabbed,
   RequestMoneyItem,
   Gap,
+  MainAction,
 } from '../components/';
-import {color, dimens, fonts} from '../utils/';
-import {People1} from '../assets/';
+import {color, dimens, fonts, getData} from '../utils/';
+import {CardInactive, Exchange, HomeActive, People1} from '../assets/';
 
 const Tab = createMaterialTopTabNavigator();
 const Home = ({navigation}) => {
+  const mainActionRef = useRef(null);
+
+  useEffect(() => {
+    getData('session')
+      .then(res => {
+        console.log('home get session', res);
+      })
+      .catch(e => console.log('error while getData', e));
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={color.btn_white_2} />
@@ -29,12 +43,16 @@ const Home = ({navigation}) => {
       <HeaderHome
         onPressSearch={() => navigation.navigate('Search')}
         onPressProfile={() => {
-          navigation.openDrawer();
+          navigation.navigate('Profile');
         }}
       />
 
       <View style={{padding: dimens.default, paddingBottom: 0, flex: 1}}>
-        <BalanceInfo type="home" moneyAmount="400.000" />
+        <BalanceInfo
+          type="home"
+          moneyAmount="400.000"
+          onPressAdd={() => mainActionRef.current.open()}
+        />
 
         <Tab.Navigator
           tabBar={props => (
@@ -48,6 +66,53 @@ const Home = ({navigation}) => {
           <Tab.Screen name="Request" component={Request} />
         </Tab.Navigator>
       </View>
+
+      <Gap t={100} />
+
+      {/* Bottom Tab Navigator */}
+      <View style={styles.bottomTab}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+          }}>
+          <TouchableOpacity>
+            <Image source={HomeActive} style={{width: 30, height: 30}} />
+            <Text>Home</Text>
+          </TouchableOpacity>
+          <View>
+            <TouchableOpacity
+              style={{
+                top: -35,
+                height: 80,
+                width: 80,
+                backgroundColor: color.bg_color,
+                borderRadius: 40,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderWidth: 10,
+                borderColor: color.btn_white_2,
+              }}
+              onPress={() => navigation.navigate('Transaction')}>
+              <Image source={Exchange} style={{width: 30, height: 30}} />
+            </TouchableOpacity>
+            <Text>Exchange</Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Card');
+            }}>
+            <Image source={CardInactive} style={{width: 30, height: 30}} />
+            <Text>Card</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      {/* Bottom Tab Navigator End*/}
+
+      {/* MainAction BottomSheet */}
+      <MainAction mainActionRef={mainActionRef} />
+      {/* MainAction BottomSheet End*/}
     </SafeAreaView>
   );
 };
@@ -186,6 +251,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
     paddingVertical: 0,
     alignItems: 'flex-start',
+    zIndex: -1,
+  },
+  bottomTab: {
+    height: 60,
+    backgroundColor: 'white',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    paddingHorizontal: dimens.default_16,
+    zIndex: 1,
   },
 });
 

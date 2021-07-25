@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import {Loading} from '.';
 import {color, dimens, fonts} from '../../utils';
 
 const Button = ({
@@ -11,6 +12,7 @@ const Button = ({
   iconLeft,
   iconRight,
   disabled,
+  isLoading,
 }) => {
   return (
     <TouchableOpacity
@@ -21,7 +23,12 @@ const Button = ({
       {iconLeft && (
         <Image style={[styles.btn_icon, iconStyle]} source={iconLeft} />
       )}
-      <Text style={[styles.btn_title, titleStyle]}>{title}</Text>
+      {isLoading ? (
+        <Loading size="small" color="white" />
+      ) : (
+        <Text style={[styles.btn_title, titleStyle]}>{title}</Text>
+      )}
+
       {iconRight && <Image source={iconRight} style={styles.iconRight} />}
     </TouchableOpacity>
   );

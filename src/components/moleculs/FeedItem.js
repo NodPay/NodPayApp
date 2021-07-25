@@ -17,12 +17,14 @@ import {
 } from '../../assets';
 
 const FeedItem = ({
+  type,
   item = {},
   onPressLove,
   onPressComment,
   onPressEmoji,
   isHideComment,
   isCommentReply,
+  onPressPhoto, //added for view other user profile
 }) => {
   const {
     loveCount,
@@ -32,17 +34,73 @@ const FeedItem = ({
     isCommented,
     isEmojied,
     message,
+    amount,
+
+    // * Ex: Andi paid Umair
+    subject,
+    predicate,
+    object,
   } = item;
+
+  if (type == 'customer') {
+    return (
+      <View style={{marginTop: dimens.default, flexDirection: 'row'}}>
+        {/* Left part (profile photo and time) */}
+        <View style={{width: 65}}>
+          <View style={{width: 50}}>
+            <TouchableOpacity onPress={onPressPhoto}>
+              <Image
+                source={ProfileExample}
+                style={{height: 50, width: 50, resizeMode: 'contain'}}
+              />
+            </TouchableOpacity>
+            <View style={styles.timeContainer}>
+              <Image source={Time} style={styles.clockIcon} />
+              <Text style={{fontSize: dimens.default_12, color: color.grey_3}}>
+                1m
+              </Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Right (Informations inside white box) */}
+        <View style={styles.rightContainer}>
+          <View style={{flex: 1}}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text style={styles.title}>
+                {subject}
+                <Text style={styles.middleTitle}> {predicate}</Text> {object}
+              </Text>
+            </View>
+
+            <Text style={styles.message}>{message}</Text>
+          </View>
+
+          <View>
+            <Text
+              style={[
+                styles.amountText,
+                {color: color.green, backgroundColor: color.green3},
+              ]}>
+              + Rs {amount}
+            </Text>
+          </View>
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={{marginTop: dimens.default, flexDirection: 'row'}}>
       {/* Left part (profile photo and time) */}
       <View style={{width: 65}}>
         <View style={{width: 50}}>
-          <Image
-            source={ProfileExample}
-            style={{height: 50, width: 50, resizeMode: 'contain'}}
-          />
+          <TouchableOpacity onPress={onPressPhoto}>
+            <Image
+              source={ProfileExample}
+              style={{height: 50, width: 50, resizeMode: 'contain'}}
+            />
+          </TouchableOpacity>
           <View style={styles.timeContainer}>
             <Image source={Time} style={styles.clockIcon} />
             <Text style={{fontSize: dimens.default_12, color: color.grey_3}}>
@@ -170,6 +228,13 @@ const styles = StyleSheet.create({
     color: color.grey_3,
     fontSize: dimens.default_12,
     fontFamily: fonts.sofia_regular,
+  },
+  amountText: {
+    borderRadius: dimens.default_12,
+    fontSize: dimens.default_12,
+    fontFamily: fonts.sofia_regular,
+    paddingHorizontal: dimens.small,
+    paddingVertical: dimens.verysmall,
   },
   message: {
     color: color.btn_black,

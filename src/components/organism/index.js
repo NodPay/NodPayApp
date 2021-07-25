@@ -7,6 +7,9 @@ import ResidentialAddress from './ResidentialAddress';
 import CNIC from './CNIC';
 import SecurityPasswordSection from './SecurityPasswordSection';
 import HomeTabBar from './HomeTabBar';
+import MainAction from './MainAction';
+import BasicInformationSection from './BasicInformationSection';
+import UploadDocumentSection from './UploadDocumentSection';
 
 export {
   MobileNumberSection,
@@ -18,4 +21,7 @@ export {
   CNIC,
   SecurityPasswordSection,
   HomeTabBar,
+  MainAction,
+  BasicInformationSection,
+  UploadDocumentSection,
 };

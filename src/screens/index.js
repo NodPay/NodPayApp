@@ -27,6 +27,20 @@ import PasswordSecurity from './PasswordSecurity';
 import PrivacySocial from './PrivacySocial';
 import NotificationSetting from './NotificationSetting';
 import BankAccount from './BankAccount';
+import BankAccountConnect from './BankAccountConnect';
+import QRCode from './QRCode';
+import TransferToBank from './TransferToBank';
+import CashACheck from './CashACheck';
+import Profile from './Profile';
+import OtherUserProfile from './OtherUserProfile';
+import Transaction from './Transaction';
+import RegisterBusiness from './RegisterBusiness';
+import BusinessProfile from './BusinessProfile';
+import EditProfileBusiness from './EditProfileBusiness';
+import BusinessDocument from './BusinessDocument';
+import HomeBusiness from './HomeBusiness';
+import BookKeeping from './BookKeeping';
+import Employee from './Employee';
 
 export {
   Splash,
@@ -58,4 +72,18 @@ export {
   PrivacySocial,
   NotificationSetting,
   BankAccount,
+  BankAccountConnect,
+  QRCode,
+  TransferToBank,
+  CashACheck,
+  Profile,
+  OtherUserProfile,
+  Transaction,
+  RegisterBusiness,
+  BusinessProfile,
+  EditProfileBusiness,
+  BusinessDocument,
+  HomeBusiness,
+  BookKeeping,
+  Employee,
 };

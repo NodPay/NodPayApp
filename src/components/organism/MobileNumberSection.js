@@ -7,12 +7,14 @@ import {Button, ErrorMessage, Gap, InputPhoneNumber} from '../atoms';
 import {InputOtp, SectionTitle} from '../moleculs';
 import useStateContext from '../../store/useStateContext';
 
-const MobileNumberSection = ({isVerification}) => {
+const MobileNumberSection = () => {
   const {state, dispatch} = useStateContext();
   const [minute, setMinute] = useState(2);
   const [second, setSecond] = useState(59);
   const [delay, setDelay] = useState(1000);
   const [show, setShow] = useState(false);
+
+  const {isVerification} = state;
 
   useInterval(
     () => {
@@ -61,7 +63,7 @@ const MobileNumberSection = ({isVerification}) => {
           title="Verifications"
           titleStyle={{color: 'black', fontSize: dimens.default_22}}
           subtitle={`Enter 4 digits we sent to`}
-          num={`+${state?.phoneNumber}`}
+          num={`+${state.formRegister.phoneNumber}`}
           subTitleStyle={{
             color: color.grey,
             fontSize: dimens.default_16,

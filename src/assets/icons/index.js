@@ -55,6 +55,8 @@ import QRScan from './qr_scan.png';
 import ThreeDots from './three-dots.png';
 import AccountCircle from './account_circle.png';
 import Lock from './lock.png';
+import LockPurple from './lock_purple.png';
+import LockOpenPurple from './lock_open_purple.png';
 import Profile from './profile.png';
 import Bell from './bell.png';
 import PhoneGrey from './phone_gray.png';
@@ -77,8 +79,35 @@ import FlagUs from './flag-us.png';
 import Triangle from './triangle.png';
 import CheckmarkWhite from './checkmark_white.png';
 export * from './flags';
+import Gallery from './gallery.png';
+import Camera from './camera.png';
+import AddMoney from './add_money.png';
+import CashACheck from './cash_a_check.png';
+import TransferToBank from './transfer_to_bank.png';
+import Share from './share.png';
+import Check from './check.png';
+import OutlineCamera from './outline_camera.png';
+import PencilEditWhite from './pencil_edit_white.png';
+import ThreeDotsVertical from './three-dots-vertical.png';
+import EditPurple from './edit_purple.png';
+import GlobePurple from './globe_purple.png';
+import PlanePurple from './plane_purple.png';
+import NameCardPurple from './namecard_purple.png';
+import Withdraw from './Withdraw.png';
+import FileDocument from './document.png';
+import DrawerSwitch from './drawer_switch.png';
+import DrawerEmployee from './drawer_employee.png';
+import BookInactive from './book_inactive.png';
+import SearchBlack from './search_black.png';
+import InviteBlack from './invite_black.png';
 
 export {
+  DrawerSwitch,
+  DrawerEmployee,
+  BookInactive,
+  GlobePurple,
+  PlanePurple,
+  NameCardPurple,
   LeftArrow,
   BlackLeftArrow,
   Next,
@@ -136,6 +165,8 @@ export {
   ThreeDots,
   AccountCircle,
   Lock,
+  LockPurple,
+  LockOpenPurple,
   Profile,
   Bell,
   PhoneGrey,
@@ -157,4 +188,19 @@ export {
   FlagUs,
   Triangle,
   CheckmarkWhite,
+  Gallery,
+  Camera,
+  AddMoney,
+  CashACheck,
+  TransferToBank,
+  Share,
+  Check,
+  OutlineCamera,
+  PencilEditWhite,
+  ThreeDotsVertical,
+  EditPurple,
+  Withdraw,
+  FileDocument,
+  SearchBlack,
+  InviteBlack,
 };

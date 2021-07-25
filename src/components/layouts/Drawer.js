@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
   View,
   ScrollView,
@@ -22,9 +22,12 @@ import {
   DrawerLogout,
   ProfileExample,
 } from '../../assets';
-import {dimens, color, fonts} from '../../utils';
+import {dimens, color, fonts, removeData, storeData} from '../../utils';
+import {MainAction} from '../organism';
 
 const Drawer = ({navigation}) => {
+  const mainActionRef = useRef(null);
+
   return (
     <SafeAreaView style={styles.drawerContainer}>
       <ScrollView contentContainerStyle={styles.scrollviewContainer}>
@@ -40,7 +43,11 @@ const Drawer = ({navigation}) => {
         </View>
 
         <View style={{padding: dimens.default}}>
-          <BalanceInfo type="drawer" moneyAmount="400.000" />
+          <BalanceInfo
+            type="drawer"
+            moneyAmount="400.000"
+            onPressAdd={() => mainActionRef.current.open()}
+          />
         </View>
 
         <DrawerItem
@@ -92,7 +99,27 @@ const Drawer = ({navigation}) => {
         <DrawerItem label="Help" image={DrawerHelp} onPress={() => {}} />
       </ScrollView>
 
-      <DrawerItem label="Log out" image={DrawerLogout} onPress={() => {}} />
+      <DrawerItem
+        label="Log out"
+        image={DrawerLogout}
+        onPress={() => {
+          removeData('session')
+            .then(() => {
+              console.log('session removed');
+              storeData('session', {
+                isLogin: false,
+                isBoarding: true,
+              });
+            })
+            .then(() => {
+              navigation.replace('Splash');
+            });
+        }}
+      />
+
+      {/* MainAction BottomSheet */}
+      <MainAction mainActionRef={mainActionRef} />
+      {/* MainAction BottomSheet End*/}
     </SafeAreaView>
   );
 };

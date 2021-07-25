@@ -9,9 +9,10 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import {FormLabel} from '../atoms';
 
 // where local files imported
+import {FormLabel} from '../atoms';
+import {setFormRegister} from '../../store/action';
 import {color, dimens, fonts, formatPhoneNumber} from '../../utils';
 import {
   Down,
@@ -103,10 +104,7 @@ const InputPhoneNumber = ({
             value={number.toString()}
             onChangeText={value => {
               setNumber(value.toString());
-              dispatch({
-                type: 'SET_PHONE_NUMBER',
-                phoneNumber: `${code}${value}`,
-              });
+              dispatch(setFormRegister('phoneNumber', `${code}${value}`));
             }}
             style={styles.input}
             maxLength={11}

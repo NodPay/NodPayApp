@@ -70,15 +70,13 @@ const HomeTabBar = ({state, descriptors, navigation}) => {
         </Text>
       </TouchableOpacity>
 
-      {/* <View
-        style={
-          {
-            // paddingVertical: 6,
-            // flex: 1,
-            // justifyContent: 'center',
-            // alignItems: 'center',
-          }
-        }>
+      <View
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+        }}>
         <TouchableOpacity
           style={styles.exchangeButton}
           onPress={() => {
@@ -89,7 +87,7 @@ const HomeTabBar = ({state, descriptors, navigation}) => {
         <Text style={[styles.label, {color: color.btn_black}]}>
           Send & Request
         </Text>
-      </View> */}
+      </View>
 
       <TouchableOpacity
         accessibilityRole="button"
@@ -118,19 +116,20 @@ const HomeTabBar = ({state, descriptors, navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
+    height: 60,
     backgroundColor: 'white',
-    flexDirection: 'row',
+    // flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    borderTopWidth: 3.5,
-    borderTopColor: color.grey_7,
-    shadowColor: color.grey_7,
-    // Android only
-    elevation: 2,
-    // IOS only
-    shadowRadius: 5,
-    shadowOffset: {height: -2},
-    shadowOpacity: 0.3,
+    // alignItems: 'center',
+    // borderTopWidth: 3.5,
+    // borderTopColor: color.grey_7,
+    // shadowColor: color.grey_7,
+    // // Android only
+    // elevation: 2,
+    // // IOS only
+    // shadowRadius: 5,
+    // shadowOffset: {height: -2},
+    // shadowOpacity: 0.3,
   },
   label: {
     fontSize: dimens.default_12,
@@ -146,11 +145,11 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     shadowOffset: {height: 5},
     shadowOpacity: 0.3,
-    borderWidth: 5,
-    borderColor: color.grey_7,
-    shadowColor: color.grey_7,
-    position: 'absolute',
-    bottom: 15,
+    borderWidth: 20,
+    borderColor: 'black',
+    shadowColor: 'black',
+    // position: 'absolute',
+    // bottom: 15,
     alignSelf: 'center',
   },
 });

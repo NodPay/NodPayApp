@@ -5,6 +5,7 @@ import {StyleSheet, Text, ScrollView, View} from 'react-native';
 import {Gap} from '../atoms';
 import {color, dimens} from '../../utils';
 import {InputText, SectionTitle, SelectAddressList} from '../moleculs';
+import {setFormRegisterBusiness} from '../../store/action';
 
 const ResidentialAddress = () => {
   const [postalCode, setPostalCode] = useState('8989');
@@ -27,7 +28,11 @@ const ResidentialAddress = () => {
       <Gap b={-25} />
       <InputText
         value={postalCode}
-        onChangeText={value => setPostalCode(value)}
+        onChangeText={value => {
+          setPostalCode(value);
+          dispatch(setFormRegister('address', value));
+          dispatch(setFormRegisterBusiness('address', value));
+        }}
         keyboardType="number-pad"
       />
       <Gap t={dimens.default_16} />

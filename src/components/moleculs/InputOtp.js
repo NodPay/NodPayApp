@@ -5,6 +5,7 @@ import OTPInputView from '@twotalltotems/react-native-otp-input';
 // where local files imported
 import {color, dimens, fonts} from '../../utils';
 import useStateContext from '../../store/useStateContext';
+import {setFormRegister} from '../../store/action';
 
 const InputOtp = ({error}) => {
   const {state, dispatch} = useStateContext();
@@ -28,20 +29,8 @@ const InputOtp = ({error}) => {
       ]}
       onCodeFilled={code => {
         console.log(`Code is ${code}, you are good to go!`);
-        if (code != 1234) {
-          dispatch({
-            type: 'SET_ERROR_REGISTER',
-            error: true,
-            errorMessage: 'Invalid Code',
-          });
-        } else {
-          dispatch({
-            type: 'SET_ERROR_REGISTER',
-            error: false,
-            errorMessage: '',
-          });
-          dispatch({type: 'SET_VERIFICATION_CODE', payload: code});
-        }
+        console.log(state);
+        dispatch(setFormRegister('verificationCode', code));
       }}
     />
   );

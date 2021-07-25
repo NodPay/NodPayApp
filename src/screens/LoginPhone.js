@@ -8,6 +8,7 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Platform,
+  Keyboard,
 } from 'react-native';
 
 // where local file imported
@@ -21,22 +22,79 @@ import {
   ErrorMessage,
 } from '../components';
 import {SplashWaveGradient} from '../assets';
-import {clearAll, color, dimens, fonts} from '../utils';
+import {clearAll, color, dimens, fonts, storeData, wait} from '../utils';
 
 const LoginPhone = ({navigation}) => {
+  const PHONE_NUMBER = '000000000000';
+  const PASSWORD = 'admin';
+
+  const [isLoading, setIsLoading] = useState(false);
   const [code, setCode] = useState('1');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [submited, setSubmited] = useState(false);
+  const [isKeyboardShow, setIsKeyboardShow] = useState(false);
+  let keyboardDidShowListener;
+  let keyboardDidHideListener;
 
   useEffect(() => {
-    clearAll().then(res => console.log('clear all', res));
+    keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      _keyboardDidShow,
+    );
+    keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      _keyboardDidHide,
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
   }, []);
 
-  const submit = () => {
-    setSubmited(true);
-    if (phone !== '' && password !== '') {
-      navigation.navigate('AppDrawer');
+  const _keyboardDidShow = () => {
+    setIsKeyboardShow(true);
+  };
+
+  const _keyboardDidHide = () => {
+    setIsKeyboardShow(false);
+  };
+
+  const [error, setError] = useState({
+    status: false,
+    message: '',
+  });
+
+  const onLogin = () => {
+    setIsLoading(true);
+    // check auth
+    if (phone == '' || password == '') {
+      wait(100).then(() => {
+        setIsLoading(false);
+        setError({
+          status: true,
+          message: "Phone Number or Password Can't be empty.",
+        });
+      });
+    } else if (phone != PHONE_NUMBER && password != PASSWORD) {
+      wait(100).then(() => {
+        setIsLoading(false);
+        setError({
+          status: true,
+          message: 'Phone Number not found or wrong password!',
+        });
+      });
+    } else {
+      wait(300).then(() => {
+        console.log('login success');
+        storeData('session', {
+          isLogin: true, // if auth success, then save token for current user then user doesn't need to relogin
+          isBoarding: true,
+        });
+        setError({status: false, message: ''});
+        navigation.replace('AppDrawer');
+      });
     }
   };
 
@@ -82,9 +140,7 @@ const LoginPhone = ({navigation}) => {
                 navigation.navigate('ForgotPassword');
               }}
             />
-            {submited && (phone === '' || password === '') && (
-              <ErrorMessage message="The mobile number or password is incorect." />
-            )}
+            {error.status == true && <ErrorMessage message={error.message} />}
           </View>
         </View>
       </ScrollView>
@@ -94,26 +150,29 @@ const LoginPhone = ({navigation}) => {
         enabled={Platform.OS === 'android' ? false : true}>
         <View style={styles.footer_container}>
           <Button
+            isLoading={isLoading}
             title="Login"
             btnStyle={{
               backgroundColor: color.btn_black,
-              marginBottom: dimens.default_12,
               borderColor: color.btn_white,
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-            onPress={submit}
+            onPress={onLogin}
           />
-          <Button
-            title="Register"
-            btnStyle={{
-              backgroundColor: 'white',
-              borderColor: color.btn_white,
-              borderWidth: 1,
-            }}
-            titleStyle={{fontFamily: fonts.sofia_bold}}
-            onPress={() => navigation.navigate('Register')}
-          />
+          {!isKeyboardShow && (
+            <Button
+              title="Register"
+              btnStyle={{
+                backgroundColor: 'white',
+                borderColor: color.btn_white,
+                borderWidth: 1,
+                marginTop: dimens.default_12,
+              }}
+              titleStyle={{fontFamily: fonts.sofia_bold}}
+              onPress={() => navigation.navigate('Register')}
+            />
+          )}
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>

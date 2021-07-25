@@ -203,7 +203,7 @@ const Search = ({navigation}) => {
           </>
         )}
       </View>
-      <ScrollView style={styles.containerContent}>
+      <ScrollView>
         {search !== '' ? (
           <View style={styles.searchList}>
             {searchPeople.map((item, index) => (
@@ -225,6 +225,7 @@ const Search = ({navigation}) => {
               }}
               containerStyle={{
                 paddingVertical: 0,
+                paddingHorizontal: dimens.default,
                 marginBottom: -20,
               }}
             />

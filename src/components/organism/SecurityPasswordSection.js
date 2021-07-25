@@ -16,6 +16,7 @@ import {color, dimens, fonts, wait} from '../../utils';
 import {ErrorMessage, Gap} from '../atoms';
 import {CardInfoButton, SectionTitle} from '../moleculs';
 import useStateContext from '../../store/useStateContext';
+import {setFormRegister} from '../../store/action';
 import Modal from './Modal';
 
 const SecurityPasswordSection = ({
@@ -53,11 +54,13 @@ const SecurityPasswordSection = ({
                 typeModal: null,
               });
               dispatch({type: 'SET_IS_COMPLETED', payload: true});
+              console.log('form register', state.formRegister);
               wait(200).then(() => {
                 dispatch({type: 'RESET_REGISTER'});
-                navigation.replace('AppDrawer', {
-                  screen: 'Login',
-                });
+                // navigation.replace('AppDrawer', {
+                //   screen: 'Login',
+                // });
+                navigation.replace('Loader');
               });
             } else {
               dispatch({
@@ -69,9 +72,10 @@ const SecurityPasswordSection = ({
           }}
           onClose={() => {
             dispatch({type: 'SET_MODAL', showModal: false, typeModal: null});
-            navigation.replace('AppDrawer', {
-              screen: 'Login',
-            });
+            // navigation.replace('AppDrawer', {
+            //   screen: 'Login',
+            // });
+            navigation.replace('Loader');
           }}
           btn2Text={typeModal == 'failed' ? 'Try Again' : null} // try again btn
           btn2Onpress={() => {
@@ -100,14 +104,14 @@ const SecurityPasswordSection = ({
         <CardInfoButton
           onPress={() => navigation.navigate('Biometrics', {title: 'Touch ID'})}
           title="Touch ID"
-          subtitle="Active touch ID so you don’t have to confirm evrytime you sendmoney"
+          subtitle="Active touch ID so you don’t have to confirm evrytime you send money"
           btnTitle="Set Up Touch ID"
         />
         <Gap t={dimens.default_16} />
         <CardInfoButton
           onPress={() => navigation.navigate('Biometrics', {title: 'Face ID'})}
           title="Face ID"
-          subtitle="Active face ID so you don’t have to confirm evrytime you sendmoney"
+          subtitle="Active face ID so you don’t have to confirm evrytime you send money"
           btnTitle="Set Up Face ID"
         />
       </View>
@@ -135,8 +139,12 @@ const SecurityPasswordSection = ({
         <TextInput
           style={styles.input}
           secureTextEntry={!showPassword}
+          placeholder="Input Password"
           value={password}
-          onChangeText={val => setPassword(val)}
+          onChangeText={val => {
+            setPassword(val);
+            dispatch(setFormRegister('password', val));
+          }}
         />
         <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
           <Image source={PasswordHide} style={styles.icons} />

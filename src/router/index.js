@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {View, Text} from 'react-native';
 
 // where screens should be imported
 import {
@@ -35,8 +36,26 @@ import {
   PrivacySocial,
   NotificationSetting,
   BankAccount,
+  BankAccountConnect,
+  QRCode,
+  TransferToBank,
+  CashACheck,
+  Profile,
+  OtherUserProfile,
+  Transaction,
+  RegisterBusiness,
+  BusinessProfile,
+  EditProfileBusiness,
+  BusinessDocument,
+  HomeBusiness,
+  BookKeeping,
+  Employee,
 } from '../screens';
-import {Drawer as DrawerComponent, HomeTabBar} from '../components';
+import {
+  Drawer as DrawerComponent,
+  BusinessDrawer,
+  HomeTabBar,
+} from '../components';
 
 const Router = () => {
   const Stack = createStackNavigator();
@@ -79,7 +98,26 @@ const Router = () => {
           component={InviteFriendPeople}
         />
         <Stack.Screen name="BankAccount" component={BankAccount} />
+        <Stack.Screen
+          name="BankAccountConnect"
+          component={BankAccountConnect}
+        />
         <Stack.Screen name="AppDrawer" component={AppDrawer} />
+        <Stack.Screen name="AppBusinessDrawer" component={AppBusinessDrawer} />
+        <Stack.Screen name="QRCode" component={QRCode} />
+        <Stack.Screen name="TransferToBank" component={TransferToBank} />
+        <Stack.Screen name="CashACheck" component={CashACheck} />
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="OtherUserProfile" component={OtherUserProfile} />
+        <Stack.Screen name="Transaction" component={Transaction} />
+        <Stack.Screen name="RegisterBusiness" component={RegisterBusiness} />
+        <Stack.Screen name="BusinessProfile" component={BusinessProfile} />
+        <Stack.Screen
+          name="EditProfileBusiness"
+          component={EditProfileBusiness}
+        />
+        <Stack.Screen name="BusinessDocument" component={BusinessDocument} />
+        <Stack.Screen name="Employee" component={Employee} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -95,20 +133,41 @@ const AppDrawer = () => {
       drawerStyle={{backgroundColor: 'transparent'}}
       screenOptions={{unmountOnBlur: true}}
       drawerContent={props => <DrawerComponent {...props} />}>
-      <Drawer.Screen name="HomeTabs" component={HomeTabs} />
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Card" component={Card} />
     </Drawer.Navigator>
   );
 };
 
-const HomeTabs = () => {
-  const Tab = createBottomTabNavigator();
+const AppBusinessDrawer = () => {
+  const Drawer = createDrawerNavigator();
 
   return (
-    <Tab.Navigator tabBar={HomeTabBar}>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Card" component={Card} />
-    </Tab.Navigator>
+    <Drawer.Navigator
+      drawerType="front"
+      drawerPosition="right"
+      drawerStyle={{backgroundColor: 'transparent'}}
+      screenOptions={{unmountOnBlur: true}}
+      drawerContent={props => <BusinessDrawer {...props} />}>
+      <Drawer.Screen name="HomeBusiness" component={HomeBusiness} />
+      <Drawer.Screen name="BookKeeping" component={BookKeeping} />
+    </Drawer.Navigator>
   );
 };
+
+// const HomeTabs = () => {
+//   const Tab = createBottomTabNavigator();
+
+//   const Exchange = () => {
+//     return null
+//   }
+
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name="Home" component={Home} />
+//       <Tab.Screen name="Card" component={Card} />
+//     </Tab.Navigator>
+//   );
+// };
 
 export default Router;

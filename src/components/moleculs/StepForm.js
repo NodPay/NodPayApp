@@ -15,7 +15,6 @@ import {
 const StepForm = ({
   activeStep,
   isComplete,
-  isVerification,
   isFamilyRelation,
   cnicData,
   setUpBiometric,
@@ -53,7 +52,7 @@ const StepForm = ({
           label={`Mobile\nNumber`}
           removeBtnRow={true}
           scrollViewProps={scrollViewProps}>
-          <MobileNumberSection isVerification={isVerification} />
+          <MobileNumberSection />
         </ProgressStep>
         <ProgressStep
           label={`Personal\nDetails`}

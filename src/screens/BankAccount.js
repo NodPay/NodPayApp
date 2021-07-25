@@ -11,12 +11,39 @@ import {
 } from 'react-native';
 
 //where local file imported
-import {PageTitle, Gap, EmptyState} from '../components/';
+import {
+  PageTitle,
+  Gap,
+  EmptyState,
+  Button,
+  BankAccountItem,
+} from '../components/';
 import {color, dimens, fonts} from '../utils/';
-import {EmptyData} from '../assets/';
+import {EmptyData, CitiBank, FaysalBank, HabibBank} from '../assets/';
+
+const BankAccountList = [
+  {
+    logo: CitiBank,
+    routingNumber: 'Citi Bank',
+    accountNumber: 2356,
+    accountAmount: 123.456,
+  },
+  {
+    logo: FaysalBank,
+    routingNumber: 'Faysal Bank',
+    accountNumber: 2356,
+    accountAmount: 123.456,
+  },
+  {
+    logo: HabibBank,
+    routingNumber: 'Habib Bank',
+    accountNumber: 2356,
+    accountAmount: 123.456,
+  },
+];
 
 const BankAccount = ({navigation}) => {
-  const [isEmpty, setIsEmpty] = useState(true);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -38,15 +65,41 @@ const BankAccount = ({navigation}) => {
           />
         </View>
       ) : (
-        <ScrollView style={styles.listContainer}>
+        <ScrollView contentContainerStyle={styles.listContainer}>
+          {BankAccountList.map((item, index) => {
+            return (
+              <BankAccountItem
+                key={index}
+                {...item}
+                rightButton={
+                  <Button
+                    onPress={() => {
+                      // navigation.navigate('BankAccountConnect');
+                    }}
+                    title="Edit"
+                    btnStyle={styles.editButton}
+                    titleStyle={{
+                      color: color.btn_title_white,
+                      fontSize: dimens.default_14,
+                    }}
+                  />
+                }
+              />
+            );
+          })}
           <Gap t={dimens.default} />
         </ScrollView>
       )}
 
       <View style={styles.addButtonContainer}>
-        <TouchableOpacity style={styles.addButton} activeOpacity={0.8}>
-          <Text style={styles.addButtonText}>Add Bank / Card</Text>
-        </TouchableOpacity>
+        <Button
+          onPress={() => {
+            navigation.navigate('BankAccountConnect');
+          }}
+          title="Add Bank / Card"
+          btnStyle={{backgroundColor: color.loading, flex: 1}}
+          titleStyle={{color: 'white'}}
+        />
       </View>
     </SafeAreaView>
   );
@@ -66,7 +119,7 @@ const styles = StyleSheet.create({
   listContainer: {
     marginHorizontal: dimens.default,
     marginVertical: 0,
-    flex: 1,
+    flexGrow: 1,
   },
   addButtonContainer: {
     backgroundColor: 'white',
@@ -75,17 +128,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: dimens.default,
     paddingVertical: dimens.default_12,
   },
-  addButton: {
-    borderRadius: dimens.default,
-    paddingVertical: dimens.default,
-    backgroundColor: color.loading,
-    flex: 1,
-  },
-  addButtonText: {
-    textAlign: 'center',
-    color: 'white',
-    fontFamily: fonts.sofia_regular,
-    fontSize: dimens.default,
+  editButton: {
+    backgroundColor: 'white',
+    width: 76,
+    height: 40,
+    borderWidth: 0.1,
+    borderColor: dimens.btn_white,
   },
 });
 
