@@ -60,6 +60,8 @@ import {
   InviteOtherBusiness,
   InviteSignupBusiness,
   NotificationBusiness,
+  SearchEmployee,
+  AddEmployee,
 } from '../screens';
 import {
   Drawer as DrawerComponent,
@@ -159,6 +161,8 @@ const Router = () => {
           name="NotificationBusiness"
           component={NotificationBusiness}
         />
+        <Stack.Screen name="SearchEmployee" component={SearchEmployee} />
+        <Stack.Screen name="AddEmployee" component={AddEmployee} />
       </Stack.Navigator>
     </NavigationContainer>
   );
