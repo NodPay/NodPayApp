@@ -7,17 +7,17 @@ import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 import {color, dimens, fonts} from '../utils';
 import {PageTitle, Button, StepInfo, MenuItem, InputText} from '../components';
 import {
-  PeopleInviteFriend,
-  InviteAdd,
+  InviteBusiness,
+  Business,
   Money,
   Copy,
   Facebook,
   PhonePurple,
 } from '../assets';
 
-const InviteFriend = ({navigation}) => {
+const InviteOtherBusiness = ({navigation}) => {
   const stepInfo = [
-    'You invite a friend',
+    'You invite other Bussiness',
     'They Register & Topup',
     'You both get XX',
   ];
@@ -28,22 +28,21 @@ const InviteFriend = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <PageTitle
         isBlackArrow
-        title="Invite Your Friends"
+        title="Invite Other Bussiness"
         titleStyle={{color: color.btn_black}}
         navigation={navigation}
       />
       <ScrollView>
         <View style={styles.containerCenter}>
-          <Image source={PeopleInviteFriend} style={styles.photo} />
+          <Image source={InviteBusiness} style={styles.photo} />
           <StepInfo items={stepInfo} />
         </View>
         <View style={styles.containerContent}>
           <MenuItem
-            icon={InviteAdd}
-            title="People Signed Up"
+            icon={Business}
+            title="Bussiness Signed Up"
             subtitle="This put you in the top X%"
-            info="2"
-            onPress={() => navigation.navigate('InviteFriendPeople')}
+            onPress={() => navigation.navigate('InviteSignupBusiness')}
           />
           <MenuItem
             icon={Money}
@@ -134,7 +133,7 @@ const InviteFriend = ({navigation}) => {
   );
 };
 
-export default InviteFriend;
+export default InviteOtherBusiness;
 
 const styles = StyleSheet.create({
   container: {
@@ -149,8 +148,8 @@ const styles = StyleSheet.create({
     padding: dimens.default_16,
   },
   photo: {
-    width: 136,
-    height: 136,
+    width: 253,
+    height: 147,
     resizeMode: 'cover',
     marginBottom: dimens.medium,
   },

@@ -104,6 +104,7 @@ import DrawerEmployee from './drawer_employee.png';
 import BookInactive from './book_inactive.png';
 import SearchBlack from './search_black.png';
 import InviteBlack from './invite_black.png';
+import Business from './business.png';
 
 export {
   DrawerSwitch,
@@ -211,4 +212,5 @@ export {
   FileDocument,
   SearchBlack,
   InviteBlack,
+  Business,
 };

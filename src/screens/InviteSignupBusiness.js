@@ -1,26 +1,79 @@
-import React, {useRef, useState, useMemo, useCallback} from 'react';
-import {StyleSheet, View, ScrollView, SafeAreaView, Image} from 'react-native';
+import React, {useRef, useState, useMemo, useCallback, useEffect} from 'react';
+import {StyleSheet, View, SafeAreaView, FlatList, Text} from 'react-native';
 import Clipboard from '@react-native-community/clipboard';
 import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 
 //where local files imported
 import {color, dimens, fonts} from '../utils';
-import {PageTitle, Button, StepInfo, MenuItem, InputText} from '../components';
 import {
-  PeopleInviteFriend,
-  InviteAdd,
-  Money,
-  Copy,
-  Facebook,
-  PhonePurple,
-} from '../assets';
+  PageTitle,
+  StepInfo,
+  InputText,
+  Button,
+  InvitePeopleItem,
+} from '../components';
+import {Copy, Facebook, PhonePurple} from '../assets';
 
-const InviteFriend = ({navigation}) => {
-  const stepInfo = [
-    'You invite a friend',
-    'They Register & Topup',
-    'You both get XX',
-  ];
+const InviteSignupBusiness = ({navigation}) => {
+  const stepInfo = ['Installed', 'Verified', 'Top up'];
+  const [peopleList, setPeopleList] = useState([
+    {
+      id: 1,
+      backgroundIcon: '#6668E4',
+      name: 'Sempolin.id',
+      step: 1,
+      onPressRight: () => {},
+    },
+    {
+      id: 2,
+      backgroundIcon: '#6668E4',
+      name: 'Sempolin.id',
+      step: 2,
+      onPressRight: () => {},
+    },
+    {
+      id: 3,
+      backgroundIcon: '#40C0E7',
+      name: 'Bakminostalgia',
+      step: 3,
+      onPressRight: () => {},
+    },
+    {
+      id: 4,
+      backgroundIcon: '#D21414',
+      name: 'Bakso',
+      step: 3,
+      onPressRight: () => {},
+    },
+    {
+      id: 5,
+      backgroundIcon: '#6668E4',
+      name: 'Sempolin.id',
+      step: 1,
+      onPressRight: () => {},
+    },
+    {
+      id: 6,
+      backgroundIcon: '#6668E4',
+      name: 'Sempolin.id',
+      step: 2,
+      onPressRight: () => {},
+    },
+    {
+      id: 7,
+      backgroundIcon: '#40C0E7',
+      name: 'Bakminostalgia',
+      step: 3,
+      onPressRight: () => {},
+    },
+    {
+      id: 8,
+      backgroundIcon: '#D21414',
+      name: 'Bakso',
+      step: 3,
+      onPressRight: () => {},
+    },
+  ]);
   const refRBSheet = useRef(null);
   const snapPoints = useMemo(() => ['-30%', '30%'], []);
 
@@ -28,32 +81,30 @@ const InviteFriend = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <PageTitle
         isBlackArrow
-        title="Invite Your Friends"
+        title="Bussiness Sign Up"
         titleStyle={{color: color.btn_black}}
         navigation={navigation}
       />
-      <ScrollView>
-        <View style={styles.containerCenter}>
-          <Image source={PeopleInviteFriend} style={styles.photo} />
+      <View style={styles.containerContent}>
+        <View style={styles.containerStep}>
+          <Text style={styles.title}>How its work?</Text>
           <StepInfo items={stepInfo} />
         </View>
-        <View style={styles.containerContent}>
-          <MenuItem
-            icon={InviteAdd}
-            title="People Signed Up"
-            subtitle="This put you in the top X%"
-            info="2"
-            onPress={() => navigation.navigate('InviteFriendPeople')}
+      </View>
+      <FlatList
+        contentContainerStyle={{paddingBottom: dimens.small}}
+        style={styles.list}
+        data={peopleList}
+        renderItem={({item}) => (
+          <InvitePeopleItem
+            backgroundIcon={item.backgroundIcon}
+            name={item.name}
+            step={item.step}
+            onPressRight={item.onPressRight}
           />
-          <MenuItem
-            icon={Money}
-            title="Money Earned"
-            info="Rs2000"
-            withoutArrow={true}
-            onPress={() => {}}
-          />
-        </View>
-      </ScrollView>
+        )}
+        keyExtractor={item => item.id}
+      />
       <View style={styles.wrapBtn}>
         <InputText
           labelStyle={{color: color.btn_black}}
@@ -72,8 +123,8 @@ const InviteFriend = ({navigation}) => {
           }}
         />
         <Button
-          onPress={() => refRBSheet.current?.expand()}
-          title="Share Invitation Link"
+          onPress={() => refRBSheet.current?.snapTo(1)}
+          title="Share With More People!"
           btnStyle={{backgroundColor: color.btn_black}}
           titleStyle={{color: color.btn_white_2}}
         />
@@ -98,7 +149,7 @@ const InviteFriend = ({navigation}) => {
         <View style={styles.containerModal}>
           <Button
             iconLeft={Facebook}
-            title="Share to facebook"
+            title="Sign in with Facebook"
             btnStyle={{
               backgroundColor: 'white',
               marginBottom: dimens.default_16,
@@ -134,25 +185,34 @@ const InviteFriend = ({navigation}) => {
   );
 };
 
-export default InviteFriend;
+export default InviteSignupBusiness;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: color.bg_greyy,
   },
-  containerCenter: {
-    alignItems: 'center',
-    marginVertical: dimens.medium,
-  },
   containerContent: {
     padding: dimens.default_16,
   },
-  photo: {
-    width: 136,
-    height: 136,
-    resizeMode: 'cover',
-    marginBottom: dimens.medium,
+  title: {
+    fontFamily: fonts.sofia_bold,
+    fontSize: dimens.default_18,
+    lineHeight: dimens.default_18,
+    color: color.btn_black,
+    textAlign: 'center',
+    marginBottom: dimens.default_16,
+  },
+  containerStep: {
+    backgroundColor: color.bg_success,
+    borderRadius: dimens.default_16,
+    paddingVertical: dimens.large_25,
+  },
+  list: {
+    padding: dimens.default_16,
+    paddingBottom: dimens.large_50,
+    marginBottom: 170,
+    flex: 1,
   },
   wrapBtn: {
     paddingHorizontal: dimens.default_22,
@@ -163,8 +223,5 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-  },
-  containerModal: {
-    padding: dimens.default_16,
   },
 });
