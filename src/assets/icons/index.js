@@ -49,6 +49,7 @@ import InviteAdd from './invite_add.png';
 import Money from './money.png';
 import Copy from './copy.png';
 import Right from './right.png';
+import RightBlack from './right_black.png';
 import People from './people.png';
 import Person from './person.png';
 import QRScan from './qr_scan.png';
@@ -159,6 +160,7 @@ export {
   Money,
   Copy,
   Right,
+  RightBlack,
   People,
   Person,
   QRScan,

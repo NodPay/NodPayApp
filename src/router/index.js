@@ -43,6 +43,10 @@ import {
   Profile,
   OtherUserProfile,
   Transaction,
+  TransactionForm,
+  TransactionPIN,
+  TransactionSuccess,
+  TransactionTransferToNod,
   RegisterBusiness,
   BusinessProfile,
   EditProfileBusiness,
@@ -110,6 +114,16 @@ const Router = () => {
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="OtherUserProfile" component={OtherUserProfile} />
         <Stack.Screen name="Transaction" component={Transaction} />
+        <Stack.Screen name="TransactionForm" component={TransactionForm} />
+        <Stack.Screen name="TransactionPIN" component={TransactionPIN} />
+        <Stack.Screen
+          name="TransactionSuccess"
+          component={TransactionSuccess}
+        />
+        <Stack.Screen
+          name="TransactionTransferToNod"
+          component={TransactionTransferToNod}
+        />
         <Stack.Screen name="RegisterBusiness" component={RegisterBusiness} />
         <Stack.Screen name="BusinessProfile" component={BusinessProfile} />
         <Stack.Screen

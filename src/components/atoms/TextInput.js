@@ -13,6 +13,9 @@ const TextInput = ({
   editable,
   style,
   additionalInputProps,
+  onFocus,
+  onBlur,
+  onSubmitEditing,
 }) => {
   return (
     <InputText
@@ -26,6 +29,9 @@ const TextInput = ({
       keyboardType={keyboardType}
       secureTextEntry={secureTextEntry}
       editable={editable}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      onSubmitEditing={onSubmitEditing}
       {...additionalInputProps}
     />
   );

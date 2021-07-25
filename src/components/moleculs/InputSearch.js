@@ -26,7 +26,7 @@ const InputSearch = ({
         style={{
           flex: 1,
           fontFamily: fonts.sofia_regular,
-          fontSize: dimens.default_16,
+          fontSize: 15,
           fontWeight: 'normal',
           paddingLeft: dimens.small,
         }}

@@ -34,6 +34,10 @@ import CashACheck from './CashACheck';
 import Profile from './Profile';
 import OtherUserProfile from './OtherUserProfile';
 import Transaction from './Transaction';
+import TransactionForm from './TransactionForm';
+import TransactionPIN from './TransactionPIN';
+import TransactionSuccess from './TransactionSuccess';
+import TransactionTransferToNod from './TransactionTransferToNod';
 import RegisterBusiness from './RegisterBusiness';
 import BusinessProfile from './BusinessProfile';
 import EditProfileBusiness from './EditProfileBusiness';
@@ -79,6 +83,10 @@ export {
   Profile,
   OtherUserProfile,
   Transaction,
+  TransactionForm,
+  TransactionPIN,
+  TransactionSuccess,
+  TransactionTransferToNod,
   RegisterBusiness,
   BusinessProfile,
   EditProfileBusiness,

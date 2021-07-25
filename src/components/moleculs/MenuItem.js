@@ -6,25 +6,65 @@ import {Right} from '../../assets';
 
 const MenuItem = ({
   icon,
+  iconRadius,
+  iconBackground,
+  iconIsShadow,
+  iconSize,
   title,
+  titleStyle,
   subtitle,
+  subtitleComponent,
+  subtitle2Component,
   info,
   withoutArrow,
+  rightIcon,
   onPress,
   toggleSwitch,
 }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
-      <View style={styles.iconContainer}>
-        <Image source={icon} style={styles.icon} />
+    <TouchableOpacity
+      activeOpacity={1}
+      onPress={onPress}
+      style={styles.container}>
+      <View
+        style={[
+          styles.iconContainer,
+          iconIsShadow
+            ? {
+                backgroundColor: iconBackground || color.purple,
+                borderRadius: iconRadius || dimens.medium,
+                elevation: 2,
+                shadowRadius: 5,
+                shadowOffset: {height: 2},
+                shadowOpacity: 0.07,
+              }
+            : {
+                backgroundColor: iconBackground || color.purple,
+                borderRadius: iconRadius || dimens.medium,
+              },
+        ]}>
+        <Image
+          source={icon}
+          style={[
+            styles.icon,
+            {
+              width: iconSize || dimens.medium,
+              height: iconSize || dimens.medium,
+            },
+          ]}
+        />
       </View>
       <View style={styles.containerContent}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={[styles.title, titleStyle]}>{title}</Text>
         {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+        {subtitleComponent && subtitleComponent}
+        {subtitle2Component && subtitle2Component}
       </View>
       <View style={styles.containerRight}>
         {info && <Text style={styles.info}>{info}</Text>}
-        {!withoutArrow && <Image source={Right} style={styles.iconRight} />}
+        {!withoutArrow && (
+          <Image source={rightIcon || Right} style={styles.iconRight} />
+        )}
         {toggleSwitch && (
           <Switch
             value={toggleSwitch.value}
@@ -57,18 +97,14 @@ const styles = StyleSheet.create({
     paddingVertical: dimens.default_16,
   },
   iconContainer: {
-    backgroundColor: color.purple,
     justifyContent: 'center',
     alignItems: 'center',
     width: dimens.large_48,
     height: dimens.large_48,
-    borderRadius: dimens.medium,
     marginRight: dimens.default_16,
   },
   icon: {
-    width: dimens.medium,
-    height: dimens.medium,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
   },
   containerContent: {
     flex: 1,

@@ -21,6 +21,7 @@ export const dimens = {
   large_48: 48,
   large_50: 50,
   large_56: 56,
+  large_60: 60,
   large_80: 80,
   x_large: 64,
   very_large: 115,

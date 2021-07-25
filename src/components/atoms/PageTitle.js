@@ -31,34 +31,33 @@ const PageTitle = ({
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
-      {!isNoBackButton &&
-        (isCloseMode ? (
-          <TouchableOpacity
-            onPress={onPressClose}
-            style={{position: 'absolute', left: dimens.default_16}}>
-            <Image source={CloseRed} style={[styles.close_icon, cancel]} />
-            {isCancel && (
-              <Text
-                style={{
-                  fontFamily: fonts.noto_bold,
-                  fontSize: dimens.default_12,
-                  textAlign: 'center',
-                }}>
-                Cancel
-              </Text>
-            )}
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={styles.left_arrow}>
-            {isBlackArrow ? (
-              <Image source={BlackLeftArrow} />
-            ) : (
-              <Image source={LeftArrow} />
-            )}
-          </TouchableOpacity>
-        ))}
+      {!isNoBackButton && isCloseMode ? (
+        <TouchableOpacity
+          onPress={onPressClose}
+          style={{position: 'absolute', left: dimens.default_16}}>
+          <Image source={CloseRed} style={[styles.close_icon, cancel]} />
+          {isCancel && (
+            <Text
+              style={{
+                fontFamily: fonts.noto_bold,
+                fontSize: dimens.default_12,
+                textAlign: 'center',
+              }}>
+              Cancel
+            </Text>
+          )}
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.left_arrow}>
+          {isBlackArrow ? (
+            <Image source={BlackLeftArrow} />
+          ) : (
+            <Image source={LeftArrow} />
+          )}
+        </TouchableOpacity>
+      )}
       <Text style={[styles.title, titleStyle]}>{title}</Text>
       {isRightQR && (
         <TouchableOpacity onPress={onPressRight} style={styles.containerQR}>

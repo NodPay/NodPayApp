@@ -19,6 +19,9 @@ const InputText = ({
   iconRight,
   onPressRight,
   additionalInputProps,
+  onFocus,
+  onBlur,
+  onSubmitEditing,
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
@@ -32,6 +35,9 @@ const InputText = ({
         editable={editable}
         style={inputStyle}
         additionalInputProps={additionalInputProps}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onSubmitEditing={onSubmitEditing}
       />
       <TouchableOpacity onPress={onPressRight} style={styles.containerRight}>
         <Image source={iconRight} style={styles.iconRight} />

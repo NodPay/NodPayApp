@@ -97,7 +97,7 @@ const InviteFriend = ({navigation}) => {
         <View style={styles.containerModal}>
           <Button
             iconLeft={Facebook}
-            title="Sign in with Facebook"
+            title="Share to facebook"
             btnStyle={{
               backgroundColor: 'white',
               marginBottom: dimens.default_16,
