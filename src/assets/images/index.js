@@ -1,5 +1,6 @@
 import SplashWave from './splash_wave.png';
 import SplashWaveGradient from './splash_wave_gradient.png';
+import SplashWaveGradient2 from './splash_wave_gradient_2.png';
 import LoginBackground from './bg_login.png';
 import Wallet from './wallet.png';
 import Transfer from './transfer.png';
@@ -35,6 +36,7 @@ import BGButton from './bg_button.png';
 export {
   SplashWave,
   SplashWaveGradient,
+  SplashWaveGradient2,
   LoginBackground,
   Wallet,
   Transfer,

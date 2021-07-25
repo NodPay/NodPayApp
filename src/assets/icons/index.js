@@ -2,8 +2,11 @@ import LeftArrow from './left-arrow.png';
 import BlackLeftArrow from './black-left-arrow.png';
 import Next from './next.png';
 import Facebook from './facebook.png';
+import Facebook2 from './facebook_2.png';
 import Email from './email.png';
+import EmailWhite from './email_white.png';
 import Phone from './phone.png';
+import PhoneWhite from './phone_white.png';
 import PhonePurple from './phone_purple.png';
 import Close from './close.png';
 import CloseRed from './close_red.png';
@@ -113,8 +116,11 @@ export {
   BlackLeftArrow,
   Next,
   Facebook,
+  Facebook2,
   Email,
+  EmailWhite,
   Phone,
+  PhoneWhite,
   PhonePurple,
   FeatherPhone,
   Down,

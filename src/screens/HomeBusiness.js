@@ -94,7 +94,7 @@ const HomeBusiness = ({navigation}) => {
           </View>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('Card');
+              navigation.navigate('BookKeeping');
             }}>
             <Image
               source={BookInactive}

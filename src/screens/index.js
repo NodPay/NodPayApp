@@ -45,6 +45,9 @@ import BusinessDocument from './BusinessDocument';
 import HomeBusiness from './HomeBusiness';
 import BookKeeping from './BookKeeping';
 import Employee from './Employee';
+import LoginBusiness from './LoginBusiness';
+import LoginPhoneBusiness from './LoginPhoneBusiness';
+import LoginEmailBusiness from './LoginEmailBusiness';
 
 export {
   Splash,
@@ -94,4 +97,7 @@ export {
   HomeBusiness,
   BookKeeping,
   Employee,
+  LoginBusiness,
+  LoginPhoneBusiness,
+  LoginEmailBusiness,
 };
