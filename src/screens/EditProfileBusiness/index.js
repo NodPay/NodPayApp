@@ -9,9 +9,16 @@ import {Gap, PageTitle, SettingsSaveButton, Tabbed} from '../../components';
 import {color, dimens} from '../../utils';
 import Profile from './Profile';
 import Address from './Address';
+import useStateContext from '../../store/useStateContext';
 
 const EditProfileBusiness = ({navigation}) => {
+  const {state, dispatch} = useStateContext();
+
   const onSave = () => {
+    console.log('form edit profile', state.formEditProfileBusiness);
+    navigation.replace('AppBusinessDrawer', {
+      screen: 'Home',
+    });
     // TODO
     // post to api
     // replace navigation

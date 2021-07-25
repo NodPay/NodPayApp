@@ -43,6 +43,7 @@ const RegisterBusiness = ({navigation}) => {
 
     // location
     if (activeStepBusiness == 2) {
+      console.log('form register', state.formRegister);
       dispatch({type: 'SET_IS_COMPLETED_BUSINESS', payload: true});
       navigation.replace('AppDrawer', {
         screen: 'Home',
