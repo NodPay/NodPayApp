@@ -132,6 +132,7 @@ const Register = ({navigation}) => {
   };
 
   const handleSignup = async () => {
+    console.log(state.formRegister);
     try {
       await signup(state.formRegister);
       dispatch({type: 'SET_MODAL', showModal: true, typeModal: 'success'});

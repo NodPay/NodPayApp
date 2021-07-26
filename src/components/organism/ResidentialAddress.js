@@ -2,12 +2,15 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, ScrollView, View} from 'react-native';
 
 // where local files imported
+import {setFormRegister} from '../../store/action';
+import useStateContext from '../../store/useStateContext';
 import {Gap} from '../atoms';
 import {color, dimens} from '../../utils';
 import {InputText, SectionTitle, SelectAddressList} from '../moleculs';
 import {setFormRegisterBusiness} from '../../store/action';
 
 const ResidentialAddress = () => {
+  const {dispatch} = useStateContext();
   const [postalCode, setPostalCode] = useState('8989');
 
   return (

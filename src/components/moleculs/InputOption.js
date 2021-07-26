@@ -3,11 +3,15 @@ import {useReducer} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
 //where local files imported
+import {setFormRegister} from '../../store/action';
+import useStateContext from '../../store/useStateContext';
 import {Male, Female, MaleActive, FemaleActive} from '../../assets';
 import {dimens, fonts} from '../../utils';
 import {Gap, FormLabel} from '../atoms';
 
 const InputOption = ({user, setUser}) => {
+  const {dispatch} = useStateContext();
+
   return (
     <>
       <FormLabel label="Gender" />

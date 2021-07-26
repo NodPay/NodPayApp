@@ -4,7 +4,7 @@ import axios from 'axios';
 export const checkValidPhoneNumber = phoneNumber => {
   return new Promise(async (resolve, reject) => {
     axios
-      .get(API_URL + 'auth/valid-phone-number?phoneNumber=' + phoneNumber)
+      .get(API_URL + '/auth/valid-phone-number?phoneNumber=' + phoneNumber)
       .then(response => {
         console.log(response.data);
         resolve(response.data.isValid);
@@ -18,7 +18,7 @@ export const checkValidPhoneNumber = phoneNumber => {
 export const getVerificationCode = phoneNumber => {
   return new Promise(async (resolve, reject) => {
     axios
-      .post(API_URL + 'auth/send-verification-code', {
+      .post(API_URL + '/auth/send-verification-code', {
         phoneNumber: phoneNumber,
       })
       .then(response => {
@@ -34,7 +34,7 @@ export const getVerificationCode = phoneNumber => {
 export const validateVerificationCode = (phoneNumber, code) => {
   return new Promise(async (resolve, reject) => {
     axios
-      .post(API_URL + 'auth/validate-verification-code', {
+      .post(API_URL + '/auth/validate-verification-code', {
         phoneNumber: phoneNumber,
         code: code,
       })
@@ -85,7 +85,7 @@ export const signup = formRegister => {
       reject('No form fields should be empty.');
     }
     axios
-      .post(API_URL, 'auth/signup', {
+      .post(API_URL, '/auth/signup', {
         phoneNumber: phoneNumber,
         profileImage: profileImage,
         firstName: firstName,

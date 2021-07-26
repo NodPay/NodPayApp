@@ -11,6 +11,7 @@ import {Next} from '../assets';
 
 //where local files imported
 import {Button, Gap, InputText, PageTitle} from '../components';
+import {setFormRegister} from '../store/action';
 import useStateContext from '../store/useStateContext';
 import {color, dimens} from '../utils';
 
@@ -65,6 +66,8 @@ const ScanResult = ({navigation, route}) => {
             onPress={() => {
               navigation.navigate('Register');
               dispatch({type: 'SET_ACTIVE_STEP_PAYLOAD', payload: 3});
+              dispatch(setFormRegister('cnicNumber', data.cnicNumber));
+              dispatch(setFormRegister('cnicImage', data.image));
               dispatch({type: 'SET_CNIC_DATA', payload: data});
               dispatch({type: 'SET_BUTTON', payload: false});
             }}
