@@ -74,7 +74,7 @@ const OnBoarding = ({navigation}) => {
             marginBottom: -8,
           }}
           onPress={() => {
-            navigation.replace('GetStarted');
+            navigation.replace('Register');
             // storeData('session', {
             //   isIntro: false,
             //   isLogin: false,

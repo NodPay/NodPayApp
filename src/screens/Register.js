@@ -38,13 +38,16 @@ const Register = ({navigation}) => {
         error: true,
         errorMessage: "Phone number can't be less than 11.",
       });
-    } else if (phoneNumber == '100000000000') {
-      dispatch({
-        type: 'SET_ERROR_REGISTER',
-        error: true,
-        errorMessage: 'Phone number already registered',
-      });
-    } else {
+    }
+    // TODO : fetch data to check if number already taken.
+    //  else if (phoneNumber == '100000000000') {
+    //   dispatch({
+    //     type: 'SET_ERROR_REGISTER',
+    //     error: true,
+    //     errorMessage: 'Phone number already registered',
+    //   });
+    // }
+    else {
       dispatch({type: 'SET_VERIFICATION', payload: true});
       dispatch({type: 'SET_IS_RUNNING', payload: true});
       dispatch({
@@ -62,13 +65,16 @@ const Register = ({navigation}) => {
         error: true,
         errorMessage: 'Please Input OTP Code',
       });
-    } else if (verificationCode != 1234) {
-      dispatch({
-        type: 'SET_ERROR_REGISTER',
-        error: true,
-        errorMessage: 'Invalid Code',
-      });
-    } else {
+    }
+    // TODO : fetch data to get otp token
+    // else if (verificationCode != 1234) {
+    //   dispatch({
+    //     type: 'SET_ERROR_REGISTER',
+    //     error: true,
+    //     errorMessage: 'Invalid Code',
+    //   });
+    // }
+    else {
       dispatch({type: 'SET_ACTIVE_STEP'});
       dispatch({
         type: 'SET_ERROR_REGISTER',
@@ -96,13 +102,13 @@ const Register = ({navigation}) => {
       dispatch({type: 'SET_BIOMETRIC', payload: true});
     } else {
       // dispatch({type: 'SET_IS_COMPLETED', payload: true});
-      dispatch({type: 'SET_MODAL', showModal: true, typeModal: 'failed'});
+      dispatch({type: 'SET_MODAL', showModal: true, typeModal: 'success'}); // handle modal on create account
     }
   };
 
   const onNext = () => {
     //check store
-    console.log('state', state);
+    console.log('form register', state.formRegister);
     //mobile number - verification section
     if (activeStep == 0) {
       if (!isVerification) {
@@ -153,9 +159,9 @@ const Register = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <PageTitle
         titleStyle={{color: color.btn_black, fontSize: dimens.default_22}}
-        isBlackArrow
+        // isBlackArrow
         title="Create Account"
-        navigation={navigation}
+        // navigation={navigation}
       />
       <StepForm
         activeStep={activeStep}

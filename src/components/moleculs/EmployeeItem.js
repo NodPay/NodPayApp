@@ -6,7 +6,7 @@ import {DefaultPict, Next, NextBlack, ThreeDots} from '../../assets';
 import {color, dimens, fonts} from '../../utils';
 import {Gap} from '../atoms';
 
-const EmployeeItem = ({isOnline, isPending, name, job, added}) => {
+const EmployeeItem = ({isOnline, isPending, name, job, added, onDetail}) => {
   if (isPending) {
     return (
       <View style={[styles.container, {height: 80}]}>
@@ -73,7 +73,7 @@ const EmployeeItem = ({isOnline, isPending, name, job, added}) => {
           alignItems: 'center',
         }}>
         <Text style={styles.date}>Added: {added}</Text>
-        <TouchableOpacity style={{flexDirection: 'row'}}>
+        <TouchableOpacity style={{flexDirection: 'row'}} onPress={onDetail}>
           <Text style={styles.detail}>Detail</Text>
           <Image
             source={NextBlack}

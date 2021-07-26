@@ -11,6 +11,7 @@ import {Next} from '../assets';
 
 //where local files imported
 import {Button, Gap, InputText, PageTitle} from '../components';
+import {setFormRegister} from '../store/action';
 import useStateContext from '../store/useStateContext';
 import {color, dimens} from '../utils';
 
@@ -19,10 +20,10 @@ const ScanResult = ({navigation, route}) => {
   let {path} = route.params.data;
 
   const [data, setData] = useState({
-    cnicNumber: 'B12454676',
-    name: 'Rober Langdon',
-    dateOfBirth: 'March 10, 1995',
-    states: 'United States',
+    cnicNumber: '',
+    name: '',
+    dateOfBirth: '',
+    states: '',
     image: path,
   });
 
@@ -42,30 +43,42 @@ const ScanResult = ({navigation, route}) => {
         <InputText
           label="CNIC Number"
           value={data.cnicNumber}
-          onChangeText={val => setData({...data, cnicNumber: val})}
+          onChangeText={val => {
+            setData({...data, cnicNumber: val});
+            dispatch(setFormRegister('cnicNumber', val));
+          }}
         />
         <InputText
           label="Name"
           value={data.name}
-          onChangeText={val => setData({...data, name: val})}
+          onChangeText={val => {
+            setData({...data, name: val});
+            dispatch(setFormRegister('cnicName', val));
+          }}
         />
         <InputText
           label="Date of Birth"
           value={data.dateOfBirth}
-          onChangeText={val => setData({...data, dateOfBirth: val})}
+          onChangeText={val => {
+            setData({...data, dateOfBirth: val});
+            dispatch(setFormRegister('cnicDob', val));
+          }}
         />
         <InputText
           label="States"
           value={data.states}
-          onChangeText={val => setData({...data, states: val})}
+          onChangeText={val => {
+            setData({...data, states: val});
+            dispatch(setFormRegister('cnicStates', val));
+          }}
         />
         <Gap b={dimens.default_16} />
         <View style={styles.wrap_btn}>
           <Button
             onPress={() => {
+              dispatch(setFormRegister('cnicImage', path));
               navigation.navigate('Register');
               dispatch({type: 'SET_ACTIVE_STEP_PAYLOAD', payload: 3});
-              dispatch({type: 'SET_CNIC_DATA', payload: data});
               dispatch({type: 'SET_BUTTON', payload: false});
             }}
             title="Countinue With This"

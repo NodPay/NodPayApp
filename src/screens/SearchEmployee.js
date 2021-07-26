@@ -18,7 +18,7 @@ import {
   PageTitle,
 } from '../components';
 
-const SearchEmployee = () => {
+const SearchEmployee = ({navigation}) => {
   const [search, setSearch] = useState('');
 
   const [data, setData] = useState([
@@ -63,7 +63,12 @@ const SearchEmployee = () => {
       <FlatList
         data={data}
         keyExtractor={item => item.id}
-        renderItem={({item}) => <ContactItem {...item} />}
+        renderItem={({item}) => (
+          <ContactItem
+            {...item}
+            onPress={() => navigation.navigate('AddEmployee')}
+          />
+        )}
       />
       {/* List Account end */}
     </SafeAreaView>

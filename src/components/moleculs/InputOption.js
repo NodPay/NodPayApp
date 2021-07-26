@@ -4,10 +4,11 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
 //where local files imported
 import {Male, Female, MaleActive, FemaleActive} from '../../assets';
+import {setFormRegister} from '../../store/action';
 import {dimens, fonts} from '../../utils';
 import {Gap, FormLabel} from '../atoms';
 
-const InputOption = ({user, setUser}) => {
+const InputOption = ({user, setUser, dispatch}) => {
   return (
     <>
       <FormLabel label="Gender" />

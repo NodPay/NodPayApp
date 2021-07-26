@@ -131,7 +131,11 @@ const Employee = ({navigation}) => {
           data={data}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
-            <EmployeeItem {...item} isPending={!item.invited ?? true} />
+            <EmployeeItem
+              {...item}
+              isPending={!item.invited ?? true}
+              onDetail={() => navigation.navigate('EmployeeDetail')}
+            />
           )}
         />
 

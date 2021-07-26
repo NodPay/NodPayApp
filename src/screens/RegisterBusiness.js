@@ -58,9 +58,9 @@ const RegisterBusiness = ({navigation}) => {
       <StatusBar backgroundColor={color.btn_white_2} />
       <PageTitle
         titleStyle={{color: color.btn_black, fontSize: dimens.default_22}}
-        isBlackArrow
+        // isBlackArrow
         title="Create Account"
-        navigation={navigation}
+        // navigation={navigation}
       />
       <StepFormBusiness
         activeStepBusiness={activeStepBusiness}
