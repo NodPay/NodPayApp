@@ -43,6 +43,10 @@ import {
   Profile,
   OtherUserProfile,
   Transaction,
+  TransactionForm,
+  TransactionPIN,
+  TransactionSuccess,
+  TransactionTransferToNod,
   RegisterBusiness,
   BusinessProfile,
   EditProfileBusiness,
@@ -50,6 +54,14 @@ import {
   HomeBusiness,
   BookKeeping,
   Employee,
+  LoginBusiness,
+  LoginEmailBusiness,
+  LoginPhoneBusiness,
+  InviteOtherBusiness,
+  InviteSignupBusiness,
+  NotificationBusiness,
+  SearchEmployee,
+  AddEmployee,
 } from '../screens';
 import {
   Drawer as DrawerComponent,
@@ -110,6 +122,16 @@ const Router = () => {
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="OtherUserProfile" component={OtherUserProfile} />
         <Stack.Screen name="Transaction" component={Transaction} />
+        <Stack.Screen name="TransactionForm" component={TransactionForm} />
+        <Stack.Screen name="TransactionPIN" component={TransactionPIN} />
+        <Stack.Screen
+          name="TransactionSuccess"
+          component={TransactionSuccess}
+        />
+        <Stack.Screen
+          name="TransactionTransferToNod"
+          component={TransactionTransferToNod}
+        />
         <Stack.Screen name="RegisterBusiness" component={RegisterBusiness} />
         <Stack.Screen name="BusinessProfile" component={BusinessProfile} />
         <Stack.Screen
@@ -118,6 +140,29 @@ const Router = () => {
         />
         <Stack.Screen name="BusinessDocument" component={BusinessDocument} />
         <Stack.Screen name="Employee" component={Employee} />
+        <Stack.Screen name="LoginBusiness" component={LoginBusiness} />
+        <Stack.Screen
+          name="LoginPhoneBusiness"
+          component={LoginPhoneBusiness}
+        />
+        <Stack.Screen
+          name="LoginEmailBusiness"
+          component={LoginEmailBusiness}
+        />
+        <Stack.Screen
+          name="InviteOtherBusiness"
+          component={InviteOtherBusiness}
+        />
+        <Stack.Screen
+          name="InviteSignupBusiness"
+          component={InviteSignupBusiness}
+        />
+        <Stack.Screen
+          name="NotificationBusiness"
+          component={NotificationBusiness}
+        />
+        <Stack.Screen name="SearchEmployee" component={SearchEmployee} />
+        <Stack.Screen name="AddEmployee" component={AddEmployee} />
       </Stack.Navigator>
     </NavigationContainer>
   );

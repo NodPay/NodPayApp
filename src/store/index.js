@@ -13,7 +13,6 @@ const initialState = {
   isRunning: false, //resent code countdown start
   isFamilyRelation: false, //family relation ui personal detail
   isDisabled: false, //button next register
-  cnicData: null, //data cnic section
   setUpBiometric: false, //setup biometric section
   showModal: false, // createa account modal
   typeModal: null, // check if modal success or failed
@@ -34,6 +33,9 @@ const initialState = {
     address: '', // postal code
     cnicImage: '',
     cnicNumber: '',
+    cnicName: '',
+    cnicDob: '',
+    cnicStates: '',
     password: '',
   },
   // form create account for business
@@ -123,11 +125,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         isDisabled: action.payload,
-      };
-    case 'SET_CNIC_DATA':
-      return {
-        ...state,
-        cnicData: action.payload,
       };
     case 'SET_BIOMETRIC':
       return {

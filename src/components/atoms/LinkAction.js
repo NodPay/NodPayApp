@@ -2,11 +2,17 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 
-const LinkAction = ({text, actionText, onPress}) => {
+const LinkAction = ({
+  text,
+  textStyle,
+  actionText,
+  actionTextStyle,
+  onPress,
+}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{text}</Text>
-      <Text style={styles.action_text} onPress={onPress}>
+      <Text style={[styles.text, textStyle]}>{text}</Text>
+      <Text style={[styles.action_text, actionTextStyle]} onPress={onPress}>
         {actionText}
       </Text>
     </View>

@@ -3,6 +3,7 @@ import SectionTitle from './SectionTitle';
 import InputPassword from './InputPassword';
 import InputText from './InputText';
 import InputOtp from './InputOtp';
+import InputPIN from './InputPIN';
 import InputPhoto from './InputPhoto';
 import InputOption from './InputOption';
 import SelectAddressList from './SelectAddressList';
@@ -42,6 +43,7 @@ export {
   InputText,
   StepForm,
   InputOtp,
+  InputPIN,
   InputPhoto,
   InputOption,
   SelectAddressList,

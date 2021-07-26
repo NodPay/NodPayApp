@@ -144,7 +144,7 @@ const Register = ({navigation}) => {
 
   const onNext = () => {
     //check store
-    console.log('state', state);
+    console.log('form register', state.formRegister);
     //mobile number - verification section
     if (activeStep == 0) {
       if (!isVerification) {
@@ -195,9 +195,9 @@ const Register = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <PageTitle
         titleStyle={{color: color.btn_black, fontSize: dimens.default_22}}
-        isBlackArrow
+        // isBlackArrow
         title="Create Account"
-        navigation={navigation}
+        // navigation={navigation}
       />
       <StepForm
         activeStep={activeStep}

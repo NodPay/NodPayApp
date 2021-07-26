@@ -157,6 +157,7 @@ const Search = ({navigation}) => {
         titleStyle={{color: color.btn_black}}
         navigation={navigation}
         isRightQR
+        onPressRight={() => navigation.navigate('QRCode')}
       />
       <View style={styles.containerContent}>
         <InputSearch

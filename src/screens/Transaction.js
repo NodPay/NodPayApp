@@ -304,7 +304,7 @@ const Contact = ({navigation}) => {
           <SectionTitle
             title="Top People"
             titleStyle={{
-              fontSize: dimens.default_16,
+              fontSize: dimens.default_18,
             }}
             containerStyle={{
               paddingVertical: 0,
@@ -345,6 +345,7 @@ const Contact = ({navigation}) => {
             titleStyle={{color: color.btn_black}}
             navigation={navigation}
             isRightQR
+            onPressRight={() => navigation.navigate('QRCode')}
           />
           {friendData == null && (
             <View style={{flex: 1, justifyContent: 'center'}}>
@@ -352,7 +353,6 @@ const Contact = ({navigation}) => {
             </View>
           )}
           {friendData != null && <RenderContact />}
-          <Gap t={dimens.default_16} />
           <AlphabetList
             style={{flex: 1}}
             data={contactList}
@@ -391,12 +391,17 @@ const Contact = ({navigation}) => {
               />
             )}
           />
+          <Gap t={dimens.large_80} />
         </Pressable>
       </ScrollView>
       {contactSelected && (
         <View style={styles.wrapBtn}>
           <Button
-            onPress={() => {}}
+            onPress={() =>
+              navigation.navigate('TransactionForm', {
+                userSelected: contactSelected,
+              })
+            }
             title="Continue"
             btnStyle={{backgroundColor: color.btn_black}}
             titleStyle={{color: color.btn_white_2}}
@@ -422,6 +427,9 @@ const styles = StyleSheet.create({
     zIndex: -2,
     width: '100%',
     resizeMode: 'stretch',
+  },
+  peopleList: {
+    marginHorizontal: -dimens.small,
   },
   icons: {
     height: 101,

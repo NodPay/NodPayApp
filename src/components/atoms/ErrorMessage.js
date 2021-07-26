@@ -3,10 +3,10 @@ import {View, Text, StyleSheet} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 
 // Red text of error message inside red box
-const ErrorMessage = ({message}) => {
+const ErrorMessage = ({message, textStyle}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.message}>{message}</Text>
+      <Text style={[styles.message, textStyle]}>{message}</Text>
     </View>
   );
 };

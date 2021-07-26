@@ -75,7 +75,7 @@ const PersonalDetailsSection = ({isFamilyRelation, withoutSectionTitle}) => {
         />
       )}
       <Gap t={dimens.default_16} />
-      <InputPhoto />
+      <InputPhoto type="regular" />
       <InputText
         label="First Name"
         value={user.firstName}
@@ -110,7 +110,7 @@ const PersonalDetailsSection = ({isFamilyRelation, withoutSectionTitle}) => {
         }}
       />
       <Gap t={dimens.default_16} />
-      <InputOption user={user} setUser={setUser} />
+      <InputOption user={user} setUser={setUser} dispatch={dispatch} />
       <InputText
         label="Email"
         value={user.email}

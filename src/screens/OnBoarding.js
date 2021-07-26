@@ -8,7 +8,7 @@ import {
   StatusBar,
 } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import {TouchableOpacity} from 'react-native-gesture-handler' 
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 // where local files imported
 import {color, dimens, fonts, storeData} from '../utils';
@@ -74,7 +74,7 @@ const OnBoarding = ({navigation}) => {
             marginBottom: -8,
           }}
           onPress={() => {
-            navigation.replace('GetStarted');
+            navigation.replace('Register');
             // storeData('session', {
             //   isIntro: false,
             //   isLogin: false,

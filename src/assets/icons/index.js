@@ -2,8 +2,11 @@ import LeftArrow from './left-arrow.png';
 import BlackLeftArrow from './black-left-arrow.png';
 import Next from './next.png';
 import Facebook from './facebook.png';
+import Facebook2 from './facebook_2.png';
 import Email from './email.png';
+import EmailWhite from './email_white.png';
 import Phone from './phone.png';
+import PhoneWhite from './phone_white.png';
 import PhonePurple from './phone_purple.png';
 import Close from './close.png';
 import CloseRed from './close_red.png';
@@ -49,6 +52,7 @@ import InviteAdd from './invite_add.png';
 import Money from './money.png';
 import Copy from './copy.png';
 import Right from './right.png';
+import RightBlack from './right_black.png';
 import People from './people.png';
 import Person from './person.png';
 import QRScan from './qr_scan.png';
@@ -100,6 +104,7 @@ import DrawerEmployee from './drawer_employee.png';
 import BookInactive from './book_inactive.png';
 import SearchBlack from './search_black.png';
 import InviteBlack from './invite_black.png';
+import Business from './business.png';
 
 export {
   DrawerSwitch,
@@ -112,8 +117,11 @@ export {
   BlackLeftArrow,
   Next,
   Facebook,
+  Facebook2,
   Email,
+  EmailWhite,
   Phone,
+  PhoneWhite,
   PhonePurple,
   FeatherPhone,
   Down,
@@ -159,6 +167,7 @@ export {
   Money,
   Copy,
   Right,
+  RightBlack,
   People,
   Person,
   QRScan,
@@ -203,4 +212,5 @@ export {
   FileDocument,
   SearchBlack,
   InviteBlack,
+  Business,
 };

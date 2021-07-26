@@ -1,5 +1,6 @@
 import SplashWave from './splash_wave.png';
 import SplashWaveGradient from './splash_wave_gradient.png';
+import SplashWaveGradient2 from './splash_wave_gradient_2.png';
 import LoginBackground from './bg_login.png';
 import Wallet from './wallet.png';
 import Transfer from './transfer.png';
@@ -30,10 +31,14 @@ import UploadSECP from './upload_secp.png';
 import UploadOtherCNIC from './upload_other_cnic.png';
 import UploadOtherNTN from './upload_other_ntn.png';
 import UploadOtherSECP from './upload_other_secp.png';
+import BGButton from './bg_button.png';
+import InviteBusiness from './invite_business.png';
+import Starbucks from './starbucks.png';
 
 export {
   SplashWave,
   SplashWaveGradient,
+  SplashWaveGradient2,
   LoginBackground,
   Wallet,
   Transfer,
@@ -64,4 +69,7 @@ export {
   UploadOtherCNIC,
   UploadOtherNTN,
   UploadOtherSECP,
+  BGButton,
+  InviteBusiness,
+  Starbucks,
 };

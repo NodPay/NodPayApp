@@ -60,7 +60,7 @@ const Drawer = ({navigation}) => {
         <DrawerItem
           label="Business Profile"
           image={DrawerBusiness}
-          onPress={() => {}}
+          onPress={() => navigation.navigate('LoginBusiness')}
         />
         <DrawerItem
           label="Contacts"
