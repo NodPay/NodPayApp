@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   ScrollView,
   Image,
+  KeyboardAvoidingView,
 } from 'react-native';
 import {Next} from '../assets';
 
@@ -28,15 +29,16 @@ const ScanResult = ({navigation, route}) => {
   });
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{flex: 1}}>
+      <PageTitle
+        title="CNIC"
+        isBlackArrow
+        titleStyle={{color: color.btn_black}}
+      />
       <ScrollView
+        style={styles.container}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}>
-        <PageTitle
-          title="CNIC"
-          isBlackArrow
-          titleStyle={{color: color.btn_black}}
-        />
         <Gap t={dimens.default_16} />
         <Image source={{uri: path}} style={styles.image} />
         <Gap t={dimens.default_16} />

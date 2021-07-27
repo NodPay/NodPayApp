@@ -145,6 +145,7 @@ const Register = ({navigation}) => {
   const onBack = () => {
     //check store
     console.log('form register', state.formRegister);
+    console.warn('activeStep', activeStep);
     //mobile number - verification section
     if (activeStep <= 0) {
       navigation.goBack();
