@@ -132,6 +132,7 @@ const TransferToBank = ({navigation}) => {
           setVisible(false);
           setTransfer(false);
           setValue(0);
+          navigation.goBack();
         },
       });
     }
