@@ -7,6 +7,7 @@ import {
   ScrollView,
   Image,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import {Next} from '../assets';
 
@@ -74,7 +75,12 @@ const ScanResult = ({navigation, route}) => {
             dispatch(setFormRegister('cnicStates', val));
           }}
         />
-        <Gap b={dimens.default_16} />
+        <Gap b={dimens.medium} />
+      </ScrollView>
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}>
         <View style={styles.wrap_btn}>
           <Button
             onPress={() => {
@@ -91,8 +97,7 @@ const ScanResult = ({navigation, route}) => {
             iconRight={Next}
           />
         </View>
-        <Gap b={dimens.default_16} />
-      </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -110,5 +115,8 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: dimens.default_12,
     resizeMode: 'cover',
+  },
+  wrap_btn: {
+    paddingHorizontal: dimens.default_16,
   },
 });
