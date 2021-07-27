@@ -7,6 +7,9 @@ import {
   ImageBackground,
   Image,
   TextInput,
+  KeyboardAvoidingView,
+  Platform,
+  Keyboard,
 } from 'react-native';
 import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 
@@ -145,7 +148,7 @@ const TransactionForm = ({route, navigation}) => {
                 paddingHorizontal: dimens.default_20,
                 width: '100%',
                 zIndex: 200,
-                top: -65,
+                top: Platform.OS === 'android' ? -65 : -35,
                 left: 0,
               }}>
               <View
@@ -185,7 +188,7 @@ const TransactionForm = ({route, navigation}) => {
                     borderTopColor: 'white',
                     position: 'absolute',
                     bottom: -12,
-                    left: '60%',
+                    left: Platform.OS === 'android' ? '60%' : '55%',
                     right: 0,
                   }}
                 />
@@ -228,34 +231,44 @@ const TransactionForm = ({route, navigation}) => {
       </View>
 
       {/* Bottom Button */}
-      <ImageBackground source={BGButton} style={styles.btnWrapper}>
-        <Button
-          onPress={() => {
-            refRBSheet.current?.expand();
-            setAction('request');
-          }}
-          title="Request"
-          titleStyle={{color: color.btn_black, fontFamily: fonts.sofia_bold}}
-          btnStyle={{
-            backgroundColor: color.btn_white_2,
-            flex: 1,
-            marginRight: dimens.supersmall,
-          }}
-        />
-        <Button
-          onPress={() => {
-            refRBSheet.current?.expand();
-            setAction('send');
-          }}
-          title="Send"
-          titleStyle={{color: color.btn_white_2, fontFamily: fonts.sofia_bold}}
-          btnStyle={{
-            backgroundColor: color.btn_black,
-            flex: 1,
-            marginLeft: dimens.supersmall,
-          }}
-        />
-      </ImageBackground>
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}>
+        <ImageBackground source={BGButton} style={styles.btnWrapper}>
+          <Button
+            onPress={() => {
+              refRBSheet.current?.expand();
+              Keyboard.dismiss();
+              setAction('request');
+            }}
+            title="Request"
+            titleStyle={{color: color.btn_black, fontFamily: fonts.sofia_bold}}
+            btnStyle={{
+              backgroundColor: color.btn_white_2,
+              flex: 1,
+              marginRight: dimens.supersmall,
+            }}
+          />
+          <Button
+            onPress={() => {
+              refRBSheet.current?.expand();
+              Keyboard.dismiss();
+              setAction('send');
+            }}
+            title="Send"
+            titleStyle={{
+              color: color.btn_white_2,
+              fontFamily: fonts.sofia_bold,
+            }}
+            btnStyle={{
+              backgroundColor: color.btn_black,
+              flex: 1,
+              marginLeft: dimens.supersmall,
+            }}
+          />
+        </ImageBackground>
+      </KeyboardAvoidingView>
       {/* Bottom Button End */}
 
       <Image source={ContactBackground} style={styles.bg_contact} />

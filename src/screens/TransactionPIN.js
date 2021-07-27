@@ -7,6 +7,8 @@ import {
   ImageBackground,
   Image,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 
 // where local files imported
@@ -56,20 +58,28 @@ const TransactionPIN = ({route, navigation}) => {
       </View>
 
       {/* Bottom Button */}
-      <ImageBackground source={BGButton} style={styles.btnWrapper}>
-        <Button
-          onPress={() =>
-            navigation.navigate('TransactionSuccess', {action, userSelected})
-          }
-          title={action === 'request' ? 'Request Money' : 'Send Money'}
-          titleStyle={{color: color.btn_white_2, fontFamily: fonts.sofia_bold}}
-          btnStyle={{
-            backgroundColor: color.btn_black,
-            flex: 1,
-            marginLeft: dimens.supersmall,
-          }}
-        />
-      </ImageBackground>
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}>
+        <ImageBackground source={BGButton} style={styles.btnWrapper}>
+          <Button
+            onPress={() =>
+              navigation.navigate('TransactionSuccess', {action, userSelected})
+            }
+            title={action === 'request' ? 'Request Money' : 'Send Money'}
+            titleStyle={{
+              color: color.btn_white_2,
+              fontFamily: fonts.sofia_bold,
+            }}
+            btnStyle={{
+              backgroundColor: color.btn_black,
+              flex: 1,
+              marginLeft: dimens.supersmall,
+            }}
+          />
+        </ImageBackground>
+      </KeyboardAvoidingView>
       {/* Bottom Button End */}
 
       <Image source={ContactBackground} style={styles.bg_contact} />

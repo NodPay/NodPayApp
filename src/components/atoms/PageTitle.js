@@ -52,15 +52,21 @@ const PageTitle = ({
           )}
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity
-          onPress={() => (onPressBack ? onPressBack() : navigation.goBack())}
-          style={styles.left_arrow}>
-          {isBlackArrow ? (
-            <Image source={BlackLeftArrow} />
-          ) : (
-            <Image source={LeftArrow} />
+        <>
+          {isBlackArrow && (
+            <TouchableOpacity
+              onPress={() =>
+                onPressBack ? onPressBack() : navigation.goBack()
+              }
+              style={styles.left_arrow}>
+              {isBlackArrow ? (
+                <Image source={BlackLeftArrow} />
+              ) : (
+                <Image source={LeftArrow} />
+              )}
+            </TouchableOpacity>
           )}
-        </TouchableOpacity>
+        </>
       )}
       <Text style={[styles.title, titleStyle]}>{title}</Text>
       {isRightQR && (
