@@ -141,60 +141,6 @@ const BusinessTransactionForm = ({route, navigation}) => {
         {/* Total Amount End */}
 
         <View style={{width: '100%', position: 'relative'}}>
-          {focusMessage && message === '' && (
-            <View
-              style={{
-                position: 'absolute',
-                paddingHorizontal: dimens.default_20,
-                width: '100%',
-                zIndex: 200,
-                top: Platform.OS === 'android' ? -65 : -35,
-                left: 0,
-              }}>
-              <View
-                style={{
-                  backgroundColor: 'white',
-                  paddingHorizontal: dimens.medium,
-                  paddingVertical: dimens.default,
-                  borderRadius: dimens.small,
-                }}>
-                <Text
-                  style={{
-                    fontFamily: fonts.sofia_bold,
-                    fontSize: dimens.default_18,
-                    color: color.btn_black,
-                  }}>
-                  Enter a message please
-                </Text>
-                <Text
-                  style={{
-                    fontFamily: fonts.sofia_regular,
-                    fontSize: dimens.default_18,
-                    color: color.btn_black,
-                  }}>
-                  e.g, ‘electicity, shopping, bills and Groceries
-                </Text>
-                <View
-                  style={{
-                    width: 0,
-                    height: 0,
-                    borderLeftWidth: 8,
-                    borderRightWidth: 8,
-                    borderTopWidth: 12,
-                    borderStyle: 'solid',
-                    backgroundColor: 'transparent',
-                    borderLeftColor: 'transparent',
-                    borderRightColor: 'transparent',
-                    borderTopColor: 'white',
-                    position: 'absolute',
-                    bottom: -12,
-                    left: Platform.OS === 'android' ? '60%' : '55%',
-                    right: 0,
-                  }}
-                />
-              </View>
-            </View>
-          )}
           <InputText
             containerStyle={{
               width: '100%',
@@ -236,20 +182,6 @@ const BusinessTransactionForm = ({route, navigation}) => {
         keyboardVerticalOffset={0}
         enabled={Platform.OS === 'android' ? false : true}>
         <ImageBackground source={BGButton} style={styles.btnWrapper}>
-          <Button
-            onPress={() => {
-              refRBSheet.current?.expand();
-              Keyboard.dismiss();
-              setAction('request');
-            }}
-            title="Request"
-            titleStyle={{color: color.btn_black, fontFamily: fonts.sofia_bold}}
-            btnStyle={{
-              backgroundColor: color.btn_white_2,
-              flex: 1,
-              marginRight: dimens.supersmall,
-            }}
-          />
           <Button
             onPress={() => {
               refRBSheet.current?.expand();
@@ -318,7 +250,10 @@ const BusinessTransactionForm = ({route, navigation}) => {
               </View>
             }
             onPress={() =>
-              navigation.navigate('TransactionPIN', {action, userSelected})
+              navigation.navigate('BusinessTransactionPIN', {
+                action,
+                userSelected,
+              })
             }
             rightIcon={RightBlack}
           />
@@ -377,7 +312,10 @@ const BusinessTransactionForm = ({route, navigation}) => {
               </View>
             }
             onPress={() =>
-              navigation.navigate('TransactionPIN', {action, userSelected})
+              navigation.navigate('BusinessTransactionPIN', {
+                action,
+                userSelected,
+              })
             }
             rightIcon={RightBlack}
           />
@@ -436,7 +374,10 @@ const BusinessTransactionForm = ({route, navigation}) => {
               </View>
             }
             onPress={() =>
-              navigation.navigate('TransactionPIN', {action, userSelected})
+              navigation.navigate('BusinessTransactionPIN', {
+                action,
+                userSelected,
+              })
             }
             rightIcon={RightBlack}
           />
@@ -495,7 +436,10 @@ const BusinessTransactionForm = ({route, navigation}) => {
               </View>
             }
             onPress={() =>
-              navigation.navigate('TransactionPIN', {action, userSelected})
+              navigation.navigate('BusinessTransactionPIN', {
+                action,
+                userSelected,
+              })
             }
             rightIcon={RightBlack}
           />
@@ -554,7 +498,10 @@ const BusinessTransactionForm = ({route, navigation}) => {
               </View>
             }
             onPress={() =>
-              navigation.navigate('TransactionPIN', {action, userSelected})
+              navigation.navigate('BusinessTransactionPIN', {
+                action,
+                userSelected,
+              })
             }
             rightIcon={RightBlack}
           />
@@ -594,7 +541,9 @@ const BusinessTransactionForm = ({route, navigation}) => {
               }}
             />
             <Button
-              onPress={() => navigation.navigate('TransactionTransferToNod')}
+              onPress={() =>
+                navigation.navigate('BusinessTransactionTransferToNod')
+              }
               title="Transfer to Nod"
               titleStyle={{
                 color: color.btn_white_2,

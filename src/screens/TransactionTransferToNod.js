@@ -8,6 +8,8 @@ import {
   FlatList,
   TouchableOpacity,
   TextInput,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 
 // where local files imported
@@ -133,6 +135,7 @@ const TransactionTransferToNod = ({navigation}) => {
           setVisible(false);
           setTransfer(false);
           setValue(0);
+          navigation.goBack();
         },
       });
     }
@@ -157,101 +160,108 @@ const TransactionTransferToNod = ({navigation}) => {
         />
         {/* Header End */}
 
-        {/* Total Amount */}
-        <View style={styles.totalAmount}>
-          <Text style={styles.label}>Enter Total Amount</Text>
-          {/* check is input */}
+        <View style={{flex: 1}}>
+          {/* Total Amount */}
+          <View style={styles.totalAmount}>
+            <Text style={styles.label}>Enter Total Amount</Text>
+            {/* check is input */}
 
-          {isInput ? (
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'flex-end',
-                justifyContent: 'center',
-              }}>
-              <Text style={styles.amount}>Rs</Text>
-              <TextInput
-                autoFocus={true}
-                keyboardType="number-pad"
-                value={value}
-                onChangeText={val => setValue(val)}
-                style={[
-                  styles.amount,
-                  {
-                    color: color.btn_black,
-                    fontWeight: 'normal',
-                    lineHeight: 60,
-                    fontSize: 60,
-                  },
-                ]}
-                onSubmitEditing={() => {
-                  setIsInput(false);
+            {isInput ? (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'flex-end',
+                  justifyContent: 'center',
+                }}>
+                <Text style={styles.amount}>Rs</Text>
+                <TextInput
+                  autoFocus={true}
+                  keyboardType="number-pad"
+                  value={value}
+                  onChangeText={val => setValue(val)}
+                  style={[
+                    styles.amount,
+                    {
+                      color: color.btn_black,
+                      fontWeight: 'normal',
+                      lineHeight: 60,
+                      fontSize: 60,
+                    },
+                  ]}
+                  onSubmitEditing={() => {
+                    setIsInput(false);
+                  }}
+                  onBlur={() => {
+                    setIsInput(false);
+                  }}
+                />
+              </View>
+            ) : (
+              <Text
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'flex-end',
+                  justifyContent: 'center',
                 }}
-                onBlur={() => {
-                  setIsInput(false);
+                onPress={() => setIsInput(!isInput)}>
+                <Text style={styles.amount}>Rs </Text>
+                <Text
+                  style={[
+                    styles.amount,
+                    {
+                      color: color.btn_black,
+                      fontWeight: 'normal',
+                      lineHeight: 60,
+                      fontSize: 60,
+                    },
+                  ]}>
+                  {value}
+                </Text>
+              </Text>
+            )}
+          </View>
+          {/* Total Amount End */}
+
+          <Gap t={dimens.default_22 + 2} />
+
+          {/* List Button Number*/}
+          <FlatList
+            contentContainerStyle={{
+              flexDirection: 'row',
+              justifyContent: 'space-evenly',
+            }}
+            data={dataListButton}
+            keyExtractor={item => item.id}
+            renderItem={({item}) => (
+              <ListButton
+                {...item}
+                onPress={() => {
+                  if (item.amount == 'All') {
+                    // do nothing
+                  } else {
+                    setValue(item.amount);
+                  }
                 }}
               />
-            </View>
-          ) : (
-            <Text
-              style={{
-                flexDirection: 'row',
-                alignItems: 'flex-end',
-                justifyContent: 'center',
-              }}
-              onPress={() => setIsInput(!isInput)}>
-              <Text style={styles.amount}>Rs </Text>
-              <Text
-                style={[
-                  styles.amount,
-                  {
-                    color: color.btn_black,
-                    fontWeight: 'normal',
-                    lineHeight: 60,
-                    fontSize: 60,
-                  },
-                ]}>
-                {value}
-              </Text>
-            </Text>
-          )}
+            )}
+          />
+          {/* List Button Number End*/}
         </View>
-        {/* Total Amount End */}
-
-        <Gap t={dimens.default_22 + 2} />
-
-        {/* List Button Number*/}
-        <FlatList
-          contentContainerStyle={{
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-          }}
-          data={dataListButton}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => (
-            <ListButton
-              {...item}
-              onPress={() => {
-                if (item.amount == 'All') {
-                  // do nothing
-                } else {
-                  setValue(item.amount);
-                }
-              }}
-            />
-          )}
-        />
-        {/* List Button Number End*/}
 
         {/* Bottom Button */}
-        <View style={styles.btnWrapper}>
-          <Button
-            onPress={onTransfer}
-            title="Transfer"
-            titleStyle={{color: color.btn_white_2}}
-            btnStyle={{backgroundColor: color.btn_black}}
-          />
-        </View>
+        <KeyboardAvoidingView
+          behavior="padding"
+          keyboardVerticalOffset={0}
+          enabled={Platform.OS === 'android' ? false : true}>
+          <View style={styles.btnWrapper}>
+            <Button
+              onPress={onTransfer}
+              title="Transfer"
+              titleStyle={{color: color.btn_white_2}}
+              btnStyle={{backgroundColor: color.btn_black}}
+            />
+          </View>
+        </KeyboardAvoidingView>
         {/* Bottom Button End */}
 
         {/* Modal */}
@@ -299,14 +309,19 @@ const TransactionTransferToNod = ({navigation}) => {
       {/* List Bank End */}
 
       {/* Bottom Button */}
-      <View style={styles.btnWrapper}>
-        <Button
-          onPress={() => setTransfer(true)}
-          title="Continue"
-          titleStyle={{color: color.btn_white_2}}
-          btnStyle={{backgroundColor: color.btn_black}}
-        />
-      </View>
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}>
+        <View style={styles.btnWrapper}>
+          <Button
+            onPress={() => setTransfer(true)}
+            title="Continue"
+            titleStyle={{color: color.btn_white_2}}
+            btnStyle={{backgroundColor: color.btn_black}}
+          />
+        </View>
+      </KeyboardAvoidingView>
       {/* Bottom Button End */}
     </SafeAreaView>
   );
@@ -322,10 +337,6 @@ const styles = StyleSheet.create({
   btnWrapper: {
     backgroundColor: 'white',
     height: 72,
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    right: 0,
     justifyContent: 'center',
     padding: dimens.default,
   },

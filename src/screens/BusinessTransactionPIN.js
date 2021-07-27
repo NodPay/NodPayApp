@@ -65,7 +65,10 @@ const BusinessTransactionPIN = ({route, navigation}) => {
         <ImageBackground source={BGButton} style={styles.btnWrapper}>
           <Button
             onPress={() =>
-              navigation.navigate('TransactionSuccess', {action, userSelected})
+              navigation.navigate('BusinessTransactionSuccess', {
+                action,
+                userSelected,
+              })
             }
             title={action === 'request' ? 'Request Money' : 'Send Money'}
             titleStyle={{

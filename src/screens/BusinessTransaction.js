@@ -39,7 +39,6 @@ const BusinessTransaction = ({navigation}) => {
       photo: Starbucks,
       name: 'Starbucks',
       phone: '+92 - 3234 - 5456',
-      isInternasional: true,
     },
     {
       id: 2,
@@ -47,7 +46,6 @@ const BusinessTransaction = ({navigation}) => {
       photo: Starbucks,
       name: 'Burger King',
       phone: '+92 - 9801 - 2358',
-      isInternasional: false,
     },
     {
       id: 3,
@@ -55,7 +53,6 @@ const BusinessTransaction = ({navigation}) => {
       photo: Starbucks,
       name: 'Coca Cola',
       phone: '+92 - 9814 - 1498',
-      isInternasional: false,
     },
     {
       id: 4,
@@ -63,7 +60,6 @@ const BusinessTransaction = ({navigation}) => {
       photo: Starbucks,
       name: 'KFC',
       phone: '+92 - 8519 -1257',
-      isInternasional: true,
     },
     {
       id: 5,
@@ -71,7 +67,6 @@ const BusinessTransaction = ({navigation}) => {
       photo: Starbucks,
       name: 'Pepsi',
       phone: '+92 - 1897 - 1285',
-      isInternasional: false,
     },
     {
       id: 6,
@@ -79,7 +74,6 @@ const BusinessTransaction = ({navigation}) => {
       photo: Starbucks,
       name: 'Family Supermarket',
       phone: '+92 - 1897 - 1285',
-      isInternasional: false,
     },
     {
       id: 7,
@@ -87,7 +81,6 @@ const BusinessTransaction = ({navigation}) => {
       photo: Starbucks,
       name: 'Starbucks',
       phone: '+92 - 3234 - 5456',
-      isInternasional: true,
     },
     {
       id: 8,
@@ -95,7 +88,6 @@ const BusinessTransaction = ({navigation}) => {
       photo: Starbucks,
       name: 'Burger King',
       phone: '+92 - 9801 - 2358',
-      isInternasional: false,
     },
     {
       id: 9,
@@ -103,7 +95,6 @@ const BusinessTransaction = ({navigation}) => {
       photo: Starbucks,
       name: 'Coca Cola',
       phone: '+92 - 9814 - 1498',
-      isInternasional: false,
     },
     {
       id: 10,
@@ -111,7 +102,6 @@ const BusinessTransaction = ({navigation}) => {
       photo: Starbucks,
       name: 'KFC',
       phone: '+92 - 8519 -1257',
-      isInternasional: true,
     },
     {
       id: 11,
@@ -119,7 +109,6 @@ const BusinessTransaction = ({navigation}) => {
       photo: Starbucks,
       name: 'Pepsi',
       phone: '+92 - 1897 - 1285',
-      isInternasional: false,
     },
     {
       id: 12,
@@ -127,7 +116,6 @@ const BusinessTransaction = ({navigation}) => {
       photo: Starbucks,
       name: 'Family Supermarket',
       phone: '+92 - 1897 - 1285',
-      isInternasional: false,
     },
   ];
 
@@ -246,7 +234,7 @@ const BusinessTransaction = ({navigation}) => {
         <View style={styles.wrapBtn}>
           <Button
             onPress={() =>
-              navigation.navigate('TransactionForm', {
+              navigation.navigate('BusinessTransactionForm', {
                 userSelected: contactSelected,
               })
             }

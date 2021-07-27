@@ -93,11 +93,11 @@ const BusinessTransactionSuccess = ({route, navigation}) => {
             navigation.dispatch(
               CommonActions.reset({
                 index: 0,
-                routes: [{name: 'AppDrawer'}],
+                routes: [{name: 'AppBusinessDrawer'}],
               }),
             )
           }
-          title="Back to Home"
+          title="Back to Homepage"
           titleStyle={{color: color.btn_white_2, fontFamily: fonts.sofia_bold}}
           btnStyle={{
             backgroundColor: color.btn_black,
