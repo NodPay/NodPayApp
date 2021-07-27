@@ -166,7 +166,6 @@ const Profile = ({navigation}) => {
           title="Profile"
           isProfile
           onEdit={() => navigation.navigate('EditProfile')}
-          navigation={navigation}
         />
       </View>
       {/* Header End */}

@@ -154,7 +154,6 @@ const TransactionTransferToNod = ({navigation}) => {
             width: 32,
             marginLeft: 5,
           }}
-          navigation={navigation}
         />
         {/* Header End */}
 
@@ -280,7 +279,6 @@ const TransactionTransferToNod = ({navigation}) => {
         isBlackArrow
         title="Transfer To Nod"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
       />
       {/* Header End */}
 

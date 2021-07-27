@@ -115,7 +115,6 @@ const Feedback = ({navigation}) => {
           isBlackArrow
           title="Help"
           titleStyle={{color: color.btn_black}}
-          navigation={navigation}
         />
 
         {/* Feedback Information */}

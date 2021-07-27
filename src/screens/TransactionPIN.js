@@ -33,7 +33,6 @@ const TransactionPIN = ({route, navigation}) => {
           width: 32,
           marginLeft: 5,
         }}
-        navigation={navigation}
       />
       {/* Header End */}
 

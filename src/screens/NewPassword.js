@@ -42,7 +42,6 @@ const NewPassword = ({navigation}) => {
           isBlackArrow
           containerStyle={{backgroundColor: color.btn_white_2}}
           titleStyle={{color: 'black'}}
-          navigation={navigation}
         />
 
         <SectionTitle type="auth" title="Reset Your Password" />

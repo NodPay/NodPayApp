@@ -343,7 +343,6 @@ const Contact = ({navigation}) => {
             isBlackArrow
             title="Send & Request"
             titleStyle={{color: color.btn_black}}
-            navigation={navigation}
             isRightQR
             onPressRight={() => navigation.navigate('QRCode')}
           />

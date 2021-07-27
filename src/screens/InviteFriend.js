@@ -30,7 +30,6 @@ const InviteFriend = ({navigation}) => {
         isBlackArrow
         title="Invite Your Friends"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
       />
       <ScrollView>
         <View style={styles.containerCenter}>
@@ -92,7 +91,6 @@ const InviteFriend = ({navigation}) => {
           isCloseMode
           title="Share Invitation Link"
           titleStyle={{color: color.btn_black}}
-          navigation={navigation}
           onPressClose={() => refRBSheet.current?.close()}
         />
         <View style={styles.containerModal}>

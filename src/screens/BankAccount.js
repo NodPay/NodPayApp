@@ -53,7 +53,6 @@ const BankAccount = ({navigation}) => {
         isBlackArrow
         title="Bank Account"
         titleStyle={styles.pageTitle}
-        navigation={navigation}
       />
 
       {isEmpty ? (

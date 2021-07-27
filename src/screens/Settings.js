@@ -24,7 +24,6 @@ const Settings = ({navigation, type}) => {
         isBlackArrow
         title="Settings"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
       />
       <SettingsItem
         icon={AccountCircle}

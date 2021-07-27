@@ -34,12 +34,7 @@ const Card = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <PageTitle
-        title="My Card"
-        titleStyle={styles.pageTitle}
-        navigation={navigation}
-        isNoBackButton
-      />
+      <PageTitle title="My Card" titleStyle={styles.pageTitle} isNoBackButton />
       <View style={styles.innerContainer}>
         <Image
           source={VirtualCard}

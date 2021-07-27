@@ -58,7 +58,6 @@ const Biometrics = ({route, navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <PageTitle
-        navigation={navigation}
         isBlackArrow
         title={title}
         titleStyle={{color: color.btn_black}}

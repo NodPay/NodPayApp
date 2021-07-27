@@ -10,11 +10,11 @@ import {
   ThreeDotsVertical,
 } from '../../assets';
 import {color, dimens, fonts} from '../../utils';
+import {useNavigation} from '@react-navigation/native';
 
 // * Page title with optional buttons on the left and right
 const PageTitle = ({
   title,
-  navigation,
   containerStyle,
   titleStyle,
   isBlackArrow,
@@ -29,6 +29,8 @@ const PageTitle = ({
   isOtherProfile,
   isNoBackButton,
 }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={[styles.container, containerStyle]}>
       {!isNoBackButton && isCloseMode ? (

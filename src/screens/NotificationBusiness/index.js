@@ -20,7 +20,6 @@ const NotificationBusiness = ({navigation}) => {
         isBlackArrow
         title="Notifications"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
       />
       {isEmpty ? (
         <View style={{flex: 1, justifyContent: 'center'}}>

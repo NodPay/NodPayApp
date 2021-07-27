@@ -151,7 +151,6 @@ const TransferToBank = ({navigation}) => {
             width: 32,
             marginLeft: 5,
           }}
-          navigation={navigation}
         />
         {/* Header End */}
 
@@ -240,7 +239,6 @@ const TransferToBank = ({navigation}) => {
         isBlackArrow
         title="Transfer To Bank"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
       />
       {/* Header End */}
 

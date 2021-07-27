@@ -58,7 +58,6 @@ const ForgotPassword = ({navigation}) => {
           isBlackArrow
           containerStyle={{backgroundColor: color.btn_white_2}}
           titleStyle={{color: 'black'}}
-          navigation={navigation}
         />
 
         <SectionTitle

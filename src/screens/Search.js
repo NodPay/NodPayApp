@@ -155,7 +155,6 @@ const Search = ({navigation}) => {
         isBlackArrow
         title="Search"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
         isRightQR
         onPressRight={() => navigation.navigate('QRCode')}
       />

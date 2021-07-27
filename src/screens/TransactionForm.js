@@ -58,7 +58,6 @@ const TransactionForm = ({route, navigation}) => {
           width: 32,
           marginLeft: 5,
         }}
-        navigation={navigation}
       />
       {/* Header End */}
 
@@ -275,7 +274,6 @@ const TransactionForm = ({route, navigation}) => {
           isCloseMode
           title="Select Payment Method"
           titleStyle={{color: color.btn_black}}
-          navigation={navigation}
           onPressClose={() => refRBSheet.current?.close()}
         />
         <View style={styles.containerModal}>

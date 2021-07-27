@@ -161,7 +161,6 @@ const Register = ({navigation}) => {
         titleStyle={{color: color.btn_black, fontSize: dimens.default_22}}
         // isBlackArrow
         title="Create Account"
-        // navigation={navigation}
       />
       <StepForm
         activeStep={activeStep}

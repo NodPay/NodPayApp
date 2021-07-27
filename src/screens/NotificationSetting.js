@@ -70,7 +70,6 @@ const NotificationSetting = ({navigation}) => {
         isCloseMode
         title="Notifications Settings"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
         onPressClose={() => navigation.pop()}
       />
       <ScrollView style={styles.content}>

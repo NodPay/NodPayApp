@@ -86,7 +86,6 @@ const AddEmployee = ({navigation}) => {
       />
       <StatusBar backgroundColor={color.bg_grey} />
       <PageTitle
-        navigation={navigation}
         title="Add Employee"
         isBlackArrow
         titleStyle={{color: color.btn_black}}

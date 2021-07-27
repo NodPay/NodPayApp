@@ -285,7 +285,6 @@ const Contact = ({navigation}) => {
           isBlackArrow
           title="Contacts"
           titleStyle={{color: color.btn_black}}
-          navigation={navigation}
         />
         {friendData == null && (
           <View style={{flex: 1, justifyContent: 'center'}}>
@@ -381,7 +380,6 @@ const Contact = ({navigation}) => {
               isCloseMode
               title="Add Friends"
               titleStyle={{color: color.btn_black}}
-              navigation={navigation}
               onPressClose={() => {
                 bottomSheetRef.current?.close();
                 setGetContact(true);

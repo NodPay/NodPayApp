@@ -18,7 +18,6 @@ const EditProfile = ({navigation}) => {
         isBlackArrow
         title="Edit Profile"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
       />
       <Tab.Navigator tabBar={props => <Tabbed {...props} />}>
         <Tab.Screen name="Profile" component={EditProfileTabProfile} />

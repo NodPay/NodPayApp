@@ -103,7 +103,7 @@ const LoginPhone = ({navigation}) => {
       <StatusBar animated={true} backgroundColor={color.bg_color} />
       <ScrollView style={styles.scroll}>
         <View style={styles.inner_container}>
-          <PageTitle title="Login" navigation={navigation} />
+          <PageTitle title="Login" />
         </View>
         <View style={styles.center_container}>
           <View style={styles.bg_top} />
