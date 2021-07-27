@@ -17,7 +17,6 @@ import {
   BalanceInfo,
   FeedItem,
   Tabbed,
-  RequestMoneyItem,
   Gap,
   TransactionItem,
   MainAction,
@@ -34,7 +33,7 @@ const HomeBusiness = ({navigation}) => {
       <StatusBar backgroundColor={color.btn_white_2} />
 
       <HeaderHome
-        onPressSearch={() => navigation.navigate('Search')}
+        onPressSearch={() => navigation.navigate('NotificationBusiness')}
         onPressProfile={() => {
           navigation.navigate('BusinessProfile');
         }}

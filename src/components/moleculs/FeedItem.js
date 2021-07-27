@@ -76,14 +76,8 @@ const FeedItem = ({
             <Text style={styles.message}>{message}</Text>
           </View>
 
-          <View>
-            <Text
-              style={[
-                styles.amountText,
-                {color: color.green, backgroundColor: color.green3},
-              ]}>
-              + Rs {amount}
-            </Text>
+          <View style={styles.amountContainer}>
+            <Text style={styles.amountText}>+ Rs {amount}</Text>
           </View>
         </View>
       </View>
@@ -203,6 +197,7 @@ const styles = StyleSheet.create({
   rightContainer: {
     flexDirection: 'row',
     flex: 1,
+    alignItems: 'flex-start',
     backgroundColor: 'white',
     borderRadius: dimens.default,
     padding: dimens.default_14,
@@ -229,12 +224,17 @@ const styles = StyleSheet.create({
     fontSize: dimens.default_12,
     fontFamily: fonts.sofia_regular,
   },
-  amountText: {
+  amountContainer: {
     borderRadius: dimens.default_12,
-    fontSize: dimens.default_12,
-    fontFamily: fonts.sofia_regular,
+    backgroundColor: color.green3,
     paddingHorizontal: dimens.small,
-    paddingVertical: dimens.verysmall,
+    paddingVertical: dimens.supersmall,
+  },
+  amountText: {
+    color: color.green,
+    fontSize: dimens.default_12,
+    lineHeight: dimens.default_14,
+    fontFamily: fonts.sofia_regular,
   },
   message: {
     color: color.btn_black,
