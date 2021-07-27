@@ -21,6 +21,7 @@ const PageTitle = ({
   isBlackArrow,
   isCloseMode,
   onPressClose,
+  onPressBack,
   isRightQR,
   onPressRight,
   cancel,
@@ -52,7 +53,7 @@ const PageTitle = ({
         </TouchableOpacity>
       ) : (
         <TouchableOpacity
-          onPress={() => navigation.goBack()}
+          onPress={() => (onPressBack ? onPressBack() : navigation.goBack())}
           style={styles.left_arrow}>
           {isBlackArrow ? (
             <Image source={BlackLeftArrow} />

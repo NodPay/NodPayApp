@@ -17,39 +17,47 @@ const InputPhoto = ({type}) => {
   const {dispatch} = useStateContext();
 
   const openCamera = () => {
-    ImagePicker.openCamera({
-      width: 300,
-      height: 400,
-      cropping: true,
-      cropperCircleOverlay: true,
-    }).then(res => {
-      console.log('result', res);
-      setPicture(res.path);
-      if (type == 'business') {
-        dispatch(setFormEditProfileBusiness('logo', res.path));
-      } else {
-        dispatch(setFormRegister('profileImage', res.path));
-      }
-    });
     btnRef.current.close();
+    setTimeout(
+      () =>
+        ImagePicker.openCamera({
+          width: 300,
+          height: 400,
+          cropping: true,
+          cropperCircleOverlay: true,
+        }).then(res => {
+          console.log('result', res);
+          setPicture(res.path);
+          if (type == 'business') {
+            dispatch(setFormEditProfileBusiness('logo', res.path));
+          } else {
+            dispatch(setFormRegister('profileImage', res.path));
+          }
+        }),
+      500,
+    );
   };
 
   const openGallery = () => {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 400,
-      cropping: true,
-      cropperCircleOverlay: true,
-    }).then(res => {
-      console.log('result', res);
-      setPicture(res.path);
-      if (type == 'business') {
-        dispatch(setFormEditProfileBusiness('logo', res.path));
-      } else {
-        dispatch(setFormRegister('profileImage', res.path));
-      }
-    });
     btnRef.current.close();
+    setTimeout(
+      () =>
+        ImagePicker.openPicker({
+          width: 300,
+          height: 400,
+          cropping: true,
+          cropperCircleOverlay: true,
+        }).then(res => {
+          console.log('result', res);
+          setPicture(res.path);
+          if (type == 'business') {
+            dispatch(setFormEditProfileBusiness('logo', res.path));
+          } else {
+            dispatch(setFormRegister('profileImage', res.path));
+          }
+        }),
+      500,
+    );
   };
 
   return (

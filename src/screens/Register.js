@@ -142,6 +142,25 @@ const Register = ({navigation}) => {
     }
   };
 
+  const onBack = () => {
+    //check store
+    console.log('form register', state.formRegister);
+    //mobile number - verification section
+    if (activeStep <= 0) {
+      navigation.goBack();
+    } else {
+      if (activeStep == 1) {
+        // reset verification number
+        dispatch({type: 'SET_VERIFICATION', payload: false});
+      } else if (activeStep == 2) {
+        dispatch({type: 'SET_FAMILY_RELATION', payload: false});
+      } else if (activeStep == 3) {
+        dispatch({type: 'SET_BUTTON', payload: false});
+      }
+      dispatch({type: 'SET_ACTIVE_STEP_PAYLOAD', payload: activeStep - 1});
+    }
+  };
+
   //start scan button
 
   const takePhoto = () => {
@@ -159,7 +178,8 @@ const Register = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <PageTitle
         titleStyle={{color: color.btn_black, fontSize: dimens.default_22}}
-        // isBlackArrow
+        isBlackArrow
+        onPressBack={() => onBack()}
         title="Create Account"
       />
       <StepForm
@@ -193,7 +213,7 @@ const Register = ({navigation}) => {
           />
         )}
         <Button
-          // disabled={isDisabled}
+          disabled={isDisabled}
           onPress={onNext}
           title={activeStep == 4 ? 'Create Account' : 'Next'}
           btnStyle={{
