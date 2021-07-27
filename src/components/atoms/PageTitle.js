@@ -8,6 +8,7 @@ import {
   QRScan,
   PencilEditWhite,
   ThreeDotsVertical,
+  ThreeDotsBlack,
 } from '../../assets';
 import {color, dimens, fonts} from '../../utils';
 import {useNavigation} from '@react-navigation/native';
@@ -80,7 +81,7 @@ const PageTitle = ({
       {isOtherProfile && (
         <TouchableOpacity onPress={onEdit} style={styles.containerQR}>
           <Image
-            source={ThreeDotsVertical}
+            source={isBlackArrow ? ThreeDotsBlack : ThreeDotsBlack}
             style={{height: 24, width: 24, resizeMode: 'contain'}}
           />
         </TouchableOpacity>

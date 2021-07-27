@@ -9,6 +9,8 @@ const CustomerItem = ({
   message,
   time,
   onPressPhoto, //added for view other user profile
+  noRightTime, // employee detail
+  isPaid,
 }) => {
   return (
     <View style={{marginTop: dimens.default, flexDirection: 'row'}}>
@@ -44,24 +46,31 @@ const CustomerItem = ({
         </View>
 
         <View style={{justifyContent: 'center'}}>
-          <Text
-            style={[styles.publicityText, {marginBottom: dimens.supersmall}]}>
-            {time}
-          </Text>
+          {!noRightTime && (
+            <Text
+              style={[styles.publicityText, {marginBottom: dimens.supersmall}]}>
+              {time}
+            </Text>
+          )}
           <View
             style={{
               padding: 6,
               borderRadius: 12,
               justifyContent: 'center',
               alignItems: 'center',
-              backgroundColor: color.bg_success,
+              backgroundColor: isPaid
+                ? color.bg_success
+                : color.bg_red_error_msg,
             }}>
             <Text
               style={[
                 styles.publicityText,
-                {color: color.green, fontFamily: fonts.sofia_bold},
+                {
+                  color: isPaid ? color.green : color.red,
+                  fontFamily: fonts.sofia_bold,
+                },
               ]}>
-              + 75 Rs
+              {isPaid ? '+ 750 rs' : '- 500 rs'}
             </Text>
           </View>
         </View>

@@ -105,6 +105,8 @@ import BookInactive from './book_inactive.png';
 import SearchBlack from './search_black.png';
 import InviteBlack from './invite_black.png';
 import Business from './business.png';
+import ThreeDotsBlack from './three_dots_black.png';
+
 
 export {
   DrawerSwitch,
@@ -213,4 +215,5 @@ export {
   SearchBlack,
   InviteBlack,
   Business,
+  ThreeDotsBlack
 };

@@ -13,6 +13,7 @@ import SelectAddressItem from './SelectAddressItem';
 import ContactItem from './ContactItem';
 import SettingsSaveButton from './SettingsSaveButton';
 import PickerItem from './PickerItem';
+import Divider from './Divider';
 
 export {
   Logo,
@@ -30,4 +31,5 @@ export {
   ContactItem,
   SettingsSaveButton,
   PickerItem,
+  Divider,
 };

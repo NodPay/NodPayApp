@@ -11,46 +11,15 @@ import {
 
 // where local files imported
 import {color, dimens, fonts} from '../utils';
-import {Button, Gap, PageTitle, PickerItem, Modal} from '../components';
+import {
+  Button,
+  Gap,
+  PageTitle,
+  PickerItem,
+  Modal,
+  PersonalDetailItem,
+} from '../components';
 import {DefaultPict, MaleActive, ModalSuccess} from '../assets';
-
-const Divider = ({t, b}) => {
-  return <View style={[styles.divider, {marginTop: t, marginBottom: b}]} />;
-};
-
-const PersonalDetailItem = ({
-  isDivided,
-  isImage,
-  left = 'left',
-  value = 'right',
-}) => {
-  return (
-    <View style={{marginTop: dimens.default}}>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <Text style={styles.left}>{left}</Text>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          {isImage && (
-            <Image
-              source={MaleActive}
-              style={{
-                height: 16,
-                width: 16,
-                marginRight: 4,
-                resizeMode: 'cover',
-              }}
-            />
-          )}
-          <Text style={styles.right}>{value}</Text>
-        </View>
-      </View>
-      {!isDivided && <Divider t={16} />}
-    </View>
-  );
-};
 
 const AddEmployee = ({navigation}) => {
   const data = [
@@ -201,20 +170,5 @@ const styles = StyleSheet.create({
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_14,
     color: color.grey_3,
-  },
-  divider: {
-    height: 0.5,
-    backgroundColor: 'lightgray',
-    width: '100%',
-  },
-  left: {
-    fontFamily: fonts.sofia_regular,
-    fontSize: dimens.default_16,
-    color: color.grey_3,
-  },
-  right: {
-    fontFamily: fonts.sofia_regular,
-    fontSize: dimens.default_16,
-    color: color.btn_black,
   },
 });

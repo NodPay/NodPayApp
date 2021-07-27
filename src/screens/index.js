@@ -53,6 +53,7 @@ import InviteSignupBusiness from './InviteSignupBusiness';
 import NotificationBusiness from './NotificationBusiness';
 import SearchEmployee from './SearchEmployee';
 import AddEmployee from './AddEmployee';
+import EmployeeDetail from './EmployeeDetail';
 
 export {
   Splash,
@@ -110,4 +111,5 @@ export {
   NotificationBusiness,
   SearchEmployee,
   AddEmployee,
+  EmployeeDetail,
 };
