@@ -28,7 +28,7 @@ const Settings = ({navigation, type}) => {
       <SettingsItem
         icon={AccountCircle}
         title="Edit Profile"
-        onPress={() => navigation.navigate('EditProfileBusiness')}
+        onPress={() => navigation.navigate('EditProfile')}
       />
       {type == 'business' && (
         <SettingsItem
