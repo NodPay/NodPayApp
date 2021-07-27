@@ -16,8 +16,9 @@ import {
   FileDocument,
 } from '../assets';
 
-const Settings = ({navigation, type}) => {
-  type = 'business';
+const Settings = ({route, navigation}) => {
+  const {type} = route.params;
+
   return (
     <SafeAreaView style={styles.container}>
       <PageTitle

@@ -25,200 +25,111 @@ import {
   PeopleCircleItem,
   PeopleItem,
 } from '../components';
-import {NoContact, People1} from '../assets';
+import {NoContact, Starbucks} from '../assets';
 
-const Transaction = ({navigation}) => {
+const BusinessTransaction = ({navigation}) => {
   const [friendData, setFriendData] = useState([]);
   const [search, setSearch] = useState('');
   const [contactSelected, setContactSelected] = useState(null);
 
-  const topPeople = [
-    {
-      photo: People1,
-      name: 'Ahmad',
-      isInternasional: true,
-    },
-    {
-      photo: People1,
-      name: 'Amar',
-      isInternasional: false,
-    },
-    {
-      photo: People1,
-      name: 'Ben',
-      isInternasional: false,
-    },
-    {
-      photo: People1,
-      name: 'Bruno',
-      isInternasional: true,
-    },
-    {
-      photo: People1,
-      name: 'Ahmad',
-      isInternasional: true,
-    },
-    {
-      photo: People1,
-      name: 'Amar',
-      isInternasional: false,
-    },
-    {
-      photo: People1,
-      name: 'Ben',
-      isInternasional: false,
-    },
-    {
-      photo: People1,
-      name: 'Bruno',
-      isInternasional: true,
-    },
-  ];
-
-  var initialData = [
-    {
-      id: 0,
-      name: 'Andi',
-      phoneNumber: '+62 696969699696',
-      added: false,
-    },
-    {
-      id: 1,
-      name: 'Bae',
-      phoneNumber: '+62 696969699696',
-      added: false,
-    },
-    {
-      id: 3,
-      name: 'Garry',
-      phoneNumber: '+62 696969699696',
-      added: false,
-    },
-    {
-      id: 4,
-      name: 'Widy',
-      phoneNumber: '+62 696969699696',
-      added: false,
-    },
-    {
-      id: 5,
-      name: 'Talha',
-      phoneNumber: '+62 696969699696',
-      added: true,
-    },
-    {
-      id: 6,
-      name: 'Gagan',
-      phoneNumber: '+62 696969699696',
-      added: true,
-    },
-    {
-      id: 7,
-      name: 'Muhammad',
-      phoneNumber: '+62 696969699696',
-      added: true,
-    },
-  ];
   const contactList = [
     {
       id: 1,
-      value: 'Ahmad Malikil Kudus',
-      photo: People1,
-      name: 'Ahmad Malikil Kudus',
+      value: 'Starbucks',
+      photo: Starbucks,
+      name: 'Starbucks',
       phone: '+92 - 3234 - 5456',
       isInternasional: true,
     },
     {
       id: 2,
-      value: 'Amar Lukman',
-      photo: People1,
-      name: 'Amar Lukman',
+      value: 'Burger King',
+      photo: Starbucks,
+      name: 'Burger King',
       phone: '+92 - 9801 - 2358',
       isInternasional: false,
     },
     {
       id: 3,
-      value: 'Ammirudin Syarif',
-      photo: People1,
-      name: 'Ammirudin Syarif',
+      value: 'Coca Cola',
+      photo: Starbucks,
+      name: 'Coca Cola',
       phone: '+92 - 9814 - 1498',
       isInternasional: false,
     },
     {
       id: 4,
-      value: 'Ben Kasyafana',
-      photo: People1,
-      name: 'Ben Kasyafana',
+      value: 'KFC',
+      photo: Starbucks,
+      name: 'KFC',
       phone: '+92 - 8519 -1257',
       isInternasional: true,
     },
     {
       id: 5,
-      value: 'Bruno Fernandes',
-      photo: People1,
-      name: 'Bruno Fernandes',
+      value: 'Pepsi',
+      photo: Starbucks,
+      name: 'Pepsi',
       phone: '+92 - 1897 - 1285',
       isInternasional: false,
     },
     {
       id: 6,
-      value: 'Bruno Mars',
-      photo: People1,
-      name: 'Bruno Mars',
+      value: 'Family Supermarket',
+      photo: Starbucks,
+      name: 'Family Supermarket',
       phone: '+92 - 1897 - 1285',
       isInternasional: false,
     },
     {
       id: 7,
-      value: 'Ahmad Malikil Kudus',
-      photo: People1,
-      name: 'Ahmad Malikil Kudus',
+      value: 'Starbucks',
+      photo: Starbucks,
+      name: 'Starbucks',
       phone: '+92 - 3234 - 5456',
       isInternasional: true,
     },
     {
       id: 8,
-      value: 'Amar Lukman',
-      photo: People1,
-      name: 'Amar Lukman',
+      value: 'Burger King',
+      photo: Starbucks,
+      name: 'Burger King',
       phone: '+92 - 9801 - 2358',
       isInternasional: false,
     },
     {
       id: 9,
-      value: 'Ammirudin Syarif',
-      photo: People1,
-      name: 'Ammirudin Syarif',
+      value: 'Coca Cola',
+      photo: Starbucks,
+      name: 'Coca Cola',
       phone: '+92 - 9814 - 1498',
       isInternasional: false,
     },
     {
       id: 10,
-      value: 'Ben Kasyafana',
-      photo: People1,
-      name: 'Ben Kasyafana',
+      value: 'KFC',
+      photo: Starbucks,
+      name: 'KFC',
       phone: '+92 - 8519 -1257',
       isInternasional: true,
     },
     {
       id: 11,
-      value: 'Bruno Fernandes',
-      photo: People1,
-      name: 'Bruno Fernandes',
+      value: 'Pepsi',
+      photo: Starbucks,
+      name: 'Pepsi',
       phone: '+92 - 1897 - 1285',
       isInternasional: false,
     },
     {
       id: 12,
-      value: 'Bruno Mars',
-      photo: People1,
-      name: 'Bruno Mars',
+      value: 'Family Supermarket',
+      photo: Starbucks,
+      name: 'Family Supermarket',
       phone: '+92 - 1897 - 1285',
       isInternasional: false,
     },
   ];
-
-  const [data, setData] = useState(initialData);
 
   const EmptyState = () => {
     return (
@@ -283,55 +194,9 @@ const Transaction = ({navigation}) => {
         <KeyboardAvoidingView
           behavior="height"
           style={{paddingHorizontal: dimens.default_20}}>
-          <InputSearch
-            placeholder="Friend name, Phone Number, Business"
-            backgroundColor="white"
-          />
+          <InputSearch placeholder="Business name" backgroundColor="white" />
         </KeyboardAvoidingView>
         <Gap t={dimens.default_16} />
-        <View style={{flexDirection: 'row', paddingLeft: dimens.small_10}}>
-          {btn.map((item, index) => {
-            return (
-              <FilterButton
-                index={index}
-                title={item.title}
-                onPress={() => setCurrent(index)}
-              />
-            );
-          })}
-        </View>
-        <View style={{paddingHorizontal: dimens.default_20}}>
-          <SectionTitle
-            title="Top People"
-            titleStyle={{
-              fontSize: dimens.default_18,
-            }}
-            containerStyle={{
-              paddingVertical: 0,
-              marginTop: dimens.medium,
-              marginBottom: -20,
-            }}
-          />
-          <ScrollView
-            style={styles.peopleList}
-            showsHorizontalScrollIndicator={false}
-            horizontal>
-            {topPeople.map((item, index) => (
-              <PeopleCircleItem
-                key={index}
-                photo={item.photo}
-                name={item.name}
-                isInternasional={item.isInternasional}
-                onPress={() => {
-                  setContactSelected(null);
-                  navigation.navigate('TransactionForm', {
-                    userSelected: item,
-                  });
-                }}
-              />
-            ))}
-          </ScrollView>
-        </View>
       </View>
     );
   };
@@ -356,28 +221,13 @@ const Transaction = ({navigation}) => {
           style={{flex: 1}}
           data={contactList}
           alphabetContainer={{opacity: 0}}
-          renderSectionHeader={section => (
-            <View
-              style={{
-                paddingVertical: dimens.small,
-                paddingHorizontal: dimens.medium,
-              }}>
-              <Text
-                style={{
-                  color: color.btn_black,
-                  fontFamily: fonts.sofia_bold,
-                }}>
-                {section.title}
-              </Text>
-            </View>
-          )}
+          renderSectionHeader={section => <></>}
           renderItem={(item, index) => (
             <PeopleItem
               key={index}
               photo={item.photo}
               name={item.name}
               phone={item.phone}
-              isInternasional={item.isInternasional}
               selectedMode
               isSelected={
                 contactSelected ? contactSelected.id === item.id : false
@@ -410,7 +260,7 @@ const Transaction = ({navigation}) => {
   );
 };
 
-export default Transaction;
+export default BusinessTransaction;
 
 const styles = StyleSheet.create({
   container: {

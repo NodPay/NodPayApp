@@ -7,6 +7,7 @@ import {
   Image,
   FlatList,
   SectionList,
+  Platform,
 } from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
@@ -224,7 +225,7 @@ const styles = StyleSheet.create({
     height: 380,
     position: 'absolute',
     width: '100%',
-    top: '6%',
+    top: Platform.OS === 'android' ? '6%' : '12%',
     left: 0,
     right: 0,
     padding: dimens.default,

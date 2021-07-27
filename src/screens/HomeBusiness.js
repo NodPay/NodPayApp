@@ -35,7 +35,7 @@ const HomeBusiness = ({navigation}) => {
       <HeaderHome
         onPressSearch={() => navigation.navigate('Search')}
         onPressProfile={() => {
-          navigation.navigate('BusinessProfile');
+          navigation.navigate('BusinessProfile', {type: 'business'});
         }}
       />
 
@@ -86,7 +86,7 @@ const HomeBusiness = ({navigation}) => {
                 borderWidth: 10,
                 borderColor: color.btn_white_2,
               }}
-              onPress={() => navigation.navigate('Transaction')}>
+              onPress={() => navigation.navigate('BusinessTransaction')}>
               <Image source={Exchange} style={{width: 30, height: 30}} />
             </TouchableOpacity>
             <Text>Exchange</Text>

@@ -85,7 +85,7 @@ const BusinessDrawer = ({navigation}) => {
         <DrawerItem
           label="Settings"
           image={DrawerSetting}
-          onPress={() => navigation.navigate('Settings')}
+          onPress={() => navigation.navigate('Settings', {type: 'business'})}
         />
         <DrawerItem label="Help" image={DrawerHelp} onPress={() => {}} />
       </ScrollView>
