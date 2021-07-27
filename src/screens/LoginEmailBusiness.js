@@ -27,6 +27,8 @@ import {clearAll, color, dimens, fonts, wait, storeData} from '../utils';
 const LoginEmailBusiness = ({navigation}) => {
   const EMAIL = 'admin@nodpay.app';
   const PASSWORD = 'admin';
+  const EMAIL_EMPLOYEE = 'employee@nodpay.app';
+  const PASSWORD_EMPLOYEE = 'employee';
 
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
@@ -75,7 +77,12 @@ const LoginEmailBusiness = ({navigation}) => {
           message: "Email or Password Can't be empty.",
         });
       });
-    } else if (email != EMAIL && password != PASSWORD) {
+    } else if (
+      email != EMAIL &&
+      password != PASSWORD &&
+      email != EMAIL_EMPLOYEE &&
+      password != PASSWORD_EMPLOYEE
+    ) {
       wait(100).then(() => {
         setIsLoading(false);
         setError({
@@ -87,6 +94,7 @@ const LoginEmailBusiness = ({navigation}) => {
       wait(300).then(() => {
         console.log('login success');
         storeData('session', {
+          role: email == EMAIL && password == PASSWORD ? 'admin' : 'employee',
           isLogin: true, // if auth success, then save token for current user then user doesn't need to relogin
           isBoarding: true,
         });
