@@ -33,7 +33,7 @@ const HomeBusiness = ({navigation}) => {
       <StatusBar backgroundColor={color.btn_white_2} />
 
       <HeaderHome
-        onPressSearch={() => navigation.navigate('NotificationBusiness')}
+        onPressSearch={() => navigation.navigate('Search')}
         onPressProfile={() => {
           navigation.navigate('BusinessProfile');
         }}
