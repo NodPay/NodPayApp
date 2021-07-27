@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 
 //where local files imported
@@ -192,38 +199,37 @@ const Register = ({navigation}) => {
         showModal={showModal}
         typeModal={typeModal}
       />
-      <View
-        style={{
-          paddingVertical: dimens.default_16,
-          backgroundColor: 'white',
-          justifyContent: 'center',
-          paddingHorizontal: dimens.default_16,
-        }}>
-        {activeStep == 3 && (
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}>
+        <View style={styles.btn_footer}>
+          {activeStep == 3 && (
+            <Button
+              onPress={takePhoto}
+              title="Start Scan"
+              btnStyle={{
+                backgroundColor: 'white',
+                marginBottom: 8,
+                borderWidth: 1,
+                borderColor: color.grey,
+              }}
+              titleStyle={{color: color.btn_title_white}}
+              iconRight={Next}
+            />
+          )}
           <Button
-            onPress={takePhoto}
-            title="Start Scan"
+            disabled={isDisabled}
+            onPress={onNext}
+            title={activeStep == 4 ? 'Create Account' : 'Next'}
             btnStyle={{
-              backgroundColor: 'white',
-              marginBottom: 8,
-              borderWidth: 1,
-              borderColor: color.grey,
+              backgroundColor: isDisabled ? color.grey : color.btn_black,
             }}
-            titleStyle={{color: color.btn_title_white}}
+            titleStyle={{color: 'white'}}
             iconRight={Next}
           />
-        )}
-        <Button
-          disabled={isDisabled}
-          onPress={onNext}
-          title={activeStep == 4 ? 'Create Account' : 'Next'}
-          btnStyle={{
-            backgroundColor: isDisabled ? color.grey : color.btn_black,
-          }}
-          titleStyle={{color: 'white'}}
-          iconRight={Next}
-        />
-      </View>
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -234,5 +240,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: color.btn_white_2,
+  },
+  btn_footer: {
+    backgroundColor: 'white',
+    paddingVertical: dimens.default_16,
+    paddingHorizontal: dimens.default_16,
   },
 });
