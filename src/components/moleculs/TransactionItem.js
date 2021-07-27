@@ -62,11 +62,14 @@ const styles = StyleSheet.create({
   name: {
     fontFamily: fonts.sofia_bold,
     fontSize: dimens.default,
+    lineHeight: dimens.default_18,
     color: color.btn_black,
+    marginBottom: dimens.supersmall,
   },
   type: {
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_14,
+    lineHeight: dimens.default_18,
     color: color.grey,
   },
   amountContainer: {
