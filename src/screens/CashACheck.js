@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 
@@ -93,7 +94,9 @@ const CashACheck = ({navigation}) => {
 
       {/* Bottom Button Section */}
       <KeyboardAvoidingView
-        behavior="height"
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}
         style={styles.bottomButtonSection}>
         <MainActionList
           icon={OutlineCamera}
@@ -211,9 +214,9 @@ const styles = StyleSheet.create({
     backgroundColor: color.btn_white_2,
   },
   totalAmount: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 115,
   },
   enterTotalAmount: {
     fontFamily: fonts.sofia_regular,
@@ -228,10 +231,6 @@ const styles = StyleSheet.create({
   bottomButtonSection: {
     backgroundColor: 'white',
     paddingHorizontal: dimens.default,
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
   },
   line: {
     height: 1,
