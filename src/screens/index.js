@@ -55,6 +55,7 @@ import SearchEmployee from './SearchEmployee';
 import AddEmployee from './AddEmployee';
 import EmployeeDetail from './EmployeeDetail';
 import Accesbility from './Accesbility';
+import PaySalary from './PaySalary';
 
 export {
   Splash,
@@ -114,4 +115,5 @@ export {
   AddEmployee,
   EmployeeDetail,
   Accesbility,
+  PaySalary,
 };

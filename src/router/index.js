@@ -64,6 +64,7 @@ import {
   AddEmployee,
   EmployeeDetail,
   Accesbility,
+  PaySalary,
 } from '../screens';
 import {
   Drawer as DrawerComponent,
@@ -167,6 +168,7 @@ const Router = () => {
         <Stack.Screen name="AddEmployee" component={AddEmployee} />
         <Stack.Screen name="EmployeeDetail" component={EmployeeDetail} />
         <Stack.Screen name="Accesbility" component={Accesbility} />
+        <Stack.Screen name="PaySalary" component={PaySalary} />
       </Stack.Navigator>
     </NavigationContainer>
   );
