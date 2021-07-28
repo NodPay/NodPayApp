@@ -63,11 +63,8 @@ import {
   SearchEmployee,
   AddEmployee,
   EmployeeDetail,
-  BusinessTransaction,
-  BusinessTransactionForm,
-  BusinessTransactionPIN,
-  BusinessTransactionSuccess,
-  BusinessTransactionTransferToNod,
+  Accesbility,
+  PaySalary,
 } from '../screens';
 import {
   Drawer as DrawerComponent,
@@ -170,26 +167,8 @@ const Router = () => {
         <Stack.Screen name="SearchEmployee" component={SearchEmployee} />
         <Stack.Screen name="AddEmployee" component={AddEmployee} />
         <Stack.Screen name="EmployeeDetail" component={EmployeeDetail} />
-        <Stack.Screen
-          name="BusinessTransaction"
-          component={BusinessTransaction}
-        />
-        <Stack.Screen
-          name="BusinessTransactionForm"
-          component={BusinessTransactionForm}
-        />
-        <Stack.Screen
-          name="BusinessTransactionPIN"
-          component={BusinessTransactionPIN}
-        />
-        <Stack.Screen
-          name="BusinessTransactionSuccess"
-          component={BusinessTransactionSuccess}
-        />
-        <Stack.Screen
-          name="BusinessTransactionTransferToNod"
-          component={BusinessTransactionTransferToNod}
-        />
+        <Stack.Screen name="Accesbility" component={Accesbility} />
+        <Stack.Screen name="PaySalary" component={PaySalary} />
       </Stack.Navigator>
     </NavigationContainer>
   );
