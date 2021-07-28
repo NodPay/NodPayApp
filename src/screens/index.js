@@ -54,11 +54,7 @@ import NotificationBusiness from './NotificationBusiness';
 import SearchEmployee from './SearchEmployee';
 import AddEmployee from './AddEmployee';
 import EmployeeDetail from './EmployeeDetail';
-import BusinessTransaction from './BusinessTransaction';
-import BusinessTransactionForm from './BusinessTransactionForm';
-import BusinessTransactionPIN from './BusinessTransactionPIN';
-import BusinessTransactionSuccess from './BusinessTransactionSuccess';
-import BusinessTransactionTransferToNod from './BusinessTransactionTransferToNod';
+import Accesbility from './Accesbility';
 
 export {
   Splash,
@@ -117,9 +113,5 @@ export {
   SearchEmployee,
   AddEmployee,
   EmployeeDetail,
-  BusinessTransaction,
-  BusinessTransactionForm,
-  BusinessTransactionPIN,
-  BusinessTransactionSuccess,
-  BusinessTransactionTransferToNod,
+  Accesbility,
 };
