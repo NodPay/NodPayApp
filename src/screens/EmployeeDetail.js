@@ -209,10 +209,18 @@ const EmployeeDetail = ({navigation}) => {
           right: 0,
         }}>
         <View style={styles.btn}>
-          <Button title="Accesbility" btnStyle={{flex: 1}} onPress={() => {}} />
+          <Button
+            title="Accesbility"
+            btnStyle={{flex: 1}}
+            onPress={() => {
+              navigation.navigate('Accesbility');
+            }}
+          />
           <Gap r={dimens.default_12} />
           <Button
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('PaySalary');
+            }}
             title="Pay Salary"
             btnStyle={{backgroundColor: color.btn_black, flex: 1}}
             titleStyle={{color: 'white'}}
