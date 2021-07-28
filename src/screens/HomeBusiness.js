@@ -83,7 +83,7 @@ const HomeBusiness = ({navigation}) => {
           }}>
           <TouchableOpacity>
             <Image source={HomeActive} style={{width: 30, height: 30}} />
-            <Text>Home</Text>
+            <Text style={{color: color.bg_color}}>Home</Text>
           </TouchableOpacity>
           <View>
             <TouchableOpacity

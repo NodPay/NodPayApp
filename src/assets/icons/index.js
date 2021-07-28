@@ -102,16 +102,17 @@ import FileDocument from './document.png';
 import DrawerSwitch from './drawer_switch.png';
 import DrawerEmployee from './drawer_employee.png';
 import BookInactive from './book_inactive.png';
+import BookActive from './book_active.png';
 import SearchBlack from './search_black.png';
 import InviteBlack from './invite_black.png';
 import Business from './business.png';
 import ThreeDotsBlack from './three_dots_black.png';
 
-
 export {
   DrawerSwitch,
   DrawerEmployee,
   BookInactive,
+  BookActive,
   GlobePurple,
   PlanePurple,
   NameCardPurple,
@@ -215,5 +216,5 @@ export {
   SearchBlack,
   InviteBlack,
   Business,
-  ThreeDotsBlack
+  ThreeDotsBlack,
 };
