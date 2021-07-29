@@ -14,10 +14,11 @@ import {max} from 'lodash';
 
 //where local files imported
 import {dimens, color, fonts} from '../../utils';
-import {SectionTitle, TransactionItem, Gap} from '../../components';
-import {People1, DownBlack} from '../../assets';
+import {SectionTitle, TransactionItem, EmptyState, Gap} from '../../components';
+import {People1, DownBlack, EmptyData} from '../../assets';
 
 const NotificationActivity = () => {
+  const [isEmpty, setIsEmpty] = useState(false);
   const [notifActivityData, setNotifActivityData] = useState([
     {
       photo: People1,
@@ -225,7 +226,15 @@ const NotificationActivity = () => {
     </G>
   );
 
-  return (
+  return isEmpty ? (
+    <View style={{flex: 1, justifyContent: 'center'}}>
+      <EmptyState
+        icon={EmptyData}
+        iconSize={72}
+        content={`You currently have\nno report`}
+      />
+    </View>
+  ) : (
     <ScrollView style={styles.container}>
       <View
         style={{

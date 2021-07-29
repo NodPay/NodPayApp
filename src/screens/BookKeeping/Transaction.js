@@ -3,15 +3,11 @@ import {StyleSheet, ScrollView, View, Text, FlatList} from 'react-native';
 
 //where local files imported
 import {dimens, color, fonts} from '../../utils';
-import {
-  RequestMoneyItem,
-  SectionTitle,
-  TransactionItem,
-  Gap,
-} from '../../components';
-import {People1} from '../../assets';
+import {EmptyState, SectionTitle, TransactionItem, Gap} from '../../components';
+import {People1, EmptyData} from '../../assets';
 
 const NotificationRequest = () => {
+  const [isEmpty, setIsEmpty] = useState(false);
   const [notifRequestData, setNotifRequestData] = useState([
     {
       id: 1,
@@ -93,7 +89,15 @@ const NotificationRequest = () => {
     {name: 'Apple', type: 'Tech', pay: '69'},
   ];
 
-  return (
+  return isEmpty ? (
+    <View style={{flex: 1, justifyContent: 'center'}}>
+      <EmptyState
+        icon={EmptyData}
+        iconSize={72}
+        content={`You currently have\nno transaction`}
+      />
+    </View>
+  ) : (
     <ScrollView style={styles.container}>
       <View
         style={{
