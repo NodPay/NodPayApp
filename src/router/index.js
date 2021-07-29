@@ -27,7 +27,7 @@ import {
   Search,
   Settings,
   Comment,
-  Card,
+  MyCard,
   Feedback,
   Language,
   ChangePhoneNumber,
@@ -83,7 +83,7 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Splash"
+        initialRouteName="AppDrawer"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Loader" component={Loader} />
@@ -209,8 +209,9 @@ const AppDrawer = () => {
       drawerStyle={{backgroundColor: 'transparent'}}
       screenOptions={{unmountOnBlur: true}}
       drawerContent={props => <DrawerComponent {...props} />}>
+      {/* <Drawer.Screen name="HomeTabs" component={HomeTabs} /> */}
       <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Card" component={Card} />
+      <Drawer.Screen name="MyCard" component={MyCard} />
     </Drawer.Navigator>
   );
 };
@@ -231,19 +232,15 @@ const AppBusinessDrawer = () => {
   );
 };
 
-// const HomeTabs = () => {
-//   const Tab = createBottomTabNavigator();
+const HomeTabs = () => {
+  const Tab = createBottomTabNavigator();
 
-//   const Exchange = () => {
-//     return null
-//   }
-
-//   return (
-//     <Tab.Navigator>
-//       <Tab.Screen name="Home" component={Home} />
-//       <Tab.Screen name="Card" component={Card} />
-//     </Tab.Navigator>
-//   );
-// };
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="MyCard" component={MyCard} />
+    </Tab.Navigator>
+  );
+};
 
 export default Router;

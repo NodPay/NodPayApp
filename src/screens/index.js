@@ -18,7 +18,7 @@ import InviteFriendPeople from './InviteFriendPeople';
 import Search from './Search';
 import Settings from './Settings';
 import Comment from './Comment';
-import Card from './Card';
+import MyCard from './MyCard';
 import Feedback from './Feedback';
 import Language from './Language';
 import ChangePhoneNumber from './ChangePhoneNumber';
@@ -83,7 +83,7 @@ export {
   Search,
   Settings,
   Comment,
-  Card,
+  MyCard,
   Feedback,
   Language,
   ChangePhoneNumber,

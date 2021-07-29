@@ -6,6 +6,7 @@ import {
   Image,
   Text,
   SafeAreaView,
+  TouchableOpacity,
 } from 'react-native';
 
 import {DrawerItem, BalanceInfo} from '../moleculs';
@@ -31,7 +32,12 @@ const Drawer = ({navigation}) => {
   return (
     <SafeAreaView style={styles.drawerContainer}>
       <ScrollView contentContainerStyle={styles.scrollviewContainer}>
-        <View style={styles.profileContainer}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Profile');
+          }}
+          activeOpacity={0.6}
+          style={styles.profileContainer}>
           <Image
             source={ProfileExample}
             style={{height: 45, width: 45, resizeMode: 'contain'}}
@@ -40,7 +46,7 @@ const Drawer = ({navigation}) => {
             <Text style={styles.realname}>Ahmad Jalaluddin</Text>
             <Text style={styles.username}>@ahmadjalaluddin</Text>
           </View>
-        </View>
+        </TouchableOpacity>
 
         <View style={{padding: dimens.default}}>
           <BalanceInfo

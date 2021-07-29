@@ -11,8 +11,8 @@ import {
 } from 'react-native';
 
 //where local file imported
-import {Tabbed, PageTitle, MenuItem} from '../components/';
-import {color, dimens, fonts} from '../utils/';
+import {Tabbed, PageTitle, MenuItem} from '../components';
+import {color, dimens, fonts} from '../utils';
 import {
   CardActive,
   Exchange,
@@ -24,9 +24,9 @@ import {
   GlobePurple,
   PlanePurple,
   NameCardPurple,
-} from '../assets/';
+} from '../assets';
 
-const Card = ({navigation}) => {
+const MyCard = ({navigation}) => {
   const [toggleSwitch, setToggleSwitch] = useState({
     onlinePayments: false,
     paymentsAbroad: false,
@@ -209,4 +209,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Card;
+export default MyCard;

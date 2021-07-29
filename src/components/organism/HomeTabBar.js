@@ -31,7 +31,7 @@ const HomeTabBar = ({state, descriptors, navigation}) => {
     let icon;
     if (route(index).name === 'Home') {
       icon = isFocused(index) ? HomeActive : HomeInactive;
-    } else if (route(index).name === 'Card') {
+    } else if (route(index).name === 'MyCard') {
       icon = isFocused(index) ? CardActive : CardInactive;
     }
 
