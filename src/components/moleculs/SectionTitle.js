@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     color: color.btn_black,
     fontFamily: fonts.sofia_bold,
-    fontSize: dimens.medium,
+    fontSize: dimens.default_22,
     textAlign: 'center',
   },
   modalSubtitle: {

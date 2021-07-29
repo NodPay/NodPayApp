@@ -18,7 +18,8 @@ import InviteFriendPeople from './InviteFriendPeople';
 import Search from './Search';
 import Settings from './Settings';
 import Comment from './Comment';
-import Card from './Card';
+import MyCard from './MyCard';
+import MyCardChangePin from './MyCardChangePin';
 import Feedback from './Feedback';
 import Language from './Language';
 import ChangePhoneNumber from './ChangePhoneNumber';
@@ -53,6 +54,14 @@ import InviteSignupBusiness from './InviteSignupBusiness';
 import NotificationBusiness from './NotificationBusiness';
 import SearchEmployee from './SearchEmployee';
 import AddEmployee from './AddEmployee';
+import EmployeeDetail from './EmployeeDetail';
+import BusinessTransaction from './BusinessTransaction';
+import BusinessTransactionForm from './BusinessTransactionForm';
+import BusinessTransactionPIN from './BusinessTransactionPIN';
+import BusinessTransactionSuccess from './BusinessTransactionSuccess';
+import BusinessTransactionTransferToNod from './BusinessTransactionTransferToNod';
+import Accesbility from './Accesbility';
+import PaySalary from './PaySalary';
 
 export {
   Splash,
@@ -75,7 +84,8 @@ export {
   Search,
   Settings,
   Comment,
-  Card,
+  MyCard,
+  MyCardChangePin,
   Feedback,
   Language,
   ChangePhoneNumber,
@@ -110,4 +120,12 @@ export {
   NotificationBusiness,
   SearchEmployee,
   AddEmployee,
+  EmployeeDetail,
+  BusinessTransaction,
+  BusinessTransactionForm,
+  BusinessTransactionPIN,
+  BusinessTransactionSuccess,
+  BusinessTransactionTransferToNod,
+  Accesbility,
+  PaySalary,
 };

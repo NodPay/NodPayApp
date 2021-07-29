@@ -83,7 +83,6 @@ const InviteSignupBusiness = ({navigation}) => {
         isBlackArrow
         title="Bussiness Sign Up"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
       />
       <View style={styles.containerContent}>
         <View style={styles.containerStep}>
@@ -143,7 +142,6 @@ const InviteSignupBusiness = ({navigation}) => {
           isCloseMode
           title="Share Invitation Link"
           titleStyle={{color: color.btn_black}}
-          navigation={navigation}
           onPressClose={() => refRBSheet.current?.close()}
         />
         <View style={styles.containerModal}>

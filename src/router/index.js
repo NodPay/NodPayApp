@@ -3,7 +3,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {View, Text} from 'react-native';
 
 // where screens should be imported
 import {
@@ -27,7 +26,8 @@ import {
   Search,
   Settings,
   Comment,
-  Card,
+  MyCard,
+  MyCardChangePin,
   Feedback,
   Language,
   ChangePhoneNumber,
@@ -62,6 +62,14 @@ import {
   NotificationBusiness,
   SearchEmployee,
   AddEmployee,
+  EmployeeDetail,
+  BusinessTransaction,
+  BusinessTransactionForm,
+  BusinessTransactionPIN,
+  BusinessTransactionSuccess,
+  BusinessTransactionTransferToNod,
+  Accesbility,
+  PaySalary,
 } from '../screens';
 import {
   Drawer as DrawerComponent,
@@ -69,9 +77,10 @@ import {
   HomeTabBar,
 } from '../components';
 
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 const Router = () => {
-  const Stack = createStackNavigator();
-
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -163,14 +172,36 @@ const Router = () => {
         />
         <Stack.Screen name="SearchEmployee" component={SearchEmployee} />
         <Stack.Screen name="AddEmployee" component={AddEmployee} />
+        <Stack.Screen name="EmployeeDetail" component={EmployeeDetail} />
+        <Stack.Screen
+          name="BusinessTransaction"
+          component={BusinessTransaction}
+        />
+        <Stack.Screen
+          name="BusinessTransactionForm"
+          component={BusinessTransactionForm}
+        />
+        <Stack.Screen
+          name="BusinessTransactionPIN"
+          component={BusinessTransactionPIN}
+        />
+        <Stack.Screen
+          name="BusinessTransactionSuccess"
+          component={BusinessTransactionSuccess}
+        />
+        <Stack.Screen
+          name="BusinessTransactionTransferToNod"
+          component={BusinessTransactionTransferToNod}
+        />
+        <Stack.Screen name="Accesbility" component={Accesbility} />
+        <Stack.Screen name="PaySalary" component={PaySalary} />
+        <Stack.Screen name="MyCardChangePin" component={MyCardChangePin} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
 const AppDrawer = () => {
-  const Drawer = createDrawerNavigator();
-
   return (
     <Drawer.Navigator
       drawerType="front"
@@ -178,15 +209,14 @@ const AppDrawer = () => {
       drawerStyle={{backgroundColor: 'transparent'}}
       screenOptions={{unmountOnBlur: true}}
       drawerContent={props => <DrawerComponent {...props} />}>
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Card" component={Card} />
+      {/* <Drawer.Screen name="HomeTabs" component={HomeTabs} /> */}
+      {/* <Drawer.Screen name="Home" component={Home} /> */}
+      <Drawer.Screen name="MyCard" component={MyCard} />
     </Drawer.Navigator>
   );
 };
 
 const AppBusinessDrawer = () => {
-  const Drawer = createDrawerNavigator();
-
   return (
     <Drawer.Navigator
       drawerType="front"
@@ -200,19 +230,13 @@ const AppBusinessDrawer = () => {
   );
 };
 
-// const HomeTabs = () => {
-//   const Tab = createBottomTabNavigator();
-
-//   const Exchange = () => {
-//     return null
-//   }
-
-//   return (
-//     <Tab.Navigator>
-//       <Tab.Screen name="Home" component={Home} />
-//       <Tab.Screen name="Card" component={Card} />
-//     </Tab.Navigator>
-//   );
-// };
+const HomeTabs = () => {
+  return (
+    <Tab.Navigator>
+      {/* <Tab.Screen name="Home" component={Home} /> */}
+      <Tab.Screen name="MyCard" component={MyCard} />
+    </Tab.Navigator>
+  );
+};
 
 export default Router;

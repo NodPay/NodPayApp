@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import {
   View,
   FlatList,
@@ -17,7 +17,6 @@ import {
   BalanceInfo,
   FeedItem,
   Tabbed,
-  RequestMoneyItem,
   Gap,
   TransactionItem,
   MainAction,
@@ -28,24 +27,36 @@ import {BookInactive, Exchange, HomeActive, People1} from '../assets/';
 const Tab = createMaterialTopTabNavigator();
 const HomeBusiness = ({navigation}) => {
   const mainActionRef = useRef(null);
+  const [userRole, setUserRole] = useState('admin');
+
+  useEffect(() => {
+    getData('session')
+      .then(res => {
+        console.log('home get session', res.role);
+        setUserRole(res.role);
+      })
+      .catch(e => console.log('error while getData', e));
+  });
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={color.btn_white_2} />
 
       <HeaderHome
-        onPressSearch={() => navigation.navigate('Search')}
+        onPressSearch={() => navigation.navigate('Search', {type: 'business'})}
         onPressProfile={() => {
-          navigation.navigate('BusinessProfile');
+          navigation.navigate('BusinessProfile', {type: 'business'});
         }}
       />
 
       <View style={{padding: dimens.default, paddingBottom: 0, flex: 1}}>
-        <BalanceInfo
-          type="home"
-          moneyAmount="400.000"
-          onPressAdd={() => mainActionRef.current.open()}
-        />
+        {userRole === 'admin' && (
+          <BalanceInfo
+            type="home"
+            moneyAmount="400.000"
+            onPressAdd={() => mainActionRef.current.open()}
+          />
+        )}
 
         <Tab.Navigator
           tabBar={props => (
@@ -72,7 +83,7 @@ const HomeBusiness = ({navigation}) => {
           }}>
           <TouchableOpacity>
             <Image source={HomeActive} style={{width: 30, height: 30}} />
-            <Text>Home</Text>
+            <Text style={{color: color.bg_color}}>Home</Text>
           </TouchableOpacity>
           <View>
             <TouchableOpacity
@@ -87,7 +98,7 @@ const HomeBusiness = ({navigation}) => {
                 borderWidth: 10,
                 borderColor: color.btn_white_2,
               }}
-              onPress={() => navigation.navigate('Transaction')}>
+              onPress={() => navigation.navigate('BusinessTransaction')}>
               <Image source={Exchange} style={{width: 30, height: 30}} />
             </TouchableOpacity>
             <Text>Exchange</Text>
@@ -115,6 +126,34 @@ const HomeBusiness = ({navigation}) => {
 
 const Customer = ({navigation}) => {
   const data = [
+    {
+      subject: 'John',
+      predicate: 'Paid',
+      object: 'Talha',
+      message: 'Coffee',
+      amount: 100,
+    },
+    {
+      subject: 'John',
+      predicate: 'Paid',
+      object: 'Talha',
+      message: 'Coffee',
+      amount: 100,
+    },
+    {
+      subject: 'John',
+      predicate: 'Paid',
+      object: 'Talha',
+      message: 'Coffee',
+      amount: 100,
+    },
+    {
+      subject: 'John',
+      predicate: 'Paid',
+      object: 'Talha',
+      message: 'Coffee',
+      amount: 100,
+    },
     {
       subject: 'John',
       predicate: 'Paid',

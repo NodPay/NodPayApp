@@ -18,7 +18,6 @@ const PasswordSecurity = ({navigation}) => {
         isBlackArrow
         title="Password & Security"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
       />
       <Tab.Navigator tabBar={props => <Tabbed {...props} />}>
         <Tab.Screen name="Password" component={Password} />

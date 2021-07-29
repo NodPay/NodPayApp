@@ -18,19 +18,25 @@ const TransactionItem = ({name, type, pay, isMinus}) => {
           <Text style={styles.type}>{type || 'type'}</Text>
         </View>
       </View>
-      <Text
-        style={{
-          color: isMinus ? color.red : color.green,
-          fontFamily: fonts.sofia_bold,
-          backgroundColor: isMinus ? color.error_background : color.bg_success,
-          height: 30,
-          width: 60,
-          borderRadius: 30,
-          textAlign: 'center',
-          textAlignVertical: 'center',
-        }}>
-        {isMinus ? `- Rs ${pay}` : `+ ${pay || 0} Rs`}
-      </Text>
+      <View
+        style={[
+          styles.amountContainer,
+          {
+            backgroundColor: isMinus
+              ? color.error_background
+              : color.bg_success,
+          },
+        ]}>
+        <Text
+          style={[
+            styles.amountText,
+            {
+              color: isMinus ? color.red : color.green,
+            },
+          ]}>
+          {isMinus ? `- Rs ${pay}` : `+ ${pay || 0} Rs`}
+        </Text>
+      </View>
     </View>
   );
 };
@@ -40,6 +46,7 @@ const styles = StyleSheet.create({
     marginTop: dimens.default,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'flex-start',
     backgroundColor: 'white',
     padding: dimens.default,
     borderRadius: dimens.default,
@@ -55,12 +62,27 @@ const styles = StyleSheet.create({
   name: {
     fontFamily: fonts.sofia_bold,
     fontSize: dimens.default,
+    lineHeight: dimens.default_18,
     color: color.btn_black,
+    marginBottom: dimens.supersmall,
   },
   type: {
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_14,
+    lineHeight: dimens.default_18,
     color: color.grey,
+  },
+  amountContainer: {
+    borderRadius: dimens.default_12,
+    backgroundColor: color.green3,
+    paddingHorizontal: dimens.small,
+    paddingVertical: dimens.supersmall,
+  },
+  amountText: {
+    color: color.green,
+    fontSize: dimens.default_12,
+    lineHeight: dimens.default_14,
+    fontFamily: fonts.sofia_regular,
   },
 });
 

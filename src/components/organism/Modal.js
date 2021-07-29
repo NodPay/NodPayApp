@@ -26,6 +26,7 @@ const Modal = ({
   btn1Onpress,
   btn2Text,
   btn2Onpress,
+  isRowBtn,
 }) => {
   return (
     <RNModal visible={visible} transparent>
@@ -36,26 +37,63 @@ const Modal = ({
           <Image source={Close} />
         </TouchableOpacity>
 
-        <Image source={imageSrc} style={{alignSelf: 'center'}} />
+        <Image
+          source={imageSrc}
+          style={{alignSelf: 'center', marginBottom: -30}}
+        />
 
         <SectionTitle type="modal" title={title} subtitle={subtitle} />
 
-        {btn1Text && (
-          <Button
-            onPress={btn1Onpress}
-            btnStyle={styles.btn1}
-            title={btn1Text}
-            titleStyle={{color: 'white'}}
-          />
-        )}
+        {isRowBtn ? (
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: dimens.default,
+            }}>
+            {btn1Text && (
+              <Button
+                onPress={btn1Onpress}
+                title={btn1Text}
+                titleStyle={{color: color.btn_title_white}}
+                btnStyle={{flex: 1, width: '100%', marginRight: 8}}
+              />
+            )}
 
-        {btn2Text && (
-          <Button
-            onPress={btn2Onpress}
-            btnStyle={styles.btn2}
-            title={btn2Text}
-            titleStyle={{color: color.btn_title_white}}
-          />
+            {btn2Text && (
+              <Button
+                titleStyle={{color: 'white'}}
+                onPress={btn2Onpress}
+                title={btn2Text}
+                btnStyle={{
+                  flex: 1,
+                  width: '100%',
+                  marginLeft: 8,
+                  backgroundColor: color.btn_black,
+                }}
+              />
+            )}
+          </View>
+        ) : (
+          <View>
+            {btn1Text && (
+              <Button
+                onPress={btn1Onpress}
+                btnStyle={styles.btn1}
+                title={btn1Text}
+                titleStyle={{color: 'white'}}
+              />
+            )}
+
+            {btn2Text && (
+              <Button
+                onPress={btn2Onpress}
+                btnStyle={styles.btn2}
+                title={btn2Text}
+                titleStyle={{color: color.btn_title_white}}
+              />
+            )}
+          </View>
         )}
       </View>
     </RNModal>

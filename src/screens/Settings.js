@@ -16,20 +16,20 @@ import {
   FileDocument,
 } from '../assets';
 
-const Settings = ({navigation, type}) => {
-  type = 'business';
+const Settings = ({route, navigation}) => {
+  const {type} = route.params;
+
   return (
     <SafeAreaView style={styles.container}>
       <PageTitle
         isBlackArrow
         title="Settings"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
       />
       <SettingsItem
         icon={AccountCircle}
         title="Edit Profile"
-        onPress={() => navigation.navigate('EditProfileBusiness')}
+        onPress={() => navigation.navigate('EditProfile')}
       />
       {type == 'business' && (
         <SettingsItem

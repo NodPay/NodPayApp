@@ -30,7 +30,6 @@ const InviteOtherBusiness = ({navigation}) => {
         isBlackArrow
         title="Invite Other Bussiness"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
       />
       <ScrollView>
         <View style={styles.containerCenter}>
@@ -91,7 +90,6 @@ const InviteOtherBusiness = ({navigation}) => {
           isCloseMode
           title="Share Invitation Link"
           titleStyle={{color: color.btn_black}}
-          navigation={navigation}
           onPressClose={() => refRBSheet.current?.close()}
         />
         <View style={styles.containerModal}>

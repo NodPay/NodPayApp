@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import {
   View,
   ScrollView,
@@ -21,11 +21,28 @@ import {
   ProfileExample,
   DrawerEmployee,
 } from '../../assets';
-import {dimens, color, fonts, removeData, storeData} from '../../utils';
+import {
+  dimens,
+  color,
+  fonts,
+  removeData,
+  storeData,
+  getData,
+} from '../../utils';
 import {MainAction} from '../organism';
 
 const BusinessDrawer = ({navigation}) => {
   const mainActionRef = useRef(null);
+  const [userRole, setUserRole] = useState('admin');
+
+  useEffect(() => {
+    getData('session')
+      .then(res => {
+        console.log('home get session', res.role);
+        setUserRole(res.role);
+      })
+      .catch(e => console.log('error while getData', e));
+  });
 
   return (
     <SafeAreaView style={styles.drawerContainer}>
@@ -42,11 +59,13 @@ const BusinessDrawer = ({navigation}) => {
         </View>
 
         <View style={{padding: dimens.default}}>
-          <BalanceInfo
-            type="drawer"
-            moneyAmount="400.000"
-            onPressAdd={() => mainActionRef.current.open()}
-          />
+          {userRole === 'admin' && (
+            <BalanceInfo
+              type="drawer"
+              moneyAmount="400.000"
+              onPressAdd={() => mainActionRef.current.open()}
+            />
+          )}
         </View>
 
         <DrawerItem
@@ -55,38 +74,46 @@ const BusinessDrawer = ({navigation}) => {
           image={DrawerHomeActive}
           onPress={() => {}}
         />
-        <DrawerItem
-          label="Employee"
-          image={DrawerEmployee}
-          onPress={() => {}}
-        />
+        {userRole === 'admin' && (
+          <DrawerItem
+            label="Employee"
+            image={DrawerEmployee}
+            onPress={() => {}}
+          />
+        )}
         <DrawerItem
           label="Notifications"
           image={DrawerNotification}
           onPress={() => {
-            navigation.navigate('Notification');
+            navigation.navigate('NotificationBusiness');
           }}
           unreadCount={4}
         />
-        <DrawerItem
-          label="Bank Account"
-          image={DrawerBank}
-          onPress={() => {
-            navigation.navigate('BankAccount');
-          }}
-        />
-        <DrawerItem
-          label="Invite Other Business"
-          image={DrawerInvite}
-          onPress={() => {
-            navigation.navigate('InviteFriend');
-          }}
-        />
-        <DrawerItem
-          label="Settings"
-          image={DrawerSetting}
-          onPress={() => navigation.navigate('Settings')}
-        />
+        {userRole === 'admin' && (
+          <>
+            <DrawerItem
+              label="Bank Account"
+              image={DrawerBank}
+              onPress={() => {
+                navigation.navigate('BankAccount');
+              }}
+            />
+            <DrawerItem
+              label="Invite Other Business"
+              image={DrawerInvite}
+              onPress={() => {
+                navigation.navigate('InviteFriend');
+              }}
+            />
+            <DrawerItem
+              label="Settings"
+              image={DrawerSetting}
+              onPress={() =>
+                navigation.navigate('Settings', {type: 'business'})
+              }
+            />
+          </>
+        )}
         <DrawerItem label="Help" image={DrawerHelp} onPress={() => {}} />
       </ScrollView>
 

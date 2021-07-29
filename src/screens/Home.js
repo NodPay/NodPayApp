@@ -41,7 +41,7 @@ const Home = ({navigation}) => {
       <StatusBar backgroundColor={color.btn_white_2} />
 
       <HeaderHome
-        onPressSearch={() => navigation.navigate('Search')}
+        onPressSearch={() => navigation.navigate('Search', {type: 'personal'})}
         onPressProfile={() => {
           navigation.navigate('Profile');
         }}
@@ -67,7 +67,7 @@ const Home = ({navigation}) => {
         </Tab.Navigator>
       </View>
 
-      <Gap t={100} />
+      {/* <Gap t={100} /> */}
 
       {/* Bottom Tab Navigator */}
       <View style={styles.bottomTab}>
@@ -101,7 +101,7 @@ const Home = ({navigation}) => {
           </View>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('Card');
+              navigation.navigate('MyCard');
             }}>
             <Image source={CardInactive} style={{width: 30, height: 30}} />
             <Text>Card</Text>

@@ -75,7 +75,6 @@ const BankAccountConnect = ({navigation}) => {
         }}
         title="Connect Bank Account"
         titleStyle={styles.pageTitle}
-        navigation={navigation}
       />
 
       <ScrollView contentContainerStyle={styles.listContainer}>

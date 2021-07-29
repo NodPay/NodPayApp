@@ -8,6 +8,8 @@ import {
   FlatList,
   TouchableOpacity,
   TextInput,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 
 // where local files imported
@@ -130,6 +132,7 @@ const TransferToBank = ({navigation}) => {
           setVisible(false);
           setTransfer(false);
           setValue(0);
+          navigation.goBack();
         },
       });
     }
@@ -151,70 +154,75 @@ const TransferToBank = ({navigation}) => {
             width: 32,
             marginLeft: 5,
           }}
-          navigation={navigation}
         />
         {/* Header End */}
+        <View style={{flex: 1}}>
+          {/* Total Amount */}
+          <View style={styles.totalAmount}>
+            <Text style={styles.enterTotalAmount}>Enter Total Amount</Text>
+            {/* check is input */}
+            {isInput ? (
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Text style={styles.amount}>Rs</Text>
+                <TextInput
+                  autoFocus={true}
+                  keyboardType="number-pad"
+                  value={value}
+                  onChangeText={val => setValue(val)}
+                  style={[styles.amount, {color: '#03060C', fontSize: 47}]}
+                  onSubmitEditing={() => {
+                    setIsInput(false);
+                  }}
+                />
+              </View>
+            ) : (
+              <Text style={styles.amount} onPress={() => setIsInput(!isInput)}>
+                Rs <Text style={{color: '#03060C', fontSize: 47}}>{value}</Text>
+              </Text>
+            )}
+          </View>
+          {/* Total Amount End */}
 
-        {/* Total Amount */}
-        <View style={styles.totalAmount}>
-          <Text style={styles.enterTotalAmount}>Enter Total Amount</Text>
-          {/* check is input */}
-          {isInput ? (
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Text style={styles.amount}>Rs</Text>
-              <TextInput
-                autoFocus={true}
-                keyboardType="number-pad"
-                value={value}
-                onChangeText={val => setValue(val)}
-                style={[styles.amount, {color: '#03060C', fontSize: 47}]}
-                onSubmitEditing={() => {
-                  setIsInput(false);
+          <Gap t={dimens.default_22 + 2} />
+
+          {/* List Button Number*/}
+          <FlatList
+            contentContainerStyle={{
+              flexDirection: 'row',
+              justifyContent: 'space-evenly',
+            }}
+            data={dataListButton}
+            keyExtractor={item => item.id}
+            renderItem={({item}) => (
+              <ListButton
+                {...item}
+                onPress={() => {
+                  if (item.amount == 'All') {
+                    // do nothing
+                  } else {
+                    setValue(item.amount);
+                  }
                 }}
               />
-            </View>
-          ) : (
-            <Text style={styles.amount} onPress={() => setIsInput(!isInput)}>
-              Rs <Text style={{color: '#03060C', fontSize: 47}}>{value}</Text>
-            </Text>
-          )}
+            )}
+          />
+          {/* List Button Number End*/}
         </View>
-        {/* Total Amount End */}
-
-        <Gap t={dimens.default_22 + 2} />
-
-        {/* List Button Number*/}
-        <FlatList
-          contentContainerStyle={{
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-          }}
-          data={dataListButton}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => (
-            <ListButton
-              {...item}
-              onPress={() => {
-                if (item.amount == 'All') {
-                  // do nothing
-                } else {
-                  setValue(item.amount);
-                }
-              }}
-            />
-          )}
-        />
-        {/* List Button Number End*/}
 
         {/* Bottom Button */}
-        <View style={styles.btnWrapper}>
-          <Button
-            onPress={onTransfer}
-            title="Transfer"
-            titleStyle={{color: color.btn_white_2}}
-            btnStyle={{backgroundColor: color.btn_black}}
-          />
-        </View>
+        <KeyboardAvoidingView
+          behavior="padding"
+          keyboardVerticalOffset={0}
+          enabled={Platform.OS === 'android' ? false : true}>
+          <View style={styles.btnWrapper}>
+            <Button
+              onPress={onTransfer}
+              title="Transfer"
+              titleStyle={{color: color.btn_white_2}}
+              btnStyle={{backgroundColor: color.btn_black}}
+            />
+          </View>
+        </KeyboardAvoidingView>
         {/* Bottom Button End */}
 
         {/* Modal */}
@@ -240,7 +248,6 @@ const TransferToBank = ({navigation}) => {
         isBlackArrow
         title="Transfer To Bank"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
       />
       {/* Header End */}
 
@@ -261,14 +268,19 @@ const TransferToBank = ({navigation}) => {
       {/* List Bank End */}
 
       {/* Bottom Button */}
-      <View style={styles.btnWrapper}>
-        <Button
-          onPress={() => setTransfer(true)}
-          title="Continue"
-          titleStyle={{color: color.btn_white_2}}
-          btnStyle={{backgroundColor: color.btn_black}}
-        />
-      </View>
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}>
+        <View style={styles.btnWrapper}>
+          <Button
+            onPress={() => setTransfer(true)}
+            title="Continue"
+            titleStyle={{color: color.btn_white_2}}
+            btnStyle={{backgroundColor: color.btn_black}}
+          />
+        </View>
+      </KeyboardAvoidingView>
       {/* Bottom Button End */}
     </SafeAreaView>
   );
@@ -284,10 +296,6 @@ const styles = StyleSheet.create({
   btnWrapper: {
     backgroundColor: 'white',
     height: 72,
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    right: 0,
     justifyContent: 'center',
     padding: dimens.default,
   },

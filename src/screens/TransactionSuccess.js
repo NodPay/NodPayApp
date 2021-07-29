@@ -19,7 +19,6 @@ const TransactionSuccess = ({route, navigation}) => {
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <PageTitle
-        isBlackArrow
         title={action === 'request' ? 'Request Money' : 'Send Money'}
         titleStyle={{color: color.btn_black}}
         isCancel
@@ -28,7 +27,6 @@ const TransactionSuccess = ({route, navigation}) => {
           width: 32,
           marginLeft: 5,
         }}
-        navigation={navigation}
       />
       {/* Header End */}
 
@@ -37,7 +35,9 @@ const TransactionSuccess = ({route, navigation}) => {
           <Image source={ModalSuccess} style={{marginTop: '-27%'}} />
           <Text style={styles.title}>Transaction Success!</Text>
           <Text style={styles.subtitle}>
-            Your money has been successfully sent to Bruno Fernandes
+            {action === 'request'
+              ? 'You requested money to Bruno Fernandes'
+              : 'Your money has been successfully sent to Bruno Fernandes'}
           </Text>
           <View style={styles.amountWrapper}>
             <View style={styles.amountContainer}>

@@ -8,18 +8,20 @@ import {
   QRScan,
   PencilEditWhite,
   ThreeDotsVertical,
+  ThreeDotsBlack,
 } from '../../assets';
 import {color, dimens, fonts} from '../../utils';
+import {useNavigation} from '@react-navigation/native';
 
 // * Page title with optional buttons on the left and right
 const PageTitle = ({
   title,
-  navigation,
   containerStyle,
   titleStyle,
   isBlackArrow,
   isCloseMode,
   onPressClose,
+  onPressBack,
   isRightQR,
   onPressRight,
   cancel,
@@ -29,6 +31,8 @@ const PageTitle = ({
   isOtherProfile,
   isNoBackButton,
 }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={[styles.container, containerStyle]}>
       {!isNoBackButton && isCloseMode ? (
@@ -48,15 +52,21 @@ const PageTitle = ({
           )}
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={styles.left_arrow}>
-          {isBlackArrow ? (
-            <Image source={BlackLeftArrow} />
-          ) : (
-            <Image source={LeftArrow} />
+        <>
+          {isBlackArrow && (
+            <TouchableOpacity
+              onPress={() =>
+                onPressBack ? onPressBack() : navigation.goBack()
+              }
+              style={styles.left_arrow}>
+              {isBlackArrow ? (
+                <Image source={BlackLeftArrow} />
+              ) : (
+                <Image source={LeftArrow} />
+              )}
+            </TouchableOpacity>
           )}
-        </TouchableOpacity>
+        </>
       )}
       <Text style={[styles.title, titleStyle]}>{title}</Text>
       {isRightQR && (
@@ -78,7 +88,7 @@ const PageTitle = ({
       {isOtherProfile && (
         <TouchableOpacity onPress={onEdit} style={styles.containerQR}>
           <Image
-            source={ThreeDotsVertical}
+            source={isBlackArrow ? ThreeDotsBlack : ThreeDotsBlack}
             style={{height: 24, width: 24, resizeMode: 'contain'}}
           />
         </TouchableOpacity>

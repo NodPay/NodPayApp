@@ -1,12 +1,18 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, SafeAreaView, Image} from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();
 
 //where local files imported
 import {color} from '../../utils';
-import {PageTitle, Tabbed} from '../../components';
+import {PageTitle, Tabbed, SettingsSaveButton} from '../../components';
 import {ContactBackground} from '../../assets';
 import EditProfileTabProfile from './Profile';
 import EditProfileTabAddress from './Address';
@@ -18,13 +24,18 @@ const EditProfile = ({navigation}) => {
         isBlackArrow
         title="Edit Profile"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
       />
       <Tab.Navigator tabBar={props => <Tabbed {...props} />}>
         <Tab.Screen name="Profile" component={EditProfileTabProfile} />
         <Tab.Screen name="Address" component={EditProfileTabAddress} />
       </Tab.Navigator>
       <Image source={ContactBackground} style={styles.bg_contact} />
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}>
+        <SettingsSaveButton />
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

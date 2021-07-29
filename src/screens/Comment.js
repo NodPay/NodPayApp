@@ -16,12 +16,7 @@ const Comment = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={color.btn_white_2} />
 
-      <PageTitle
-        isBlackArrow
-        title="Comments"
-        titleStyle={styles.pageTitle}
-        navigation={navigation}
-      />
+      <PageTitle isBlackArrow title="Comments" titleStyle={styles.pageTitle} />
 
       <ScrollView contentContainerStyle={styles.listContainer}>
         <FeedItem

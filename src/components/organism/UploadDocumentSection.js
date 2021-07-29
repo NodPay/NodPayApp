@@ -68,7 +68,7 @@ const UploadDocumentSection = () => {
     btnRef.current.close();
   };
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
       <SectionTitle
         containerStyle={{
           padding: 0,
@@ -183,6 +183,9 @@ const UploadDocumentSection = () => {
 export default UploadDocumentSection;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   label: {
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_22,

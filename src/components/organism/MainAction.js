@@ -42,19 +42,28 @@ const MainAction = ({mainActionRef, type}) => {
           icon={AddMoney}
           title={type == 'business' ? 'Top Up Transaction' : 'Add Money'}
           description="Transfer money to your nod balance"
-          onPress={() => navigation.navigate('QRCode')}
+          onPress={() => {
+            mainActionRef.current.close();
+            setTimeout(() => navigation.navigate('QRCode'), 200);
+          }}
         />
         <MainActionList
           icon={TransferToBank}
           title="Transfer to Bank"
           description="Transfer money to your bank account"
-          onPress={() => navigation.navigate('TransferToBank')}
+          onPress={() => {
+            mainActionRef.current.close();
+            setTimeout(() => navigation.navigate('TransferToBank'), 200);
+          }}
         />
         <MainActionList
           icon={CashACheck}
           title="Cash A check"
           description="Cash a check directly to your nod balance"
-          onPress={() => navigation.navigate('CashACheck')}
+          onPress={() => {
+            mainActionRef.current.close();
+            setTimeout(() => navigation.navigate('CashACheck'), 200);
+          }}
         />
       </View>
     </RBSheet>

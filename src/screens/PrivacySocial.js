@@ -54,7 +54,6 @@ const PrivacySocial = ({navigation}) => {
         isCloseMode
         title="Privacy & Socials"
         titleStyle={{color: color.btn_black}}
-        navigation={navigation}
         onPressClose={() => navigation.pop()}
       />
       <ScrollView style={styles.content}>

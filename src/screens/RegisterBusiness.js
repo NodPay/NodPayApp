@@ -60,7 +60,6 @@ const RegisterBusiness = ({navigation}) => {
         titleStyle={{color: color.btn_black, fontSize: dimens.default_22}}
         // isBlackArrow
         title="Create Account"
-        // navigation={navigation}
       />
       <StepFormBusiness
         activeStepBusiness={activeStepBusiness}

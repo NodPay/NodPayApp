@@ -1,5 +1,13 @@
 import React, {useState} from 'react';
-import {StyleSheet, SafeAreaView, View, StatusBar, Text} from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  StatusBar,
+  Text,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 
 //where local file imported
 import {
@@ -42,7 +50,6 @@ const NewPassword = ({navigation}) => {
           isBlackArrow
           containerStyle={{backgroundColor: color.btn_white_2}}
           titleStyle={{color: 'black'}}
-          navigation={navigation}
         />
 
         <SectionTitle type="auth" title="Reset Your Password" />
@@ -60,16 +67,18 @@ const NewPassword = ({navigation}) => {
         <ErrorMessage message="Password strength is too weak. Please use combination of number and symbols" />
       </View>
 
-      <View style={styles.btnContainer}>
-        <Button
-          title="Reset Password"
-          titleStyle={{color: 'white'}}
-          btnStyle={{backgroundColor: color.btn_black}}
-          onPress={() => {
-            setModalSuccess(true);
-          }}
-        />
-      </View>
+      <KeyboardAvoidingView behavior={Platform.OS == 'ios' && 'position'}>
+        <View style={styles.btnContainer}>
+          <Button
+            title="Reset Password"
+            titleStyle={{color: 'white'}}
+            btnStyle={{backgroundColor: color.btn_black}}
+            onPress={() => {
+              setModalSuccess(true);
+            }}
+          />
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

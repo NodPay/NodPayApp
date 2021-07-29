@@ -107,7 +107,7 @@ const ChangePhoneNumber = ({navigation}) => {
         imageSrc={ModalSuccess}
         title="Mobile Phone Changed!"
         subtitle="Your mobile phone is successfuly change"
-        onClose={() => navigation.replace('Settings')}
+        onClose={() => navigation.replace('Settings', {type: 'personal'})}
       />
 
       {/* Modal End */}

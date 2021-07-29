@@ -27,6 +27,8 @@ import {clearAll, color, dimens, fonts, storeData, wait} from '../utils';
 const LoginPhoneBusiness = ({navigation}) => {
   const PHONE_NUMBER = '000000000000';
   const PASSWORD = 'admin';
+  const PHONE_NUMBER_EMPLOYEE = '000000000000';
+  const PASSWORD_EMPLOYEE = 'employee';
 
   const [isLoading, setIsLoading] = useState(false);
   const [code, setCode] = useState('1');
@@ -77,7 +79,12 @@ const LoginPhoneBusiness = ({navigation}) => {
           message: "Phone Number or Password Can't be empty.",
         });
       });
-    } else if (phone != PHONE_NUMBER && password != PASSWORD) {
+    } else if (
+      phone != PHONE_NUMBER &&
+      password != PASSWORD &&
+      phone != PHONE_NUMBER_EMPLOYEE &&
+      password != PASSWORD_EMPLOYEE
+    ) {
       wait(100).then(() => {
         setIsLoading(false);
         setError({
@@ -87,8 +94,8 @@ const LoginPhoneBusiness = ({navigation}) => {
       });
     } else {
       wait(300).then(() => {
-        console.log('login success');
         storeData('session', {
+          role: password == PASSWORD ? 'admin' : 'employee',
           isLogin: true, // if auth success, then save token for current user then user doesn't need to relogin
           isBoarding: true,
         });
@@ -103,7 +110,7 @@ const LoginPhoneBusiness = ({navigation}) => {
       <StatusBar animated={true} backgroundColor={color.bg_color} />
       <ScrollView style={styles.scroll}>
         <View style={styles.inner_container}>
-          <PageTitle title="Login" navigation={navigation} />
+          <PageTitle title="Login" />
         </View>
         <View style={styles.center_container}>
           <View style={styles.center_content}>

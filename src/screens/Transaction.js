@@ -27,7 +27,7 @@ import {
 } from '../components';
 import {NoContact, People1} from '../assets';
 
-const Contact = ({navigation}) => {
+const Transaction = ({navigation}) => {
   const [friendData, setFriendData] = useState([]);
   const [search, setSearch] = useState('');
   const [contactSelected, setContactSelected] = useState(null);
@@ -322,6 +322,12 @@ const Contact = ({navigation}) => {
                 photo={item.photo}
                 name={item.name}
                 isInternasional={item.isInternasional}
+                onPress={() => {
+                  setContactSelected(null);
+                  navigation.navigate('TransactionForm', {
+                    userSelected: item,
+                  });
+                }}
               />
             ))}
           </ScrollView>
@@ -332,67 +338,59 @@ const Contact = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <PageTitle
+        isBlackArrow
+        title="Send & Request"
+        titleStyle={{color: color.btn_black}}
+        isRightQR
+        onPressRight={() => navigation.navigate('QRCode')}
+      />
+      {friendData == null && (
+        <View style={{flex: 1, justifyContent: 'center'}}>
+          <EmptyState />
+        </View>
+      )}
+      {friendData != null && <RenderContact />}
       <ScrollView>
-        <Pressable
+        <AlphabetList
           style={{flex: 1}}
-          onPress={() => {
-            setId('');
-            setShow(false);
-          }}>
-          <PageTitle
-            isBlackArrow
-            title="Send & Request"
-            titleStyle={{color: color.btn_black}}
-            navigation={navigation}
-            isRightQR
-            onPressRight={() => navigation.navigate('QRCode')}
-          />
-          {friendData == null && (
-            <View style={{flex: 1, justifyContent: 'center'}}>
-              <EmptyState />
+          data={contactList}
+          alphabetContainer={{opacity: 0}}
+          renderSectionHeader={section => (
+            <View
+              style={{
+                paddingVertical: dimens.small,
+                paddingHorizontal: dimens.medium,
+              }}>
+              <Text
+                style={{
+                  color: color.btn_black,
+                  fontFamily: fonts.sofia_bold,
+                }}>
+                {section.title}
+              </Text>
             </View>
           )}
-          {friendData != null && <RenderContact />}
-          <AlphabetList
-            style={{flex: 1}}
-            data={contactList}
-            alphabetContainer={{opacity: 0}}
-            renderSectionHeader={section => (
-              <View
-                style={{
-                  paddingVertical: dimens.small,
-                  paddingHorizontal: dimens.medium,
-                }}>
-                <Text
-                  style={{
-                    color: color.btn_black,
-                    fontFamily: fonts.sofia_bold,
-                  }}>
-                  {section.title}
-                </Text>
-              </View>
-            )}
-            renderItem={(item, index) => (
-              <PeopleItem
-                key={index}
-                photo={item.photo}
-                name={item.name}
-                phone={item.phone}
-                isInternasional={item.isInternasional}
-                selectedMode
-                isSelected={
-                  contactSelected ? contactSelected.id === item.id : false
-                }
-                onPress={() =>
-                  contactSelected && contactSelected.id === item.id
-                    ? setContactSelected(null)
-                    : setContactSelected(item)
-                }
-              />
-            )}
-          />
-          <Gap t={dimens.large_80} />
-        </Pressable>
+          renderItem={(item, index) => (
+            <PeopleItem
+              key={index}
+              photo={item.photo}
+              name={item.name}
+              phone={item.phone}
+              isInternasional={item.isInternasional}
+              selectedMode
+              isSelected={
+                contactSelected ? contactSelected.id === item.id : false
+              }
+              onPress={() =>
+                contactSelected && contactSelected.id === item.id
+                  ? setContactSelected(null)
+                  : setContactSelected(item)
+              }
+            />
+          )}
+        />
+        <Gap t={dimens.large_80} />
       </ScrollView>
       {contactSelected && (
         <View style={styles.wrapBtn}>
@@ -412,7 +410,7 @@ const Contact = ({navigation}) => {
   );
 };
 
-export default Contact;
+export default Transaction;
 
 const styles = StyleSheet.create({
   container: {

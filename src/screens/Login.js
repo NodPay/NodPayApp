@@ -20,7 +20,7 @@ const Login = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <StatusBar animated={true} backgroundColor={color.bg_color} />
       <View style={styles.inner_container}>
-        <PageTitle title="Login" navigation={navigation} />
+        <PageTitle title="Login" />
       </View>
       <View style={styles.center_container}>
         <View style={styles.bg_top} />
