@@ -7,6 +7,12 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
 
 //where local files imported
 import {
@@ -58,7 +64,37 @@ const ContactItem = ({
       </View>
       {isContact ? (
         <View>
-          <TouchableOpacity
+          <Menu>
+            {/* three dots */}
+            <MenuTrigger
+              text={`\u2022 \u2022 \u2022`}
+              customStyles={{triggerText: {color: 'gray'}}}
+            />
+            <MenuOptions>
+              {/* <MenuOption
+                onSelect={() => alert(`Save`)}
+                text="Edit Tag"
+              /> */}
+              <MenuOption
+                onSelect={() => alert(`Block`)}
+                text={`Block ${name}`}
+                customStyles={{optionText: styles.titleInsideDropdown}}
+              />
+              <MenuOption
+                onSelect={() => alert(`Report`)}
+                text={`Report ${name}`}
+                customStyles={{optionText: styles.titleInsideDropdown}}
+              />
+              <MenuOption
+                onSelect={() => alert(`Unfriend`)}
+                customStyles={{
+                  optionText: [styles.titleInsideDropdown, {color: 'red'}],
+                }}
+                text="Unfriend"
+              />
+            </MenuOptions>
+          </Menu>
+          {/* <TouchableOpacity
             style={{
               paddingTop: dimens.default_16,
               position: 'absolute',
@@ -67,7 +103,7 @@ const ContactItem = ({
             activeOpacity={0.8}
             onPress={onPress}>
             <Image source={ThreeDots} style={styles.icon} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       ) : (
         <TouchableOpacity
@@ -142,16 +178,9 @@ const styles = StyleSheet.create({
     top: dimens.default_16,
     zIndex: 1,
   },
-  insideDropdown: {
-    position: 'absolute',
-    left: 24,
-    top: 24,
-    paddingLeft: 8,
-    paddingTop: 8,
-  },
   titleInsideDropdown: {
-    fontFamily: fonts.sofia_regular,
-    fontSize: 19,
+    fontFamily: fonts.sofia_bold,
+    fontSize: 16,
     color: color.btn_black,
     letterSpacing: 1.5,
   },

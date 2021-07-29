@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import {MenuProvider} from 'react-native-popup-menu';
 
 // where local file imported
 import Router from './src/router';
@@ -10,7 +11,9 @@ const App = () => {
   LogBox.ignoreAllLogs();
   return (
     <Store>
-      <Router />
+      <MenuProvider>
+        <Router />
+      </MenuProvider>
     </Store>
   );
 };

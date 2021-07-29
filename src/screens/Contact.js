@@ -132,9 +132,16 @@ const Contact = ({navigation}) => {
 
   const onSearch = () => {
     let filtered = initialData.filter(
-      item => item.name.toLowerCase() == search.toLowerCase(),
+      item => item.name.toLowerCase() == friendSearch.toLowerCase(),
     );
     setData(filtered);
+  };
+
+  const onSearchAddFriend = () => {
+    let filtered = initialData.filter(item =>
+      item.name.toLowerCase().includes(friendSearch.toLowerCase()),
+    );
+    console.log(filtered);
   };
 
   const onAdd = item => {
@@ -153,52 +160,6 @@ const Contact = ({navigation}) => {
           You currently have no friend. Find who you know by connecting your
           NodPay to your phone contact or Facebook
         </Text>
-      </View>
-    );
-  };
-
-  const RenderFacebook = () => {
-    return (
-      <View
-        style={{
-          paddingLeft: dimens.default_16,
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <Image source={Facebook} height={40} width={40} />
-          <Text
-            style={{
-              fontFamily: fonts.sofia_regular,
-              textAlign: 'left',
-              color: color.grey,
-              fontSize: dimens.default_18,
-              padding: dimens.default_16,
-            }}>
-            You currently have{' '}
-            <Text style={{color: '#6366E4', fontFamily: fonts.sofia_bold}}>
-              19 friends
-            </Text>{' '}
-            {`using \nNodPay on Facebook`}{' '}
-          </Text>
-        </View>
-        <InputSearch
-          placeholder="Filter by Name"
-          value={search}
-          onChangeText={val => {
-            setSearch(val);
-          }}
-          onSubmitEditing={() => {
-            if (search == '') {
-              setData(initialData);
-            } else {
-              onSearch();
-            }
-          }}
-        />
-        <Gap t={dimens.default_16} />
       </View>
     );
   };
@@ -456,13 +417,13 @@ const Contact = ({navigation}) => {
                 <InputSearch
                   placeholder="Filter by Name"
                   value={friendSearch}
-                  onChangeText={val => {
-                    console.log(val);
-                  }}
+                  onChangeText={val => setFriendSearch(val)}
+                  onSubmitEditing={onSearchAddFriend}
                 />
               </View>
             </View>
           ) : null}
+
           {isContact && (
             <BottomSheetFlatList
               keyExtractor={item => item.id}
@@ -472,7 +433,46 @@ const Contact = ({navigation}) => {
               )}
             />
           )}
-          {isFacebook && <RenderFacebook />}
+
+          {isFacebook && (
+            <View
+              style={{
+                paddingLeft: dimens.default_16,
+              }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
+                <Image source={Facebook} height={40} width={40} />
+                <Text
+                  style={{
+                    fontFamily: fonts.sofia_regular,
+                    textAlign: 'left',
+                    color: color.grey,
+                    fontSize: dimens.default_18,
+                    padding: dimens.default_16,
+                  }}>
+                  You currently have{' '}
+                  <Text
+                    style={{color: '#6366E4', fontFamily: fonts.sofia_bold}}>
+                    19 friends
+                  </Text>{' '}
+                  {`using \nNodPay on Facebook`}{' '}
+                </Text>
+              </View>
+              <InputSearch
+                placeholder="Filter by Name"
+                value={friendSearch}
+                onChangeText={val => {
+                  setFriendSearch(val);
+                }}
+                onSubmitEditing={onSearch}
+              />
+              <Gap t={dimens.default_16} />
+            </View>
+          )}
+
           {isFacebook && (
             <BottomSheetFlatList
               keyExtractor={item => item.id}
