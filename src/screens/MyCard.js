@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo, useRef} from 'react';
 import {
   View,
   SafeAreaView,
@@ -7,24 +7,29 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  ScrollView,
 } from 'react-native';
 import Clipboard from '@react-native-community/clipboard';
 
 //where local file imported
-import {Tabbed, PageTitle, MenuItem} from '../components';
+import {Tabbed, PageTitle, MenuItem, Button} from '../components';
 import {color, dimens, fonts} from '../utils';
 import {
   CardActive,
   Exchange,
   HomeInactive,
+  CheckCircle,
   VirtualCard,
+  PhysicalCardUnready,
   Copy,
   LockOpenPurple,
   EditPurple,
   GlobePurple,
   PlanePurple,
   NameCardPurple,
+  Next,
 } from '../assets';
+import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 
 // In MyCard screen, user can see their own card and related settings.
 const MyCard = ({navigation}) => {
@@ -32,6 +37,9 @@ const MyCard = ({navigation}) => {
     onlinePayments: false,
     paymentsAbroad: false,
   });
+
+  const refReqCardSheet = useRef(null);
+  const snapPoints = useMemo(() => ['0%', '90%'], []);
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -99,8 +107,9 @@ const MyCard = ({navigation}) => {
             </View>
           </View>
 
-          {/* Menu Items */}
+          <Text style={styles.sectionText}>Card Settings</Text>
 
+          {/* Menu Items */}
           <MenuItem
             icon={GlobePurple}
             title="Online Payments"
@@ -134,8 +143,11 @@ const MyCard = ({navigation}) => {
           <MenuItem
             icon={NameCardPurple}
             title="Request Physical Card"
-            // onPress={() => navigation.navigate('InviteFriendPeople')}
+            onPress={() => {
+              refReqCardSheet.current?.expand();
+            }}
           />
+          {/* Menu Item End */}
         </View>
 
         {/* Bottom Tab Navigator */}
@@ -178,7 +190,78 @@ const MyCard = ({navigation}) => {
         </View> */}
         {/* Bottom Tab Navigator End*/}
       </View>
+
+      {/* Request Physical Card Bottom Sheet*/}
+      <BottomSheet
+        ref={refReqCardSheet}
+        snapPoints={snapPoints}
+        backdropComponent={backdropProps => (
+          <BottomSheetBackdrop
+            {...backdropProps}
+            enableTouchThrough={true}
+            pressBehavior="collapse"
+          />
+        )}>
+        <PageTitle
+          isCloseMode
+          title="Request Physical Card"
+          titleStyle={{color: color.btn_black}}
+          onPressClose={() => refReqCardSheet.current?.close()}
+        />
+        <ScrollView
+          contentContainerStyle={{
+            flex: 1,
+            paddingHorizontal: dimens.default,
+            paddingBottom: dimens.default,
+          }}>
+          <View style={{flex: 1}}>
+            <Image
+              source={PhysicalCardUnready}
+              style={{
+                height: 250,
+                width: 410,
+                resizeMode: 'contain',
+                alignSelf: 'center',
+              }}
+            />
+
+            <Text
+              style={[styles.reqeustSheetText, {marginBottom: dimens.medium}]}>
+              Get instant access to your money with a free debit card from
+              NodPay
+            </Text>
+            <ReqeustSheetPoint text="No monthly fees or minimum balance." />
+            <ReqeustSheetPoint text="Instant discount with boost." />
+            <ReqeustSheetPoint text="Send & request money instantly." />
+            <ReqeustSheetPoint text="No overdraft fees." />
+          </View>
+          <Button
+            onPress={() => {}}
+            title="Continue"
+            titleStyle={{
+              color: color.btn_white_2,
+              fontFamily: fonts.sofia_bold,
+            }}
+            btnStyle={{
+              backgroundColor: color.btn_black,
+              marginLeft: dimens.supersmall,
+            }}
+            iconRight={Next}
+          />
+        </ScrollView>
+      </BottomSheet>
+      {/* Request Physical Card Bottom Sheet*/}
     </SafeAreaView>
+  );
+};
+
+// Checklist point in request physical card bottom sheet
+const ReqeustSheetPoint = ({text}) => {
+  return (
+    <View style={styles.reqeustSheetPoint}>
+      <Image source={CheckCircle} style={{width: 30, height: 30}} />
+      <Text style={styles.reqeustSheetText}>{text}</Text>
+    </View>
   );
 };
 
@@ -212,6 +295,23 @@ const styles = StyleSheet.create({
     fontSize: dimens.default_12,
     fontWeight: '600',
     marginTop: dimens.small,
+  },
+  reqeustSheetPoint: {
+    flexDirection: 'row',
+    marginTop: dimens.default,
+  },
+  reqeustSheetText: {
+    marginLeft: dimens.small,
+    color: color.btn_black,
+    fontFamily: fonts.sofia_regular,
+    fontSize: dimens.default,
+  },
+  sectionText: {
+    color: color.btn_black,
+    fontFamily: fonts.sofia_bold,
+    fontSize: dimens.default,
+    marginTop: dimens.large,
+    marginBottom: dimens.small,
   },
   bottomTab: {
     height: 60,

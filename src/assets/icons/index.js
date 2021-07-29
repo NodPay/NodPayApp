@@ -90,6 +90,7 @@ import CashACheck from './cash_a_check.png';
 import TransferToBank from './transfer_to_bank.png';
 import Share from './share.png';
 import Check from './check.png';
+import CheckCircle from './check_circle.png';
 import OutlineCamera from './outline_camera.png';
 import PencilEditWhite from './pencil_edit_white.png';
 import ThreeDotsVertical from './three-dots-vertical.png';
@@ -207,6 +208,7 @@ export {
   TransferToBank,
   Share,
   Check,
+  CheckCircle,
   OutlineCamera,
   PencilEditWhite,
   ThreeDotsVertical,

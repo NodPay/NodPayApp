@@ -210,7 +210,7 @@ const AppDrawer = () => {
       screenOptions={{unmountOnBlur: true}}
       drawerContent={props => <DrawerComponent {...props} />}>
       {/* <Drawer.Screen name="HomeTabs" component={HomeTabs} /> */}
-      <Drawer.Screen name="Home" component={Home} />
+      {/* <Drawer.Screen name="Home" component={Home} /> */}
       <Drawer.Screen name="MyCard" component={MyCard} />
     </Drawer.Navigator>
   );

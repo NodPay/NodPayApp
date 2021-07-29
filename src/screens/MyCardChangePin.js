@@ -4,7 +4,6 @@ import {
   Text,
   View,
   SafeAreaView,
-  Image,
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
@@ -14,7 +13,7 @@ import {
 // where local files imported
 import {color, dimens, fonts} from '../utils';
 import {Button, PageTitle, InputPIN} from '../components';
-import {ContactBackground} from '../assets';
+import {Next} from '../assets';
 
 const MyCardChangePin = ({route, navigation}) => {
   // state for text input
@@ -115,6 +114,7 @@ const MyCardChangePin = ({route, navigation}) => {
               flex: 1,
               marginLeft: dimens.supersmall,
             }}
+            iconRight={!isConfirming && Next}
           />
         </View>
       </KeyboardAvoidingView>
