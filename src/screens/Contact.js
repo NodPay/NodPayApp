@@ -9,21 +9,113 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
+  ImageBackground,
 } from 'react-native';
 import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
 import AlphabetList from 'react-native-flatlist-alphabet';
 
 //where local files imported
-import {color, dimens, fonts} from '../utils';
+import {color, dimens, fonts, wait} from '../utils';
 import {Button, ContactItem, Gap, InputSearch, PageTitle} from '../components';
-import {NoContact, Facebook, FacebookWhite} from '../assets';
+import {NoContact, Facebook, FacebookWhite, Dropdown} from '../assets';
+
+// initial data add friend
+var initialData = [
+  {
+    id: 0,
+    name: 'Andi',
+    phoneNumber: '+62 696969699696',
+    added: false,
+    tag: 'local',
+  },
+  {
+    id: 1,
+    name: 'Bae',
+    phoneNumber: '+62 696969699696',
+    added: false,
+    tag: 'local',
+  },
+  {
+    id: 3,
+    name: 'Garry',
+    phoneNumber: '+62 696969699696',
+    added: false,
+    tag: 'local',
+  },
+  {
+    id: 4,
+    name: 'Widy',
+    phoneNumber: '+62 696969699696',
+    added: false,
+    tag: 'local',
+  },
+  {
+    id: 5,
+    name: 'Talha',
+    phoneNumber: '+62 696969699696',
+    added: true,
+    tag: 'international',
+  },
+  {
+    id: 6,
+    name: 'Gagan',
+    phoneNumber: '+62 696969699696',
+    added: true,
+    tag: 'international',
+  },
+  {
+    id: 7,
+    name: 'Muhammad',
+    phoneNumber: '+62 696969699696',
+    added: true,
+    tag: 'international',
+  },
+];
+
+// initial data contact
+const initialDataAlphabet = [
+  // the index used is key, not id, data should include random key like used below
+  {
+    id: 1,
+    key: 'a213sad',
+    value: 'Ahmad',
+    name: 'Ahmad',
+    phoneNumber: '+62 123 123',
+    tag: 'local',
+  },
+  {
+    id: 2,
+    key: 'Baesdsad123',
+    value: 'Bae',
+    name: 'Bae',
+    phoneNumber: '+62 234 234',
+    tag: 'local',
+  },
+  {
+    id: 3,
+    key: 'Garryasd123',
+    value: 'Garry',
+    name: 'Garry',
+    phoneNumber: '+62 567 567',
+    tag: 'local',
+  },
+  {
+    id: 4,
+    key: 'Muhammxzsad13ad',
+    value: 'Muhammad',
+    name: 'Muhammad',
+    phoneNumber: '+62 890 890',
+    tag: 'international',
+  },
+];
 
 const Contact = ({navigation}) => {
   const [friendData, setFriendData] = useState([]);
   const [getContact, setGetContact] = useState(true);
   const [isContact, setIsContact] = useState(false);
   const [isFacebook, setIsFacebook] = useState(false);
-  const [search, setSearch] = useState('');
+  // addFriendSearch
+  const [friendSearch, setFriendSearch] = useState('');
 
   // ref
   const bottomSheetRef = useRef();
@@ -35,51 +127,6 @@ const Contact = ({navigation}) => {
   const handleSheetChanges = useCallback(index => {
     console.log('handleSheetChanges', index);
   }, []);
-
-  var initialData = [
-    {
-      id: 0,
-      name: 'Andi',
-      phoneNumber: '+62 696969699696',
-      added: false,
-    },
-    {
-      id: 1,
-      name: 'Bae',
-      phoneNumber: '+62 696969699696',
-      added: false,
-    },
-    {
-      id: 3,
-      name: 'Garry',
-      phoneNumber: '+62 696969699696',
-      added: false,
-    },
-    {
-      id: 4,
-      name: 'Widy',
-      phoneNumber: '+62 696969699696',
-      added: false,
-    },
-    {
-      id: 5,
-      name: 'Talha',
-      phoneNumber: '+62 696969699696',
-      added: true,
-    },
-    {
-      id: 6,
-      name: 'Gagan',
-      phoneNumber: '+62 696969699696',
-      added: true,
-    },
-    {
-      id: 7,
-      name: 'Muhammad',
-      phoneNumber: '+62 696969699696',
-      added: true,
-    },
-  ];
 
   const [data, setData] = useState(initialData);
 
@@ -106,51 +153,6 @@ const Contact = ({navigation}) => {
           You currently have no friend. Find who you know by connecting your
           NodPay to your phone contact or Facebook
         </Text>
-      </View>
-    );
-  };
-
-  const RenderGetContact = () => {
-    return (
-      <View>
-        <Text style={styles.add_friend_section_desc}>
-          Connect with Facebook to see your frend that use NodPay
-        </Text>
-        <View
-          style={{
-            paddingHorizontal: dimens.default_16,
-            paddingVertical: dimens.default_16,
-          }}>
-          <Button
-            iconLeft={FacebookWhite}
-            title="Sign in with Facebook"
-            onPress={() => {
-              setIsFacebook(true);
-              setIsContact(false);
-            }}
-            btnStyle={{
-              backgroundColor: '#548EFF',
-              borderColor: color.btn_white,
-              borderWidth: 1,
-              marginBottom: dimens.supersmall,
-            }}
-            titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-          />
-          <InputSearch
-            placeholder="Filter by Name"
-            value={search}
-            onChangeText={val => {
-              setSearch(val);
-            }}
-            onSubmitEditing={() => {
-              if (search == '') {
-                setData(initialData);
-              } else {
-                onSearch();
-              }
-            }}
-          />
-        </View>
       </View>
     );
   };
@@ -205,72 +207,59 @@ const Contact = ({navigation}) => {
   const [id, setId] = useState('');
   const [show, setShow] = useState(false);
 
-  const RenderContact = () => {
-    const [current, setCurrent] = useState(0);
+  // selected button tag
+  const [current, setCurrent] = useState(0);
 
-    const btn = [
-      {
-        title: 'All',
-      },
-      {
-        title: 'Local',
-      },
-      {
-        title: 'International',
-      },
-    ];
+  // CONTACT
+  const [dataAlphabet, setDataAlphabet] = useState(initialDataAlphabet);
+  const [contactSearch, setContactSearch] = useState('');
 
-    const FilterButton = ({title, onPress, index}) => {
-      return (
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={onPress}
-          style={{
-            paddingHorizontal: 15,
-            height: 32,
-            marginLeft: 8,
-            borderRadius: 50,
-            backgroundColor: current === index ? color.bg_color : '#F0F0FC',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text
-            style={{
-              fontFamily: fonts.sofia_regular,
-              color: current === index ? 'white' : color.bg_color,
-              fontSize: dimens.default_16,
-              lineHeight: dimens.default_16,
-            }}>
-            {title}
-          </Text>
-        </TouchableOpacity>
-      );
-    };
+  const btn = [
+    {id: 0, tag: 'All'},
+    {
+      id: 1,
+      tag: 'Local',
+    },
+    {id: 2, tag: 'International'},
+  ];
 
+  const FilterButton = ({title, onPress, selected}) => {
     return (
-      <View>
-        <KeyboardAvoidingView
-          behavior="height"
-          style={{paddingHorizontal: dimens.default_16}}>
-          <InputSearch
-            placeholder="Friend name, Phone Number, Business"
-            backgroundColor="white"
-          />
-        </KeyboardAvoidingView>
-        <Gap t={dimens.default_16} />
-        <View style={{flexDirection: 'row', paddingLeft: dimens.default_16}}>
-          {btn.map((item, index) => {
-            return (
-              <FilterButton
-                index={index}
-                title={item.title}
-                onPress={() => setCurrent(index)}
-              />
-            );
-          })}
-        </View>
-      </View>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={onPress}
+        style={{
+          marginLeft: 8,
+          backgroundColor: selected ? color.bg_color : '#F0F0FC',
+          borderRadius: 50,
+        }}>
+        <Text
+          style={{
+            height: 32,
+            fontFamily: fonts.sofia_regular,
+            color: selected ? 'white' : color.bg_color,
+            fontSize: dimens.default_16,
+            lineHeight: dimens.default_16,
+            textAlignVertical: 'center',
+            paddingHorizontal: 16,
+          }}>
+          {title}
+        </Text>
+      </TouchableOpacity>
     );
+  };
+
+  const onContactSearch = () => {
+    if (contactSearch == '') {
+      setDataAlphabet(initialDataAlphabet);
+    } else {
+      let filtered = initialDataAlphabet.filter(
+        i =>
+          i.name.toLowerCase().includes(contactSearch) ||
+          i.phoneNumber.includes(contactSearch),
+      );
+      setDataAlphabet(filtered);
+    }
   };
 
   return (
@@ -291,33 +280,53 @@ const Contact = ({navigation}) => {
             <EmptyState />
           </View>
         )}
-        {friendData != null && <RenderContact />}
+
+        {/* Render Contact */}
+        <View>
+          <KeyboardAvoidingView
+            behavior="height"
+            style={{paddingHorizontal: dimens.default_16}}>
+            <InputSearch
+              value={contactSearch}
+              onChangeText={val => setContactSearch(val)}
+              onSubmitEditing={onContactSearch}
+              placeholder="Friend name, Phone Number, Business"
+              backgroundColor="white"
+            />
+          </KeyboardAvoidingView>
+          <Gap t={dimens.default_16} />
+          <View style={{flexDirection: 'row', paddingLeft: dimens.default_16}}>
+            {btn.map((item, index) => {
+              return (
+                <FilterButton
+                  selected={item.id == current}
+                  key={index}
+                  title={item.tag}
+                  onPress={() => {
+                    setCurrent(item.id);
+                    if (item.tag == 'All') {
+                      setDataAlphabet(initialDataAlphabet);
+                      // Do Nothing
+                    } else {
+                      let filtered = initialDataAlphabet.filter(
+                        i => i.tag.toLowerCase() == item.tag.toLowerCase(),
+                      );
+                      setDataAlphabet(filtered);
+                    }
+                  }}
+                />
+              );
+            })}
+          </View>
+        </View>
+        {/* Render Contact End */}
+
         <Gap t={dimens.default_16} />
+
+        {/* List Contact */}
         <AlphabetList
           style={{flex: 1}}
-          data={[
-            {
-              id: 0,
-              key: 'a',
-              value: 'Andi',
-              name: 'Andi',
-              phoneNumber: '+62 699 6969',
-            },
-            {
-              id: 2,
-              key: 'b',
-              value: 'Bae',
-              name: 'Bae',
-              phoneNumber: '+62 699 6969',
-            },
-            {
-              id: 3,
-              key: 'g',
-              value: 'Garry',
-              name: 'Garry',
-              phoneNumber: '+62 699 6969',
-            },
-          ]}
+          data={dataAlphabet}
           renderSectionHeader={section => (
             <View
               style={{
@@ -334,30 +343,24 @@ const Contact = ({navigation}) => {
               </Text>
             </View>
           )}
-          renderItem={item => (
-            <ContactItem
-              {...item}
-              isContact
-              show={item.id == id && show == true ? true : false}
-              onBlock={() => {
-                setShow(false);
-                setId('');
-              }}
-              onReport={() => {
-                setShow(false);
-                setId('');
-              }}
-              onUnfriend={() => {
-                setShow(false);
-                setId('');
-              }}
-              onPress={() => {
-                setId(item.id);
-                setShow(true);
-              }}
-            />
+          renderItem={(item, index) => (
+            <View>
+              <ContactItem
+                key={item.value}
+                {...item}
+                isContact
+                isInternational={item.tag == 'international' ? true : false}
+                onPress={() => {
+                  setId(item.id);
+                  setShow(!show);
+                }}
+              />
+            </View>
           )}
         />
+        {/* List Contact End*/}
+
+        {/* Addfriend Button */}
         <View style={styles.wrapBtn}>
           <Button
             onPress={() => bottomSheetRef.current?.expand()}
@@ -366,6 +369,8 @@ const Contact = ({navigation}) => {
             titleStyle={{color: color.btn_white_2}}
           />
         </View>
+        {/* Addfriend Button End */}
+
         <BottomSheet
           ref={bottomSheetRef}
           snapPoints={snapPoints}
@@ -423,7 +428,41 @@ const Contact = ({navigation}) => {
               </View>
             )}
           </View>
-          {isContact && <RenderGetContact />}
+          {isContact ? (
+            <View>
+              <Text style={styles.add_friend_section_desc}>
+                Connect with Facebook to see your frend that use NodPay
+              </Text>
+              <View
+                style={{
+                  paddingHorizontal: dimens.default_16,
+                  paddingVertical: dimens.default_16,
+                }}>
+                <Button
+                  iconLeft={FacebookWhite}
+                  title="Sign in with Facebook"
+                  onPress={() => {
+                    setIsFacebook(true);
+                    setIsContact(false);
+                  }}
+                  btnStyle={{
+                    backgroundColor: '#548EFF',
+                    borderColor: color.btn_white,
+                    borderWidth: 1,
+                    marginBottom: dimens.supersmall,
+                  }}
+                  titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
+                />
+                <InputSearch
+                  placeholder="Filter by Name"
+                  value={friendSearch}
+                  onChangeText={val => {
+                    console.log(val);
+                  }}
+                />
+              </View>
+            </View>
+          ) : null}
           {isContact && (
             <BottomSheetFlatList
               keyExtractor={item => item.id}
@@ -530,5 +569,18 @@ const styles = StyleSheet.create({
     borderColor: color.btn_white,
     borderWidth: 1,
     marginBottom: dimens.supersmall,
+  },
+  insideDropdown: {
+    position: 'absolute',
+    left: 24,
+    top: 24,
+    paddingLeft: 8,
+    paddingTop: 8,
+  },
+  titleInsideDropdown: {
+    fontFamily: fonts.sofia_regular,
+    fontSize: 18,
+    color: color.btn_black,
+    letterSpacing: 1.5,
   },
 });

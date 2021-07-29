@@ -9,7 +9,13 @@ import {
 } from 'react-native';
 
 //where local files imported
-import {DefaultPict, Dropdown, Facebook, ThreeDots} from '../../assets';
+import {
+  DefaultPict,
+  Dropdown,
+  Facebook,
+  GlobePurple,
+  ThreeDots,
+} from '../../assets';
 import {color, dimens, fonts} from '../../utils';
 
 const ContactItem = ({
@@ -23,11 +29,28 @@ const ContactItem = ({
   onBlock,
   onReport,
   onUnfriend,
+  dropDownStyle,
+  isInternational,
 }) => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapProfile}>
-        <Image source={picture} style={styles.pict} />
+        <View>
+          <Image source={picture} style={styles.pict} />
+          {isInternational && (
+            <Image
+              source={GlobePurple}
+              style={{
+                height: 12,
+                width: 12,
+                resizeMode: 'contain',
+                position: 'absolute',
+                right: 8,
+                bottom: 0,
+              }}
+            />
+          )}
+        </View>
         <View>
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.number}>{phoneNumber}</Text>
@@ -45,23 +68,6 @@ const ContactItem = ({
             onPress={onPress}>
             <Image source={ThreeDots} style={styles.icon} />
           </TouchableOpacity>
-          {show && (
-            <ImageBackground source={Dropdown} style={styles.imageBackground}>
-              <View style={styles.insideDropdown}>
-                <TouchableOpacity onPress={onBlock}>
-                  <Text style={styles.titleInsideDropdown}>Block {name}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={onReport}>
-                  <Text style={styles.titleInsideDropdown}>Report {name}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={onUnfriend}>
-                  <Text style={[styles.titleInsideDropdown, {color: 'red'}]}>
-                    Unfriend
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </ImageBackground>
-          )}
         </View>
       ) : (
         <TouchableOpacity
@@ -129,7 +135,7 @@ const styles = StyleSheet.create({
   },
   imageBackground: {
     resizeMode: 'contain',
-    position: 'relative',
+    position: 'absolute',
     height: 150,
     width: 200,
     right: 0,
@@ -137,7 +143,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   insideDropdown: {
-    position: 'relative',
+    position: 'absolute',
     left: 24,
     top: 24,
     paddingLeft: 8,
@@ -147,5 +153,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.sofia_regular,
     fontSize: 19,
     color: color.btn_black,
+    letterSpacing: 1.5,
   },
 });
