@@ -94,12 +94,8 @@ const LoginPhoneBusiness = ({navigation}) => {
       });
     } else {
       wait(300).then(() => {
-        console.log('login success');
         storeData('session', {
-          role:
-            phone == PHONE_NUMBER && password == PASSWORD
-              ? 'admin'
-              : 'employee',
+          role: password == PASSWORD ? 'admin' : 'employee',
           isLogin: true, // if auth success, then save token for current user then user doesn't need to relogin
           isBoarding: true,
         });
