@@ -41,7 +41,7 @@ const Home = ({navigation}) => {
       <StatusBar backgroundColor={color.btn_white_2} />
 
       <HeaderHome
-        onPressSearch={() => navigation.navigate('Search')}
+        onPressSearch={() => navigation.navigate('Search', {type: 'personal'})}
         onPressProfile={() => {
           navigation.navigate('Profile');
         }}

@@ -193,15 +193,16 @@ const Contact = ({navigation}) => {
           marginLeft: 8,
           backgroundColor: selected ? color.bg_color : '#F0F0FC',
           borderRadius: 50,
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: 32,
         }}>
         <Text
           style={{
-            height: 32,
             fontFamily: fonts.sofia_regular,
             color: selected ? 'white' : color.bg_color,
             fontSize: dimens.default_16,
             lineHeight: dimens.default_16,
-            textAlignVertical: 'center',
             paddingHorizontal: 16,
           }}>
           {title}

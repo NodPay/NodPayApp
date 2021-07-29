@@ -68,9 +68,17 @@ const ContactItem = ({
             {/* three dots */}
             <MenuTrigger
               text={`\u2022 \u2022 \u2022`}
-              customStyles={{triggerText: {color: 'gray'}}}
+              customStyles={{
+                triggerText: {
+                  color: 'gray',
+                  padding: dimens.default,
+                },
+              }}
             />
-            <MenuOptions>
+            <MenuOptions
+              style={{
+                padding: dimens.default,
+              }}>
               {/* <MenuOption
                 onSelect={() => alert(`Save`)}
                 text="Edit Tag"
@@ -179,9 +187,10 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   titleInsideDropdown: {
-    fontFamily: fonts.sofia_bold,
-    fontSize: 16,
+    fontFamily: fonts.sofia_medium,
+    fontSize: dimens.default,
+    lineHeight: dimens.default_18,
     color: color.btn_black,
-    letterSpacing: 1.5,
+    marginBottom: dimens.verysmall,
   },
 });

@@ -13,7 +13,9 @@ import {
 } from '../components';
 import {PeopleInviteFriend, People1} from '../assets';
 
-const Search = ({navigation}) => {
+const Search = ({route, navigation}) => {
+  const {type} = route.params;
+
   const topPeople = [
     {
       photo: People1,
@@ -192,7 +194,11 @@ const Search = ({navigation}) => {
               ))}
             </ScrollView>
             <Button
-              onPress={() => navigation.navigate('InviteFriend')}
+              onPress={() =>
+                type === 'business'
+                  ? navigation.navigate('InviteOtherBusiness')
+                  : navigation.navigate('InviteFriend')
+              }
               title="Invite Friends"
               btnStyle={{backgroundColor: color.btn_black}}
               titleStyle={{
