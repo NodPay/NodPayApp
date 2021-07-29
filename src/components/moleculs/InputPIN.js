@@ -5,10 +5,11 @@ import OTPInputView from '@twotalltotems/react-native-otp-input';
 // where local files imported
 import {color, dimens, fonts} from '../../utils';
 
-const InputPIN = ({error, showPassword, onFilled}) => {
+const InputPIN = ({error, showPassword, onFilled, value, onChange}) => {
   return (
     <View style={{height: 56}}>
       <OTPInputView
+        code={value}
         style={{paddingHorizontal: dimens.default}}
         pinCount={6}
         keyboardType="number-pad"
@@ -25,10 +26,14 @@ const InputPIN = ({error, showPassword, onFilled}) => {
           styles.underlineStyleHighLighted,
           error && {borderColor: 'red'},
         ]}
-        onCodeFilled={code => {
-          console.log(`Code is ${code}, you are good to go!`);
-          onFilled(code);
-        }}
+        onCodeChanged={onChange}
+        onCodeFilled={
+          onFilled &&
+          (code => {
+            console.log(`Code is ${code}, you are good to go!`);
+            onFilled(code);
+          })
+        }
       />
     </View>
   );

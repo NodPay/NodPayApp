@@ -74,6 +74,11 @@ const CashACheck = ({navigation}) => {
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Text style={styles.amount}>Rs</Text>
             <TextInput
+              onFocus={() => {
+                if (value == '0') {
+                  setValue('');
+                }
+              }}
               autoFocus={true}
               keyboardType="number-pad"
               value={value}
@@ -173,6 +178,7 @@ const CashACheck = ({navigation}) => {
                   setValue(0);
                 },
                 onPress: () => {
+                  // TODO: POST INTO API
                   setVisible(false);
                   navigation.replace('AppDrawer');
                   setValue(0);

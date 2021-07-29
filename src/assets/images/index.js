@@ -24,6 +24,7 @@ import HabibBank from './hbl.png';
 import OCBCBank from './ocbc.png';
 import Ellipsis from './ellipsis.png';
 import VirtualCard from './virtual_card.png';
+import PhysicalCardUnready from './physical_card_unready.png';
 import UploadLogo from './upload_logo.png';
 import UploadCNIC from './upload_cnic.png';
 import UploadNTN from './upload_ntn.png';
@@ -62,6 +63,7 @@ export {
   OCBCBank,
   Ellipsis,
   VirtualCard,
+  PhysicalCardUnready,
   UploadLogo,
   UploadCNIC,
   UploadNTN,
