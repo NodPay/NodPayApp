@@ -1,5 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();
@@ -40,10 +45,15 @@ const EditProfileBusiness = ({navigation}) => {
         <Tab.Screen name="Profile" component={Profile} />
         <Tab.Screen name="Address" component={Address} />
       </Tab.Navigator>
-      <SettingsSaveButton
-        onCancel={() => navigation.goBack()}
-        onSave={onSave}
-      />
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}>
+        <SettingsSaveButton
+          onCancel={() => navigation.goBack()}
+          onSave={onSave}
+        />
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

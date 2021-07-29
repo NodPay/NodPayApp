@@ -3,7 +3,7 @@ import {StyleSheet, View, ScrollView} from 'react-native';
 
 //where local files imported
 import {dimens} from '../../utils';
-import {PersonalAddressSection, SettingsSaveButton} from '../../components';
+import {PersonalAddressSection} from '../../components';
 
 const EditProfileTabAddress = () => {
   return (
@@ -11,7 +11,6 @@ const EditProfileTabAddress = () => {
       <ScrollView style={styles.content}>
         <PersonalAddressSection withoutSectionTitle={true} />
       </ScrollView>
-      <SettingsSaveButton />
     </View>
   );
 };
