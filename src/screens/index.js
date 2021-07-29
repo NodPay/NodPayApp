@@ -19,6 +19,7 @@ import Search from './Search';
 import Settings from './Settings';
 import Comment from './Comment';
 import MyCard from './MyCard';
+import MyCardChangePin from './MyCardChangePin';
 import Feedback from './Feedback';
 import Language from './Language';
 import ChangePhoneNumber from './ChangePhoneNumber';
@@ -84,6 +85,7 @@ export {
   Settings,
   Comment,
   MyCard,
+  MyCardChangePin,
   Feedback,
   Language,
   ChangePhoneNumber,
