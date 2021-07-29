@@ -3,7 +3,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {View, Text} from 'react-native';
 
 // where screens should be imported
 import {
@@ -28,6 +27,7 @@ import {
   Settings,
   Comment,
   MyCard,
+  MyCardChangePin,
   Feedback,
   Language,
   ChangePhoneNumber,
@@ -77,13 +77,14 @@ import {
   HomeTabBar,
 } from '../components';
 
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 const Router = () => {
-  const Stack = createStackNavigator();
-
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="AppDrawer"
+        initialRouteName="Splash"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Loader" component={Loader} />
@@ -194,14 +195,13 @@ const Router = () => {
         />
         <Stack.Screen name="Accesbility" component={Accesbility} />
         <Stack.Screen name="PaySalary" component={PaySalary} />
+        <Stack.Screen name="MyCardChangePin" component={MyCardChangePin} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
 const AppDrawer = () => {
-  const Drawer = createDrawerNavigator();
-
   return (
     <Drawer.Navigator
       drawerType="front"
@@ -217,8 +217,6 @@ const AppDrawer = () => {
 };
 
 const AppBusinessDrawer = () => {
-  const Drawer = createDrawerNavigator();
-
   return (
     <Drawer.Navigator
       drawerType="front"
@@ -233,11 +231,9 @@ const AppBusinessDrawer = () => {
 };
 
 const HomeTabs = () => {
-  const Tab = createBottomTabNavigator();
-
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home} />
+      {/* <Tab.Screen name="Home" component={Home} /> */}
       <Tab.Screen name="MyCard" component={MyCard} />
     </Tab.Navigator>
   );
