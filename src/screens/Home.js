@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import {
   View,
   FlatList,
@@ -20,6 +20,7 @@ import {
   RequestMoneyItem,
   Gap,
   MainAction,
+  WalktroughTooltip,
 } from '../components/';
 import {color, dimens, fonts, getData} from '../utils/';
 import {CardInactive, Exchange, HomeActive, People1} from '../assets/';
@@ -27,6 +28,35 @@ import {CardInactive, Exchange, HomeActive, People1} from '../assets/';
 const Tab = createMaterialTopTabNavigator();
 const Home = ({navigation}) => {
   const mainActionRef = useRef(null);
+  const [walktrough, setWalktrough] = useState([
+    {
+      content:
+        'Send and ask you friends to pay you easily and quickly right from here!',
+      isActive: true,
+    },
+    {
+      content: 'See what your friends are up to and their interactions',
+      isActive: false,
+    },
+    {
+      content: 'Check your friends and familes money requests from here!',
+      isActive: false,
+    },
+    {
+      content: 'Check your available Nod balance right away after login',
+      isActive: false,
+    },
+    {
+      content:
+        'Add money to your account by going to a store near you and presesnting ur QR code',
+      isActive: false,
+    },
+    {
+      content:
+        'Access your profile, search friend, view bank account all in one top navigations',
+      isActive: false,
+    },
+  ]);
 
   useEffect(() => {
     getData('session')
@@ -40,27 +70,170 @@ const Home = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={color.btn_white_2} />
 
-      <HeaderHome
-        onPressSearch={() => navigation.navigate('Search', {type: 'personal'})}
-        onPressProfile={() => {
-          navigation.navigate('Profile');
-        }}
-      />
+      <WalktroughTooltip
+        items={walktrough}
+        setItems={setWalktrough}
+        indexActive={5}
+        width={250}
+        height={180}
+        arrowStyle={{left: dimens.large}}
+        placement="bottom">
+        <View
+          style={
+            walktrough[5].isActive
+              ? {width: '100%', backgroundColor: 'white'}
+              : {}
+          }>
+          <HeaderHome
+            onPressSearch={() =>
+              navigation.navigate('Search', {type: 'personal'})
+            }
+            onPressProfile={() => {
+              navigation.navigate('Profile');
+            }}
+          />
+        </View>
+      </WalktroughTooltip>
 
       <View style={{padding: dimens.default, paddingBottom: 0, flex: 1}}>
-        <BalanceInfo
-          type="home"
-          moneyAmount="400.000"
-          onPressAdd={() => mainActionRef.current.open()}
-        />
+        <WalktroughTooltip
+          items={walktrough}
+          setItems={setWalktrough}
+          indexActive={3}
+          width={250}
+          height={160}
+          arrowStyle={{left: dimens.large}}
+          placement="bottom">
+          {!walktrough[4].isActive && (
+            <BalanceInfo
+              type="home"
+              moneyAmount="400.000"
+              onPressAdd={() => mainActionRef.current.open()}
+            />
+          )}
+        </WalktroughTooltip>
+        <WalktroughTooltip
+          items={walktrough}
+          setItems={setWalktrough}
+          indexActive={4}
+          width={250}
+          height={180}
+          arrowStyle={{left: 195}}
+          placement="bottom">
+          {walktrough[4].isActive && (
+            <BalanceInfo
+              type="home"
+              moneyAmount="400.000"
+              onPressAdd={() => mainActionRef.current.open()}
+            />
+          )}
+        </WalktroughTooltip>
 
+        <WalktroughTooltip
+          items={walktrough}
+          setItems={setWalktrough}
+          indexActive={1}
+          width={250}
+          height={160}
+          arrowStyle={{left: dimens.large}}
+          placement="bottom">
+          {walktrough[1].isActive && (
+            <View style={styles.tabButton}>
+              <TouchableOpacity
+                style={[
+                  styles.btn,
+                  {
+                    backgroundColor: 'white',
+                  },
+                ]}>
+                <Text
+                  style={[
+                    styles.btnTitle,
+                    {
+                      color: color.btn_black,
+                    },
+                  ]}>
+                  Feed
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.btn,
+                  {
+                    backgroundColor: 'transparent',
+                  },
+                ]}>
+                <Text
+                  style={[
+                    styles.btnTitle,
+                    {
+                      color: 'gray',
+                    },
+                  ]}>
+                  Request
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </WalktroughTooltip>
+        <WalktroughTooltip
+          items={walktrough}
+          setItems={setWalktrough}
+          indexActive={2}
+          width={250}
+          height={160}
+          arrowStyle={{left: 195}}
+          placement="bottom">
+          {walktrough[2].isActive && (
+            <View style={styles.tabButton}>
+              <TouchableOpacity
+                style={[
+                  styles.btn,
+                  {
+                    backgroundColor: 'white',
+                  },
+                ]}>
+                <Text
+                  style={[
+                    styles.btnTitle,
+                    {
+                      color: color.btn_black,
+                    },
+                  ]}>
+                  Feed
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.btn,
+                  {
+                    backgroundColor: 'transparent',
+                  },
+                ]}>
+                <Text
+                  style={[
+                    styles.btnTitle,
+                    {
+                      color: 'gray',
+                    },
+                  ]}>
+                  Request
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </WalktroughTooltip>
         <Tab.Navigator
           tabBar={props => (
-            <Tabbed
-              {...props}
-              containerStyle={styles.listContainer}
-              notification={{name: 'Request', count: 3}}
-            />
+            <>
+              {!walktrough[1].isActive && !walktrough[2].isActive && (
+                <Tabbed
+                  {...props}
+                  containerStyle={styles.listContainer}
+                  notification={{name: 'Request', count: 3}}
+                />
+              )}
+            </>
           )}>
           <Tab.Screen name="Feed" component={Feed} />
           <Tab.Screen name="Request" component={Request} />
@@ -70,44 +243,52 @@ const Home = ({navigation}) => {
       {/* <Gap t={100} /> */}
 
       {/* Bottom Tab Navigator */}
-      <View style={styles.bottomTab}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
-          }}>
-          <TouchableOpacity>
-            <Image source={HomeActive} style={{width: 30, height: 30}} />
-            <Text>Home</Text>
-          </TouchableOpacity>
-          <View>
-            <TouchableOpacity
-              style={{
-                top: -35,
-                height: 80,
-                width: 80,
-                backgroundColor: color.bg_color,
-                borderRadius: 40,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderWidth: 10,
-                borderColor: color.btn_white_2,
-              }}
-              onPress={() => navigation.navigate('Transaction')}>
-              <Image source={Exchange} style={{width: 30, height: 30}} />
-            </TouchableOpacity>
-            <Text>Exchange</Text>
-          </View>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('MyCard');
+      <WalktroughTooltip
+        items={walktrough}
+        setItems={setWalktrough}
+        indexActive={0}
+        width={250}
+        height={160}
+        placement="top">
+        <View style={styles.bottomTab}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-evenly',
+              alignItems: 'center',
             }}>
-            <Image source={CardInactive} style={{width: 30, height: 30}} />
-            <Text>Card</Text>
-          </TouchableOpacity>
+            <TouchableOpacity>
+              <Image source={HomeActive} style={{width: 30, height: 30}} />
+              <Text>Home</Text>
+            </TouchableOpacity>
+            <View>
+              <TouchableOpacity
+                style={{
+                  top: -35,
+                  height: 80,
+                  width: 80,
+                  backgroundColor: color.bg_color,
+                  borderRadius: 40,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderWidth: 10,
+                  borderColor: color.btn_white_2,
+                }}
+                onPress={() => navigation.navigate('Transaction')}>
+                <Image source={Exchange} style={{width: 30, height: 30}} />
+              </TouchableOpacity>
+              <Text>Exchange</Text>
+            </View>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('MyCard');
+              }}>
+              <Image source={CardInactive} style={{width: 30, height: 30}} />
+              <Text>Card</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </WalktroughTooltip>
       {/* Bottom Tab Navigator End*/}
 
       {/* MainAction BottomSheet */}
@@ -255,14 +436,32 @@ const styles = StyleSheet.create({
   },
   bottomTab: {
     height: 60,
+    width: '100%',
     backgroundColor: 'white',
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
     justifyContent: 'center',
     paddingHorizontal: dimens.default_16,
     zIndex: 1,
+  },
+  tabButton: {
+    flexDirection: 'row',
+    backgroundColor: 'lightgray',
+    justifyContent: 'space-between',
+    borderRadius: 11,
+    height: 46,
+    marginTop: dimens.default_18,
+  },
+  btn: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    flex: 1,
+    borderRadius: 11,
+  },
+  btnTitle: {
+    fontFamily: fonts.sofia_bold,
+    fontSize: dimens.default_18,
+    lineHeight: dimens.medium,
+    color: color.btn_black,
   },
 });
 

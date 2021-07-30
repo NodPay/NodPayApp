@@ -37,6 +37,7 @@ import CustomerItem from './CustomerItem';
 import TransactionItem from './TransactionItem';
 import EmployeeItem from './EmployeeItem';
 import PersonalDetailItem from './PersonalDetailItem';
+import WalktroughTooltip from './WalktroughTooltip';
 
 export {
   SectionTitle,
@@ -78,4 +79,5 @@ export {
   TransactionItem,
   EmployeeItem,
   PersonalDetailItem,
+  WalktroughTooltip,
 };
