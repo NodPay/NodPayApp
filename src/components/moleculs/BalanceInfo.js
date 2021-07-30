@@ -52,24 +52,51 @@ const BalanceInfo = ({type, moneyAmount, onPressAdd}) => {
     );
   }
 
-  return (
-    <View
-      style={[
-        styles.container,
-        {backgroundColor: color.btn_white_2, borderRadius: dimens.default},
-      ]}>
-      <View>
-        <Text style={[styles.title, {color: color.grey_2}]}>
-          Available Balance
-        </Text>
-        <Text style={styles.drawerMoneyAmount}>Rs {moneyAmount || '0'}</Text>
-      </View>
+  if (type == 'drawer') {
+    return (
+      <View
+        style={[
+          styles.container,
+          {backgroundColor: color.btn_white_2, borderRadius: dimens.default},
+        ]}>
+        <View>
+          <Text style={[styles.title, {color: color.grey_2}]}>
+            Available Balance
+          </Text>
+          <Text style={styles.drawerMoneyAmount}>Rs {moneyAmount || '0'}</Text>
+        </View>
 
-      <TouchableOpacity style={styles.drawerAddButton} onPress={onPressAdd}>
-        <Image source={Plus} style={[styles.addIcon, {height: 30}]} />
-      </TouchableOpacity>
-    </View>
-  );
+        <TouchableOpacity style={styles.drawerAddButton} onPress={onPressAdd}>
+          <Image source={Plus} style={[styles.addIcon, {height: 30}]} />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+  if (type == 'virtualCardDetails') {
+    return (
+      <View
+        style={[
+          styles.container,
+          {
+            backgroundColor: color.purple,
+            borderRadius: dimens.default,
+            paddingVertical: dimens.default,
+            marginTop: dimens.default,
+          },
+        ]}>
+        <View>
+          <Text style={[styles.title, {color: color.grey_2}]}>
+            Available Balance
+          </Text>
+          <Text style={styles.drawerMoneyAmount}>Rs {moneyAmount || '0'}</Text>
+        </View>
+
+        <TouchableOpacity style={styles.drawerAddButton} onPress={onPressAdd}>
+          <Image source={Plus} style={[styles.addIcon, {height: 30}]} />
+        </TouchableOpacity>
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({

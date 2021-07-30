@@ -20,6 +20,8 @@ import Settings from './Settings';
 import Comment from './Comment';
 import MyCard from './MyCard';
 import MyCardChangePin from './MyCardChangePin';
+import VirtualCardDetails from './VirtualCardDetails';
+import BlockCardPin from './BlockCardPin';
 import Feedback from './Feedback';
 import Language from './Language';
 import ChangePhoneNumber from './ChangePhoneNumber';
@@ -62,8 +64,12 @@ import BusinessTransactionSuccess from './BusinessTransactionSuccess';
 import BusinessTransactionTransferToNod from './BusinessTransactionTransferToNod';
 import Accesbility from './Accesbility';
 import PaySalary from './PaySalary';
+import BlockCardTouchId from './BlockCardTouchId';
 
 export {
+  BlockCardTouchId,
+  BlockCardPin,
+  VirtualCardDetails,
   Splash,
   GetStarted,
   Login,

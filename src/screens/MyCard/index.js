@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useRef} from 'react';
+import React, {useState, useMemo, useRef, useEffect} from 'react';
 import {
   View,
   SafeAreaView,
@@ -12,8 +12,8 @@ import {
 import Clipboard from '@react-native-community/clipboard';
 
 //where local file imported
-import {Tabbed, PageTitle, MenuItem, Button} from '../components';
-import {color, dimens, fonts} from '../utils';
+import {Tabbed, PageTitle, MenuItem, Button, Loading} from '../../components';
+import {color, dimens, fonts} from '../../utils';
 import {
   CardActive,
   Exchange,
@@ -27,9 +27,12 @@ import {
   GlobePurple,
   PlanePurple,
   NameCardPurple,
+  PhysicalCardActive,
   Next,
-} from '../assets';
+  LockWhite,
+} from '../../assets';
 import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 // In MyCard screen, user can see their own card and related settings.
 const MyCard = ({navigation}) => {
@@ -37,9 +40,21 @@ const MyCard = ({navigation}) => {
     onlinePayments: false,
     paymentsAbroad: false,
   });
+  const [isCardLocked, setIsCardLocked] = useState(false);
+  const [isPhysicalCardActive, setIsPhysicalCardActive] = useState(undefined);
 
+  useEffect(() => {
+    setIsPhysicalCardActive(true);
+    return () => {};
+  }, []);
+
+  // Bottom sheet settings
   const refReqCardSheet = useRef(null);
   const snapPoints = useMemo(() => ['0%', '90%'], []);
+
+  if (isPhysicalCardActive === undefined) {
+    return <MyCardLoading />;
+  }
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -52,15 +67,31 @@ const MyCard = ({navigation}) => {
           isNoBackButton
         />
         <View style={styles.innerContainer}>
-          <Image
-            source={VirtualCard}
+          {/* Card(s) */}
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => {
+              navigation.navigate('VirtualCardDetails');
+            }}>
+            <Image
+              source={VirtualCard}
+              style={{
+                height: 250,
+                width: 410,
+                resizeMode: 'contain',
+                alignSelf: 'center',
+              }}
+            />
+          </TouchableOpacity>
+          {/* <Image
+            source={PhysicalCardActive}
             style={{
               height: 250,
               width: 410,
               resizeMode: 'contain',
               alignSelf: 'center',
             }}
-          />
+          /> */}
 
           {/* Three Buttons */}
           <View
@@ -71,13 +102,35 @@ const MyCard = ({navigation}) => {
               marginHorizontal: 46,
             }}>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
-              <TouchableOpacity style={styles.button}>
-                <Image
-                  source={LockOpenPurple}
-                  style={{height: dimens.medium, resizeMode: 'contain'}}
-                />
-              </TouchableOpacity>
-              <Text style={styles.buttonText}>Lock Card</Text>
+              {isCardLocked ? (
+                <>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                      setIsCardLocked(false);
+                    }}>
+                    <Image
+                      source={LockOpenPurple}
+                      style={{height: dimens.medium, resizeMode: 'contain'}}
+                    />
+                  </TouchableOpacity>
+                  <Text style={styles.buttonText}>Lock Card</Text>
+                </>
+              ) : (
+                <>
+                  <TouchableOpacity
+                    style={[styles.button, {backgroundColor: color.loading}]}
+                    onPress={() => {
+                      setIsCardLocked(true);
+                    }}>
+                    <Image
+                      source={LockWhite}
+                      style={{height: dimens.medium, resizeMode: 'contain'}}
+                    />
+                  </TouchableOpacity>
+                  <Text style={styles.buttonText}>Lock Card</Text>
+                </>
+              )}
             </View>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
               <TouchableOpacity
@@ -151,7 +204,7 @@ const MyCard = ({navigation}) => {
         </View>
 
         {/* Bottom Tab Navigator */}
-        {/* <View style={styles.bottomTab}>
+        <View style={styles.bottomTab}>
           <View
             style={{
               flexDirection: 'row',
@@ -177,6 +230,9 @@ const MyCard = ({navigation}) => {
                   alignItems: 'center',
                   borderWidth: 10,
                   borderColor: color.btn_white_2,
+                }}
+                onPress={() => {
+                  navigation.navigate('Transaction');
                 }}>
                 <Image source={Exchange} style={{width: 30, height: 30}} />
               </TouchableOpacity>
@@ -187,7 +243,7 @@ const MyCard = ({navigation}) => {
               <Text>Card</Text>
             </TouchableOpacity>
           </View>
-        </View> */}
+        </View>
         {/* Bottom Tab Navigator End*/}
       </View>
 
@@ -251,6 +307,21 @@ const MyCard = ({navigation}) => {
         </ScrollView>
       </BottomSheet>
       {/* Request Physical Card Bottom Sheet*/}
+    </SafeAreaView>
+  );
+};
+
+const MyCardLoading = () => {
+  return (
+    <SafeAreaView
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: color.btn_white_2,
+      }}>
+      <StatusBar animated backgroundColor={color.bg_white} />
+      <Loading size="large" color={color.loading} />
     </SafeAreaView>
   );
 };

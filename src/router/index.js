@@ -70,6 +70,9 @@ import {
   BusinessTransactionTransferToNod,
   Accesbility,
   PaySalary,
+  VirtualCardDetails,
+  BlockCardPin,
+  BlockCardTouchId,
 } from '../screens';
 import {
   Drawer as DrawerComponent,
@@ -109,6 +112,7 @@ const Router = () => {
         <Stack.Screen name="EditProfile" component={EditProfile} />
         <Stack.Screen name="PasswordSecurity" component={PasswordSecurity} />
         <Stack.Screen name="PrivacySocial" component={PrivacySocial} />
+        <Stack.Screen name="BlockCardTouchId" component={BlockCardTouchId} />
         <Stack.Screen
           name="NotificationSetting"
           component={NotificationSetting}
@@ -196,6 +200,11 @@ const Router = () => {
         <Stack.Screen name="Accesbility" component={Accesbility} />
         <Stack.Screen name="PaySalary" component={PaySalary} />
         <Stack.Screen name="MyCardChangePin" component={MyCardChangePin} />
+        <Stack.Screen
+          name="VirtualCardDetails"
+          component={VirtualCardDetails}
+        />
+        <Stack.Screen name="BlockCardPin" component={BlockCardPin} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -210,7 +219,7 @@ const AppDrawer = () => {
       screenOptions={{unmountOnBlur: true}}
       drawerContent={props => <DrawerComponent {...props} />}>
       {/* <Drawer.Screen name="HomeTabs" component={HomeTabs} /> */}
-      {/* <Drawer.Screen name="Home" component={Home} /> */}
+      <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="MyCard" component={MyCard} />
     </Drawer.Navigator>
   );
