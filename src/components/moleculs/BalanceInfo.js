@@ -12,7 +12,7 @@ import {
 import {dimens, fonts, color} from '../../utils';
 import {Plus, HomeBalanceBackground, Withdraw} from '../../assets';
 
-const BalanceInfo = ({type, moneyAmount, onPressAdd}) => {
+const BalanceInfo = ({type, moneyAmount, backgroundColor, onPressAdd}) => {
   if (type == 'home') {
     return (
       <ImageBackground
@@ -36,7 +36,10 @@ const BalanceInfo = ({type, moneyAmount, onPressAdd}) => {
       <View
         style={[
           styles.container,
-          {backgroundColor: color.btn_white_2, borderRadius: dimens.default},
+          {
+            backgroundColor: backgroundColor || color.btn_white_2,
+            borderRadius: dimens.default,
+          },
         ]}>
         <View>
           <Text style={[styles.title, {color: color.grey_2}]}>
@@ -57,7 +60,10 @@ const BalanceInfo = ({type, moneyAmount, onPressAdd}) => {
       <View
         style={[
           styles.container,
-          {backgroundColor: color.btn_white_2, borderRadius: dimens.default},
+          {
+            backgroundColor: backgroundColor || color.btn_white_2,
+            borderRadius: dimens.default,
+          },
         ]}>
         <View>
           <Text style={[styles.title, {color: color.grey_2}]}>
@@ -78,7 +84,7 @@ const BalanceInfo = ({type, moneyAmount, onPressAdd}) => {
         style={[
           styles.container,
           {
-            backgroundColor: color.purple,
+            backgroundColor: backgroundColor || color.purple,
             borderRadius: dimens.default,
             paddingVertical: dimens.default,
             marginTop: dimens.default,

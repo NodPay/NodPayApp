@@ -4,6 +4,7 @@ import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import {
   LeftArrow,
   BlackLeftArrow,
+  WhiteLeftArrow,
   CloseRed,
   QRScan,
   PencilEditWhite,
@@ -19,6 +20,7 @@ const PageTitle = ({
   containerStyle,
   titleStyle,
   isBlackArrow,
+  isWhiteArrow,
   isCloseMode,
   onPressClose,
   onPressBack,
@@ -60,9 +62,22 @@ const PageTitle = ({
               }
               style={styles.left_arrow}>
               {isBlackArrow ? (
-                <Image source={BlackLeftArrow} />
+                <Image source={BlackLeftArrow} style={styles.left_arrow_icon} />
               ) : (
-                <Image source={LeftArrow} />
+                <Image source={LeftArrow} style={styles.left_arrow_icon} />
+              )}
+            </TouchableOpacity>
+          )}
+          {isWhiteArrow && (
+            <TouchableOpacity
+              onPress={() =>
+                onPressBack ? onPressBack() : navigation.goBack()
+              }
+              style={styles.left_arrow}>
+              {isWhiteArrow ? (
+                <Image source={WhiteLeftArrow} style={styles.left_arrow_icon} />
+              ) : (
+                <Image source={LeftArrow} style={styles.left_arrow_icon} />
               )}
             </TouchableOpacity>
           )}
@@ -115,6 +130,11 @@ const styles = StyleSheet.create({
     padding: dimens.default_16,
     position: 'absolute',
     left: 0,
+  },
+  left_arrow_icon: {
+    width: dimens.medium,
+    height: dimens.medium,
+    resizeMode: 'contain',
   },
   title: {
     fontFamily: fonts.sofia_bold,

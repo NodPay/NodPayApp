@@ -185,6 +185,7 @@ const Profile = ({navigation}) => {
       {/* Header */}
       <View style={styles.bg_blue}>
         <PageTitle
+          isWhiteArrow
           title="Profile"
           isProfile
           onEdit={() => navigation.navigate('EditProfile')}
@@ -230,6 +231,7 @@ const Profile = ({navigation}) => {
                 }}>
                 <BalanceInfo
                   type="drawer"
+                  backgroundColor={color.purple}
                   onPressAdd={() => mainActionRef.current.open()}
                 />
               </View>
