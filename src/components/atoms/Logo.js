@@ -4,6 +4,10 @@ import {StyleSheet, Text} from 'react-native';
 // where local file imported
 import {dimens, fonts} from '../../utils';
 
+/**
+ * Logo component for main logo NodPay
+ * @param   {object}  titleStyle  For custom title style
+ */
 const Logo = ({titleStyle}) => {
   return (
     <Text style={[styles.title, titleStyle]}>

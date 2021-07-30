@@ -14,7 +14,25 @@ import {
 import {color, dimens, fonts} from '../../utils';
 import {useNavigation} from '@react-navigation/native';
 
-// * Page title with optional buttons on the left and right
+/**
+ * PageTitle component for make page of title screen with any variant, usually will be place on header
+ * @param   {string}  title           Title text of page/screen on header
+ * @param   {object}  containerStyle  For custom container style
+ * @param   {object}  titleStyle      For custom title style
+ * @param   {bool}    isBlackArrow    For back icon with black state
+ * @param   {bool}    isWhiteArrow    For back icon with white state
+ * @param   {bool}    isCloseMode     For back icon with close state
+ * @param   {func}    onPressClose    Triggered when back icon with close state onclick
+ * @param   {func}    onPressBack     Triggered when back icon with black/white state onclick
+ * @param   {bool}    isRightQR       For condition show QR on the right
+ * @param   {func}    onPressRight    Triggered when right icon onclick
+ * @param   {object}  cancel          For custom cancel style
+ * @param   {bool}    isCancel        For condition cancel state
+ * @param   {bool}    isProfile       For condition profile state
+ * @param   {func}    onEdit          Triggered when isProfile=true or isOtherProfile=true, and onclick
+ * @param   {bool}    isOtherProfile  For condition other profile state
+ * @param   {bool}    isNoBackButton  For condition no back button state
+ */
 const PageTitle = ({
   title,
   containerStyle,
