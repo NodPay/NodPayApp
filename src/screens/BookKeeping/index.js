@@ -29,9 +29,9 @@ import Transaction from './Transaction';
 
 const BookKeeping = ({navigation}) => {
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={styles.container}>
       <PageTitle title="Book Keeping" titleStyle={{color: color.btn_black}} />
-      <View style={styles.container}>
+      <View style={styles.wrapper}>
         <Tab.Navigator tabBar={props => <Tabbed {...props} />}>
           <Tab.Screen name="Report" component={Report} />
           <Tab.Screen name="Transaction" component={Transaction} />
@@ -86,6 +86,10 @@ const BookKeeping = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: color.btn_white_2,
+  },
+  wrapper: {
     flex: 1,
   },
   bottomTab: {

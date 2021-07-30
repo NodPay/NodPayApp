@@ -138,9 +138,10 @@ const BusinessProfile = ({navigation}) => {
       {/* Header */}
       <View style={styles.bg_blue}>
         <PageTitle
+          isWhiteArrow
           title="Business Profile"
           isProfile
-          onEdit={() => navigation.navigate('EditProfile')}
+          onEdit={() => navigation.navigate('EditProfileBusiness')}
         />
       </View>
       {/* Header End */}

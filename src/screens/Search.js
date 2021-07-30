@@ -199,7 +199,9 @@ const Search = ({route, navigation}) => {
                   ? navigation.navigate('InviteOtherBusiness')
                   : navigation.navigate('InviteFriend')
               }
-              title="Invite Friends"
+              title={
+                type === 'business' ? 'Invite Other Business' : 'Invite Friends'
+              }
               btnStyle={{backgroundColor: color.btn_black}}
               titleStyle={{
                 color: color.btn_white_2,
