@@ -78,7 +78,9 @@ const BusinessDrawer = ({navigation}) => {
           <DrawerItem
             label="Employee"
             image={DrawerEmployee}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('Employee');
+            }}
           />
         )}
         <DrawerItem
