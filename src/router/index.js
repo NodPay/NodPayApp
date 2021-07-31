@@ -2,7 +2,6 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // where screens should be imported
 import {
@@ -74,15 +73,10 @@ import {
   BlockCardPin,
   BlockCardTouchId,
 } from '../screens';
-import {
-  Drawer as DrawerComponent,
-  BusinessDrawer,
-  HomeTabBar,
-} from '../components';
+import {Drawer as DrawerComponent, BusinessDrawer} from '../components';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-const Tab = createBottomTabNavigator();
 const Router = () => {
   return (
     <NavigationContainer>
@@ -218,7 +212,6 @@ const AppDrawer = () => {
       drawerStyle={{backgroundColor: 'transparent'}}
       screenOptions={{unmountOnBlur: true}}
       drawerContent={props => <DrawerComponent {...props} />}>
-      {/* <Drawer.Screen name="HomeTabs" component={HomeTabs} /> */}
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="MyCard" component={MyCard} />
     </Drawer.Navigator>
@@ -236,15 +229,6 @@ const AppBusinessDrawer = () => {
       <Drawer.Screen name="HomeBusiness" component={HomeBusiness} />
       <Drawer.Screen name="BookKeeping" component={BookKeeping} />
     </Drawer.Navigator>
-  );
-};
-
-const HomeTabs = () => {
-  return (
-    <Tab.Navigator>
-      {/* <Tab.Screen name="Home" component={Home} /> */}
-      <Tab.Screen name="MyCard" component={MyCard} />
-    </Tab.Navigator>
   );
 };
 
