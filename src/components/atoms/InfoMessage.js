@@ -2,7 +2,11 @@ import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 
-// Information message inside box with optional icon
+/**
+ * InfoMessage component for information message inside box with optional icon
+ * @param   {string}   message  Content text of info message
+ * @param   {source}   icon     Source image of icon info
+ */
 const InfoMessage = ({message, icon}) => {
   return (
     <View style={styles.container}>

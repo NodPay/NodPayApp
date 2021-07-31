@@ -1,3 +1,5 @@
+// Every each asset on this folder need to registering on this list
+// so will be more easy to call any asset from any folder on the /assets/* folder
 import BR from './BR.png';
 import CN from './CN.png';
 import DE from './DE.png';

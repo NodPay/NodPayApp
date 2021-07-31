@@ -5,6 +5,13 @@ import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {GPS, Select, Selected} from '../../assets';
 import {color, dimens, fonts} from '../../utils';
 
+/**
+ * SelectAddressItem component for item of select address
+ * @param   {bool}    selected    For condition selected state
+ * @param   {func}    onPress     Triggered when item onclick
+ * @param   {string}  title       Title text
+ * @param   {string}  subtitle    Subtitle text
+ */
 const SelectAddressItem = ({selected, onPress, title = '', subtitle = ''}) => {
   return (
     <TouchableOpacity

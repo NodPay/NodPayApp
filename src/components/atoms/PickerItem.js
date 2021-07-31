@@ -16,6 +16,14 @@ import {CloseRed, Down} from '../../assets';
 import Gap from './Gap';
 import {FormLabel} from '.';
 
+/**
+ * PickerItem component for dropdown/selectbox using bottom sheet
+ * @param   {array}   data                Data list dropdown of array
+ * @param   {string}  selectedCategory    Value text selected
+ * @param   {func}    setSelectedCategory Triggered onchange of value
+ * @param   {string}  label               Label of dropdown/selectbox
+ * @param   {object}  labelStyle          For custom label style
+ */
 const PickerItem = ({
   data = [],
   selectedCategory,

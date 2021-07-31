@@ -24,6 +24,16 @@ import {
 } from '../../assets';
 import {color, dimens, fonts} from '../../utils';
 
+/**
+ * ContactItem component for listing item of contact list
+ * @param   {string}  name              The name text of contact
+ * @param   {string}  phoneNumber       The phone number text of contact
+ * @param   {source}  picture           The photo ptofil of image source
+ * @param   {bool}    added             Added condition state
+ * @param   {func}    onPress           Triggered when onclick add button
+ * @param   {bool}    isContact         For is contact condition state
+ * @param   {bool}    isInternational   For is international contact condition state
+ */
 const ContactItem = ({
   name = 'Name',
   phoneNumber = 'Phone Number',
@@ -31,11 +41,6 @@ const ContactItem = ({
   added,
   onPress,
   isContact,
-  show,
-  onBlock,
-  onReport,
-  onUnfriend,
-  dropDownStyle,
   isInternational,
 }) => {
   return (

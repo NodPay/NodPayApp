@@ -1,3 +1,5 @@
+// Every each asset on this folder need to registering on this list
+// so will be more easy to call any asset from any folder on the /assets/* folder
 import SplashWave from './splash_wave.png';
 import SplashWaveGradient from './splash_wave_gradient.png';
 import SplashWaveGradient2 from './splash_wave_gradient_2.png';

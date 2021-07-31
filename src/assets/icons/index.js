@@ -1,5 +1,8 @@
+// Every each asset on this folder need to registering on this list
+// so will be more easy to call any asset from any folder on the /assets/* folder
 import LeftArrow from './left-arrow.png';
 import BlackLeftArrow from './black-left-arrow.png';
+import WhiteLeftArrow from './white-left-arrow.png';
 import Next from './next.png';
 import Facebook from './facebook.png';
 import Facebook2 from './facebook_2.png';
@@ -122,6 +125,7 @@ export {
   NameCardPurple,
   LeftArrow,
   BlackLeftArrow,
+  WhiteLeftArrow,
   Next,
   Facebook,
   Facebook2,

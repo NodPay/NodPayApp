@@ -104,7 +104,7 @@ const BusinessDrawer = ({navigation}) => {
               label="Invite Other Business"
               image={DrawerInvite}
               onPress={() => {
-                navigation.navigate('InviteFriend');
+                navigation.navigate('InviteOtherBusiness');
               }}
             />
             <DrawerItem

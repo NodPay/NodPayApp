@@ -5,6 +5,11 @@ import {View, StyleSheet} from 'react-native';
 import {Button, Gap} from '../atoms';
 import {dimens, color} from '../../utils';
 
+/**
+ * SettingsSaveButton component for setting save/cancel button on bottom of form
+ * @param   {func}    onCancel  Triggered when button cancel onclick
+ * @param   {func}    onSave    Triggered when button save onclick
+ */
 const SettingsSaveButton = ({onCancel, onSave}) => {
   return (
     <View style={styles.btn}>

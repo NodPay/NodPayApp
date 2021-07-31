@@ -27,28 +27,18 @@ import {
 
 const {width: widthScreen, height: heightScreen} = Dimensions.get('window');
 
-const ModalCountry = ({items, onChangeCode, setShowModal}) => {
-  return (
-    <View style={styles.modal}>
-      <Image style={styles.modalTriangle} source={Triangle} />
-      <ScrollView style={styles.modalContainer}>
-        {items.map((item, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => {
-              onChangeCode(item.code);
-              setShowModal(false);
-            }}
-            style={styles.flagItem}>
-            <Image style={styles.flag} source={item.flag} />
-            <Text>{`+${item.code}`}</Text>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
-    </View>
-  );
-};
-
+/**
+ * InputPhoneNumber component for input text by phone number with selection of phone code country
+ * @param   {string}  label               Label text of input field
+ * @param   {string}  phoneCode           Selected phone code
+ * @param   {string}  value               Value text of phone number on input field
+ * @param   {func}    onChangeText        Triggered when on change text input field
+ * @param   {func}    onChangeCode        Triggered when on change phone code country
+ * @param   {object}  labelStyle          For custom label style
+ * @param   {bool}    inputMobileNumber   For condition input phone number only without label
+ * @param   {string}  placeholder         Placeholder text
+ * @param   {func}    dispatch            Triggered when update on redux
+ */
 const InputPhoneNumber = ({
   label,
   phoneCode = '',
@@ -85,6 +75,28 @@ const InputPhoneNumber = ({
   const [code, setCode] = useState('1');
   const [number, setNumber] = useState('');
   const [showModal, setShowModal] = useState(false);
+
+  const ModalCountry = ({items, onChangeCode, setShowModal}) => {
+    return (
+      <View style={styles.modal}>
+        <Image style={styles.modalTriangle} source={Triangle} />
+        <ScrollView style={styles.modalContainer}>
+          {items.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => {
+                onChangeCode(item.code);
+                setShowModal(false);
+              }}
+              style={styles.flagItem}>
+              <Image style={styles.flag} source={item.flag} />
+              <Text>{`+${item.code}`}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
+    );
+  };
 
   if (inputMobileNumber) {
     return (

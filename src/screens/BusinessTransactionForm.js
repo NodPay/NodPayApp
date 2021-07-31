@@ -37,7 +37,7 @@ const BusinessTransactionForm = ({route, navigation}) => {
   const {userSelected = {}} = route.params;
   const [isInput, setIsInput] = useState(false);
   // state for text input
-  const [value, setValue] = useState('0');
+  const [value, setValue] = useState('');
   const [message, setMessage] = useState('');
   const [focusMessage, setFocusMessage] = useState(false);
   const [action, setAction] = useState('');
@@ -128,7 +128,7 @@ const BusinessTransactionForm = ({route, navigation}) => {
                     fontSize: 60,
                   },
                 ]}>
-                {value}
+                {value === '' ? '0' : value}
               </Text>
             </Text>
           )}

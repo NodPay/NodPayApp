@@ -41,7 +41,7 @@ const EditProfileBusiness = ({navigation}) => {
       {/* Tab Bar */}
       <Tab.Navigator
         tabBar={props => <Tabbed {...props} />}
-        initialRouteName="Address">
+        initialRouteName="Profile">
         <Tab.Screen name="Profile" component={Profile} />
         <Tab.Screen name="Address" component={Address} />
       </Tab.Navigator>
