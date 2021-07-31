@@ -12,7 +12,14 @@ import {
 import Clipboard from '@react-native-community/clipboard';
 
 //where local file imported
-import {Tabbed, PageTitle, MenuItem, Button, Loading} from '../../components';
+import {
+  Tabbed,
+  PageTitle,
+  MenuItem,
+  Button,
+  Loading,
+  Modal,
+} from '../../components';
 import {color, dimens, fonts} from '../../utils';
 import {
   CardActive,
@@ -30,18 +37,32 @@ import {
   PhysicalCardActive,
   Next,
   LockWhite,
+  ModalSuccess,
 } from '../../assets';
 import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 // In MyCard screen, user can see their own card and related settings.
-const MyCard = ({navigation}) => {
+const MyCard = ({navigation, route}) => {
   const [toggleSwitch, setToggleSwitch] = useState({
     onlinePayments: false,
     paymentsAbroad: false,
   });
   const [isCardLocked, setIsCardLocked] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
   const [isPhysicalCardActive, setIsPhysicalCardActive] = useState(undefined);
+
+  // If there is route params "isPinChanged", show success modal
+  useEffect(() => {
+    if (route.params) {
+      const {isPinChanged} = route.params;
+
+      if (isPinChanged) {
+        setModalSuccess(true);
+      }
+    }
+    return () => {};
+  }, [route.params]);
 
   useEffect(() => {
     setIsPhysicalCardActive(true);
@@ -60,6 +81,17 @@ const MyCard = ({navigation}) => {
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
         <StatusBar backgroundColor={color.btn_white_2} />
+
+        {/* Success Block Account Modal */}
+        <Modal
+          imageSrc={ModalSuccess}
+          title="Card blocked!"
+          subtitle="Your virtual card has been successfuly blocked!"
+          visible={modalSuccess}
+          onClose={() => {
+            setModalSuccess(false);
+          }}
+        />
 
         <PageTitle
           title="My Card"

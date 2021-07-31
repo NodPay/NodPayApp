@@ -38,6 +38,7 @@ const Tab = createMaterialTopTabNavigator();
 const VirtualCardDetails = ({navigation, route}) => {
   const [modalSuccess, setModalSuccess] = useState(false);
 
+  // If there is route params "isCardBlocked", show success modal
   useEffect(() => {
     if (route.params) {
       const {isCardBlocked} = route.params;

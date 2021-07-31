@@ -27,7 +27,7 @@ const MyCardChangePin = ({route, navigation}) => {
   useEffect(() => {
     const backAction = () => {
       if (isConfirming) onBackToNewPin();
-      return true;
+      return isConfirming;
     };
 
     const backHandler = BackHandler.addEventListener(
@@ -45,7 +45,6 @@ const MyCardChangePin = ({route, navigation}) => {
   };
 
   const onChangePin = code => {
-    console.log(code);
     if (isConfirming) {
       setValue(prev => ({...prev, confirmPin: code}));
     } else {
@@ -70,7 +69,9 @@ const MyCardChangePin = ({route, navigation}) => {
       <View style={styles.wrapper}>
         {/* Total Amount */}
         <View style={styles.totalAmount}>
-          <Text style={styles.label}>Enter New PIN Number</Text>
+          <Text style={styles.label}>
+            {isConfirming ? 'Confirm PIN Number' : 'Enter New PIN Number'}
+          </Text>
           <InputPIN
             value={isConfirming ? value.confirmPin : value.newPin}
             showPassword={showPassword}
@@ -97,8 +98,7 @@ const MyCardChangePin = ({route, navigation}) => {
             onPress={() => {
               if (isConfirming) {
                 navigation.navigate('AppDrawer', {
-                  screen: 'HomeTabs',
-                  params: {screen: 'Mycard'},
+                  isPinChanged: true,
                 });
               } else {
                 setIsConfirming(true);
