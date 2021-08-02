@@ -21,13 +21,15 @@ import {
   Gap,
   MainAction,
   WalktroughTooltip,
+  Delayed,
 } from '../components/';
-import {color, dimens, fonts, getData} from '../utils/';
+import {color, dimens, fonts, getData, storeData} from '../utils/';
 import {CardInactive, Exchange, HomeActive, People1} from '../assets/';
 
 const Tab = createMaterialTopTabNavigator();
 const Home = ({navigation}) => {
   const mainActionRef = useRef(null);
+  const [walktroughPassed, setWalktroughPassed] = useState(null);
   const [walktrough, setWalktrough] = useState([
     {
       content:
@@ -64,7 +66,14 @@ const Home = ({navigation}) => {
         console.log('home get session', res);
       })
       .catch(e => console.log('error while getData', e));
-  }, []);
+
+    getData('walktrough')
+      .then(res => {
+        console.log('res', res.isHome);
+        setWalktroughPassed(res.isHome);
+      })
+      .catch(e => console.log('error while getData', e));
+  }, [walktroughPassed]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -77,7 +86,18 @@ const Home = ({navigation}) => {
         width={250}
         height={180}
         arrowStyle={{left: dimens.large}}
-        placement="bottom">
+        placement="bottom"
+        onFinish={() => {
+          getData('walktrough')
+            .then(res => {
+              setWalktroughPassed(true);
+              storeData('walktrough', {
+                ...res,
+                isHome: true,
+              });
+            })
+            .catch(e => console.log('error while getData', e));
+        }}>
         <View
           style={
             walktrough[5].isActive
@@ -243,13 +263,7 @@ const Home = ({navigation}) => {
       {/* <Gap t={100} /> */}
 
       {/* Bottom Tab Navigator */}
-      <WalktroughTooltip
-        items={walktrough}
-        setItems={setWalktrough}
-        indexActive={0}
-        width={250}
-        height={160}
-        placement="top">
+      {walktroughPassed === null || walktroughPassed === true ? (
         <View style={styles.bottomTab}>
           <View
             style={{
@@ -277,7 +291,9 @@ const Home = ({navigation}) => {
                 onPress={() => navigation.navigate('Transaction')}>
                 <Image source={Exchange} style={{width: 30, height: 30}} />
               </TouchableOpacity>
-              <Text>Exchange</Text>
+              <Text style={{position: 'absolute', left: 10, bottom: 15}}>
+                Exchange
+              </Text>
             </View>
             <TouchableOpacity
               onPress={() => {
@@ -288,7 +304,61 @@ const Home = ({navigation}) => {
             </TouchableOpacity>
           </View>
         </View>
-      </WalktroughTooltip>
+      ) : (
+        <Delayed>
+          <WalktroughTooltip
+            items={walktrough}
+            setItems={setWalktrough}
+            indexActive={walktroughPassed === true ? -1 : 0}
+            width={250}
+            height={160}
+            placement="top">
+            <View style={styles.bottomTab}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-evenly',
+                  alignItems: 'center',
+                }}>
+                <TouchableOpacity>
+                  <Image source={HomeActive} style={{width: 30, height: 30}} />
+                  <Text>Home</Text>
+                </TouchableOpacity>
+                <View>
+                  <TouchableOpacity
+                    style={{
+                      top: -35,
+                      height: 80,
+                      width: 80,
+                      backgroundColor: color.bg_color,
+                      borderRadius: 40,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderWidth: 10,
+                      borderColor: color.btn_white_2,
+                    }}
+                    onPress={() => navigation.navigate('Transaction')}>
+                    <Image source={Exchange} style={{width: 30, height: 30}} />
+                  </TouchableOpacity>
+                  <Text style={{position: 'absolute', left: 10, bottom: 15}}>
+                    Exchange
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('MyCard');
+                  }}>
+                  <Image
+                    source={CardInactive}
+                    style={{width: 30, height: 30}}
+                  />
+                  <Text>Card</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </WalktroughTooltip>
+        </Delayed>
+      )}
       {/* Bottom Tab Navigator End*/}
 
       {/* MainAction BottomSheet */}
@@ -437,6 +507,9 @@ const styles = StyleSheet.create({
   bottomTab: {
     height: 60,
     width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
     backgroundColor: 'white',
     justifyContent: 'center',
     paddingHorizontal: dimens.default_16,

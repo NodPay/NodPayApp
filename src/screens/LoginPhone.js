@@ -92,6 +92,11 @@ const LoginPhone = ({navigation}) => {
           isLogin: true, // if auth success, then save token for current user then user doesn't need to relogin
           isBoarding: true,
         });
+        // For reset walktrough when new login
+        // storeData('walktrough', {
+        //   isProfile: false,
+        //   isHome: false,
+        // });
         setError({status: false, message: ''});
         navigation.replace('AppDrawer');
       });

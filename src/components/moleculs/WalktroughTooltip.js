@@ -1,6 +1,6 @@
 import {style} from 'd3';
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, Platform} from 'react-native';
 import Tooltip from 'react-native-walkthrough-tooltip';
 
 //where local file imported
@@ -18,6 +18,7 @@ const WalktroughTooltip = ({
   indexActive,
   arrowStyle,
   children,
+  onFinish,
 }) => {
   const onBack = () => {
     const newData = items.map((row, currentIndex) => {
@@ -52,6 +53,9 @@ const WalktroughTooltip = ({
     });
 
     setItems(newData);
+    if (indexActive >= items.length - 1) {
+      onFinish();
+    }
   };
   const onDone = () => {
     const newData = items.map((row, currentIndex) => {
@@ -62,89 +66,98 @@ const WalktroughTooltip = ({
     });
 
     setItems(newData);
+    onFinish();
   };
 
   return (
     <Tooltip
-      isVisible={items[indexActive].isActive}
-      tooltipStyle={placement === 'top' ? {top: screenHeight - 300} : {}}
+      isVisible={indexActive < 0 ? false : items[indexActive].isActive}
+      tooltipStyle={
+        placement === 'top'
+          ? {top: screenHeight - (Platform.OS === 'android' ? 300 : 320)}
+          : {}
+      }
       contentStyle={{width, height, backgroundColor: 'white'}}
       arrowStyle={arrowStyle}
       arrowSize={{height: dimens.default_14, width: dimens.default}}
       content={
-        <View style={{padding: dimens.small}}>
-          <Text style={styles.content}>{items[indexActive].content}</Text>
-          <View
-            style={[
-              styles.btnContainer,
-              {
-                paddingHorizontal:
-                  indexActive > 0 ? dimens.default : dimens.large,
-              },
-            ]}>
-            {indexActive > 0 && indexActive < items.length - 1 && (
-              <Button
-                title="Back"
-                btnStyle={{
-                  backgroundColor: 'white',
-                  borderColor: color.btn_white,
-                  borderWidth: 1,
-                  height: dimens.large_40,
-                  marginRight: dimens.small,
-                  flex: 1,
-                }}
-                titleStyle={{fontFamily: fonts.sofia_bold}}
-                onPress={onBack}
-              />
-            )}
-            {indexActive < items.length - 1 ? (
-              <Button
-                title="Next"
-                btnStyle={{
-                  backgroundColor: color.btn_black,
-                  borderColor: color.btn_white,
-                  borderWidth: 1,
-                  height: dimens.large_40,
-                  flex: 1,
-                }}
-                titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-                onPress={onClose}
-              />
-            ) : (
-              <Button
-                title="Done"
-                btnStyle={{
-                  backgroundColor: color.btn_black,
-                  borderColor: color.btn_white,
-                  borderWidth: 1,
-                  height: dimens.large_40,
-                  flex: 1,
-                }}
-                titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
-                onPress={onDone}
-              />
-            )}
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              paddingBottom: dimens.small,
-            }}>
-            {items.map((item, index) => (
+        <>
+          {indexActive >= 0 && (
+            <View style={{padding: dimens.small}}>
+              <Text style={styles.content}>{items[indexActive].content}</Text>
               <View
-                key={index}
                 style={[
-                  item.isActive
-                    ? {backgroundColor: color.btn_black}
-                    : {backgroundColor: color.bg_grey},
-                  styles.stepDot,
-                ]}
-              />
-            ))}
-          </View>
-        </View>
+                  styles.btnContainer,
+                  {
+                    paddingHorizontal:
+                      indexActive > 0 ? dimens.default : dimens.large,
+                  },
+                ]}>
+                {indexActive > 0 && indexActive < items.length - 1 && (
+                  <Button
+                    title="Back"
+                    btnStyle={{
+                      backgroundColor: 'white',
+                      borderColor: color.btn_white,
+                      borderWidth: 1,
+                      height: dimens.large_40,
+                      marginRight: dimens.small,
+                      flex: 1,
+                    }}
+                    titleStyle={{fontFamily: fonts.sofia_bold}}
+                    onPress={onBack}
+                  />
+                )}
+                {indexActive < items.length - 1 ? (
+                  <Button
+                    title="Next"
+                    btnStyle={{
+                      backgroundColor: color.btn_black,
+                      borderColor: color.btn_white,
+                      borderWidth: 1,
+                      height: dimens.large_40,
+                      flex: 1,
+                    }}
+                    titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
+                    onPress={onClose}
+                  />
+                ) : (
+                  <Button
+                    title="Done"
+                    btnStyle={{
+                      backgroundColor: color.btn_black,
+                      borderColor: color.btn_white,
+                      borderWidth: 1,
+                      height: dimens.large_40,
+                      flex: 1,
+                    }}
+                    titleStyle={{fontFamily: fonts.sofia_bold, color: 'white'}}
+                    onPress={onDone}
+                  />
+                )}
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  paddingBottom: dimens.small,
+                }}>
+                {items.map((item, index) => (
+                  <View
+                    key={index}
+                    style={[
+                      item.isActive
+                        ? {backgroundColor: color.btn_black}
+                        : {backgroundColor: color.bg_grey},
+                      styles.stepDot,
+                    ]}
+                  />
+                ))}
+              </View>
+            </View>
+          )}
+        </>
       }
       placement={placement}
       onClose={onClose}>
