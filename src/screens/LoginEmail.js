@@ -96,8 +96,8 @@ const LoginEmail = ({navigation}) => {
         //   isHome: false,
         // });
         setError({status: false, message: ''});
-        navigation.replace('AppDrawer', {
-          screen: 'Home',
+        navigation.reset({
+          routes: [{name: 'AppDrawer'}],
         });
       });
     }

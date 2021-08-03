@@ -113,6 +113,7 @@ import InviteBlack from './invite_black.png';
 import Business from './business.png';
 import ThreeDotsBlack from './three_dots_black.png';
 import BlockPurple from './block_purple.png';
+import Change from './change.png';
 
 export {
   BlockPurple,
@@ -227,4 +228,5 @@ export {
   InviteBlack,
   Business,
   ThreeDotsBlack,
+  Change,
 };

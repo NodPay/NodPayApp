@@ -97,10 +97,11 @@ const LoginEmailBusiness = ({navigation}) => {
           role: email == EMAIL && password == PASSWORD ? 'admin' : 'employee',
           isLogin: true, // if auth success, then save token for current user then user doesn't need to relogin
           isBoarding: true,
+          isBusiness: true,
         });
         setError({status: false, message: ''});
-        navigation.replace('AppBusinessDrawer', {
-          screen: 'Home',
+        navigation.reset({
+          routes: [{name: 'AppBusinessDrawer'}],
         });
       });
     }
