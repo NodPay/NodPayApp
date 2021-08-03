@@ -13,6 +13,7 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
+import {useNavigation} from '@react-navigation/native';
 
 //where local files imported
 import {
@@ -33,6 +34,7 @@ import {color, dimens, fonts} from '../../utils';
  * @param   {func}    onPress           Triggered when onclick add button
  * @param   {bool}    isContact         For is contact condition state
  * @param   {bool}    isInternational   For is international contact condition state
+ * @param   {func}    onEditTag         trigger function when edit tag pressed
  */
 const ContactItem = ({
   name = 'Name',
@@ -42,7 +44,9 @@ const ContactItem = ({
   onPress,
   isContact,
   isInternational,
+  onEditTag,
 }) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.wrapProfile}>
@@ -69,34 +73,42 @@ const ContactItem = ({
       </View>
       {isContact ? (
         <View>
-          <Menu>
+          <Menu style={{borderRadius: dimens.default}}>
             {/* three dots */}
-            <MenuTrigger
-              text={`\u2022 \u2022 \u2022`}
-              customStyles={{
-                triggerText: {
-                  color: 'gray',
-                  padding: dimens.default,
-                },
-              }}
-            />
+            <MenuTrigger>
+              <Image source={ThreeDots} style={{height: 24, width: 30}} />
+            </MenuTrigger>
             <MenuOptions
               style={{
-                padding: dimens.default,
+                padding: 8,
               }}>
               {/* <MenuOption
                 onSelect={() => alert(`Save`)}
                 text="Edit Tag"
               /> */}
               <MenuOption
+                onSelect={onEditTag}
+                text={`Edit Tag`}
+                customStyles={{
+                  optionText: styles.titleInsideDropdown,
+                  optionWrapper: {borderBottomWidth: 0.5},
+                }}
+              />
+              <MenuOption
                 onSelect={() => alert(`Block`)}
                 text={`Block ${name}`}
-                customStyles={{optionText: styles.titleInsideDropdown}}
+                customStyles={{
+                  optionText: styles.titleInsideDropdown,
+                  optionWrapper: {borderBottomWidth: 0.5},
+                }}
               />
               <MenuOption
                 onSelect={() => alert(`Report`)}
                 text={`Report ${name}`}
-                customStyles={{optionText: styles.titleInsideDropdown}}
+                customStyles={{
+                  optionText: styles.titleInsideDropdown,
+                  optionWrapper: {borderBottomWidth: 0.5},
+                }}
               />
               <MenuOption
                 onSelect={() => alert(`Unfriend`)}
@@ -107,16 +119,6 @@ const ContactItem = ({
               />
             </MenuOptions>
           </Menu>
-          {/* <TouchableOpacity
-            style={{
-              paddingTop: dimens.default_16,
-              position: 'absolute',
-              right: 16,
-            }}
-            activeOpacity={0.8}
-            onPress={onPress}>
-            <Image source={ThreeDots} style={styles.icon} />
-          </TouchableOpacity> */}
         </View>
       ) : (
         <TouchableOpacity

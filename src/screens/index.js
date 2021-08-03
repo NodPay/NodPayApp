@@ -65,6 +65,7 @@ import BusinessTransactionTransferToNod from './BusinessTransactionTransferToNod
 import Accesbility from './Accesbility';
 import PaySalary from './PaySalary';
 import BlockCardTouchId from './BlockCardTouchId';
+import EditTag from './EditTag';
 
 export {
   BlockCardTouchId,
@@ -134,4 +135,5 @@ export {
   BusinessTransactionTransferToNod,
   Accesbility,
   PaySalary,
+  EditTag,
 };

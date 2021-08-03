@@ -72,6 +72,7 @@ import {
   VirtualCardDetails,
   BlockCardPin,
   BlockCardTouchId,
+  EditTag,
 } from '../screens';
 import {Drawer as DrawerComponent, BusinessDrawer} from '../components';
 
@@ -199,6 +200,7 @@ const Router = () => {
           component={VirtualCardDetails}
         />
         <Stack.Screen name="BlockCardPin" component={BlockCardPin} />
+        <Stack.Screen name="EditTag" component={EditTag} />
       </Stack.Navigator>
     </NavigationContainer>
   );
