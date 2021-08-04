@@ -16,6 +16,7 @@ import ContactItem from './ContactItem';
 import SettingsSaveButton from './SettingsSaveButton';
 import PickerItem from './PickerItem';
 import Divider from './Divider';
+import Delayed from './Delayed';
 
 export {
   Logo,
@@ -34,4 +35,5 @@ export {
   SettingsSaveButton,
   PickerItem,
   Divider,
+  Delayed,
 };

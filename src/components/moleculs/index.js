@@ -41,6 +41,7 @@ import EmployeeItem from './EmployeeItem';
 import PersonalDetailItem from './PersonalDetailItem';
 import WalktroughTooltip from './WalktroughTooltip';
 import StepFormRequestCard from './StepFormRequestCard';
+import EditTagList from './EditTagList';
 
 export {
   SectionTitle,
@@ -84,4 +85,5 @@ export {
   EmployeeItem,
   PersonalDetailItem,
   WalktroughTooltip,
+  EditTagList,
 };

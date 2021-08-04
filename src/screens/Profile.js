@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -12,7 +12,7 @@ import {
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 // where local files imported
-import {color, dimens, fonts} from '../utils';
+import {color, dimens, fonts, getData, storeData} from '../utils/';
 import {
   BalanceInfo,
   MainAction,
@@ -22,6 +22,7 @@ import {
   Gap,
   RequestMoneyItem,
   WalktroughTooltip,
+  Delayed,
 } from '../components/';
 import {DefaultPict, People1} from '../assets';
 
@@ -39,6 +40,7 @@ const Details = ({count, description}) => {
 
 const Profile = ({navigation}) => {
   const mainActionRef = useRef(null);
+  const [walktroughPassed, setWalktroughPassed] = useState(null);
   const [walktrough, setWalktrough] = useState([
     {
       content:
@@ -180,6 +182,15 @@ const Profile = ({navigation}) => {
     );
   };
 
+  useEffect(() => {
+    getData('walktrough')
+      .then(res => {
+        console.log('res', res.isProfile);
+        setWalktroughPassed(res.isProfile);
+      })
+      .catch(e => console.log('error while getData', e));
+  }, [walktroughPassed]);
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
@@ -202,7 +213,18 @@ const Profile = ({navigation}) => {
           width={250}
           height={160}
           arrowStyle={{left: dimens.large}}
-          placement="bottom">
+          placement="bottom"
+          onFinish={() => {
+            getData('walktrough')
+              .then(res => {
+                setWalktroughPassed(true);
+                storeData('walktrough', {
+                  ...res,
+                  isProfile: true,
+                });
+              })
+              .catch(e => console.log('error while getData', e));
+          }}>
           <View style={styles.box}>
             <View style={styles.wrapProfile}>
               <Image source={DefaultPict} style={styles.image} />
@@ -245,53 +267,98 @@ const Profile = ({navigation}) => {
 
       {/* Feed & Request */}
       <View style={{padding: dimens.default, paddingBottom: 0, flex: 1}}>
-        <WalktroughTooltip
-          items={walktrough}
-          setItems={setWalktrough}
-          indexActive={0}
-          width={250}
-          height={160}
-          arrowStyle={{left: dimens.large}}
-          placement="bottom">
-          {walktrough[0].isActive && (
-            <View style={styles.tabButton}>
-              <TouchableOpacity
-                style={[
-                  styles.btn,
-                  {
-                    backgroundColor: 'white',
-                  },
-                ]}>
-                <Text
+        {walktroughPassed === null || walktroughPassed === true ? (
+          <>
+            {walktrough[0].isActive && (
+              <View style={styles.tabButton}>
+                <TouchableOpacity
                   style={[
-                    styles.btnTitle,
+                    styles.btn,
                     {
-                      color: color.btn_black,
+                      backgroundColor: 'white',
                     },
                   ]}>
-                  Feed
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[
-                  styles.btn,
-                  {
-                    backgroundColor: 'transparent',
-                  },
-                ]}>
-                <Text
+                  <Text
+                    style={[
+                      styles.btnTitle,
+                      {
+                        color: color.btn_black,
+                      },
+                    ]}>
+                    Feed
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
                   style={[
-                    styles.btnTitle,
+                    styles.btn,
                     {
-                      color: 'gray',
+                      backgroundColor: 'transparent',
                     },
                   ]}>
-                  Request
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        </WalktroughTooltip>
+                  <Text
+                    style={[
+                      styles.btnTitle,
+                      {
+                        color: 'gray',
+                      },
+                    ]}>
+                    Request
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          </>
+        ) : (
+          <Delayed>
+            <WalktroughTooltip
+              items={walktrough}
+              setItems={setWalktrough}
+              indexActive={walktroughPassed === true ? -1 : 0}
+              width={250}
+              height={160}
+              arrowStyle={{left: dimens.large}}
+              placement="bottom">
+              {walktrough[0].isActive && (
+                <View style={styles.tabButton}>
+                  <TouchableOpacity
+                    style={[
+                      styles.btn,
+                      {
+                        backgroundColor: 'white',
+                      },
+                    ]}>
+                    <Text
+                      style={[
+                        styles.btnTitle,
+                        {
+                          color: color.btn_black,
+                        },
+                      ]}>
+                      Feed
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[
+                      styles.btn,
+                      {
+                        backgroundColor: 'transparent',
+                      },
+                    ]}>
+                    <Text
+                      style={[
+                        styles.btnTitle,
+                        {
+                          color: 'gray',
+                        },
+                      ]}>
+                      Request
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </WalktroughTooltip>
+          </Delayed>
+        )}
         <WalktroughTooltip
           items={walktrough}
           setItems={setWalktrough}

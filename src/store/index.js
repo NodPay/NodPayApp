@@ -66,6 +66,12 @@ const initialState = {
     city: '',
     detailAddress: '',
   },
+  // Tag
+  tag: [
+    {id: 0, title: 'all'},
+    {id: 1, title: 'local'},
+    {id: 2, title: 'international'},
+  ],
 };
 
 const reducer = (state, action) => {

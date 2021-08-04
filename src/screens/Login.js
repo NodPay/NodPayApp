@@ -1,9 +1,17 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View, SafeAreaView, Image, StatusBar} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  Image,
+  StatusBar,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
 
 // where local file imported
 import {Button, PageTitle, SectionTitle, LinkAction} from '../components';
-import {Facebook, Email, Phone, SplashWaveGradient} from '../assets';
+import {Facebook, Email, Phone, SplashWaveGradient, Change} from '../assets';
 import {clearAll, color, dimens, fonts, storeData} from '../utils';
 
 const Login = ({navigation}) => {
@@ -68,6 +76,23 @@ const Login = ({navigation}) => {
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'black'}}
             onPress={() => navigation.navigate('LoginEmail')}
           />
+          <TouchableOpacity
+            onPress={() => navigation.navigate('LoginBusiness')}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Image source={Change} style={{height: 24, width: 24}} />
+            <Text
+              style={{
+                marginLeft: 8,
+                fontFamily: fonts.sofia_bold,
+                fontSize: dimens.default,
+              }}>
+              Sign in as Business Account
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.footer_container}>
