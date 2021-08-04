@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import Clipboard from '@react-native-community/clipboard';
 
@@ -323,19 +325,26 @@ const MyCard = ({navigation, route}) => {
             <ReqeustSheetPoint text="Send & request money instantly." />
             <ReqeustSheetPoint text="No overdraft fees." />
           </View>
-          <Button
-            onPress={() => {}}
-            title="Continue"
-            titleStyle={{
-              color: color.btn_white_2,
-              fontFamily: fonts.sofia_bold,
-            }}
-            btnStyle={{
-              backgroundColor: color.btn_black,
-              marginLeft: dimens.supersmall,
-            }}
-            iconRight={Next}
-          />
+          <KeyboardAvoidingView
+            behavior="padding"
+            keyboardVerticalOffset={0}
+            enabled={Platform.OS === 'android' ? false : true}>
+            <Button
+              onPress={() => {
+                navigation.navigate('RequestCard');
+              }}
+              title="Continue"
+              titleStyle={{
+                color: color.btn_white_2,
+                fontFamily: fonts.sofia_bold,
+              }}
+              btnStyle={{
+                backgroundColor: color.btn_black,
+                marginLeft: dimens.supersmall,
+              }}
+              iconRight={Next}
+            />
+          </KeyboardAvoidingView>
         </ScrollView>
       </BottomSheet>
       {/* Request Physical Card Bottom Sheet*/}

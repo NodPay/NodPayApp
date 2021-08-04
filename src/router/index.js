@@ -72,6 +72,8 @@ import {
   VirtualCardDetails,
   BlockCardPin,
   BlockCardTouchId,
+  RequestCard,
+  RequestCardSuccess,
 } from '../screens';
 import {Drawer as DrawerComponent, BusinessDrawer} from '../components';
 
@@ -194,6 +196,11 @@ const Router = () => {
         <Stack.Screen name="Accesbility" component={Accesbility} />
         <Stack.Screen name="PaySalary" component={PaySalary} />
         <Stack.Screen name="MyCardChangePin" component={MyCardChangePin} />
+        <Stack.Screen name="RequestCard" component={RequestCard} />
+        <Stack.Screen
+          name="RequestCardSuccess"
+          component={RequestCardSuccess}
+        />
         <Stack.Screen
           name="VirtualCardDetails"
           component={VirtualCardDetails}
@@ -212,8 +219,8 @@ const AppDrawer = () => {
       drawerStyle={{backgroundColor: 'transparent'}}
       screenOptions={{unmountOnBlur: true}}
       drawerContent={props => <DrawerComponent {...props} />}>
-      <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="MyCard" component={MyCard} />
+      <Drawer.Screen name="Home" component={Home} />
     </Drawer.Navigator>
   );
 };

@@ -65,8 +65,12 @@ import BusinessTransactionTransferToNod from './BusinessTransactionTransferToNod
 import Accesbility from './Accesbility';
 import PaySalary from './PaySalary';
 import BlockCardTouchId from './BlockCardTouchId';
+import RequestCard from './RequestCard';
+import RequestCardSuccess from './RequestCardSuccess';
 
 export {
+  RequestCard,
+  RequestCardSuccess,
   BlockCardTouchId,
   BlockCardPin,
   VirtualCardDetails,

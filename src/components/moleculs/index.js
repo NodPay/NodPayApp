@@ -40,9 +40,11 @@ import TransactionItem from './TransactionItem';
 import EmployeeItem from './EmployeeItem';
 import PersonalDetailItem from './PersonalDetailItem';
 import WalktroughTooltip from './WalktroughTooltip';
+import StepFormRequestCard from './StepFormRequestCard';
 
 export {
   SectionTitle,
+  StepFormRequestCard,
   InputPassword,
   InputText,
   StepForm,

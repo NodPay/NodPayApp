@@ -4,8 +4,8 @@ import {
   SafeAreaView,
   View,
   StatusBar,
-  Text,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 
 //where local file imported

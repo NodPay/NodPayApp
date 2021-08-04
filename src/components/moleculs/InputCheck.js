@@ -5,13 +5,13 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 import {CheckmarkWhite} from '../../assets';
 
-const InputCheck = ({label, value, onChange}) => {
+const InputCheck = ({label, labelStyle, value, onChange}) => {
   return (
     <TouchableOpacity
       activeOpacity={1}
       style={styles.container}
       onPress={() => onChange(!value)}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.label, labelStyle]}>{label}</Text>
       <View
         style={[
           styles.check,

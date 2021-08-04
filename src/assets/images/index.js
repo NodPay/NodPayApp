@@ -38,8 +38,10 @@ import UploadOtherSECP from './upload_other_secp.png';
 import BGButton from './bg_button.png';
 import InviteBusiness from './invite_business.png';
 import Starbucks from './starbucks.png';
+import PurpleDottedLine from './purple_dottedline.png';
 
 export {
+  PurpleDottedLine,
   SplashWave,
   SplashWaveGradient,
   SplashWaveGradient2,

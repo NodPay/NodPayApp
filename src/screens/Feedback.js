@@ -10,6 +10,7 @@ import {
   StatusBar,
   ScrollView,
   Alert,
+  Platform,
 } from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import {Transition, Transitioning} from 'react-native-reanimated';
