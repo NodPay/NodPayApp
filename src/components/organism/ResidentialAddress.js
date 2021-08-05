@@ -11,7 +11,7 @@ import {setFormRegisterBusiness} from '../../store/action';
 
 const ResidentialAddress = () => {
   const {dispatch} = useStateContext();
-  const [postalCode, setPostalCode] = useState('8989');
+  const [postalCode, setPostalCode] = useState('');
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>

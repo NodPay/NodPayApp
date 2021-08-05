@@ -41,7 +41,7 @@ const ModalCountry = ({items, onChangeCode, setShowModal}) => {
             }}
             style={styles.flagItem}>
             <Image style={styles.flag} source={item.flag} />
-            <Text>{`+${item.code}`}</Text>
+            <Text>{item.code}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -63,26 +63,26 @@ const InputPhoneNumber = ({
   const codeList = [
     {
       flag: FlagUs,
-      code: '1',
+      code: '+1',
     },
     {
       flag: FlagAr,
-      code: '54',
+      code: '+54',
     },
     {
       flag: FlagBr,
-      code: '55',
+      code: '+55',
     },
     {
       flag: FlagMx,
-      code: '56',
+      code: '+56',
     },
     {
       flag: FlagHu,
-      code: '57',
+      code: '+57',
     },
   ];
-  const [code, setCode] = useState('1');
+  const [code, setCode] = useState('+1');
   const [number, setNumber] = useState('');
   const [showModal, setShowModal] = useState(false);
 
@@ -93,7 +93,7 @@ const InputPhoneNumber = ({
           <TouchableOpacity
             style={styles.btn}
             onPress={() => setShowModal(!showModal)}>
-            <Text style={styles.country_code}>{`+${code}`}</Text>
+            <Text style={styles.country_code}>{code}</Text>
             <Image source={Down} style={styles.leftIcon} />
           </TouchableOpacity>
           <TextInput
@@ -138,7 +138,7 @@ const InputPhoneNumber = ({
         <TouchableOpacity
           style={styles.btn}
           onPress={() => setShowModal(!showModal)}>
-          <Text style={styles.country_code}>{`+${phoneCode}`}</Text>
+          <Text style={styles.country_code}>{phoneCode}</Text>
           <Image source={Down} style={styles.leftIcon} />
         </TouchableOpacity>
         <TextInput

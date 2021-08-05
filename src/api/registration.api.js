@@ -64,6 +64,9 @@ export const signup = formRegister => {
       address,
       cnicImage,
       cnicNumber,
+      cnicName,
+      cnicDob,
+      cnicStates,
       password,
     } = formRegister;
     if (
@@ -80,32 +83,44 @@ export const signup = formRegister => {
       address === '' ||
       cnicImage === '' ||
       cnicNumber === '' ||
+      cnicName === '' ||
+      cnicDob === '' ||
+      cnicStates === '' ||
       password === ''
     ) {
+      console.log('Invalid fields');
       reject('No form fields should be empty.');
+    } else {
+      axios
+        .post(API_URL + '/auth/signup', {
+          phoneNumber: phoneNumber,
+          profileImage: 'placeholderProfileImage',
+          firstName: firstName,
+          lastName: lastName,
+          username: username,
+          age: age,
+          gender: gender,
+          email: email,
+          bio: bio,
+          familyRelationName: familyRelationName,
+          address: address,
+          cnicImage: 'placeholderCNICImage',
+          cnicNumber: cnicNumber,
+          cnicName: cnicName,
+          cnicDob: cnicDob,
+          cnicStates: cnicStates,
+          password: password,
+        })
+        .then(response => {
+          console.log('Successful signup');
+          console.log(response);
+          resolve('Successful signup');
+        })
+        .catch(error => {
+          console.log("Couldn't signup");
+          console.log(error);
+          reject('Unable to signup');
+        });
     }
-    axios
-      .post(API_URL, '/auth/signup', {
-        phoneNumber: phoneNumber,
-        profileImage: profileImage,
-        firstName: firstName,
-        lastName: lastName,
-        username: username,
-        age: age,
-        gender: gender,
-        email: email,
-        bio: bio,
-        familyRelationName: familyRelationName,
-        address: address,
-        cnicImage: cnicImage,
-        cnicNumber: cnicNumber,
-        password: password,
-      })
-      .then(response => {
-        resolve('Successful signup');
-      })
-      .catch(error => {
-        reject('Unable to signup');
-      });
   });
 };

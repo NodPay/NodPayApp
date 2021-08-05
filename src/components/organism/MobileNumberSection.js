@@ -63,7 +63,7 @@ const MobileNumberSection = () => {
           title="Verifications"
           titleStyle={{color: 'black', fontSize: dimens.default_22}}
           subtitle={`Enter 4 digits we sent to`}
-          num={`+${state.formRegister.phoneNumber}`}
+          num={state.formRegister.phoneNumber}
           subTitleStyle={{
             color: color.grey,
             fontSize: dimens.default_16,

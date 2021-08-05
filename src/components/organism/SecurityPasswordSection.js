@@ -31,7 +31,7 @@ const SecurityPasswordSection = ({
 
   const navigation = useNavigation();
 
-  if (setUpBiometric) {
+  if (showModal) {
     return (
       <View>
         <Modal
@@ -41,7 +41,7 @@ const SecurityPasswordSection = ({
           }
           subtitle={
             typeModal == 'success'
-              ? 'You can now do transaction and interact with your friends!'
+              ? 'You have successfully created your NodPay account!'
               : 'We’re unable to create account, please check your internet connection and try again.'
           }
           visible={showModal}
@@ -63,11 +63,7 @@ const SecurityPasswordSection = ({
                 navigation.replace('Loader');
               });
             } else {
-              dispatch({
-                type: 'SET_MODAL',
-                showModal: true,
-                typeModal: 'success',
-              });
+              dispatch({type: 'SET_MODAL', showModal: false, typeModal: null});
             }
           }}
           onClose={() => {
@@ -86,7 +82,7 @@ const SecurityPasswordSection = ({
             });
           }}
         />
-        {!withoutSectionTitle && (
+        {/* {!withoutSectionTitle && (
           <SectionTitle
             containerStyle={{
               padding: 0,
@@ -113,7 +109,7 @@ const SecurityPasswordSection = ({
           title="Face ID"
           subtitle="Active face ID so you don’t have to confirm evrytime you send money"
           btnTitle="Set Up Face ID"
-        />
+        /> */}
       </View>
     );
   }
