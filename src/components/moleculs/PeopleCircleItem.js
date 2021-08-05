@@ -3,7 +3,13 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
 import {color, dimens, fonts} from '../../utils';
 import {Internasional} from '../../assets';
-
+/**
+ * Person's photo in circle shape
+ * @param  {imageRef} photo           person's image
+ * @param  {string} name              person's name
+ * @param  {func} onPress             Function called when circle is pressed
+ * @param  {boolean} isInternasional  Is international relation
+ */
 const PeopleCircleItem = ({photo, name, onPress, isInternasional}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>

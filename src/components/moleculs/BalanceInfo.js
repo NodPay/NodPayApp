@@ -12,6 +12,13 @@ import {
 import {dimens, fonts, color} from '../../utils';
 import {Plus, HomeBalanceBackground, Withdraw} from '../../assets';
 
+/**
+ * Component to show balance amount/info in Home page or Drawer
+ * @param  {string} type              where the component placed
+ * @param  {int} moneyAmount          money balance
+ * @param  {string} backgroundColor
+ * @param  {func} onPressAdd          When plus icon pressed
+ */
 const BalanceInfo = ({type, moneyAmount, backgroundColor, onPressAdd}) => {
   if (type == 'home') {
     return (

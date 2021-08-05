@@ -14,6 +14,9 @@ import {dimens, fonts, color} from '../../utils';
 import {TextInput} from '../atoms';
 import {Send} from '../../assets';
 
+/**
+ * Textinput and send button at the bottom of comment screen
+ */
 const CommentSend = () => {
   const [comment, setComment] = useState('');
 

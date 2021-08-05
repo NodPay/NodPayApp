@@ -4,7 +4,12 @@ import {StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 // local
 import {color, dimens, fonts} from '../../utils';
 import {Select, Selected} from '../../assets';
-
+/**
+ * Component to edit tag list in Contacts screen
+ * @param  {} onSelectTag   When tag is selected
+ * @param  {} title         Tag name
+ * @param  {} selected      is tag selected by user
+ */
 const EditTagList = ({onSelectTag, title, selected}) => {
   return (
     <TouchableOpacity

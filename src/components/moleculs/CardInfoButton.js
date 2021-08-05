@@ -3,7 +3,13 @@ import {StyleSheet, Text, View} from 'react-native';
 import {SectionTitle} from '.';
 import {color, dimens, fonts} from '../../utils';
 import {Button, Gap} from '../atoms';
-
+/**
+ * Information text and action button inside card
+ * @param  {string} title     title/bold text
+ * @param  {string} subtitle  title/less bold text
+ * @param  {string} btnTitle  text inside button
+ * @param  {func} onPress     function called when button is pressed
+ */
 const CardInfoButton = ({title, subtitle, btnTitle, onPress}) => {
   return (
     <View style={styles.container}>

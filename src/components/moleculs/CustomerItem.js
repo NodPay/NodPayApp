@@ -4,7 +4,14 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 //where local file imported
 import {dimens, fonts, color} from '../../utils';
 import {ProfileExample, Time} from '../../assets';
-
+/**
+ * Item of customer lists
+ * @param  {string} message       text message of customer
+ * @param  {string} time          message time
+ * @param  {func} onPressPhoto    Function called when photo is pressed
+ * @param  {boolean} noRightTime  should show time or not
+ * @param  {boolean} isPaid       is customer already paid
+ */
 const CustomerItem = ({
   message,
   time,

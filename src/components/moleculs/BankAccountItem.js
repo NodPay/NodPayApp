@@ -12,7 +12,15 @@ import {
 import {dimens, fonts, color} from '../../utils';
 import {Ellipsis} from '../../assets';
 
-// Item of Bank Account List that will be looped
+/**
+ * Item of Bank Account List that will be looped
+ * @param  {imageRef} logo          Bank logo
+ * @param  {string} routingNumber   Account routing number
+ * @param  {string} accountNumber   Account identifier/specific number
+ * @param  {string} accountAmount   Money amount of the account
+ * @param  {component} rightButton  React component in the right side
+ */
+
 const BankAccountItem = ({
   logo,
   routingNumber,
