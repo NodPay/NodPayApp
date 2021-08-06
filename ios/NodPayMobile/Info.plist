@@ -2,7 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<!-- React Native Permissions Begin -->
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Allow permission</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
@@ -29,10 +28,28 @@
 	<string>Allow permission</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>Allow permission</string>
-	<!-- React Native Permissions End -->
-
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb139787628219124</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>139787628219124</string>
+	<key>FacebookDisplayName</key>
+	<string>NodPay</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>CFBundleDisplayName</key>
 	<string>NodPayMobile</string>
 	<key>CFBundleExecutable</key>
