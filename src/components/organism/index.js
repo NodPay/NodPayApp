@@ -11,8 +11,10 @@ import SecurityPasswordSection from './SecurityPasswordSection';
 import MainAction from './MainAction';
 import BasicInformationSection from './BasicInformationSection';
 import UploadDocumentSection from './UploadDocumentSection';
+import BankAccountConnect from './BankAccountConnect';
 
 export {
+  BankAccountConnect,
   MobileNumberSection,
   PersonalDetailsSection,
   PersonalAddressSection,

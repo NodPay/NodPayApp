@@ -17,11 +17,11 @@ import {
   Button,
   InputText,
   Modal,
-} from '../components/';
-import {color, dimens, fonts} from '../utils/';
-import {LockPurple, ModalSuccess, ModalFailed} from '../assets/';
+} from '../../components';
+import {color, dimens, fonts} from '../../utils';
+import {LockPurple, ModalSuccess, ModalFailed} from '../../assets';
 
-const BankAccountConnect = ({navigation}) => {
+const BankAccountConnect = ({onCancel}) => {
   const [form, setForm] = useState({
     routingNumber: '',
     accountNumber: '',
@@ -31,12 +31,13 @@ const BankAccountConnect = ({navigation}) => {
 
   const handleConnectAccount = () => {
     setModalSuccess(true);
+    onCancel();
   };
   const isButtonSubmitEnabled =
     form.routingNumber && form.accountNumber && form.confirmAccountNumber;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar backgroundColor={color.btn_white_2} />
 
       {/* Modal Failed */}
@@ -60,19 +61,15 @@ const BankAccountConnect = ({navigation}) => {
         btn1Text="Close"
         btn1Onpress={() => {
           setModalSuccess(false);
-          navigation.goBack();
         }}
         onClose={() => {
           setModalSuccess(false);
-          navigation.goBack();
         }}
       />
 
       <PageTitle
         isCloseMode
-        onPressClose={() => {
-          navigation.goBack();
-        }}
+        onPressClose={onCancel}
         title="Connect Bank Account"
         titleStyle={styles.pageTitle}
       />
@@ -134,7 +131,7 @@ const BankAccountConnect = ({navigation}) => {
           titleStyle={{color: 'white'}}
         />
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 };
 

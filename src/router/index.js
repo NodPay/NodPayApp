@@ -35,7 +35,6 @@ import {
   PrivacySocial,
   NotificationSetting,
   BankAccount,
-  BankAccountConnect,
   QRCode,
   TransferToBank,
   CashACheck,
@@ -120,10 +119,6 @@ const Router = () => {
           component={InviteFriendPeople}
         />
         <Stack.Screen name="BankAccount" component={BankAccount} />
-        <Stack.Screen
-          name="BankAccountConnect"
-          component={BankAccountConnect}
-        />
         <Stack.Screen name="AppDrawer" component={AppDrawer} />
         <Stack.Screen name="AppBusinessDrawer" component={AppBusinessDrawer} />
         <Stack.Screen name="QRCode" component={QRCode} />
