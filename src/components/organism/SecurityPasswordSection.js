@@ -18,7 +18,12 @@ import {CardInfoButton, SectionTitle} from '../moleculs';
 import useStateContext from '../../store/useStateContext';
 import {setFormRegister} from '../../store/action';
 import Modal from './Modal';
-
+/**
+ * @param  {bool} {setUpBiometric if its true, render setUpBiometric component
+ * @param  {bool} showModal if its true, show modal
+ * @param  {string} typeModal render modal base on type given such a "success"
+ * @param  {bool} withoutSectionTitle if its true, render sectionTitle component
+ */
 const SecurityPasswordSection = ({
   setUpBiometric,
   showModal,

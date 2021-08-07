@@ -3,7 +3,9 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 
 //where local file imported
 import {color, dimens, fonts} from '../../utils';
-
+/**
+ * @param  {string} {items} render item dynamically from array map
+ */
 const StepInfo = ({items}) => {
   return (
     <View style={styles.container}>

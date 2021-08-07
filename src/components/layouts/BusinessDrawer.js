@@ -32,10 +32,13 @@ import {
 import {MainAction} from '../organism';
 
 const BusinessDrawer = ({navigation}) => {
+  // ref for main action to open a bottomsheet
   const mainActionRef = useRef(null);
+
   const [userRole, setUserRole] = useState('admin');
 
   useEffect(() => {
+    // check session, if login as an admin / business , change the item rendered on drawer menu.
     getData('session')
       .then(res => {
         console.log('home get session', res.role);

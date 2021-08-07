@@ -11,7 +11,15 @@ import {
   ResidentialAddress,
   SecurityPasswordSection,
 } from '../organism';
-
+/**
+ * @param  {number} {activeStep current step number, default 0 , from reducer
+ * @param  {bool} isComplete if it is true, step fully / completed the line
+ * @param  {bool} isFamilyRelation render component for input family relation
+ * @param  {string} cnicData cnic data, currently is manual input form
+ * @param  {bool} setUpBiometric render component for check biometric such a fingerprint / touch id
+ * @param  {bool} showModal if its true, render a modal component
+ * @param  {bool} typeModal it its true, change modal component based on type given.
+ */
 const StepForm = ({
   activeStep,
   isComplete,

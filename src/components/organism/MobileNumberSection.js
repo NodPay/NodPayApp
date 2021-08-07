@@ -8,14 +8,19 @@ import {InputOtp, SectionTitle} from '../moleculs';
 import useStateContext from '../../store/useStateContext';
 
 const MobileNumberSection = () => {
+  // state from reducer
   const {state, dispatch} = useStateContext();
+  // handle time
   const [minute, setMinute] = useState(2);
   const [second, setSecond] = useState(59);
   const [delay, setDelay] = useState(1000);
+  // show text based on condition
   const [show, setShow] = useState(false);
 
+  // render component verification otp
   const {isVerification} = state;
 
+  // time running after initialization screen.
   useInterval(
     () => {
       setSecond(second - 1);
@@ -52,6 +57,7 @@ const MobileNumberSection = () => {
     }, [delay]);
   }
 
+  // component verification otp
   if (isVerification) {
     return (
       <View style={styles.container}>

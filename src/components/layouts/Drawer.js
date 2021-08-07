@@ -27,6 +27,7 @@ import {dimens, color, fonts, removeData, storeData} from '../../utils';
 import {MainAction} from '../organism';
 
 const Drawer = ({navigation}) => {
+  // ref for open bottomsheet
   const mainActionRef = useRef(null);
 
   return (

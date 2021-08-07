@@ -8,7 +8,18 @@ import {Button} from '../../components/';
 import {dimens, fonts, color} from '../../utils';
 
 const screenHeight = Dimensions.get('window').height;
-
+/**
+ * component to render a walktrough
+ * @param  {any} items
+ * @param  {any} setItems
+ * @param  {number} width
+ * @param  {number} height
+ * @param  {string} placement
+ * @param  {number} indexActive
+ * @param  {string} arrowStyle
+ * @param  {any} children
+ * @param  {func} onFinish
+ */
 const WalktroughTooltip = ({
   items,
   setItems,

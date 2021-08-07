@@ -4,7 +4,11 @@ import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
 //where local files imported
 import {dimens, fonts} from '../../utils';
 import {NextBlack} from '../../assets';
-
+/**
+ * @param  {string} {icon render image as icon, default from asset, if want to from url, change into {uri: url}
+ * @param  {string} title render text title
+ * @param  {func} onPress} trigger a function when pressed
+ */
 const SettingsItem = ({icon, title, onPress}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>

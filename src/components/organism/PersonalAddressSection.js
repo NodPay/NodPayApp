@@ -7,6 +7,7 @@ import {Gap} from '../atoms';
 import {InputText, InputOption} from '../moleculs';
 
 const PersonalAddressSection = ({}) => {
+  // handle input form
   const [user, setUser] = useState({
     zipCode: '',
     country: '',

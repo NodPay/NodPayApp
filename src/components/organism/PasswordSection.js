@@ -7,6 +7,7 @@ import {Gap} from '../atoms';
 import {InputPassword} from '../moleculs';
 
 const PasswordSection = ({}) => {
+  // handle value on input form
   const [user, setUser] = useState({
     password: '',
     newPassword: '',

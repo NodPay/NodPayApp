@@ -8,6 +8,7 @@ import {InputText, SectionTitle, SelectAddressList} from '../moleculs';
 import {setFormRegisterBusiness} from '../../store/action';
 
 const ResidentialAddress = () => {
+  // handle input form
   const [postalCode, setPostalCode] = useState('8989');
 
   return (

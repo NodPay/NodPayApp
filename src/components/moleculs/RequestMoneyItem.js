@@ -5,7 +5,17 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 import {Button} from '../../components';
 import {Time} from '../../assets';
-
+/**
+ * @param  {string} photo  render profile image, default photo from asset,
+ * @param  {string} name render profile name
+ * @param  {bool} action check profile action, like request or pay
+ * @param  {string} info render info text
+ * @param  {string} date render date
+ * @param  {bool} type check if it pay or request
+ * @param  {number} amount render amount of money
+ * @param  {bool} isRequested if its true, render button
+ * @param  {string} containerStyle custom style
+ */
 const NotifActivityItem = ({
   photo,
   name,

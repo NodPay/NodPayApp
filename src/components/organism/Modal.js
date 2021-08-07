@@ -15,7 +15,19 @@ import {Button} from '../atoms';
 import {SectionTitle} from '../moleculs';
 import {Close} from '../../assets';
 import {color, dimens, fonts} from '../../utils';
-
+/**
+component that render a modal
+* @param  {bool} {visible if its true, set modal visible true
+ * @param  {func} onClose close modal when pressed
+ * @param  {string} imageSrc render image modal, assets from image such a success or failed image.
+ * @param  {string} title render title
+ * @param  {string} subtitle render subtitle
+ * @param  {string} btn1Text render item left button text
+ * @param  {func} btn1Onpress trigger a function after pressed
+ * @param  {string} btn2Text render item right button text
+ * @param  {func} btn2Onpress trigger a function after pressed.
+ * @param  {bool} isRowBtn check is btn row
+ */
 const Modal = ({
   visible,
   onClose,

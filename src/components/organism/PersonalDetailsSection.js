@@ -7,7 +7,10 @@ import useStateContext from '../../store/useStateContext';
 import {color, dimens, fonts} from '../../utils';
 import {Gap} from '../atoms';
 import {SectionTitle, InputPhoto, InputText, InputOption} from '../moleculs';
-
+/**
+ * @param  {bool} {isFamilyRelation if its true, render the family relation component
+ * @param  {bool} withoutSectionTitle} if its true, render sectionTitle component
+ */
 const PersonalDetailsSection = ({isFamilyRelation, withoutSectionTitle}) => {
   const [user, setUser] = useState({
     firstName: '',

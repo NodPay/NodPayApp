@@ -20,8 +20,10 @@ import useStateContext from '../../store/useStateContext';
 import {ErrorMessage, PickerItem} from '../atoms';
 
 const BasicInformationSection = ({}) => {
+  // globlal form
   const {state, dispatch} = useStateContext();
   const {errorBusiness, formRegisterBusiness} = state;
+  // current data state
   const [data, setData] = useState({
     logo: '',
     name: '',
@@ -30,9 +32,12 @@ const BasicInformationSection = ({}) => {
     email: '',
     number: '',
   });
+  // current image
   const [picture, setPicture] = useState('');
+  // btn ref for bottomsheet
   const btnRef = useRef(null);
 
+  // function to open camera
   const openCamera = () => {
     ImagePicker.openCamera({
       width: 300,
@@ -46,6 +51,7 @@ const BasicInformationSection = ({}) => {
     btnRef.current.close();
   };
 
+  // function to open gallery
   const openGallery = () => {
     ImagePicker.openPicker({
       width: 300,
@@ -59,6 +65,7 @@ const BasicInformationSection = ({}) => {
     btnRef.current.close();
   };
 
+  // initial data for bottomsheet
   const [category, setCategory] = useState([
     {
       id: 0,
@@ -70,6 +77,7 @@ const BasicInformationSection = ({}) => {
     },
   ]);
 
+  // current data selected
   const [selectedCategory, setSelectedCategory] = useState(category[0].title);
 
   return (

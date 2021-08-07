@@ -9,7 +9,11 @@ import {
   ResidentialAddress,
   UploadDocumentSection,
 } from '../organism';
-
+/**
+ * component that render a stepform for business register
+ * @param  {bool} {activeStepBusiness current step active, default -, from reducer
+ * @param  {bool} isCompleteBusiness} if its true, stepform line fully / completed.
+ */
 const StepFormBusiness = ({activeStepBusiness, isCompleteBusiness}) => {
   const progressStepsStyle = {
     activeStepIconBorderColor: color.green,
