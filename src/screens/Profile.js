@@ -263,7 +263,7 @@ const Profile = ({navigation}) => {
       </View>
       {/* Profile Box End */}
 
-      <Gap b={124} />
+      <Gap b={-20} />
 
       {/* Feed & Request */}
       <View style={{padding: dimens.default, paddingBottom: 0, flex: 1}}>
@@ -438,7 +438,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bg_blue: {
-    height: 250,
+    height: 400,
     backgroundColor: color.bg_color,
   },
   boxContainer: {
