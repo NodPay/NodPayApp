@@ -123,11 +123,6 @@ const BusinessDrawer = ({navigation}) => {
       </ScrollView>
 
       <DrawerItem
-        label="Switch Account"
-        image={DrawerSwitch}
-        onPress={() => {}}
-      />
-      <DrawerItem
         label="Log out"
         image={DrawerLogout}
         onPress={() => {
