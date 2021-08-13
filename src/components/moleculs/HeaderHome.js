@@ -5,7 +5,11 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {Logo} from '../atoms';
 import {dimens, fonts, color} from '../../utils';
 import {Search, ProfileExample} from '../../assets';
-
+/**
+ * Header of home screen
+ * @param  {function} onPressSearch   When search word is pressed
+ * @param  {function} onPressProfile  When profile button is pressed
+ */
 const HeaderHome = ({onPressSearch, onPressProfile}) => {
   return (
     <View style={styles.container}>

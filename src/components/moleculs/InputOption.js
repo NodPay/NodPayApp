@@ -7,7 +7,11 @@ import {Male, Female, MaleActive, FemaleActive} from '../../assets';
 import {setFormRegister} from '../../store/action';
 import {dimens, fonts} from '../../utils';
 import {Gap, FormLabel} from '../atoms';
-
+/**
+ * @param  {object} user        user object containing user data
+ * @param  {function} setUser   when user data is changed
+ * @param  {function} dispatch  function to change global state
+ */
 const InputOption = ({user, setUser, dispatch}) => {
   return (
     <>
