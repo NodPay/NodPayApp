@@ -105,17 +105,15 @@ const Drawer = ({navigation}) => {
         label="Log out"
         image={DrawerLogout}
         onPress={() => {
-          removeData('session')
-            .then(() => {
-              console.log('session removed');
-              storeData('session', {
-                isLogin: false,
-                isBoarding: true,
-              });
-            })
-            .then(() => {
+          removeData('session').then(() => {
+            storeData('session', {
+              isLogin: false,
+              isBoarding: true,
+            });
+            removeData('token').then(() => {
               navigation.replace('Splash');
             });
+          });
         }}
       />
 
