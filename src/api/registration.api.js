@@ -128,6 +128,7 @@ export const signup = formRegister => {
 };
 
 export const phoneLogin = (phoneNumber, password) => {
+  console.log('phoneNumber', phoneNumber);
   return new Promise((resolve, reject) => {
     axios
       .post(API_URL + '/auth/phone-login', {

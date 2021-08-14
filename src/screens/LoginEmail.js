@@ -102,6 +102,7 @@ const LoginEmail = ({navigation}) => {
         }
       }
     } catch (err) {
+      console.log(err)
       setError({
         status: true,
         message: 'Unable to login with email / password. Please try again',

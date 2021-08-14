@@ -29,13 +29,7 @@ import {setFormLoginPhone} from '../store/action';
 
 const LoginPhone = ({navigation}) => {
   const {state, dispatch} = useStateContext();
-  const PHONE_NUMBER = '000000000000';
-  const PASSWORD = 'admin';
-
   const [isLoading, setIsLoading] = useState(false);
-  const [code, setCode] = useState('+1');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
   const [submited, setSubmited] = useState(false);
   const [isKeyboardShow, setIsKeyboardShow] = useState(false);
   let keyboardDidShowListener;
@@ -87,8 +81,8 @@ const LoginPhone = ({navigation}) => {
         });
       } else {
         const data = await phoneLogin(
-          state.formLoginCode + state.formLoginPhone,
-          password,
+          state.formLoginPhone.code + state.formLoginPhone.phone,
+          state.formLoginPhone.password,
         );
         if (data) {
           setIsLoading(false);
