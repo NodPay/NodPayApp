@@ -72,7 +72,10 @@ const NewPassword = ({navigation}) => {
         <ErrorMessage message="Password strength is too weak. Please use combination of number and symbols" />
       </View>
 
-      <KeyboardAvoidingView behavior={Platform.OS == 'ios' && 'position'}>
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}>
         <View style={styles.btnContainer}>
           <Button
             title="Reset Password"

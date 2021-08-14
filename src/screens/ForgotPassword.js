@@ -80,7 +80,9 @@ const ForgotPassword = ({navigation}) => {
       </View>
 
       <KeyboardAvoidingView
-        behavior={Platform.OS == 'ios' && 'position'}
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        enabled={Platform.OS === 'android' ? false : true}
         style={styles.btnContainer}>
         <Button
           title="Send Instruction"

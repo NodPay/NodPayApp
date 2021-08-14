@@ -22,7 +22,9 @@ const CommentSend = () => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS == 'ios' && 'position'}
+      behavior="padding"
+      keyboardVerticalOffset={0}
+      enabled={Platform.OS === 'android' ? false : true}
       style={styles.container}>
       <TextInput
         placeholder="Write your comment"
