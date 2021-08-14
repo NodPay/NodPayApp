@@ -3,7 +3,13 @@ import {Image, StyleSheet, View, Text} from 'react-native';
 import {MaleActive} from '../../assets';
 import {color, dimens, fonts} from '../../utils';
 import {Divider} from '../atoms';
-
+/**
+ * component to render personal item detail
+ * @param  {bool} isDivided if it is true, render a divider to bottom of personal detail
+ * @param  {bool} isImage render gender image, default Male
+ * @param  {string} left='left' -> render text on left,
+ * @param  {string} value='right' -> render text on right
+ */
 const PersonalDetailItem = ({
   isDivided,
   isImage,

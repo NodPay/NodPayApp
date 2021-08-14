@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,11 +7,12 @@ import {
   Image,
   FlatList,
   Platform,
+  TouchableOpacity,
 } from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 // where local files imported
-import {color, dimens, fonts} from '../utils';
+import {color, dimens, fonts, getData, storeData} from '../utils/';
 import {
   BalanceInfo,
   MainAction,
@@ -20,6 +21,8 @@ import {
   FeedItem,
   Gap,
   RequestMoneyItem,
+  WalktroughTooltip,
+  Delayed,
 } from '../components/';
 import {DefaultPict, People1} from '../assets';
 
@@ -37,6 +40,26 @@ const Details = ({count, description}) => {
 
 const Profile = ({navigation}) => {
   const mainActionRef = useRef(null);
+  const [walktroughPassed, setWalktroughPassed] = useState(null);
+  const [walktrough, setWalktrough] = useState([
+    {
+      content:
+        'All your interation with your friend and family will be show up here',
+      isActive: true,
+    },
+    {
+      content: 'All request from your friend and family will be show up here',
+      isActive: false,
+    },
+    {
+      content: 'Manage your nod balance from here',
+      isActive: false,
+    },
+    {
+      content: 'Check your scoreboard and start making transactions!',
+      isActive: false,
+    },
+  ]);
 
   const Tab = createMaterialTopTabNavigator();
 
@@ -159,11 +182,21 @@ const Profile = ({navigation}) => {
     );
   };
 
+  useEffect(() => {
+    getData('walktrough')
+      .then(res => {
+        console.log('res', res.isProfile);
+        setWalktroughPassed(res.isProfile);
+      })
+      .catch(e => console.log('error while getData', e));
+  }, [walktroughPassed]);
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.bg_blue}>
         <PageTitle
+          isWhiteArrow
           title="Profile"
           isProfile
           onEdit={() => navigation.navigate('EditProfile')}
@@ -173,31 +206,118 @@ const Profile = ({navigation}) => {
 
       {/* Profile Box */}
       <View style={styles.boxContainer}>
-        <View style={styles.box}>
-          <View style={styles.wrapProfile}>
-            <Image source={DefaultPict} style={styles.image} />
-            <Text style={styles.name}>Robert Langdon</Text>
-            <Text style={styles.description}>Idk what is this.</Text>
+        <WalktroughTooltip
+          items={walktrough}
+          setItems={setWalktrough}
+          indexActive={3}
+          width={250}
+          height={160}
+          arrowStyle={{left: dimens.large}}
+          placement="bottom"
+          onFinish={() => {
+            getData('walktrough')
+              .then(res => {
+                setWalktroughPassed(true);
+                storeData('walktrough', {
+                  ...res,
+                  isProfile: true,
+                });
+              })
+              .catch(e => console.log('error while getData', e));
+          }}>
+          <View style={styles.box}>
+            <View style={styles.wrapProfile}>
+              <Image source={DefaultPict} style={styles.image} />
+              <Text style={styles.name}>Robert Langdon</Text>
+              <Text style={styles.description}>Idk what is this.</Text>
+            </View>
+            <View style={styles.details}>
+              <Details count={32} description="Transactions" />
+              <Details count={24} description="Friends" />
+              <Details count="Mei 05" description="Join Date" />
+            </View>
+            <WalktroughTooltip
+              items={walktrough}
+              setItems={setWalktrough}
+              indexActive={2}
+              width={250}
+              height={160}
+              arrowStyle={{left: 215}}
+              placement="bottom">
+              <View
+                style={{
+                  padding: dimens.default,
+                  height: 65,
+                  width: '100%',
+                  marginBottom: 40,
+                }}>
+                <BalanceInfo
+                  type="drawer"
+                  backgroundColor={color.purple}
+                  onPressAdd={() => mainActionRef.current.open()}
+                />
+              </View>
+            </WalktroughTooltip>
           </View>
-          <View style={styles.details}>
-            <Details count={32} description="Transactions" />
-            <Details count={24} description="Friends" />
-            <Details count="Mei 05" description="Join Date" />
-          </View>
-          <View style={{padding: dimens.default, height: 65}}>
-            <BalanceInfo
-              type="drawer"
-              onPressAdd={() => mainActionRef.current.open()}
-            />
-          </View>
-        </View>
+        </WalktroughTooltip>
       </View>
       {/* Profile Box End */}
 
-      <Gap b={124} />
+      <Gap b={-20} />
 
       {/* Feed & Request */}
       <View style={{padding: dimens.default, paddingBottom: 0, flex: 1}}>
+        {walktroughPassed !== null && walktroughPassed !== true && (
+          <Delayed>
+            <WalktroughTooltip
+              items={walktrough}
+              setItems={setWalktrough}
+              indexActive={walktroughPassed === true ? -1 : 0}
+              width={250}
+              height={160}
+              arrowStyle={{left: dimens.large}}
+              placement="bottom">
+              {walktrough[0].isActive && (
+                <View style={styles.tabButton}>
+                  <TouchableOpacity
+                    style={[
+                      styles.btn,
+                      {
+                        backgroundColor: 'white',
+                      },
+                    ]}>
+                    <Text
+                      style={[
+                        styles.btnTitle,
+                        {
+                          color: color.btn_black,
+                        },
+                      ]}>
+                      Feed
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[
+                      styles.btn,
+                      {
+                        backgroundColor: 'transparent',
+                      },
+                    ]}>
+                    <Text
+                      style={[
+                        styles.btnTitle,
+                        {
+                          color: 'gray',
+                        },
+                      ]}>
+                      Request
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </WalktroughTooltip>
+          </Delayed>
+        )}
         <Tab.Navigator
           tabBar={props => (
             <Tabbed
@@ -226,7 +346,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bg_blue: {
-    height: 250,
+    height: 400,
     backgroundColor: color.bg_color,
   },
   boxContainer: {
@@ -241,8 +361,9 @@ const styles = StyleSheet.create({
   },
   box: {
     backgroundColor: 'white',
-    flex: 1,
     borderRadius: dimens.default_22,
+    paddingBottom: dimens.medium,
+    width: '100%',
     // justifyContent: 'center',
   },
   wrapProfile: {
@@ -282,5 +403,26 @@ const styles = StyleSheet.create({
   listContainer: {
     marginHorizontal: 0,
     marginTop: dimens.default,
+  },
+  tabButton: {
+    flexDirection: 'row',
+    backgroundColor: 'lightgray',
+    justifyContent: 'space-between',
+    borderRadius: 11,
+    height: 46,
+    marginTop: dimens.default_18,
+  },
+  btn: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    flex: 1,
+    borderRadius: 11,
+  },
+  btnTitle: {
+    fontFamily: fonts.sofia_bold,
+    fontSize: dimens.default_18,
+    lineHeight: dimens.medium,
+    color: color.btn_black,
   },
 });

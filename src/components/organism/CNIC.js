@@ -5,7 +5,9 @@ import {StyleSheet, ScrollView, Text, View, Image} from 'react-native';
 import {Document} from '../../assets';
 import {color, dimens, fonts} from '../../utils';
 import {Gap} from '../atoms';
-
+/**
+ * @param  {string} cnicData data passed from results screen after input a photo and form.
+ */
 const CNIC = ({cnicData}) => {
   const RenderText = ({label, value}) => {
     return (

@@ -8,7 +8,10 @@ import {AddMoney, CashACheck, CloseRed, TransferToBank} from '../../assets';
 import {dimens, fonts} from '../../utils';
 import {Gap} from '../atoms';
 import {MainActionList} from '../moleculs';
-
+/**
+ * @param  {ref} mainActionRef ref for bottomsheet
+ * @param  {bool} type if its true, change title based on condition
+ */
 const MainAction = ({mainActionRef, type}) => {
   const navigation = useNavigation();
 

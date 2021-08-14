@@ -2,7 +2,6 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // where screens should be imported
 import {
@@ -36,7 +35,6 @@ import {
   PrivacySocial,
   NotificationSetting,
   BankAccount,
-  BankAccountConnect,
   QRCode,
   TransferToBank,
   CashACheck,
@@ -70,16 +68,17 @@ import {
   BusinessTransactionTransferToNod,
   Accesbility,
   PaySalary,
+  VirtualCardDetails,
+  BlockCardPin,
+  BlockCardTouchId,
+  RequestCard,
+  RequestCardSuccess,
+  EditTag,
 } from '../screens';
-import {
-  Drawer as DrawerComponent,
-  BusinessDrawer,
-  HomeTabBar,
-} from '../components';
+import {Drawer as DrawerComponent, BusinessDrawer} from '../components';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-const Tab = createBottomTabNavigator();
 const Router = () => {
   return (
     <NavigationContainer>
@@ -109,6 +108,7 @@ const Router = () => {
         <Stack.Screen name="EditProfile" component={EditProfile} />
         <Stack.Screen name="PasswordSecurity" component={PasswordSecurity} />
         <Stack.Screen name="PrivacySocial" component={PrivacySocial} />
+        <Stack.Screen name="BlockCardTouchId" component={BlockCardTouchId} />
         <Stack.Screen
           name="NotificationSetting"
           component={NotificationSetting}
@@ -119,10 +119,6 @@ const Router = () => {
           component={InviteFriendPeople}
         />
         <Stack.Screen name="BankAccount" component={BankAccount} />
-        <Stack.Screen
-          name="BankAccountConnect"
-          component={BankAccountConnect}
-        />
         <Stack.Screen name="AppDrawer" component={AppDrawer} />
         <Stack.Screen name="AppBusinessDrawer" component={AppBusinessDrawer} />
         <Stack.Screen name="QRCode" component={QRCode} />
@@ -196,6 +192,17 @@ const Router = () => {
         <Stack.Screen name="Accesbility" component={Accesbility} />
         <Stack.Screen name="PaySalary" component={PaySalary} />
         <Stack.Screen name="MyCardChangePin" component={MyCardChangePin} />
+        <Stack.Screen name="RequestCard" component={RequestCard} />
+        <Stack.Screen
+          name="RequestCardSuccess"
+          component={RequestCardSuccess}
+        />
+        <Stack.Screen
+          name="VirtualCardDetails"
+          component={VirtualCardDetails}
+        />
+        <Stack.Screen name="BlockCardPin" component={BlockCardPin} />
+        <Stack.Screen name="EditTag" component={EditTag} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -209,8 +216,7 @@ const AppDrawer = () => {
       drawerStyle={{backgroundColor: 'transparent'}}
       screenOptions={{unmountOnBlur: true}}
       drawerContent={props => <DrawerComponent {...props} />}>
-      {/* <Drawer.Screen name="HomeTabs" component={HomeTabs} /> */}
-      {/* <Drawer.Screen name="Home" component={Home} /> */}
+      <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="MyCard" component={MyCard} />
     </Drawer.Navigator>
   );
@@ -227,15 +233,6 @@ const AppBusinessDrawer = () => {
       <Drawer.Screen name="HomeBusiness" component={HomeBusiness} />
       <Drawer.Screen name="BookKeeping" component={BookKeeping} />
     </Drawer.Navigator>
-  );
-};
-
-const HomeTabs = () => {
-  return (
-    <Tab.Navigator>
-      {/* <Tab.Screen name="Home" component={Home} /> */}
-      <Tab.Screen name="MyCard" component={MyCard} />
-    </Tab.Navigator>
   );
 };
 

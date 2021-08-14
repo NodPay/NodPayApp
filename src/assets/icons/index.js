@@ -1,5 +1,8 @@
+// Every each asset on this folder need to registering on this list
+// so will be more easy to call any asset from any folder on the /assets/* folder
 import LeftArrow from './left-arrow.png';
 import BlackLeftArrow from './black-left-arrow.png';
+import WhiteLeftArrow from './white-left-arrow.png';
 import Next from './next.png';
 import Facebook from './facebook.png';
 import Facebook2 from './facebook_2.png';
@@ -60,6 +63,7 @@ import ThreeDots from './three-dots.png';
 import AccountCircle from './account_circle.png';
 import Lock from './lock.png';
 import LockPurple from './lock_purple.png';
+import LockWhite from './lock_white.png';
 import LockOpenPurple from './lock_open_purple.png';
 import Profile from './profile.png';
 import Bell from './bell.png';
@@ -108,8 +112,11 @@ import SearchBlack from './search_black.png';
 import InviteBlack from './invite_black.png';
 import Business from './business.png';
 import ThreeDotsBlack from './three_dots_black.png';
+import BlockPurple from './block_purple.png';
+import Change from './change.png';
 
 export {
+  BlockPurple,
   DrawerSwitch,
   DrawerEmployee,
   BookInactive,
@@ -119,6 +126,7 @@ export {
   NameCardPurple,
   LeftArrow,
   BlackLeftArrow,
+  WhiteLeftArrow,
   Next,
   Facebook,
   Facebook2,
@@ -179,6 +187,7 @@ export {
   AccountCircle,
   Lock,
   LockPurple,
+  LockWhite,
   LockOpenPurple,
   Profile,
   Bell,
@@ -219,4 +228,5 @@ export {
   InviteBlack,
   Business,
   ThreeDotsBlack,
+  Change,
 };

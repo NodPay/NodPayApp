@@ -32,10 +32,13 @@ import {
 import {MainAction} from '../organism';
 
 const BusinessDrawer = ({navigation}) => {
+  // ref for main action to open a bottomsheet
   const mainActionRef = useRef(null);
+
   const [userRole, setUserRole] = useState('admin');
 
   useEffect(() => {
+    // check session, if login as an admin / business , change the item rendered on drawer menu.
     getData('session')
       .then(res => {
         console.log('home get session', res.role);
@@ -78,7 +81,9 @@ const BusinessDrawer = ({navigation}) => {
           <DrawerItem
             label="Employee"
             image={DrawerEmployee}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('Employee');
+            }}
           />
         )}
         <DrawerItem
@@ -102,7 +107,7 @@ const BusinessDrawer = ({navigation}) => {
               label="Invite Other Business"
               image={DrawerInvite}
               onPress={() => {
-                navigation.navigate('InviteFriend');
+                navigation.navigate('InviteOtherBusiness');
               }}
             />
             <DrawerItem
@@ -117,11 +122,6 @@ const BusinessDrawer = ({navigation}) => {
         <DrawerItem label="Help" image={DrawerHelp} onPress={() => {}} />
       </ScrollView>
 
-      <DrawerItem
-        label="Switch Account"
-        image={DrawerSwitch}
-        onPress={() => {}}
-      />
       <DrawerItem
         label="Log out"
         image={DrawerLogout}

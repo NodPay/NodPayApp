@@ -1,3 +1,5 @@
+// Every each component on this folder need to registering on this list
+// so will be more easy to call any components from any folder on the /components/* folder
 import Logo from './Logo';
 import Button from './Button';
 import PageTitle from './PageTitle';
@@ -14,6 +16,7 @@ import ContactItem from './ContactItem';
 import SettingsSaveButton from './SettingsSaveButton';
 import PickerItem from './PickerItem';
 import Divider from './Divider';
+import Delayed from './Delayed';
 
 export {
   Logo,
@@ -32,4 +35,5 @@ export {
   SettingsSaveButton,
   PickerItem,
   Divider,
+  Delayed,
 };

@@ -1,4 +1,4 @@
-import React, {useState, useRef, useMemo, useCallback} from 'react';
+import React, {useState, useRef, useMemo, useCallback, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,14 +10,31 @@ import {
   Platform,
   Pressable,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
 import AlphabetList from 'react-native-flatlist-alphabet';
+import RBSheet from 'react-native-raw-bottom-sheet';
+import {useIsFocused} from '@react-navigation/native';
 
 //where local files imported
 import {color, dimens, fonts, wait} from '../utils';
-import {Button, ContactItem, Gap, InputSearch, PageTitle} from '../components';
-import {NoContact, Facebook, FacebookWhite, Dropdown} from '../assets';
+import {
+  Button,
+  ContactItem,
+  EditTagList,
+  Gap,
+  InputSearch,
+  PageTitle,
+} from '../components';
+import {
+  NoContact,
+  Facebook,
+  FacebookWhite,
+  Dropdown,
+  CloseRed,
+} from '../assets';
+import useStateContext from '../store/useStateContext';
 
 // initial data add friend
 var initialData = [
@@ -110,6 +127,17 @@ const initialDataAlphabet = [
 ];
 
 const Contact = ({navigation}) => {
+  const {state, dispatch} = useStateContext();
+
+  let isFocused = useIsFocused();
+
+  useEffect(() => {
+    console.log('dataAlphabet', dataAlphabet);
+    return () => {
+      isFocused.valueOf(false);
+    };
+  }, [dataAlphabet]);
+
   const [friendData, setFriendData] = useState([]);
   const [getContact, setGetContact] = useState(true);
   const [isContact, setIsContact] = useState(false);
@@ -175,15 +203,6 @@ const Contact = ({navigation}) => {
   const [dataAlphabet, setDataAlphabet] = useState(initialDataAlphabet);
   const [contactSearch, setContactSearch] = useState('');
 
-  const btn = [
-    {id: 0, tag: 'All'},
-    {
-      id: 1,
-      tag: 'Local',
-    },
-    {id: 2, tag: 'International'},
-  ];
-
   const FilterButton = ({title, onPress, selected}) => {
     return (
       <TouchableOpacity
@@ -224,6 +243,10 @@ const Contact = ({navigation}) => {
     }
   };
 
+  // tag section
+  const btmEditTagRef = useRef(null);
+  const [selectedUser, setSelectedUser] = useState(null);
+
   return (
     <SafeAreaView style={styles.container}>
       <Pressable
@@ -233,10 +256,13 @@ const Contact = ({navigation}) => {
           setShow(false);
         }}>
         <PageTitle
+          isContact
           isBlackArrow
           title="Contacts"
           titleStyle={{color: color.btn_black}}
+          editTag={() => navigation.navigate('EditTag')}
         />
+
         {friendData == null && (
           <View style={{flex: 1, justifyContent: 'center'}}>
             <EmptyState />
@@ -256,23 +282,29 @@ const Contact = ({navigation}) => {
               backgroundColor="white"
             />
           </KeyboardAvoidingView>
+
           <Gap t={dimens.default_16} />
+
           <View style={{flexDirection: 'row', paddingLeft: dimens.default_16}}>
-            {btn.map((item, index) => {
+            {state.tag.map((item, index) => {
+              //get tag from reducer
               return (
                 <FilterButton
                   selected={item.id == current}
                   key={index}
-                  title={item.tag}
+                  title={item.title}
                   onPress={() => {
+                    console.log(item);
+                    console.log(dataAlphabet);
                     setCurrent(item.id);
-                    if (item.tag == 'All') {
+                    if (item.title == 'all') {
                       setDataAlphabet(initialDataAlphabet);
                       // Do Nothing
                     } else {
                       let filtered = initialDataAlphabet.filter(
-                        i => i.tag.toLowerCase() == item.tag.toLowerCase(),
+                        i => i.tag.toLowerCase() == item.title.toLowerCase(),
                       );
+                      console.log(filtered);
                       setDataAlphabet(filtered);
                     }
                   }}
@@ -315,6 +347,10 @@ const Contact = ({navigation}) => {
                 onPress={() => {
                   setId(item.id);
                   setShow(!show);
+                }}
+                onEditTag={() => {
+                  btmEditTagRef.current.open();
+                  setSelectedUser(item);
                 }}
               />
             </View>
@@ -485,6 +521,67 @@ const Contact = ({navigation}) => {
           )}
         </BottomSheet>
       </Pressable>
+
+      {/* BottomSheet for Edit Tag */}
+      <RBSheet
+        ref={btmEditTagRef}
+        height={Dimensions.get('window').height}
+        openDuration={250}
+        customStyles={{
+          container: {
+            borderTopLeftRadius: dimens.default_16,
+            borderTopRightRadius: dimens.default_16,
+          },
+        }}>
+        <Gap t={dimens.supersmall} />
+        <View
+          style={{
+            justifyContent: 'flex-start',
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: dimens.default,
+          }}>
+          <TouchableOpacity onPress={() => btmEditTagRef.current.close()}>
+            <Image source={CloseRed} style={{height: 40, width: 40}} />
+          </TouchableOpacity>
+          <Text style={styles.btmSheetTitle}>Edit Tag</Text>
+        </View>
+        <Gap t={dimens.default} />
+        <Text style={styles.editTag}>
+          Edit{' '}
+          <Text
+            style={{
+              fontFamily: fonts.sofia_bold,
+              color: 'black',
+              fontSize: dimens.default,
+            }}>
+            {`${selectedUser?.name}'s`}
+          </Text>{' '}
+          Tag
+        </Text>
+        <Gap t={dimens.default} />
+        {state.tag
+          ?.filter(i => i.title != 'all')
+          .map(item => {
+            return (
+              <EditTagList
+                key={item.id}
+                onSelectTag={() => {
+                  let data = selectedUser;
+                  data['tag'] = 'international';
+                  let datas = dataAlphabet
+                    .filter(i => i.id != data['id'])
+                    .concat(data);
+                  setDataAlphabet(datas);
+                  btmEditTagRef.current.close();
+                }}
+                title={item.title}
+                selected={selectedUser?.tag == item.title}
+              />
+            );
+          })}
+      </RBSheet>
+      {/* BottomSheet for Edit Tag End */}
     </SafeAreaView>
   );
 };
@@ -548,7 +645,7 @@ const styles = StyleSheet.create({
   add_friend_section_desc: {
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_18,
-    padding: dimens.default_16,
+    paddingHorizontal: dimens.default_16,
     color: color.grey,
     textAlign: 'center',
   },
@@ -583,5 +680,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: color.btn_black,
     letterSpacing: 1.5,
+  },
+  btmSheetTitle: {
+    fontFamily: fonts.sofia_bold,
+    fontSize: dimens.default_18,
+    textAlign: 'center',
+    flex: 0.9,
+  },
+  editTag: {
+    fontFamily: fonts.sofia_regular,
+    fontSize: 16,
+    color: color.grey_5,
+    marginLeft: dimens.default,
   },
 });

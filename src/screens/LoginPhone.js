@@ -24,8 +24,11 @@ import {
 import {SplashWaveGradient} from '../assets';
 import {clearAll, color, dimens, fonts, storeData, wait} from '../utils';
 import {phoneLogin} from '../api/registration.api';
+import useStateContext from '../store/useStateContext';
+import {setFormLoginPhone} from '../store/action';
 
 const LoginPhone = ({navigation}) => {
+  const {state, dispatch} = useStateContext();
   const PHONE_NUMBER = '000000000000';
   const PASSWORD = 'admin';
 
@@ -71,7 +74,10 @@ const LoginPhone = ({navigation}) => {
     try {
       setIsLoading(true);
       // check auth
-      if (phone == '' || password == '') {
+      if (
+        state.formLoginPhone.phone == '' ||
+        state.formLoginPhone.password == ''
+      ) {
         wait(100).then(() => {
           setIsLoading(false);
           setError({
@@ -80,9 +86,11 @@ const LoginPhone = ({navigation}) => {
           });
         });
       } else {
-        const data = await phoneLogin(code + phone, password);
+        const data = await phoneLogin(
+          state.formLoginCode + state.formLoginPhone,
+          password,
+        );
         if (data) {
-          console.log('login success');
           setIsLoading(false);
           storeData('token', data.token);
           storeData('session', {
@@ -90,7 +98,9 @@ const LoginPhone = ({navigation}) => {
             isBoarding: true,
           });
           setError({status: false, message: ''});
-          navigation.replace('Loader');
+          navigation.reset({
+            routes: [{name: 'AppDrawer'}],
+          });
         }
       }
     } catch (err) {
@@ -121,17 +131,21 @@ const LoginPhone = ({navigation}) => {
                 labelStyle={{color: color.btn_black}}
                 label="Mobile Number"
                 placeholder="Mobile Number"
-                phoneCode={code}
-                value={phone}
-                onChangeText={setPhone}
-                onChangeCode={setCode}
+                phoneCode={state.formLoginPhone.code}
+                value={state.formLoginPhone.phone}
+                onChangeText={text =>
+                  dispatch(setFormLoginPhone('phone', text))
+                }
+                onChangeCode={text => dispatch(setFormLoginPhone('code', text))}
               />
               <InputPassword
                 labelStyle={{color: color.btn_black}}
                 label="Password"
                 placeholder="Password"
-                value={password}
-                onChangeText={setPassword}
+                value={state.formLoginPhone.password}
+                onChangeText={text =>
+                  dispatch(setFormLoginPhone('password', text))
+                }
               />
             </View>
             <LinkAction

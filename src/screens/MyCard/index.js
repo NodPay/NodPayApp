@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useRef} from 'react';
+import React, {useState, useMemo, useRef, useEffect} from 'react';
 import {
   View,
   SafeAreaView,
@@ -8,12 +8,22 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  ImageBackground,
 } from 'react-native';
 import Clipboard from '@react-native-community/clipboard';
 
 //where local file imported
-import {Tabbed, PageTitle, MenuItem, Button} from '../components';
-import {color, dimens, fonts} from '../utils';
+import {
+  Tabbed,
+  PageTitle,
+  MenuItem,
+  Button,
+  Loading,
+  Modal,
+} from '../../components';
+import {color, dimens, fonts, wait} from '../../utils';
 import {
   CardActive,
   Exchange,
@@ -27,24 +37,72 @@ import {
   GlobePurple,
   PlanePurple,
   NameCardPurple,
+  PhysicalCardActive,
   Next,
-} from '../assets';
+  LockWhite,
+  ModalSuccess,
+  BgBottomTab,
+} from '../../assets';
 import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 // In MyCard screen, user can see their own card and related settings.
-const MyCard = ({navigation}) => {
+const MyCard = ({navigation, route}) => {
   const [toggleSwitch, setToggleSwitch] = useState({
     onlinePayments: false,
     paymentsAbroad: false,
   });
+  const [isCardLocked, setIsCardLocked] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
+  const [isPhysicalCardActive, setIsPhysicalCardActive] = useState(undefined);
+  const [isShowingCopyTooltip, setIsShowingCopyTooltip] = useState(false);
 
+  // If there is route params "isPinChanged", show success modal
+  useEffect(() => {
+    if (route.params) {
+      const {isPinChanged} = route.params;
+
+      if (isPinChanged) {
+        setModalSuccess(true);
+      }
+    }
+    return () => {};
+  }, [route.params]);
+
+  useEffect(() => {
+    setIsPhysicalCardActive(true);
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    if (isShowingCopyTooltip) {
+      wait(500).then(() => setIsShowingCopyTooltip(false));
+    }
+  }, [isShowingCopyTooltip]);
+
+  // Bottom sheet settings
   const refReqCardSheet = useRef(null);
   const snapPoints = useMemo(() => ['0%', '90%'], []);
+
+  if (isPhysicalCardActive === undefined) {
+    return <MyCardLoading />;
+  }
 
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
         <StatusBar backgroundColor={color.btn_white_2} />
+
+        {/* Success Block Account Modal */}
+        <Modal
+          imageSrc={ModalSuccess}
+          title="Card blocked!"
+          subtitle="Your virtual card has been successfuly blocked!"
+          visible={modalSuccess}
+          onClose={() => {
+            setModalSuccess(false);
+          }}
+        />
 
         <PageTitle
           title="My Card"
@@ -52,15 +110,31 @@ const MyCard = ({navigation}) => {
           isNoBackButton
         />
         <View style={styles.innerContainer}>
-          <Image
-            source={VirtualCard}
+          {/* Card(s) */}
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => {
+              navigation.navigate('VirtualCardDetails');
+            }}>
+            <Image
+              source={VirtualCard}
+              style={{
+                height: 250,
+                width: 410,
+                resizeMode: 'contain',
+                alignSelf: 'center',
+              }}
+            />
+          </TouchableOpacity>
+          {/* <Image
+            source={PhysicalCardActive}
             style={{
               height: 250,
               width: 410,
               resizeMode: 'contain',
               alignSelf: 'center',
             }}
-          />
+          /> */}
 
           {/* Three Buttons */}
           <View
@@ -71,13 +145,35 @@ const MyCard = ({navigation}) => {
               marginHorizontal: 46,
             }}>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
-              <TouchableOpacity style={styles.button}>
-                <Image
-                  source={LockOpenPurple}
-                  style={{height: dimens.medium, resizeMode: 'contain'}}
-                />
-              </TouchableOpacity>
-              <Text style={styles.buttonText}>Lock Card</Text>
+              {isCardLocked ? (
+                <>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                      setIsCardLocked(false);
+                    }}>
+                    <Image
+                      source={LockOpenPurple}
+                      style={{height: dimens.medium, resizeMode: 'contain'}}
+                    />
+                  </TouchableOpacity>
+                  <Text style={styles.buttonText}>Lock Card</Text>
+                </>
+              ) : (
+                <>
+                  <TouchableOpacity
+                    style={[styles.button, {backgroundColor: color.loading}]}
+                    onPress={() => {
+                      setIsCardLocked(true);
+                    }}>
+                    <Image
+                      source={LockWhite}
+                      style={{height: dimens.medium, resizeMode: 'contain'}}
+                    />
+                  </TouchableOpacity>
+                  <Text style={styles.buttonText}>Lock Card</Text>
+                </>
+              )}
             </View>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
               <TouchableOpacity
@@ -97,6 +193,7 @@ const MyCard = ({navigation}) => {
                 style={styles.button}
                 onPress={() => {
                   Clipboard.setString('1238 2914 2910 0984');
+                  setIsShowingCopyTooltip(true);
                 }}>
                 <Image
                   source={Copy}
@@ -140,18 +237,46 @@ const MyCard = ({navigation}) => {
               },
             }}
           />
-          <MenuItem
-            icon={NameCardPurple}
-            title="Request Physical Card"
-            onPress={() => {
-              refReqCardSheet.current?.expand();
-            }}
-          />
+          {isShowingCopyTooltip ? (
+            // Copy CCV Tooltip
+            <View
+              style={{
+                backgroundColor: 'black',
+                width: '100%',
+                borderRadius: dimens.default,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                paddingVertical: dimens.small,
+              }}>
+              <Image
+                source={CheckCircle}
+                style={{width: 28, height: 28, marginTop: dimens.small}}
+              />
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: dimens.default,
+                  marginLeft: dimens.small,
+                }}>
+                Virutal card number copied
+              </Text>
+            </View>
+          ) : (
+            <MenuItem
+              icon={NameCardPurple}
+              title="Request Physical Card"
+              onPress={() => {
+                refReqCardSheet.current?.expand();
+              }}
+            />
+          )}
+
           {/* Menu Item End */}
         </View>
 
         {/* Bottom Tab Navigator */}
-        {/* <View style={styles.bottomTab}>
+        <View style={styles.bottomTab}>
           <View
             style={{
               flexDirection: 'row',
@@ -159,35 +284,66 @@ const MyCard = ({navigation}) => {
               alignItems: 'center',
             }}>
             <TouchableOpacity
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
               onPress={() => {
                 navigation.navigate('Home');
               }}>
-              <Image source={HomeInactive} style={{width: 30, height: 30}} />
+              <Image
+                source={HomeInactive}
+                style={{width: 30, height: 30, marginBottom: 6}}
+              />
               <Text>Home</Text>
             </TouchableOpacity>
             <View>
               <TouchableOpacity
                 style={{
                   top: -35,
-                  height: 80,
-                  width: 80,
-                  backgroundColor: color.bg_color,
+                  backgroundColor: color.btn_white_2,
+                  padding: 10,
                   borderRadius: 40,
                   justifyContent: 'center',
                   alignItems: 'center',
-                  borderWidth: 10,
-                  borderColor: color.btn_white_2,
-                }}>
-                <Image source={Exchange} style={{width: 30, height: 30}} />
+                }}
+                onPress={() => navigation.navigate('Transaction')}>
+                <ImageBackground
+                  source={BgBottomTab}
+                  style={{
+                    height: 64,
+                    width: 64,
+                    borderRadius: 40,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    resizeMode: 'cover',
+                  }}>
+                  <Image source={Exchange} style={{width: 30, height: 30}} />
+                </ImageBackground>
               </TouchableOpacity>
-              <Text>Exchange</Text>
+              <Text
+                style={{
+                  position: 'absolute',
+                  left: Platform.OS === 'ios' ? -10 : 0,
+                  bottom: 15,
+                  width: Platform.OS === 'ios' ? 110 : 80,
+                }}>
+                Send & Request
+              </Text>
             </View>
-            <TouchableOpacity>
-              <Image source={CardActive} style={{width: 30, height: 30}} />
+            <TouchableOpacity
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Image
+                source={CardActive}
+                style={{width: 30, height: 30, marginBottom: 6}}
+              />
               <Text>Card</Text>
             </TouchableOpacity>
           </View>
-        </View> */}
+        </View>
         {/* Bottom Tab Navigator End*/}
       </View>
 
@@ -235,22 +391,45 @@ const MyCard = ({navigation}) => {
             <ReqeustSheetPoint text="Send & request money instantly." />
             <ReqeustSheetPoint text="No overdraft fees." />
           </View>
-          <Button
-            onPress={() => {}}
-            title="Continue"
-            titleStyle={{
-              color: color.btn_white_2,
-              fontFamily: fonts.sofia_bold,
-            }}
-            btnStyle={{
-              backgroundColor: color.btn_black,
-              marginLeft: dimens.supersmall,
-            }}
-            iconRight={Next}
-          />
+          <KeyboardAvoidingView
+            behavior="padding"
+            keyboardVerticalOffset={0}
+            enabled={Platform.OS === 'android' ? false : true}>
+            <Button
+              onPress={() => {
+                navigation.navigate('RequestCard');
+                refReqCardSheet.current?.close();
+              }}
+              title="Continue"
+              titleStyle={{
+                color: color.btn_white_2,
+                fontFamily: fonts.sofia_bold,
+              }}
+              btnStyle={{
+                backgroundColor: color.btn_black,
+                marginLeft: dimens.supersmall,
+              }}
+              iconRight={Next}
+            />
+          </KeyboardAvoidingView>
         </ScrollView>
       </BottomSheet>
       {/* Request Physical Card Bottom Sheet*/}
+    </SafeAreaView>
+  );
+};
+
+const MyCardLoading = () => {
+  return (
+    <SafeAreaView
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: color.btn_white_2,
+      }}>
+      <StatusBar animated backgroundColor={color.bg_white} />
+      <Loading size="large" color={color.loading} />
     </SafeAreaView>
   );
 };

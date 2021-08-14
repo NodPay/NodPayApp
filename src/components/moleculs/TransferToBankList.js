@@ -4,7 +4,15 @@ import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 // where local files imported
 import {color, dimens, fonts} from '../../utils';
 import {CitiBank, Check} from '../../assets';
-
+/**
+ * component that render a list of bank
+ * @param  {bool} selected if its true, change a background color
+ * @param  {string} logo render an image
+ * @param  {string} name render text name
+ * @param  {number} number render text number
+ * @param  {number} wallet render amount of wallet / money
+ * @param  {func} onPress trigger a function when pressed
+ */
 const TransferToBankList = ({
   selected,
   logo,

@@ -4,7 +4,18 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 //where local file imported
 import {color, dimens, fonts} from '../../utils';
 import {Time} from '../../assets';
-
+/**
+ * Activity item in notification
+ * @param  {imageRef} photo     image in item
+ * @param  {string} name        person's name
+ * @param  {string} action      person's activity
+ * @param  {string} action2     person's activity 2
+ * @param  {string} info        activity information
+ * @param  {string} date        date of activity
+ * @param  {string} type        type of activity
+ * @param  {string} amount      money amount being used
+ * @param  {boolean} isUnread   is notification unread
+ */
 const NotifActivityItem = ({
   photo,
   name,

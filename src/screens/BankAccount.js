@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useMemo} from 'react';
 import {
   View,
   FlatList,
@@ -17,9 +17,11 @@ import {
   EmptyState,
   Button,
   BankAccountItem,
+  BankAccountConnect,
 } from '../components/';
 import {color, dimens, fonts} from '../utils/';
 import {EmptyData, CitiBank, FaysalBank, HabibBank} from '../assets/';
+import BottomSheet from '@gorhom/bottom-sheet';
 
 const BankAccountList = [
   {
@@ -44,6 +46,10 @@ const BankAccountList = [
 
 const BankAccount = ({navigation}) => {
   const [isEmpty, setIsEmpty] = useState(false);
+
+  // Connect bank account Bottom sheet
+  const bottomSheetRef = useRef();
+  const snapPoints = useMemo(() => ['0%', '100%'], []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -73,7 +79,7 @@ const BankAccount = ({navigation}) => {
                 rightButton={
                   <Button
                     onPress={() => {
-                      // navigation.navigate('BankAccountConnect');
+                      bottomSheetRef.current?.expand();
                     }}
                     title="Edit"
                     btnStyle={styles.editButton}
@@ -93,13 +99,21 @@ const BankAccount = ({navigation}) => {
       <View style={styles.addButtonContainer}>
         <Button
           onPress={() => {
-            navigation.navigate('BankAccountConnect');
+            bottomSheetRef.current?.expand();
           }}
           title="Add Bank / Card"
           btnStyle={{backgroundColor: color.loading, flex: 1}}
           titleStyle={{color: 'white'}}
         />
       </View>
+
+      <BottomSheet ref={bottomSheetRef} snapPoints={snapPoints}>
+        <BankAccountConnect
+          onCancel={() => {
+            bottomSheetRef.current?.close();
+          }}
+        />
+      </BottomSheet>
     </SafeAreaView>
   );
 };

@@ -54,6 +54,20 @@ const initialState = {
     cnicImage: '',
     address: '', //postal code
   },
+  formEditProfile: {
+    firstName: '',
+    lastName: '',
+    username: '',
+    age: '',
+    gender: '',
+    email: '',
+    shortBio: '',
+    zipCode: '',
+    country: '',
+    state: '',
+    city: '',
+    address: '',
+  },
   // from edit profile business
   formEditProfileBusiness: {
     name: '',
@@ -65,6 +79,34 @@ const initialState = {
     state: '',
     city: '',
     detailAddress: '',
+  },
+  formLoginEmail: {
+    email: '',
+    password: '',
+  },
+  formLoginPhone: {
+    code: '+1',
+    phone: '',
+    password: '',
+  },
+  formLoginEmailBusiness: {
+    email: '',
+    password: '',
+  },
+  formLoginPhoneBusiness: {
+    code: '+1',
+    phone: '',
+    password: '',
+  },
+  // Tag
+  tag: [
+    {id: 0, title: 'all'},
+    {id: 1, title: 'local'},
+    {id: 2, title: 'international'},
+  ],
+  // Forgot password
+  formForgotPassword: {
+    email: '',
   },
 };
 
@@ -176,6 +218,46 @@ const reducer = (state, action) => {
           [action.inputType]: action.inputValue,
         },
       };
+    case 'SET_FORM_LOGIN_EMAIL':
+      return {
+        ...state,
+        formLoginEmail: {
+          ...state.formLoginEmail,
+          [action.inputType]: action.inputValue,
+        },
+      };
+    case 'SET_FORM_LOGIN_PHONE':
+      return {
+        ...state,
+        formLoginPhone: {
+          ...state.formLoginPhone,
+          [action.inputType]: action.inputValue,
+        },
+      };
+    case 'SET_FORM_LOGIN_EMAIL_BUSINESS':
+      return {
+        ...state,
+        formLoginEmailBusiness: {
+          ...state.formLoginEmailBusiness,
+          [action.inputType]: action.inputValue,
+        },
+      };
+    case 'SET_FORM_LOGIN_PHONE_BUSINESS':
+      return {
+        ...state,
+        formLoginPhoneBusiness: {
+          ...state.formLoginPhoneBusiness,
+          [action.inputType]: action.inputValue,
+        },
+      };
+    case 'SET_FORM_EDIT_PROFILE':
+      return {
+        ...state,
+        formEditProfile: {
+          ...state.formEditProfile,
+          [action.inputType]: action.inputValue,
+        },
+      };
     case 'SET_FORM_EDIT_PROFILE_BUSINESS':
       return {
         ...state,
@@ -188,6 +270,22 @@ const reducer = (state, action) => {
       return {
         ...state,
         errorBusiness: action.payload,
+      };
+    case 'SET_FORM_FORGOT_PASSWORD':
+      return {
+        ...state,
+        formForgotPassword: {
+          ...state.formForgotPassword,
+          [action.inputType]: action.inputValue,
+        },
+      };
+    case 'SET_FORM_REQUEST_PHYSICAL_CARD':
+      return {
+        ...state,
+        formRequestPhysicalCard: {
+          ...state.formRequestPhysicalCard,
+          [action.inputType]: action.inputValue,
+        },
       };
     default:
       return state;

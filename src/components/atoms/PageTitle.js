@@ -4,6 +4,7 @@ import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import {
   LeftArrow,
   BlackLeftArrow,
+  WhiteLeftArrow,
   CloseRed,
   QRScan,
   PencilEditWhite,
@@ -12,13 +13,40 @@ import {
 } from '../../assets';
 import {color, dimens, fonts} from '../../utils';
 import {useNavigation} from '@react-navigation/native';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
 
-// * Page title with optional buttons on the left and right
+/**
+ * PageTitle component for make page of title screen with any variant, usually will be place on header
+ * @param   {string}  title           Title text of page/screen on header
+ * @param   {object}  containerStyle  For custom container style
+ * @param   {object}  titleStyle      For custom title style
+ * @param   {bool}    isBlackArrow    For back icon with black state
+ * @param   {bool}    isWhiteArrow    For back icon with white state
+ * @param   {bool}    isCloseMode     For back icon with close state
+ * @param   {func}    onPressClose    Triggered when back icon with close state onclick
+ * @param   {func}    onPressBack     Triggered when back icon with black/white state onclick
+ * @param   {bool}    isRightQR       For condition show QR on the right
+ * @param   {object}  cancel          For custom cancel style
+ * @param   {bool}    isCancel        For condition cancel state
+ * @param   {bool}    isProfile       For condition profile state
+ * @param   {bool}    isContact       For condition is page title used on contact screen
+ * @param   {bool}    isOtherProfile  For condition other profile state
+ * @param   {bool}    isNoBackButton  For condition no back button state
+ * @param   {func}    onPressRight    Triggered when right icon onclick
+ * @param   {func}    onEdit          Triggered when isProfile=true or isOtherProfile=true, and onclick
+ * @param   {func}    editTag          Triggered when isContact = true, onClick
+ */
 const PageTitle = ({
   title,
   containerStyle,
   titleStyle,
   isBlackArrow,
+  isWhiteArrow,
   isCloseMode,
   onPressClose,
   onPressBack,
@@ -30,6 +58,8 @@ const PageTitle = ({
   onEdit,
   isOtherProfile,
   isNoBackButton,
+  isContact,
+  editTag,
 }) => {
   const navigation = useNavigation();
 
@@ -60,9 +90,22 @@ const PageTitle = ({
               }
               style={styles.left_arrow}>
               {isBlackArrow ? (
-                <Image source={BlackLeftArrow} />
+                <Image source={BlackLeftArrow} style={styles.left_arrow_icon} />
               ) : (
-                <Image source={LeftArrow} />
+                <Image source={LeftArrow} style={styles.left_arrow_icon} />
+              )}
+            </TouchableOpacity>
+          )}
+          {isWhiteArrow && (
+            <TouchableOpacity
+              onPress={() =>
+                onPressBack ? onPressBack() : navigation.goBack()
+              }
+              style={styles.left_arrow}>
+              {isWhiteArrow ? (
+                <Image source={WhiteLeftArrow} style={styles.left_arrow_icon} />
+              ) : (
+                <Image source={LeftArrow} style={styles.left_arrow_icon} />
               )}
             </TouchableOpacity>
           )}
@@ -75,6 +118,7 @@ const PageTitle = ({
           <Text style={styles.textQR}>QR Code</Text>
         </TouchableOpacity>
       )}
+
       {/* Edit Profile */}
       {isProfile && (
         <TouchableOpacity onPress={onEdit} style={styles.containerQR}>
@@ -84,14 +128,32 @@ const PageTitle = ({
           />
         </TouchableOpacity>
       )}
+
       {/* Other User Profile */}
       {isOtherProfile && (
         <TouchableOpacity onPress={onEdit} style={styles.containerQR}>
           <Image
-            source={isBlackArrow ? ThreeDotsBlack : ThreeDotsBlack}
+            source={ThreeDotsVertical}
             style={{height: 24, width: 24, resizeMode: 'contain'}}
           />
         </TouchableOpacity>
+      )}
+
+      {/* isContact */}
+      {isContact && (
+        <Menu style={styles.containerQR}>
+          <MenuTrigger>
+            <Image source={ThreeDotsBlack} style={{height: 24, width: 24}} />
+          </MenuTrigger>
+          <MenuOptions>
+            <MenuOption onSelect={editTag}>
+              <Text
+                style={[styles.textQR, {fontSize: dimens.default, padding: 8}]}>
+                Edit Tag
+              </Text>
+            </MenuOption>
+          </MenuOptions>
+        </Menu>
       )}
     </View>
   );
@@ -115,6 +177,11 @@ const styles = StyleSheet.create({
     padding: dimens.default_16,
     position: 'absolute',
     left: 0,
+  },
+  left_arrow_icon: {
+    width: dimens.medium,
+    height: dimens.medium,
+    resizeMode: 'contain',
   },
   title: {
     fontFamily: fonts.sofia_bold,

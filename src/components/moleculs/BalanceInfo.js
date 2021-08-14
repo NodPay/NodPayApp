@@ -12,7 +12,14 @@ import {
 import {dimens, fonts, color} from '../../utils';
 import {Plus, HomeBalanceBackground, Withdraw} from '../../assets';
 
-const BalanceInfo = ({type, moneyAmount, onPressAdd}) => {
+/**
+ * Component to show balance amount/info in Home page or Drawer
+ * @param  {string} type              where the component placed
+ * @param  {int} moneyAmount          money balance
+ * @param  {string} backgroundColor
+ * @param  {func} onPressAdd          When plus icon pressed
+ */
+const BalanceInfo = ({type, moneyAmount, backgroundColor, onPressAdd}) => {
   if (type == 'home') {
     return (
       <ImageBackground
@@ -36,7 +43,10 @@ const BalanceInfo = ({type, moneyAmount, onPressAdd}) => {
       <View
         style={[
           styles.container,
-          {backgroundColor: color.btn_white_2, borderRadius: dimens.default},
+          {
+            backgroundColor: backgroundColor || color.btn_white_2,
+            borderRadius: dimens.default,
+          },
         ]}>
         <View>
           <Text style={[styles.title, {color: color.grey_2}]}>
@@ -52,24 +62,54 @@ const BalanceInfo = ({type, moneyAmount, onPressAdd}) => {
     );
   }
 
-  return (
-    <View
-      style={[
-        styles.container,
-        {backgroundColor: color.btn_white_2, borderRadius: dimens.default},
-      ]}>
-      <View>
-        <Text style={[styles.title, {color: color.grey_2}]}>
-          Available Balance
-        </Text>
-        <Text style={styles.drawerMoneyAmount}>Rs {moneyAmount || '0'}</Text>
-      </View>
+  if (type == 'drawer') {
+    return (
+      <View
+        style={[
+          styles.container,
+          {
+            backgroundColor: backgroundColor || color.btn_white_2,
+            borderRadius: dimens.default,
+          },
+        ]}>
+        <View>
+          <Text style={[styles.title, {color: color.grey_2}]}>
+            Available Balance
+          </Text>
+          <Text style={styles.drawerMoneyAmount}>Rs {moneyAmount || '0'}</Text>
+        </View>
 
-      <TouchableOpacity style={styles.drawerAddButton} onPress={onPressAdd}>
-        <Image source={Plus} style={[styles.addIcon, {height: 30}]} />
-      </TouchableOpacity>
-    </View>
-  );
+        <TouchableOpacity style={styles.drawerAddButton} onPress={onPressAdd}>
+          <Image source={Plus} style={[styles.addIcon, {height: 30}]} />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+  if (type == 'virtualCardDetails') {
+    return (
+      <View
+        style={[
+          styles.container,
+          {
+            backgroundColor: backgroundColor || color.purple,
+            borderRadius: dimens.default,
+            paddingVertical: dimens.default,
+            marginTop: dimens.default,
+          },
+        ]}>
+        <View>
+          <Text style={[styles.title, {color: color.grey_2}]}>
+            Available Balance
+          </Text>
+          <Text style={styles.drawerMoneyAmount}>Rs {moneyAmount || '0'}</Text>
+        </View>
+
+        <TouchableOpacity style={styles.drawerAddButton} onPress={onPressAdd}>
+          <Image source={Plus} style={[styles.addIcon, {height: 30}]} />
+        </TouchableOpacity>
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({

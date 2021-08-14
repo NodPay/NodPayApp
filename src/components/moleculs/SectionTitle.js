@@ -1,7 +1,17 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
-
+/**
+ * component that render section title for screen
+ * @param  {string} title render text titke
+ * @param  {string} subtitle render text subtitle
+ * @param  {string} textColor=color.btn_black default -> default color is black
+ * @param  {string} titleStyle custom style for title
+ * @param  {string} subTitleStyle custom style for subtitle
+ * @param  {string} containerStyle custom style for container
+ * @param  {string} num='' render text num
+ * @param  {string} type render component based on props given.
+ */
 const SectionTitle = ({
   title,
   subtitle,

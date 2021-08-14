@@ -3,7 +3,17 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
 import {color, dimens, fonts} from '../../utils';
 import {Internasional, CheckmarkWhite} from '../../assets';
-
+/**
+ * component for people on list.
+ * @param  {string} photo   default: Image, if using base64 or link, change into {uri:link_image}
+ * @param  {string} name    render item name
+ * @param  {string} phone   render item phone number
+ * @param  {func} onPress   trigger a function when photo pressed
+ * @param  {bool} isInternasional render icon globe if it is true
+ * @param  {bool} isSmall    custom style for small image
+ * @param  {string} selectedMode  custom style for item when selected
+ * @param  {bool} isSelected  if it is true, change style
+ */
 const PeopleItem = ({
   photo,
   name,

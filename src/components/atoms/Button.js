@@ -3,6 +3,18 @@ import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import {Loading} from '.';
 import {color, dimens, fonts} from '../../utils';
 
+/**
+ * Button component for any component style with icon or without icon
+ * @param   {func}    onPress     Triggered when button onclick/onpress
+ * @param   {object}  btnStyle    For custom button style
+ * @param   {object}  iconStyle   For custom icon style
+ * @param   {object}  titleStyle  For custom text style
+ * @param   {string}  title       For content text button
+ * @param   {source}  iconLeft    For icon on left as image source
+ * @param   {source}  iconRight   For icon on right as image source
+ * @param   {bool}    disabled    For disabled condition state
+ * @param   {bool}    isLoading   For on loading state
+ */
 const Button = ({
   onPress,
   btnStyle,

@@ -20,6 +20,8 @@ import Settings from './Settings';
 import Comment from './Comment';
 import MyCard from './MyCard';
 import MyCardChangePin from './MyCardChangePin';
+import VirtualCardDetails from './VirtualCardDetails';
+import BlockCardPin from './BlockCardPin';
 import Feedback from './Feedback';
 import Language from './Language';
 import ChangePhoneNumber from './ChangePhoneNumber';
@@ -28,7 +30,6 @@ import PasswordSecurity from './PasswordSecurity';
 import PrivacySocial from './PrivacySocial';
 import NotificationSetting from './NotificationSetting';
 import BankAccount from './BankAccount';
-import BankAccountConnect from './BankAccountConnect';
 import QRCode from './QRCode';
 import TransferToBank from './TransferToBank';
 import CashACheck from './CashACheck';
@@ -62,8 +63,17 @@ import BusinessTransactionSuccess from './BusinessTransactionSuccess';
 import BusinessTransactionTransferToNod from './BusinessTransactionTransferToNod';
 import Accesbility from './Accesbility';
 import PaySalary from './PaySalary';
+import BlockCardTouchId from './BlockCardTouchId';
+import RequestCard from './RequestCard';
+import RequestCardSuccess from './RequestCardSuccess';
+import EditTag from './EditTag';
 
 export {
+  RequestCard,
+  RequestCardSuccess,
+  BlockCardTouchId,
+  BlockCardPin,
+  VirtualCardDetails,
   Splash,
   GetStarted,
   Login,
@@ -94,7 +104,6 @@ export {
   PrivacySocial,
   NotificationSetting,
   BankAccount,
-  BankAccountConnect,
   QRCode,
   TransferToBank,
   CashACheck,
@@ -128,4 +137,5 @@ export {
   BusinessTransactionTransferToNod,
   Accesbility,
   PaySalary,
+  EditTag,
 };

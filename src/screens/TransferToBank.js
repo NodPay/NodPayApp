@@ -30,7 +30,7 @@ const TransferToBank = ({navigation}) => {
   const [selected, setSelected] = useState(null);
   const [isInput, setIsInput] = useState(false);
   // state for text input
-  const [value, setValue] = useState('0');
+  const [value, setValue] = useState('');
   // modal
   const [visible, setVisible] = useState(false);
   const [modal, setModal] = useState({
@@ -177,7 +177,10 @@ const TransferToBank = ({navigation}) => {
               </View>
             ) : (
               <Text style={styles.amount} onPress={() => setIsInput(!isInput)}>
-                Rs <Text style={{color: '#03060C', fontSize: 47}}>{value}</Text>
+                Rs{' '}
+                <Text style={{color: '#03060C', fontSize: 47}}>
+                  {value === '' ? '0' : value}
+                </Text>
               </Text>
             )}
           </View>

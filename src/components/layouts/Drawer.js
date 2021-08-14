@@ -27,6 +27,7 @@ import {dimens, color, fonts, removeData, storeData} from '../../utils';
 import {MainAction} from '../organism';
 
 const Drawer = ({navigation}) => {
+  // ref for open bottomsheet
   const mainActionRef = useRef(null);
 
   return (
@@ -63,11 +64,6 @@ const Drawer = ({navigation}) => {
           onPress={() => {}}
         />
         <DrawerItem label="My Card" image={DrawerCard} onPress={() => {}} />
-        <DrawerItem
-          label="Business Profile"
-          image={DrawerBusiness}
-          onPress={() => navigation.navigate('LoginBusiness')}
-        />
         <DrawerItem
           label="Contacts"
           image={DrawerContact}

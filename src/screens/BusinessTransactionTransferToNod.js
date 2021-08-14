@@ -30,7 +30,7 @@ const BusinessTransactionTransferToNod = ({navigation}) => {
   const [selected, setSelected] = useState(null);
   const [isInput, setIsInput] = useState(false);
   // state for text input
-  const [value, setValue] = useState('0');
+  const [value, setValue] = useState('');
   // modal
   const [visible, setVisible] = useState(false);
   const [modal, setModal] = useState({
@@ -215,7 +215,7 @@ const BusinessTransactionTransferToNod = ({navigation}) => {
                       fontSize: 60,
                     },
                   ]}>
-                  {value}
+                  {value === '' ? '0' : value}
                 </Text>
               </Text>
             )}

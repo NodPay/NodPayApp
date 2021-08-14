@@ -17,11 +17,11 @@ import {
   Button,
   InputText,
   Modal,
-} from '../components/';
-import {color, dimens, fonts} from '../utils/';
-import {LockPurple, ModalSuccess, ModalFailed} from '../assets/';
+} from '../../components';
+import {color, dimens, fonts} from '../../utils';
+import {LockPurple, ModalSuccess, ModalFailed} from '../../assets';
 
-const BankAccountConnect = ({navigation}) => {
+const BankAccountConnect = ({onCancel}) => {
   const [form, setForm] = useState({
     routingNumber: '',
     accountNumber: '',
@@ -31,12 +31,19 @@ const BankAccountConnect = ({navigation}) => {
 
   const handleConnectAccount = () => {
     setModalSuccess(true);
+    onCancel();
   };
   const isButtonSubmitEnabled =
     form.routingNumber && form.accountNumber && form.confirmAccountNumber;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        Platform.OS === 'ios'
+          ? {paddingVertical: dimens.medium}
+          : {paddingBottom: dimens.medium},
+      ]}>
       <StatusBar backgroundColor={color.btn_white_2} />
 
       {/* Modal Failed */}
@@ -60,19 +67,15 @@ const BankAccountConnect = ({navigation}) => {
         btn1Text="Close"
         btn1Onpress={() => {
           setModalSuccess(false);
-          navigation.goBack();
         }}
         onClose={() => {
           setModalSuccess(false);
-          navigation.goBack();
         }}
       />
 
       <PageTitle
         isCloseMode
-        onPressClose={() => {
-          navigation.goBack();
-        }}
+        onPressClose={onCancel}
         title="Connect Bank Account"
         titleStyle={styles.pageTitle}
       />
@@ -119,7 +122,9 @@ const BankAccountConnect = ({navigation}) => {
       </ScrollView>
 
       <KeyboardAvoidingView
-        behavior={Platform.OS == 'ios' && 'position'}
+        behavior="padding"
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0}
+        enabled={Platform.OS === 'android' ? false : true}
         style={styles.addButtonContainer}>
         <Button
           disabled={!isButtonSubmitEnabled}

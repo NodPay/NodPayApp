@@ -4,6 +4,9 @@ import {StyleSheet, Text, View} from 'react-native';
 // where local files imported
 import {SelectAddressItem} from '../atoms';
 
+/**
+ * component to render selectItem
+ */
 const SelectAddressList = () => {
   const [selected, setSelected] = useState('');
 

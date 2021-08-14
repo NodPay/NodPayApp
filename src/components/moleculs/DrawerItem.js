@@ -1,7 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
-
+/**
+ * Menu choices in drawer
+ * @param  {} label         Menu name
+ * @param  {} image         Menu icon
+ * @param  {} unreadCount   Unread count in menu
+ * @param  {} onPress       When menu is pressed
+ * @param  {} isActive      is menu opened
+ */
 const DrawerItem = ({label, image, unreadCount, onPress, isActive}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>

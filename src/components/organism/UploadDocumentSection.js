@@ -19,21 +19,27 @@ import {setFormRegisterBusiness} from '../../store/action';
 import useStateContext from '../../store/useStateContext';
 
 const UploadDocumentSection = () => {
+  // get and store data into global context
   const {state, dispatch} = useStateContext();
+  // handle input form
   const [data, setData] = useState({
     secpImage: '',
     ntnImage: '',
     cnicImage: '',
   });
+  // handle selected bottomsheet by index
   const [selected, setSelected] = useState(0);
+  // bottomsheet ref
   const btnRef = useRef(null);
 
+  // a function to open camera while the button pressed.
   const openCamera = () => {
     ImagePicker.openCamera({
       width: 300,
       height: 400,
     }).then(res => {
       console.log('result', res);
+      // check which image / document that selected then store it into local state.
       if (selected == 0) {
         setData({...data, secpImage: res.path});
         dispatch(setFormRegisterBusiness('secpImage', res.path));
@@ -48,12 +54,15 @@ const UploadDocumentSection = () => {
     btnRef.current.close();
   };
 
+  // a function to open gallery while the button pressed.
+
   const openGallery = () => {
     ImagePicker.openPicker({
       width: 300,
       height: 400,
     }).then(res => {
       console.log('result', res);
+      // check which image / document that selected then store it into local state.
       if (selected == 0) {
         setData({...data, secpImage: res.path});
         dispatch(setFormRegisterBusiness('secpImage', res.path));

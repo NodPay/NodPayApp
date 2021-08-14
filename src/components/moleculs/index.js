@@ -1,3 +1,5 @@
+// Every each component on this folder need to registering on this list
+// so will be more easy to call any components from any folder on the /components/* folder
 import StepForm from './StepForm';
 import SectionTitle from './SectionTitle';
 import InputPassword from './InputPassword';
@@ -10,7 +12,6 @@ import SelectAddressList from './SelectAddressList';
 import CardInfoButton from './CardInfoButton';
 import DrawerItem from './DrawerItem';
 import InputSearch from './InputSearch';
-import ContactList from './ContactList';
 import HeaderHome from './HeaderHome';
 import BalanceInfo from './BalanceInfo';
 import FeedItem from './FeedItem';
@@ -37,9 +38,13 @@ import CustomerItem from './CustomerItem';
 import TransactionItem from './TransactionItem';
 import EmployeeItem from './EmployeeItem';
 import PersonalDetailItem from './PersonalDetailItem';
+import WalktroughTooltip from './WalktroughTooltip';
+import StepFormRequestCard from './StepFormRequestCard';
+import EditTagList from './EditTagList';
 
 export {
   SectionTitle,
+  StepFormRequestCard,
   InputPassword,
   InputText,
   StepForm,
@@ -51,7 +56,6 @@ export {
   CardInfoButton,
   DrawerItem,
   InputSearch,
-  ContactList,
   HeaderHome,
   BalanceInfo,
   FeedItem,
@@ -78,4 +82,6 @@ export {
   TransactionItem,
   EmployeeItem,
   PersonalDetailItem,
+  WalktroughTooltip,
+  EditTagList,
 };

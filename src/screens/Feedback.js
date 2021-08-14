@@ -10,6 +10,7 @@ import {
   StatusBar,
   ScrollView,
   Alert,
+  Platform,
 } from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import {Transition, Transitioning} from 'react-native-reanimated';
@@ -191,7 +192,10 @@ const Feedback = ({navigation}) => {
             />
           </View>
 
-          <KeyboardAvoidingView behavior={Platform.OS == 'ios' && 'position'}>
+          <KeyboardAvoidingView
+            behavior="padding"
+            keyboardVerticalOffset={0}
+            enabled={Platform.OS === 'android' ? false : true}>
             <Button
               title="Submit Feedback"
               titleStyle={{color: 'white'}}

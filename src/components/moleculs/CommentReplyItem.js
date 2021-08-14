@@ -5,6 +5,10 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {dimens, fonts, color} from '../../utils';
 import {ProfileExample, Time} from '../../assets';
 
+/**
+ * Item list of comment's repplies
+ * @param  {object} item     Object of reply's datas
+ */
 const CommentReplyItem = ({item = {}}) => {
   const {message} = item;
 

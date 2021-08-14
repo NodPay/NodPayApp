@@ -2,6 +2,22 @@ import React from 'react';
 import {StyleSheet, TextInput as InputText} from 'react-native';
 import {color, dimens, fonts} from '../../utils';
 
+/**
+ * TextInput component for text input field of form
+ * @param   {string}    value                   Value text
+ * @param   {string}    placeholder             Placeholder text
+ * @param   {string}    placeholderTextColor    For custom placeholder text color
+ * @param   {func}      onChangeText            Triggered when text input onchange
+ * @param   {bool}      secureTextEntry         For condition text input as a password or not
+ * @param   {string}    autoCapitalize          For type of auto capitalize like none, words, etc
+ * @param   {string}    keyboardType            For type of keyboard like numeric, general, etc
+ * @param   {bool}      editable                For condition editable state
+ * @param   {object}    style                   For custom container style
+ * @param   {object}    additionalInputProps    For additional props of text input
+ * @param   {func}      onFocus                 Triggered when text input onfocus
+ * @param   {func}      onBlur                  Triggered when text input onblur
+ * @param   {func}      onSubmitEditing         Triggered when text input onsubmitediting of keyboard
+ */
 const TextInput = ({
   value,
   placeholder,

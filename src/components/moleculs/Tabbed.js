@@ -2,7 +2,15 @@ import React from 'react';
 import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
 import Animated, {interpolate} from 'react-native-reanimated';
 import {color, dimens, fonts} from '../../utils';
-
+/**
+ * component to render a tab button
+ * @param  {} state
+ * @param  {} descriptors
+ * @param  {string} navigation for navigation
+ * @param  {} position
+ * @param  {string} containerStyle custom container style
+ * @param  {} notification={}
+ */
 const Tabbed = ({
   state,
   descriptors,

@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, StatusBar, SafeAreaView} from 'react-native';
+import {CommonActions} from '@react-navigation/native';
 
 // where local file imported
 import {Loading, Logo} from '../components';
@@ -13,9 +14,20 @@ const Loader = ({navigation}) => {
         wait(500).then(() => navigation.replace('OnBoarding'));
       } else if (res.isBoarding && res.isLogin == false) {
         wait(500).then(() => navigation.replace('Login'));
+      } else if (res.isBoarding && res.isLogin && res.isBusiness) {
+        // business has logged in.
+        wait(500).then(() => {
+          navigation.reset({
+            routes: [{name: 'AppBusinessDrawer'}],
+          });
+        });
       } else if (res.isBoarding && res.isLogin) {
         // user has logged in.
-        wait(300).then(() => navigation.replace('AppDrawer'));
+        wait(500).then(() => {
+          navigation.reset({
+            routes: [{name: 'AppDrawer'}],
+          });
+        });
       }
     });
   }, []);

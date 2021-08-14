@@ -4,11 +4,17 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 //where local file imported
 import {dimens, fonts, color} from '../../utils';
 import {DefaultPict} from '../../assets';
-
+/**
+ * @param  {string} name render text name
+ * @param  {string} type render text type
+ * @param  {number} pay render number of money
+ * @param  {bool} isMinus is its true, change style for money amount
+ */
 const TransactionItem = ({name, type, pay, isMinus}) => {
   return (
     <View style={styles.container}>
       <View style={styles.leftWrap}>
+        {/* default image profile from assets */}
         <Image
           source={DefaultPict}
           style={{height: 50, width: 50, borderRadius: 50}}

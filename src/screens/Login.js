@@ -1,12 +1,52 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View, SafeAreaView, Image, StatusBar} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  Image,
+  StatusBar,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
+import {LoginManager, AccessToken} from 'react-native-fbsdk-next';
+import auth from '@react-native-firebase/auth';
 
 // where local file imported
 import {Button, PageTitle, SectionTitle, LinkAction} from '../components';
-import {Facebook, Email, Phone, SplashWaveGradient} from '../assets';
+import {Facebook, Email, Phone, SplashWaveGradient, Change} from '../assets';
 import {clearAll, color, dimens, fonts, storeData} from '../utils';
 
 const Login = ({navigation}) => {
+  const loginWithFacebook = async () => {
+    try {
+      const {isCancelled} = await LoginManager.logInWithPermissions([
+        'public_profile',
+        'email',
+      ]);
+
+      if (isCancelled) {
+        throw new Error('User cancelled the login process.');
+      }
+
+      const data = await AccessToken.getCurrentAccessToken();
+
+      if (!data) {
+        throw new Error('Something went wrong when obtaining access token.');
+      }
+
+      const credential = auth.FacebookAuthProvider.credential(data.accessToken);
+      const result = await auth().signInWithCredential(credential);
+
+      const profile = result.user.providerData.find(
+        item => item.providerId === 'facebook.com',
+      );
+
+      console.warn('profile', profile);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     storeData('session', {
       isLogin: false,
@@ -42,7 +82,7 @@ const Login = ({navigation}) => {
               borderWidth: 1,
             }}
             titleStyle={{fontFamily: fonts.sofia_bold, color: 'black'}}
-            onPress={() => {}}
+            onPress={loginWithFacebook}
           />
           <Button
             iconLeft={Phone}

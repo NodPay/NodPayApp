@@ -34,7 +34,7 @@ const ResidentialAddress = () => {
         onChangeText={value => {
           setPostalCode(value);
           dispatch(setFormRegister('address', value));
-          dispatch(setFormRegisterBusiness('address', value));
+          // dispatch(setFormRegisterBusiness('address', value));
         }}
         keyboardType="number-pad"
       />
