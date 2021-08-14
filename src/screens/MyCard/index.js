@@ -381,6 +381,7 @@ const MyCard = ({navigation, route}) => {
             <Button
               onPress={() => {
                 navigation.navigate('RequestCard');
+                refReqCardSheet.current?.close();
               }}
               title="Continue"
               titleStyle={{
