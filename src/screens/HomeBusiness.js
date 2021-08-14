@@ -129,7 +129,7 @@ const HomeBusiness = ({navigation}) => {
                   position: 'absolute',
                   left: Platform.OS === 'ios' ? -10 : 0,
                   bottom: 15,
-                  width: Platform.OS === 'ios' ? 110 : 80,
+                  width: Platform.OS === 'ios' ? 110 : 100,
                 }}>
                 Send & Request
               </Text>

@@ -109,7 +109,7 @@ const MyCard = ({navigation, route}) => {
           titleStyle={styles.pageTitle}
           isNoBackButton
         />
-        <View style={styles.innerContainer}>
+        <ScrollView contentContainerStyle={styles.innerContainer}>
           {/* Card(s) */}
           <TouchableOpacity
             activeOpacity={0.8}
@@ -273,7 +273,7 @@ const MyCard = ({navigation, route}) => {
           )}
 
           {/* Menu Item End */}
-        </View>
+        </ScrollView>
 
         {/* Bottom Tab Navigator */}
         <View style={styles.bottomTab}>
@@ -326,7 +326,7 @@ const MyCard = ({navigation, route}) => {
                   position: 'absolute',
                   left: Platform.OS === 'ios' ? -10 : 0,
                   bottom: 15,
-                  width: Platform.OS === 'ios' ? 110 : 80,
+                  width: Platform.OS === 'ios' ? 110 : 100,
                 }}>
                 Send & Request
               </Text>
