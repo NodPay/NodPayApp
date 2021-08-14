@@ -54,6 +54,20 @@ const initialState = {
     cnicImage: '',
     address: '', //postal code
   },
+  formEditProfile: {
+    firstName: '',
+    lastName: '',
+    username: '',
+    age: '',
+    gender: '',
+    email: '',
+    shortBio: '',
+    zipCode: '',
+    country: '',
+    state: '',
+    city: '',
+    address: '',
+  },
   // from edit profile business
   formEditProfileBusiness: {
     name: '',

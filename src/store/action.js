@@ -45,6 +45,15 @@ export const setFormRegisterBusiness = (key, value) => {
     inputValue: value,
   };
 };
+
+export const setFormEditProfile = (key, value) => {
+  return {
+    type: 'SET_FORM_EDIT_PROFILE',
+    inputType: key,
+    inputValue: value,
+  };
+};
+
 export const setFormEditProfileBusiness = (key, value) => {
   return {
     type: 'SET_FORM_EDIT_PROFILE_BUSINESS',
