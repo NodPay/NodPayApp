@@ -37,7 +37,13 @@ const BankAccountConnect = ({onCancel}) => {
     form.routingNumber && form.accountNumber && form.confirmAccountNumber;
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        Platform.OS === 'ios'
+          ? {paddingVertical: dimens.medium}
+          : {paddingBottom: dimens.medium},
+      ]}>
       <StatusBar backgroundColor={color.btn_white_2} />
 
       {/* Modal Failed */}
@@ -117,7 +123,7 @@ const BankAccountConnect = ({onCancel}) => {
 
       <KeyboardAvoidingView
         behavior="padding"
-        keyboardVerticalOffset={0}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0}
         enabled={Platform.OS === 'android' ? false : true}
         style={styles.addButtonContainer}>
         <Button
@@ -133,7 +139,7 @@ const BankAccountConnect = ({onCancel}) => {
           titleStyle={{color: 'white'}}
         />
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaView>
   );
 };
 
