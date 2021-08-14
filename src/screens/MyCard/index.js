@@ -22,7 +22,7 @@ import {
   Loading,
   Modal,
 } from '../../components';
-import {color, dimens, fonts} from '../../utils';
+import {color, dimens, fonts, wait} from '../../utils';
 import {
   CardActive,
   Exchange,
@@ -53,6 +53,7 @@ const MyCard = ({navigation, route}) => {
   const [isCardLocked, setIsCardLocked] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
   const [isPhysicalCardActive, setIsPhysicalCardActive] = useState(undefined);
+  const [isShowingCopyTooltip, setIsShowingCopyTooltip] = useState(false);
 
   // If there is route params "isPinChanged", show success modal
   useEffect(() => {
@@ -70,6 +71,12 @@ const MyCard = ({navigation, route}) => {
     setIsPhysicalCardActive(true);
     return () => {};
   }, []);
+
+  useEffect(() => {
+    if (isShowingCopyTooltip) {
+      wait(500).then(() => setIsShowingCopyTooltip(false));
+    }
+  }, [isShowingCopyTooltip]);
 
   // Bottom sheet settings
   const refReqCardSheet = useRef(null);
@@ -184,6 +191,7 @@ const MyCard = ({navigation, route}) => {
                 style={styles.button}
                 onPress={() => {
                   Clipboard.setString('1238 2914 2910 0984');
+                  setIsShowingCopyTooltip(true);
                 }}>
                 <Image
                   source={Copy}
@@ -227,13 +235,41 @@ const MyCard = ({navigation, route}) => {
               },
             }}
           />
-          <MenuItem
-            icon={NameCardPurple}
-            title="Request Physical Card"
-            onPress={() => {
-              refReqCardSheet.current?.expand();
-            }}
-          />
+          {isShowingCopyTooltip ? (
+            // Copy CCV Tooltip
+            <View
+              style={{
+                backgroundColor: 'black',
+                width: '100%',
+                borderRadius: dimens.default,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                paddingVertical: dimens.small,
+              }}>
+              <Image
+                source={CheckCircle}
+                style={{width: 28, height: 28, marginTop: dimens.small}}
+              />
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: dimens.default,
+                  marginLeft: dimens.small,
+                }}>
+                Virutal card number copied
+              </Text>
+            </View>
+          ) : (
+            <MenuItem
+              icon={NameCardPurple}
+              title="Request Physical Card"
+              onPress={() => {
+                refReqCardSheet.current?.expand();
+              }}
+            />
+          )}
+
           {/* Menu Item End */}
         </View>
 
