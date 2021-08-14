@@ -66,6 +66,24 @@ const initialState = {
     city: '',
     detailAddress: '',
   },
+  formLoginEmail: {
+    email: '',
+    password: '',
+  },
+  formLoginPhone: {
+    code: '1',
+    phone: '',
+    password: '',
+  },
+  formLoginEmailBusiness: {
+    email: '',
+    password: '',
+  },
+  formLoginPhoneBusiness: {
+    code: '1',
+    phone: '',
+    password: '',
+  },
   // Tag
   tag: [
     {id: 0, title: 'all'},
@@ -179,6 +197,38 @@ const reducer = (state, action) => {
         ...state,
         formRegisterBusiness: {
           ...state.formRegisterBusiness,
+          [action.inputType]: action.inputValue,
+        },
+      };
+    case 'SET_FORM_LOGIN_EMAIL':
+      return {
+        ...state,
+        formLoginEmail: {
+          ...state.formLoginEmail,
+          [action.inputType]: action.inputValue,
+        },
+      };
+    case 'SET_FORM_LOGIN_PHONE':
+      return {
+        ...state,
+        formLoginPhone: {
+          ...state.formLoginPhone,
+          [action.inputType]: action.inputValue,
+        },
+      };
+    case 'SET_FORM_LOGIN_EMAIL_BUSINESS':
+      return {
+        ...state,
+        formLoginEmailBusiness: {
+          ...state.formLoginEmailBusiness,
+          [action.inputType]: action.inputValue,
+        },
+      };
+    case 'SET_FORM_LOGIN_PHONE_BUSINESS':
+      return {
+        ...state,
+        formLoginPhoneBusiness: {
+          ...state.formLoginPhoneBusiness,
           [action.inputType]: action.inputValue,
         },
       };
