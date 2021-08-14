@@ -69,3 +69,11 @@ export const setFormForgotPassword = (key, value) => {
     inputValue: value,
   };
 };
+
+export const setFormRequestPhysicalCard = (key, value) => {
+  return {
+    type: 'SET_FORM_REQUEST_PHYSICAL_CARD',
+    inputType: key,
+    inputValue: value,
+  };
+};

@@ -46,14 +46,13 @@ const NewPassword = ({navigation}) => {
         }}
       />
 
+      <PageTitle
+        title="Forgot Password"
+        isBlackArrow
+        containerStyle={{backgroundColor: color.btn_white_2}}
+        titleStyle={{color: 'black'}}
+      />
       <View style={styles.inner_container}>
-        <PageTitle
-          title="Forgot Password"
-          isBlackArrow
-          containerStyle={{backgroundColor: color.btn_white_2}}
-          titleStyle={{color: 'black'}}
-        />
-
         <SectionTitle type="auth" title="Reset Your Password" />
 
         <InputPassword

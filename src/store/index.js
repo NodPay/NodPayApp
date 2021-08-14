@@ -279,6 +279,14 @@ const reducer = (state, action) => {
           [action.inputType]: action.inputValue,
         },
       };
+    case 'SET_FORM_REQUEST_PHYSICAL_CARD':
+      return {
+        ...state,
+        formRequestPhysicalCard: {
+          ...state.formRequestPhysicalCard,
+          [action.inputType]: action.inputValue,
+        },
+      };
     default:
       return state;
   }
