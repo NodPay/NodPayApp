@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Image,
   Platform,
+  ImageBackground,
 } from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
@@ -25,7 +26,13 @@ import {
   Delayed,
 } from '../components/';
 import {color, dimens, fonts, getData, storeData} from '../utils/';
-import {CardInactive, Exchange, HomeActive, People1} from '../assets/';
+import {
+  BgBottomTab,
+  CardInactive,
+  Exchange,
+  HomeActive,
+  People1,
+} from '../assets/';
 
 const Tab = createMaterialTopTabNavigator();
 const Home = ({navigation}) => {
@@ -277,32 +284,44 @@ const Home = ({navigation}) => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <Image source={HomeActive} style={{width: 30, height: 30}} />
+                <Image
+                  source={HomeActive}
+                  style={{width: 30, height: 30, marginBottom: 6}}
+                />
                 <Text>Home</Text>
               </TouchableOpacity>
               <View>
                 <TouchableOpacity
                   style={{
                     top: -35,
-                    height: 80,
-                    width: 80,
-                    backgroundColor: color.bg_color,
+                    backgroundColor: color.btn_white_2,
+                    padding: 10,
                     borderRadius: 40,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderWidth: 10,
-                    borderColor: color.btn_white_2,
                   }}
                   onPress={() => navigation.navigate('Transaction')}>
-                  <Image source={Exchange} style={{width: 30, height: 30}} />
+                  <ImageBackground
+                    source={BgBottomTab}
+                    style={{
+                      height: 64,
+                      width: 64,
+                      borderRadius: 40,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      resizeMode: 'cover',
+                    }}>
+                    <Image source={Exchange} style={{width: 30, height: 30}} />
+                  </ImageBackground>
                 </TouchableOpacity>
                 <Text
                   style={{
                     position: 'absolute',
-                    left: Platform.OS === 'ios' ? 10 : 15,
+                    left: Platform.OS === 'ios' ? -10 : 0,
                     bottom: 15,
+                    width: Platform.OS === 'ios' ? 110 : 80,
                   }}>
-                  Exchange
+                  Send & Request
                 </Text>
               </View>
               <TouchableOpacity
@@ -313,7 +332,10 @@ const Home = ({navigation}) => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <Image source={CardInactive} style={{width: 30, height: 30}} />
+                <Image
+                  source={CardInactive}
+                  style={{width: 30, height: 30, marginBottom: 6}}
+                />
                 <Text>Card</Text>
               </TouchableOpacity>
             </View>
@@ -341,7 +363,7 @@ const Home = ({navigation}) => {
                     }}>
                     <Image
                       source={HomeActive}
-                      style={{width: 30, height: 30}}
+                      style={{width: 30, height: 30, marginBottom: 6}}
                     />
                     <Text>Home</Text>
                   </TouchableOpacity>
@@ -367,10 +389,11 @@ const Home = ({navigation}) => {
                     <Text
                       style={{
                         position: 'absolute',
-                        left: Platform.OS === 'ios' ? 10 : 15,
+                        left: Platform.OS === 'ios' ? -10 : 0,
                         bottom: 15,
+                        width: Platform.OS === 'ios' ? 110 : 80,
                       }}>
-                      Exchange
+                      Send & Request
                     </Text>
                   </View>
                   <TouchableOpacity
@@ -383,7 +406,7 @@ const Home = ({navigation}) => {
                     }}>
                     <Image
                       source={CardInactive}
-                      style={{width: 30, height: 30}}
+                      style={{width: 30, height: 30, marginBottom: 6}}
                     />
                     <Text>Card</Text>
                   </TouchableOpacity>

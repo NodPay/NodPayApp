@@ -4,7 +4,7 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 //where local file imported
 import {Logo} from '../atoms';
 import {dimens, fonts, color} from '../../utils';
-import {Search, ProfileExample} from '../../assets';
+import {SearchBlack, ProfileExample} from '../../assets';
 /**
  * Header of home screen
  * @param  {function} onPressSearch   When search word is pressed
@@ -16,7 +16,7 @@ const HeaderHome = ({onPressSearch, onPressProfile}) => {
       <TouchableOpacity
         style={[styles.imageWrapper, {paddingHorizontal: dimens.small}]}
         onPress={onPressSearch}>
-        <Image source={Search} style={styles.image} />
+        <Image source={SearchBlack} style={styles.image_photo} />
         <Text style={styles.imageDescription}>Search</Text>
       </TouchableOpacity>
 
@@ -43,6 +43,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: dimens.supersmall,
   },
+  image_photo: {
+    height: 24,
+    resizeMode: 'contain',
+  },
   image: {
     height: 37,
     resizeMode: 'contain',
@@ -51,6 +55,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.sofia_regular,
     fontSize: dimens.default_12,
     color: color.btn_black,
+    marginTop: dimens.supersmall,
   },
   logoContainer: {
     position: 'absolute',

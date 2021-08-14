@@ -8,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  ImageBackground,
 } from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
@@ -22,7 +23,13 @@ import {
   MainAction,
 } from '../components/';
 import {color, dimens, fonts, getData} from '../utils/';
-import {BookInactive, Exchange, HomeActive, People1} from '../assets/';
+import {
+  BgBottomTab,
+  BookInactive,
+  Exchange,
+  HomeActive,
+  People1,
+} from '../assets/';
 
 const Tab = createMaterialTopTabNavigator();
 const HomeBusiness = ({navigation}) => {
@@ -87,32 +94,44 @@ const HomeBusiness = ({navigation}) => {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-              <Image source={HomeActive} style={{width: 30, height: 30}} />
+              <Image
+                source={HomeActive}
+                style={{width: 30, height: 30, marginBottom: 6}}
+              />
               <Text style={{color: color.bg_color}}>Home</Text>
             </TouchableOpacity>
             <View>
               <TouchableOpacity
                 style={{
                   top: -35,
-                  height: 80,
-                  width: 80,
-                  backgroundColor: color.bg_color,
+                  backgroundColor: color.btn_white_2,
+                  padding: 10,
                   borderRadius: 40,
                   justifyContent: 'center',
                   alignItems: 'center',
-                  borderWidth: 10,
-                  borderColor: color.btn_white_2,
                 }}
-                onPress={() => navigation.navigate('BusinessTransaction')}>
-                <Image source={Exchange} style={{width: 30, height: 30}} />
+                onPress={() => navigation.navigate('Transaction')}>
+                <ImageBackground
+                  source={BgBottomTab}
+                  style={{
+                    height: 64,
+                    width: 64,
+                    borderRadius: 40,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    resizeMode: 'cover',
+                  }}>
+                  <Image source={Exchange} style={{width: 30, height: 30}} />
+                </ImageBackground>
               </TouchableOpacity>
               <Text
                 style={{
                   position: 'absolute',
-                  left: Platform.OS === 'ios' ? 10 : 15,
+                  left: Platform.OS === 'ios' ? -10 : 0,
                   bottom: 15,
+                  width: Platform.OS === 'ios' ? 110 : 80,
                 }}>
-                Exchange
+                Send & Request
               </Text>
             </View>
             <TouchableOpacity

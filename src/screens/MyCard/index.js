@@ -10,6 +10,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  ImageBackground,
 } from 'react-native';
 import Clipboard from '@react-native-community/clipboard';
 
@@ -40,6 +41,7 @@ import {
   Next,
   LockWhite,
   ModalSuccess,
+  BgBottomTab,
 } from '../../assets';
 import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
@@ -289,32 +291,44 @@ const MyCard = ({navigation, route}) => {
               onPress={() => {
                 navigation.navigate('Home');
               }}>
-              <Image source={HomeInactive} style={{width: 30, height: 30}} />
+              <Image
+                source={HomeInactive}
+                style={{width: 30, height: 30, marginBottom: 6}}
+              />
               <Text>Home</Text>
             </TouchableOpacity>
             <View>
               <TouchableOpacity
                 style={{
                   top: -35,
-                  height: 80,
-                  width: 80,
-                  backgroundColor: color.bg_color,
+                  backgroundColor: color.btn_white_2,
+                  padding: 10,
                   borderRadius: 40,
                   justifyContent: 'center',
                   alignItems: 'center',
-                  borderWidth: 10,
-                  borderColor: color.btn_white_2,
                 }}
                 onPress={() => navigation.navigate('Transaction')}>
-                <Image source={Exchange} style={{width: 30, height: 30}} />
+                <ImageBackground
+                  source={BgBottomTab}
+                  style={{
+                    height: 64,
+                    width: 64,
+                    borderRadius: 40,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    resizeMode: 'cover',
+                  }}>
+                  <Image source={Exchange} style={{width: 30, height: 30}} />
+                </ImageBackground>
               </TouchableOpacity>
               <Text
                 style={{
                   position: 'absolute',
-                  left: Platform.OS === 'ios' ? 10 : 15,
+                  left: Platform.OS === 'ios' ? -10 : 0,
                   bottom: 15,
+                  width: Platform.OS === 'ios' ? 110 : 80,
                 }}>
-                Exchange
+                Send & Request
               </Text>
             </View>
             <TouchableOpacity
@@ -322,7 +336,10 @@ const MyCard = ({navigation, route}) => {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-              <Image source={CardActive} style={{width: 30, height: 30}} />
+              <Image
+                source={CardActive}
+                style={{width: 30, height: 30, marginBottom: 6}}
+              />
               <Text>Card</Text>
             </TouchableOpacity>
           </View>
