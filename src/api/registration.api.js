@@ -4,7 +4,9 @@ import axios from 'axios';
 export const checkValidPhoneNumber = phoneNumber => {
   return new Promise(async (resolve, reject) => {
     axios
-      .get(API_URL + '/auth/valid-phone-number?phoneNumber=' + phoneNumber)
+      .post(API_URL + '/auth/valid-phone-number', {
+        phoneNumber: phoneNumber,
+      })
       .then(response => {
         console.log(response.data);
         resolve(response.data.isValid);
@@ -114,7 +116,7 @@ export const signup = formRegister => {
         .then(response => {
           console.log('Successful signup');
           console.log(response);
-          resolve('Successful signup');
+          resolve(response.data);
         })
         .catch(error => {
           console.log("Couldn't signup");
@@ -122,5 +124,38 @@ export const signup = formRegister => {
           reject('Unable to signup');
         });
     }
+  });
+};
+
+export const phoneLogin = (phoneNumber, password) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(API_URL + '/auth/phone-login', {
+        phoneNumber: phoneNumber,
+        password: password,
+      })
+      .then(response => {
+        console.log(response);
+        resolve(response.data);
+      })
+      .catch(err => {
+        console.log(err);
+        reject('Unable to login using phone number');
+      });
+  });
+};
+
+export const emailLogin = (email, password) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(API_URL + '/auth/email-login', {email: email, password: password})
+      .then(response => {
+        console.log(response);
+        resolve(response.data);
+      })
+      .catch(err => {
+        console.log(err);
+        reject('Unable to login with email');
+      });
   });
 };

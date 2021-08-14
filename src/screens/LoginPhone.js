@@ -23,13 +23,14 @@ import {
 } from '../components';
 import {SplashWaveGradient} from '../assets';
 import {clearAll, color, dimens, fonts, storeData, wait} from '../utils';
+import {phoneLogin} from '../api/registration.api';
 
 const LoginPhone = ({navigation}) => {
   const PHONE_NUMBER = '000000000000';
   const PASSWORD = 'admin';
 
   const [isLoading, setIsLoading] = useState(false);
-  const [code, setCode] = useState('1');
+  const [code, setCode] = useState('+1');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [submited, setSubmited] = useState(false);
@@ -66,35 +67,35 @@ const LoginPhone = ({navigation}) => {
     message: '',
   });
 
-  const onLogin = () => {
-    setIsLoading(true);
-    // check auth
-    if (phone == '' || password == '') {
-      wait(100).then(() => {
-        setIsLoading(false);
-        setError({
-          status: true,
-          message: "Phone Number or Password Can't be empty.",
+  const onLogin = async () => {
+    try {
+      setIsLoading(true);
+      // check auth
+      if (phone == '' || password == '') {
+        wait(100).then(() => {
+          setIsLoading(false);
+          setError({
+            status: true,
+            message: "Phone Number or Password Can't be empty.",
+          });
         });
-      });
-    } else if (phone != PHONE_NUMBER && password != PASSWORD) {
-      wait(100).then(() => {
-        setIsLoading(false);
-        setError({
-          status: true,
-          message: 'Phone Number not found or wrong password!',
-        });
-      });
-    } else {
-      wait(300).then(() => {
-        console.log('login success');
-        storeData('session', {
-          isLogin: true, // if auth success, then save token for current user then user doesn't need to relogin
-          isBoarding: true,
-        });
-        setError({status: false, message: ''});
-        navigation.replace('AppDrawer');
-      });
+      } else {
+        const data = await phoneLogin(code + phone, password);
+        if (data) {
+          console.log('login success');
+          setIsLoading(false);
+          storeData('token', data.token);
+          storeData('session', {
+            isLogin: true, // if auth success, then save token for current user then user doesn't need to relogin
+            isBoarding: true,
+          });
+          setError({status: false, message: ''});
+          navigation.replace('Loader');
+        }
+      }
+    } catch (err) {
+      setIsLoading(false);
+      setError({status: true, message: 'Unable to login with phone number'});
     }
   };
 

@@ -23,6 +23,7 @@ import {
 } from '../components';
 import {SplashWaveGradient} from '../assets';
 import {clearAll, color, dimens, fonts, wait, storeData} from '../utils';
+import {emailLogin} from '../api/registration.api';
 
 const LoginEmail = ({navigation}) => {
   const EMAIL = 'admin@nodpay.app';
@@ -64,36 +65,37 @@ const LoginEmail = ({navigation}) => {
     message: '',
   });
 
-  const onLogin = () => {
-    setIsLoading(true);
-    // check auth
-    if (email == '' || password == '') {
-      wait(100).then(() => {
-        setIsLoading(false);
-        setError({
-          status: true,
-          message: "Email or Password Can't be empty.",
+  const onLogin = async () => {
+    try {
+      setIsLoading(true);
+      // check auth
+      if (email == '' || password == '') {
+        wait(100).then(() => {
+          setIsLoading(false);
+          setError({
+            status: true,
+            message: "Email or Password Can't be empty.",
+          });
         });
-      });
-    } else if (email != EMAIL && password != PASSWORD) {
-      wait(100).then(() => {
-        setIsLoading(false);
-        setError({
-          status: true,
-          message: 'Email or password is wrong!',
-        });
-      });
-    } else {
-      wait(300).then(() => {
-        console.log('login success');
-        storeData('session', {
-          isLogin: true, // if auth success, then save token for current user then user doesn't need to relogin
-          isBoarding: true,
-        });
-        setError({status: false, message: ''});
-        navigation.replace('AppDrawer', {
-          screen: 'Home',
-        });
+      } else {
+        const data = await emailLogin(email, password);
+        if (data) {
+          wait(300).then(() => {
+            console.log('login success');
+            storeData('token', data.token);
+            storeData('session', {
+              isLogin: true, // if auth success, then save token for current user then user doesn't need to relogin
+              isBoarding: true,
+            });
+            setError({status: false, message: ''});
+            navigation.replace('Loader');
+          });
+        }
+      }
+    } catch (err) {
+      setError({
+        status: true,
+        message: 'Unable to login with email / password. Please try again',
       });
     }
   };

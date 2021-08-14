@@ -10,7 +10,7 @@ import {
 import ImagePicker from 'react-native-image-crop-picker';
 
 //where local files imported
-import {color, dimens, fonts} from '../utils';
+import {color, dimens, fonts, storeData} from '../utils';
 import {PageTitle, Button, StepForm} from '../components';
 import {Next} from '../assets';
 import useStateContext from '../store/useStateContext';
@@ -139,9 +139,13 @@ const Register = ({navigation}) => {
   };
 
   const handleSignup = async () => {
-    console.log(state.formRegister);
     try {
       const response = await signup(state.formRegister);
+      const savedToken = await storeData('token', response.token);
+      const session = await storeData('session', {
+        isBoarding: true,
+        isLogin: true,
+      });
       dispatch({type: 'SET_MODAL', showModal: true, typeModal: 'success'});
       dispatch({type: 'SET_IS_COMPLETED', payload: true});
     } catch (error) {
