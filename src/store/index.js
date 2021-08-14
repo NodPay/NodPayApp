@@ -104,6 +104,10 @@ const initialState = {
     {id: 1, title: 'local'},
     {id: 2, title: 'international'},
   ],
+  // Forgot password
+  formForgotPassword: {
+    email: '',
+  },
 };
 
 const reducer = (state, action) => {
@@ -266,6 +270,14 @@ const reducer = (state, action) => {
       return {
         ...state,
         errorBusiness: action.payload,
+      };
+    case 'SET_FORM_FORGOT_PASSWORD':
+      return {
+        ...state,
+        formForgotPassword: {
+          ...state.formForgotPassword,
+          [action.inputType]: action.inputValue,
+        },
       };
     default:
       return state;

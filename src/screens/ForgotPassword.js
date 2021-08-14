@@ -19,10 +19,13 @@ import {
 } from '../components';
 import {color, dimens, fonts} from '../utils';
 import {LeftArrowBlack, ModalSent, ModalFailed} from '../assets';
+import useStateContext from '../store/useStateContext';
+import {setFormForgotPassword} from '../store/action';
 
 const ForgotPassword = ({navigation}) => {
-  const [email, setEmail] = useState('');
   const [modalSuccess, setModalSuccess] = useState(false);
+  const {state, dispatch} = useStateContext();
+  const {email} = state;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -52,14 +55,13 @@ const ForgotPassword = ({navigation}) => {
         }}
       />
 
+      <PageTitle
+        title="Forgot Password"
+        isBlackArrow
+        containerStyle={{backgroundColor: color.btn_white_2}}
+        titleStyle={{color: 'black'}}
+      />
       <View style={styles.inner_container}>
-        <PageTitle
-          title="Forgot Password"
-          isBlackArrow
-          containerStyle={{backgroundColor: color.btn_white_2}}
-          titleStyle={{color: 'black'}}
-        />
-
         <SectionTitle
           type="auth"
           title="Reset Your Password"
@@ -67,7 +69,13 @@ const ForgotPassword = ({navigation}) => {
           password instruction to your email"
         />
 
-        <InputText label="Your Email" value={email} onChangeText={setEmail} />
+        <InputText
+          label="Your Email"
+          value={email}
+          onChangeText={val => {
+            dispatch(setFormForgotPassword('email', val));
+          }}
+        />
         <ErrorMessage message="The email isn’t associated with a NodPay Account" />
       </View>
 

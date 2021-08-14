@@ -20,11 +20,13 @@ import {
 } from '../components';
 import {color, dimens, fonts} from '../utils';
 import {LeftArrowBlack, ModalSuccess} from '../assets';
+import useStateContext from '../store/useStateContext';
+import {setFormForgotPassword} from '../store/action';
 
 const NewPassword = ({navigation}) => {
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [modalSuccess, setModalSuccess] = useState(false);
+  const {state, dispatch} = useStateContext();
+  const {password, confirmPassword} = state;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -57,12 +59,16 @@ const NewPassword = ({navigation}) => {
         <InputPassword
           label="New Password"
           value={password}
-          onChangeText={setPassword}
+          onChangeText={val => {
+            dispatch(setFormForgotPassword('password', val));
+          }}
         />
         <InputPassword
           label="Confirm New Password"
           value={confirmPassword}
-          onChangeText={setConfirmPassword}
+          onChangeText={val => {
+            dispatch(setFormForgotPassword('confirmPassword', val));
+          }}
         />
         <ErrorMessage message="Password strength is too weak. Please use combination of number and symbols" />
       </View>

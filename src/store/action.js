@@ -61,3 +61,11 @@ export const setFormEditProfileBusiness = (key, value) => {
     inputValue: value,
   };
 };
+
+export const setFormForgotPassword = (key, value) => {
+  return {
+    type: 'SET_FORM_FORGOT_PASSWORD',
+    inputType: key,
+    inputValue: value,
+  };
+};
