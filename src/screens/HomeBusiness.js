@@ -49,73 +49,104 @@ const HomeBusiness = ({navigation}) => {
         }}
       />
 
-      <View style={{padding: dimens.default, paddingBottom: 0, flex: 1}}>
-        {userRole === 'admin' && (
-          <BalanceInfo
-            type="home"
-            moneyAmount="400.000"
-            onPressAdd={() => mainActionRef.current.open()}
-          />
-        )}
-
-        <Tab.Navigator
-          tabBar={props => (
-            <Tabbed
-              {...props}
-              containerStyle={styles.listContainer}
-              notification={{name: 'Request', count: 3}}
+      <View style={{flex: 1}}>
+        <View style={{padding: dimens.default, paddingBottom: 0, flex: 1}}>
+          {userRole === 'admin' && (
+            <BalanceInfo
+              type="home"
+              moneyAmount="400.000"
+              onPressAdd={() => mainActionRef.current.open()}
             />
-          )}>
-          <Tab.Screen name="Customer" component={Customer} />
-          <Tab.Screen name="Transaction" component={Transaction} />
-        </Tab.Navigator>
-      </View>
+          )}
 
-      <Gap t={100} />
+          <Tab.Navigator
+            tabBar={props => (
+              <Tabbed
+                {...props}
+                containerStyle={styles.listContainer}
+                notification={{name: 'Request', count: 3}}
+              />
+            )}>
+            <Tab.Screen name="Customer" component={Customer} />
+            <Tab.Screen name="Transaction" component={Transaction} />
+          </Tab.Navigator>
+        </View>
 
-      {/* Bottom Tab Navigator */}
-      <View style={styles.bottomTab}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
-          }}>
-          <TouchableOpacity>
-            <Image source={HomeActive} style={{width: 30, height: 30}} />
-            <Text style={{color: color.bg_color}}>Home</Text>
-          </TouchableOpacity>
-          <View>
+        <Gap t={100} />
+
+        {/* Bottom Tab Navigator */}
+        <View style={styles.bottomTab}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-evenly',
+              alignItems: 'center',
+            }}>
             <TouchableOpacity
               style={{
-                top: -35,
-                height: 80,
-                width: 80,
-                backgroundColor: color.bg_color,
-                borderRadius: 40,
                 justifyContent: 'center',
                 alignItems: 'center',
-                borderWidth: 10,
-                borderColor: color.btn_white_2,
-              }}
-              onPress={() => navigation.navigate('BusinessTransaction')}>
-              <Image source={Exchange} style={{width: 30, height: 30}} />
+              }}>
+              <Image source={HomeActive} style={{width: 30, height: 30}} />
+              <Text style={{color: color.bg_color}}>Home</Text>
             </TouchableOpacity>
-            <Text>Exchange</Text>
+            <View>
+              <TouchableOpacity
+                style={{
+                  top: -35,
+                  height: 80,
+                  width: 80,
+                  backgroundColor: color.bg_color,
+                  borderRadius: 40,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderWidth: 10,
+                  borderColor: color.btn_white_2,
+                }}
+                onPress={() => navigation.navigate('BusinessTransaction')}>
+                <Image source={Exchange} style={{width: 30, height: 30}} />
+              </TouchableOpacity>
+              <Text
+                style={{
+                  position: 'absolute',
+                  left: Platform.OS === 'ios' ? 10 : 15,
+                  bottom: 15,
+                }}>
+                Exchange
+              </Text>
+            </View>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('BookKeeping');
+              }}
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                position: 'relative',
+              }}>
+              <Image
+                source={BookInactive}
+                style={{
+                  width: 30,
+                  height: 30,
+                  alignSelf: 'center',
+                  marginBottom: 18,
+                }}
+              />
+              <Text
+                style={{
+                  position: 'absolute',
+                  left: Platform.OS === 'ios' ? -25 : -18,
+                  bottom: 0,
+                  width: 85,
+                }}>
+                Bookkeeping
+              </Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('BookKeeping');
-            }}>
-            <Image
-              source={BookInactive}
-              style={{width: 30, height: 30, alignSelf: 'center'}}
-            />
-            <Text>Bookkeeping</Text>
-          </TouchableOpacity>
         </View>
+        {/* Bottom Tab Navigator End*/}
       </View>
-      {/* Bottom Tab Navigator End*/}
 
       {/* MainAction BottomSheet */}
       <MainAction type="business" mainActionRef={mainActionRef} />

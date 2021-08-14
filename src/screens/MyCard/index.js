@@ -246,6 +246,10 @@ const MyCard = ({navigation, route}) => {
               alignItems: 'center',
             }}>
             <TouchableOpacity
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
               onPress={() => {
                 navigation.navigate('Home');
               }}>
@@ -265,14 +269,23 @@ const MyCard = ({navigation, route}) => {
                   borderWidth: 10,
                   borderColor: color.btn_white_2,
                 }}
-                onPress={() => {
-                  navigation.navigate('Transaction');
-                }}>
+                onPress={() => navigation.navigate('Transaction')}>
                 <Image source={Exchange} style={{width: 30, height: 30}} />
               </TouchableOpacity>
-              <Text>Exchange</Text>
+              <Text
+                style={{
+                  position: 'absolute',
+                  left: Platform.OS === 'ios' ? 10 : 15,
+                  bottom: 15,
+                }}>
+                Exchange
+              </Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
               <Image source={CardActive} style={{width: 30, height: 30}} />
               <Text>Card</Text>
             </TouchableOpacity>

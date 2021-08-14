@@ -246,6 +246,14 @@ const reducer = (state, action) => {
           [action.inputType]: action.inputValue,
         },
       };
+    case 'SET_FORM_EDIT_PROFILE':
+      return {
+        ...state,
+        formEditProfile: {
+          ...state.formEditProfile,
+          [action.inputType]: action.inputValue,
+        },
+      };
     case 'SET_FORM_EDIT_PROFILE_BUSINESS':
       return {
         ...state,

@@ -267,48 +267,7 @@ const Profile = ({navigation}) => {
 
       {/* Feed & Request */}
       <View style={{padding: dimens.default, paddingBottom: 0, flex: 1}}>
-        {walktroughPassed === null || walktroughPassed === true ? (
-          <>
-            {walktrough[0].isActive && (
-              <View style={styles.tabButton}>
-                <TouchableOpacity
-                  style={[
-                    styles.btn,
-                    {
-                      backgroundColor: 'white',
-                    },
-                  ]}>
-                  <Text
-                    style={[
-                      styles.btnTitle,
-                      {
-                        color: color.btn_black,
-                      },
-                    ]}>
-                    Feed
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={[
-                    styles.btn,
-                    {
-                      backgroundColor: 'transparent',
-                    },
-                  ]}>
-                  <Text
-                    style={[
-                      styles.btnTitle,
-                      {
-                        color: 'gray',
-                      },
-                    ]}>
-                    Request
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            )}
-          </>
-        ) : (
+        {walktroughPassed !== null && walktroughPassed !== true && (
           <Delayed>
             <WalktroughTooltip
               items={walktrough}
@@ -359,64 +318,13 @@ const Profile = ({navigation}) => {
             </WalktroughTooltip>
           </Delayed>
         )}
-        <WalktroughTooltip
-          items={walktrough}
-          setItems={setWalktrough}
-          indexActive={1}
-          width={250}
-          height={160}
-          arrowStyle={{left: 195}}
-          placement="bottom">
-          {walktrough[1].isActive && (
-            <View style={styles.tabButton}>
-              <TouchableOpacity
-                style={[
-                  styles.btn,
-                  {
-                    backgroundColor: 'white',
-                  },
-                ]}>
-                <Text
-                  style={[
-                    styles.btnTitle,
-                    {
-                      color: color.btn_black,
-                    },
-                  ]}>
-                  Feed
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[
-                  styles.btn,
-                  {
-                    backgroundColor: 'transparent',
-                  },
-                ]}>
-                <Text
-                  style={[
-                    styles.btnTitle,
-                    {
-                      color: 'gray',
-                    },
-                  ]}>
-                  Request
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        </WalktroughTooltip>
         <Tab.Navigator
           tabBar={props => (
-            <>
-              {!walktrough[0].isActive && !walktrough[1].isActive && (
-                <Tabbed
-                  {...props}
-                  containerStyle={styles.listContainer}
-                  notification={{name: 'Request', count: 3}}
-                />
-              )}
-            </>
+            <Tabbed
+              {...props}
+              containerStyle={styles.listContainer}
+              notification={{name: 'Request', count: 3}}
+            />
           )}>
           <Tab.Screen name="Feed" component={Feed} />
           <Tab.Screen name="Request" component={Request} />
