@@ -6,6 +6,7 @@ import {
   Image,
   Text,
   SafeAreaView,
+  TouchableOpacity,
 } from 'react-native';
 
 import {DrawerItem, BalanceInfo} from '../moleculs';
@@ -55,10 +56,14 @@ const BusinessDrawer = ({navigation}) => {
             source={ProfileExample}
             style={{height: 45, width: 45, resizeMode: 'contain'}}
           />
-          <View style={{marginLeft: dimens.default}}>
+          <TouchableOpacity
+            style={{marginLeft: dimens.default}}
+            onPress={() => {
+              navigation.navigate('BusinessProfile', {type: 'business'});
+            }}>
             <Text style={styles.realname}>Sempolan.id</Text>
             <Text style={styles.username}>Food and Beverage</Text>
-          </View>
+          </TouchableOpacity>
         </View>
 
         <View style={{padding: dimens.default}}>
