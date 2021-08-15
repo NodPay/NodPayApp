@@ -80,7 +80,6 @@ export const signup = formRegister => {
       age === '' ||
       gender === '' ||
       email === '' ||
-      bio === '' ||
       familyRelationName === '' ||
       address === '' ||
       cnicImage === '' ||
@@ -103,7 +102,6 @@ export const signup = formRegister => {
           age: age,
           gender: gender,
           email: email,
-          bio: bio,
           familyRelationName: familyRelationName,
           address: address,
           cnicImage: 'placeholderCNICImage',

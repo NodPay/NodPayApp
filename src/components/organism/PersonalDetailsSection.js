@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 
 // where local files imported
-import {setFormEditProfile} from '../../store/action';
+import {setFormEditProfile, setFormRegister} from '../../store/action';
 import useStateContext from '../../store/useStateContext';
 import {color, dimens} from '../../utils';
 import {Gap} from '../atoms';
@@ -37,6 +37,7 @@ const PersonalDetailsSection = ({isFamilyRelation, withoutSectionTitle}) => {
           value={state.formEditProfile.familyRelationName}
           placeholder="Enter name.."
           onChangeText={value => {
+            dispatch(setFormRegister('familyRelationName', value));
             dispatch(setFormEditProfile('familyRelationName', value));
           }}
         />
@@ -70,40 +71,56 @@ const PersonalDetailsSection = ({isFamilyRelation, withoutSectionTitle}) => {
       <InputText
         label="First Name"
         value={state.formEditProfile.firstName}
-        onChangeText={value => dispatch(setFormEditProfile('firstName', value))}
+        onChangeText={value => {
+          dispatch(setFormRegister('firstName', value));
+          dispatch(setFormEditProfile('firstName', value));
+        }}
       />
       <InputText
         label="Last Name"
         value={state.formEditProfile.lastName}
-        onChangeText={value => dispatch(setFormEditProfile('lastName', value))}
+        onChangeText={value => {
+          dispatch(setFormRegister('lastName', value));
+          dispatch(setFormEditProfile('lastName', value));
+        }}
       />
       <InputText
         label="Username"
         value={state.formEditProfile.username}
-        onChangeText={value => dispatch(setFormEditProfile('username', value))}
+        onChangeText={value => {
+          dispatch(setFormRegister('username', value));
+          dispatch(setFormEditProfile('username', value));
+        }}
       />
       <InputText
         label="Age"
         keyboardType="number-pad"
         value={state.formEditProfile.age}
-        onChangeText={value => dispatch(setFormEditProfile('age', value))}
+        onChangeText={value => {
+          dispatch(setFormRegister('age', value));
+          dispatch(setFormEditProfile('age', value));
+        }}
       />
       <Gap t={dimens.default_16} />
       <InputOption
         user={state.formEditProfile}
-        onPress1={() => dispatch(setFormEditProfile('gender', 'male'))}
-        onPress2={() => dispatch(setFormEditProfile('gender', 'female'))}
+        onPress1={() => {
+          dispatch(setFormRegister('gender', 'male'));
+          dispatch(setFormEditProfile('gender', 'male'));
+        }}
+        onPress2={() => {
+          dispatch(setFormRegister('gender', 'female'));
+          dispatch(setFormEditProfile('gender', 'female'));
+        }}
       />
       <InputText
         label="Email"
         value={state.formEditProfile.email}
         keyboardType="email-address"
-        onChangeText={value => dispatch(setFormEditProfile('email', value))}
-      />
-      <InputText
-        label="Short Bio"
-        value={state.formEditProfile.shortBio}
-        onChangeText={value => dispatch(setFormEditProfile('bio', value))}
+        onChangeText={value => {
+          dispatch(setFormRegister('email', value));
+          dispatch(setFormEditProfile('email', value));
+        }}
       />
       <Gap b={dimens.default_16} />
     </ScrollView>
