@@ -31,7 +31,13 @@ const RequestCard = ({navigation, route}) => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const onPressBack = () => {};
+  const onPressBack = () => {
+    if (stepData.currentActive == 0) {
+      navigation.goBack();
+    } else {
+      setStepData(prev => ({...prev, currentActive: prev.currentActive - 1}));
+    }
+  };
 
   const onPressContinue = () => {
     if (stepData.currentActive == 2) {
